@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "title": "Same case, continued to 30 seconds",
-  "updated_at": "2026-10-25T19:30:16+00:00",
-  "status": "awaiting_sync",
-  "status_text": "Continuation of the original 8 cm case from its complete 10-second parent/current and Cho states, with every scientific parameter unchanged. Validation and submission are being prepared.",
+  "title": "Longer evolution of the original wave\u2013current comparison",
+  "updated_at": "2026-10-25T20:18:59+00:00",
+  "status": "partial",
+  "status_text": "A partial output snapshot is available.",
   "validation": {
-    "job_id": "0",
-    "state": "not_synchronized",
-    "description": "Validation is being prepared; job identifier will follow."
+    "job_id": "66113349",
+    "state": "record_available",
+    "description": "A successful numerical-consistency validation record is available. This gallery does not revalidate the current simulation source fingerprint."
   },
   "experiment": {
     "wavelength_m": 0.08,
     "initial_steepness": 0.28,
     "damping_multiplier": 2.4,
-    "duration_s": 30,
+    "duration_s": 30.0,
     "domain_m": [
       0.32,
       0.32,
@@ -25,14 +25,31 @@
       "id": "pilot",
       "title": "Coupled parent and current",
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "Awaiting validated run output.",
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
-      "observed_time_s": null,
-      "metrics": {},
+      "observed_time_s": 10.13,
+      "metrics": {
+        "mean_divergence_max_per_s": 1.5126788710517758e-15,
+        "mean_cfl": 0.00429823511369062,
+        "parent_sideband_elevation_variance_fraction_initial": 3.287109426322516e-06,
+        "parent_sideband_elevation_variance_fraction_final": 3.599242589103829e-06
+      },
       "videos": [],
-      "figures": [],
-      "downloads": [],
+      "figures": [
+        {
+          "id": "sidebands",
+          "title": "Parent-wave sidebands",
+          "src": "media/pilot/sidebands-fdcd68a27639d6e8.png",
+          "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
+        }
+      ],
+      "downloads": [
+        {
+          "title": "Parent-wave sidebands \u00b7 CSV",
+          "src": "media/pilot/sidebands-4082c071f5cec2fd.csv"
+        }
+      ],
       "notices": []
     },
     {
@@ -40,7 +57,7 @@
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
       "status": "awaiting_sync",
-      "status_text": "Awaiting validated run output.",
+      "status_text": "No run outputs have been synchronized.",
       "tank_complete": false,
       "observed_time_s": null,
       "metrics": {},
@@ -51,9 +68,9 @@
     }
   ],
   "notes": [
-    "Continuation of the original 8 cm case from its complete 10-second parent/current and Cho states, with every scientific parameter unchanged.",
-    "The original 10-second experiment remains available from the main gallery.",
-    "These are reduced-model comparisons; Cho does not yet feed back into the mean current.",
-    "The page shows the latest published snapshot, not a live scheduler connection."
+    "Continuation of the original two-way and prescribed-parent cases from 10 to 30 seconds with unchanged scientific parameters, grids, and 2.4\u00d7 Cho damping.",
+    "Parent and current resume their saved solver checkpoints. Cho resumes the last saved Float32 roughness field; it is not reset to zero or replayed from the beginning.",
+    "The late surface clip shows 29\u201330 seconds; the startup clip shows the continuation at 10\u201311 seconds. Original 0\u201310 second outputs remain in the original gallery.",
+    "This deliberately retains the original nine-mode parent and weak-current setup. The separate Veron\u2013Wagner experiment addresses its physical limitations."
   ]
 }
