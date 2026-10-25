@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Choppy waves, capillary roughness, and currents",
-  "updated_at": "2026-10-25T16:17:57+00:00",
+  "updated_at": "2026-10-25T19:23:46+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -25,15 +25,74 @@
       "id": "pilot",
       "title": "Coupled parent and current",
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "No run outputs have been synchronized.",
-      "tank_complete": false,
-      "observed_time_s": null,
-      "metrics": {},
-      "videos": [],
-      "figures": [],
-      "downloads": [],
-      "notices": []
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "tank_complete": true,
+      "observed_time_s": 9.99999999999998,
+      "metrics": {
+        "mean_divergence_max_per_s": 1.339206523454095e-15,
+        "mean_cfl": 0.004296799464016314,
+        "maximum_disturbance_m": 0.001098000444471836,
+        "final_parent_mss": 0.040326132462195505,
+        "final_cho_disturbance_mss": 0.014488701881603047,
+        "final_total_mss": 0.05188160572418576,
+        "final_cross_slope_term": -0.002933228619612805,
+        "duration_s": 9.99999999999998,
+        "parent_sideband_elevation_variance_fraction_initial": 7.999999360000052e-08,
+        "parent_sideband_elevation_variance_fraction_final": 3.287109426322516e-06
+      },
+      "videos": [
+        {
+          "id": "surface_startup",
+          "title": "Surface \u00b7 first second",
+          "src": "media/pilot/surface_startup-e7a9813e1b800ea6.mp4",
+          "poster": "media/pilot/surface_startup-ada2569aeba330c4.png",
+          "physical_interval_s": [
+            0.0,
+            1.0
+          ],
+          "physical_playback_speed": 0.04
+        },
+        {
+          "id": "surface_evolution",
+          "title": "Surface \u00b7 full evolution",
+          "src": "media/pilot/surface_evolution-bef2da9930dbee05.mp4",
+          "poster": "media/pilot/surface_evolution-0cb326aa8c0f198d.png",
+          "physical_interval_s": [
+            0.0,
+            9.99999999999998
+          ],
+          "physical_playback_speed": 0.08
+        }
+      ],
+      "figures": [
+        {
+          "id": "mss",
+          "title": "Mean square slope",
+          "src": "media/pilot/mss-46f9d01c0faf70cd.png",
+          "caption": "Parent and total slopes are nonnegative. Their difference also contains the signed parent\u2013Cho cross term; the CSV includes every contribution."
+        },
+        {
+          "id": "sidebands",
+          "title": "Parent-wave sidebands",
+          "src": "media/pilot/sidebands-2faa6c9b84c6807e.png",
+          "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
+        }
+      ],
+      "downloads": [
+        {
+          "title": "Mean square slope \u00b7 CSV",
+          "src": "media/pilot/mss-568534ba945d9484.csv"
+        },
+        {
+          "title": "Parent-wave sidebands \u00b7 CSV",
+          "src": "media/pilot/sidebands-7e636f227596eade.csv"
+        }
+      ],
+      "notices": [
+        "Surface \u00b7 last second is awaiting its renderer completion record.",
+        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
+      ]
     },
     {
       "id": "prescribed",
