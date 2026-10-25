@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Longer evolution of the original wave\u2013current comparison",
-  "updated_at": "2026-10-25T20:18:59+00:00",
+  "updated_at": "2026-10-25T21:49:33+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -27,30 +27,32 @@
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
       "status": "partial",
       "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
-      "tank_complete": false,
-      "observed_time_s": 10.13,
+      "tank_complete": true,
+      "observed_time_s": 30.0,
       "metrics": {
-        "mean_divergence_max_per_s": 1.5126788710517758e-15,
-        "mean_cfl": 0.00429823511369062,
+        "mean_divergence_max_per_s": 1.3322676295501878e-15,
+        "mean_cfl": 0.041656682396915355,
         "parent_sideband_elevation_variance_fraction_initial": 3.287109426322516e-06,
-        "parent_sideband_elevation_variance_fraction_final": 3.599242589103829e-06
+        "parent_sideband_elevation_variance_fraction_final": 0.0008022179994378809
       },
       "videos": [],
       "figures": [
         {
           "id": "sidebands",
           "title": "Parent-wave sidebands",
-          "src": "media/pilot/sidebands-fdcd68a27639d6e8.png",
+          "src": "media/pilot/sidebands-627505179f8f6d51.png",
           "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
         }
       ],
       "downloads": [
         {
           "title": "Parent-wave sidebands \u00b7 CSV",
-          "src": "media/pilot/sidebands-4082c071f5cec2fd.csv"
+          "src": "media/pilot/sidebands-dfea8d38e8c39233.csv"
         }
       ],
-      "notices": []
+      "notices": [
+        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
+      ]
     },
     {
       "id": "prescribed",
