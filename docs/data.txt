@@ -1,0 +1,59 @@
+Public output contract
+======================
+
+scripts/export_campaign.py reads a simulation bundle without importing or changing
+its code. Keep this repository and the export destination outside that bundle;
+validation fingerprints therefore remain unchanged. Run with Python 3.11 or newer:
+
+  python3 scripts/export_campaign.py --campaign BUNDLE --destination gallery
+  python3 scripts/check_gallery.py gallery
+
+Only data/pilot and data/prescribed are exported. Local smoke tests are not
+substituted for Unity experiment results. The manifest is gallery/data/campaign.json,
+schema version 1. Its top-level fields are title, updated_at, status, status_text,
+validation, experiment, notes, and cases. Case fields are id, title, description,
+status, status_text, tank_complete, observed_time_s, metrics, videos, figures,
+downloads, and notices. Video, figure, and download src fields are relative to the
+gallery root. Poster and physical timing fields are optional. Physical playback
+speed is physical seconds per playback second. Underwater playback speed is not
+inferred from its nonuniform saved frames; its physical interval is provided.
+
+Status is a statement about synchronized outputs, not a scheduler report:
+- awaiting_sync: no outputs are available for this case.
+- partial: at least some records or products are available.
+- outputs_available: a completed parent/current record, a surface movie, an
+  underwater movie, and a consistent mean-square-slope table are available.
+  This does not assert that every requested render succeeded or the job finished.
+
+metadata.toml complete=true certifies only the parent/current stage. It does not
+certify completion of Cho evolution or movie rendering. A passed.json record is
+reported as record_available: the exporter does not rerun the source-fingerprint
+validation. Absence of a result is never reported as a failed or running job.
+
+Movies are copied only when their renderer JSON completion record exists. The
+renderer metadata is allowlisted: absolute input paths and arbitrary descriptions
+are never copied. Movie files that are still changing or at least 90 MiB are
+omitted with an explanatory notice. Existing PNG posters are copied; no poster is
+invented for an underwater movie. Content-addressed filenames and atomic manifest
+replacement protect the previously published snapshot. Old assets remain safe
+until deliberately pruned, so the checker also enforces an 800 MiB gallery limit.
+
+Diagnostic tables are parsed, checked, and rewritten as numeric CSV. The exporter
+checks finite values, increasing time, nonnegative parent/Cho/total MSS, and
+total_MSS = parent_MSS + Cho_MSS + cross_contribution. The cross contribution is
+signed; it is not itself a mean-square slope. Sideband elevation variance is the
+sum of squared complex free-mode amplitudes outside the largest initial mode,
+divided by their total. Bound harmonics and Cho roughness are excluded. This is
+not a wave-energy fraction. Matplotlib is optional: without it the numeric CSV
+and summary metrics remain available, with an explicit missing-chart notice.
+
+Inputs are limited to known metadata names, the two diagnostic tables, and four
+rendered movie names with their optional PNG posters. Symlinks are rejected. Raw
+NPZ, binary fields, checkpoints, local configuration paths, job logs, and SSH
+credentials are never exported. The checker rejects unexpected file types,
+unsafe references, absent assets, private host paths, common credential forms,
+nonfinite metrics, unsupported schemas, and inconsistent status claims.
+
+The public metrics are numerical consistency diagnostics, not proof of physical
+convergence or saturation. Cho does not feed back on the parent or mean current;
+underwater changes must not be described as caused by Cho roughness.
