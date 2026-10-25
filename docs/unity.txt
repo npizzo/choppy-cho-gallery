@@ -1,0 +1,83 @@
+UNITY GALLERY UPDATES
+
+The gallery is a separate sidecar. It reads the existing choppy + Cho campaign,
+copies only verified derived outputs, and pushes gallery/ to GitHub Pages.
+It never submits a simulation or changes the scientific source, validation
+fingerprint, configurations, or time integration. Raw field histories stay on
+Unity. The initial page can be published before simulations finish.
+
+Existing campaign:
+/work/pi_nicholas_pizzo_uri_edu/unity-choppy-cho-20261025
+
+Repository: https://github.com/npizzo/choppy-cho-gallery
+Gallery: https://npizzo.github.io/choppy-cho-gallery/
+
+1. ON UNITY: make a separate checkout beside the campaign.
+
+cd /work/pi_nicholas_pizzo_uri_edu
+git clone https://github.com/npizzo/choppy-cho-gallery.git
+cd choppy-cho-gallery
+bash unity/setup-key.sh
+
+The command prints a PUBLIC publishing key. In the repository's Settings >
+Deploy keys > Add deploy key, paste that public key and enable Allow write
+access. Use a new key for this repository; GitHub deploy keys cannot be shared
+between repositories. The private key stays in .unity-publisher/ on Unity.
+GitHub Pages must use Settings > Pages > Source: GitHub Actions.
+
+2. Attach updates to the validation job already submitted:
+
+python3 unity/enable-updates.py --campaign /work/pi_nicholas_pizzo_uri_edu/unity-choppy-cho-20261025 --validation-job 66079691
+
+This checks publishing access and submits an immediate snapshot job. If
+validation is still queued/running, a second snapshot follows its completion
+or failure. No scientific run is started. A passed validation receipt is
+exported as an available validation record; the gallery does not revalidate
+the current source fingerprint. A submitted job alone is not called passed.
+
+3. After validation succeeds, submit the scientific pilot using its EXISTING
+instructions in the campaign directory. Then, from choppy-cho-gallery, rerun:
+
+python3 unity/enable-updates.py --campaign /work/pi_nicholas_pizzo_uri_edu/unity-choppy-cho-20261025
+
+The sidecar reads the array ID from validation/submission.txt and attaches
+one publishing job after each of its two members (pilot and prescribed).
+An explicit --array-job ID is also accepted, but must agree with an existing
+submission receipt. Repeating the attachment command does not duplicate
+recorded jobs. You may log out after attachment. Updates are event-driven;
+the website displays the latest published snapshot, not a live Unity stream.
+
+If old validation accounting has been purged, use the one-off command below
+for a snapshot; do not invent or replace a validation job ID. If several
+validation logs exist and no array is submitted, specify the intended
+--validation-job. After a rerun of validation, use its actual new job ID.
+
+4. Check publishing logs or request a later one-off snapshot:
+
+cat .unity-publisher/updates.json
+tail -n 40 .unity-publisher/logs/publish-*.out .unity-publisher/logs/publish-*.err
+sbatch --output=.unity-publisher/logs/publish-%j.out --error=.unity-publisher/logs/publish-%j.err unity/publish.sbatch "$PWD" /work/pi_nicholas_pizzo_uri_edu/unity-choppy-cho-20261025 npizzo/choppy-cho-gallery
+
+Only the publisher uses git credentials. Compute runs themselves need none.
+The snapshot job requests one CPU and 4 GB for up to 30 minutes, reusing the
+campaign Python environment. It reads a recorded Python module if needed,
+without sourcing or editing the campaign runtime script.
+
+Publication refuses invalid assets or failed integrity checks. The tank's
+metadata.toml complete flag alone is insufficient to claim the whole
+parent/tank/Cho/diagnostics/movie pipeline completed. If a run fails, the
+snapshot reports the verified available state; publication does not repair
+or resubmit it. Check the gallery's export report and Unity job logs.
+
+If updates.json contains a submitting or uncertain event, the scheduler may
+have accepted it before the reply was recorded. Inspect squeue/sacct and the
+record before manually repairing it; the tool will not blindly resubmit.
+Publisher pushes use a fresh checkout and retry up to three times after a
+conflict. No force push, cron job, or periodic login-node process is used.
+
+For local checks (no Unity or network calls):
+python3 tests/test_publication.py
+
+The gallery repository's .gitignore must exclude .unity-publisher/ and Python
+bytecode. Never stage the publisher state or raw campaign files. Public
+documentation describes the setup; the website receives only gallery/.
