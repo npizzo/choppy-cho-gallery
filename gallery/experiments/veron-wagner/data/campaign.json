@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "title": "Wind-driven onset: Veron\u2013Wagner comparison",
-  "updated_at": "2026-10-25T19:30:16+00:00",
-  "status": "awaiting_sync",
-  "status_text": "A wind-driven shear layer at physical age 16 seconds, followed for six seconds with prescribed or evolving 3 cm waves. Validation and submission are being prepared.",
+  "updated_at": "2026-10-25T20:19:06+00:00",
+  "status": "partial",
+  "status_text": "A partial output snapshot is available.",
   "validation": {
-    "job_id": "0",
-    "state": "not_synchronized",
-    "description": "Validation is being prepared; job identifier will follow."
+    "job_id": "66113158",
+    "state": "record_available",
+    "description": "A successful numerical-consistency validation record is available. This gallery does not revalidate the current simulation source fingerprint."
   },
   "experiment": {
     "wavelength_m": 0.03,
     "initial_steepness": 0.11,
     "damping_multiplier": 2.4,
-    "duration_s": 6,
+    "duration_s": 6.0,
     "domain_m": [
       0.12,
       0.12,
@@ -25,35 +25,73 @@
       "id": "pilot",
       "title": "Coupled parent and current",
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "Awaiting validated run output.",
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
-      "observed_time_s": null,
-      "metrics": {},
+      "observed_time_s": 0.0,
+      "metrics": {
+        "mean_divergence_max_per_s": 2.2737367544323206e-13,
+        "mean_cfl": 0.327597984762828
+      },
       "videos": [],
       "figures": [],
       "downloads": [],
-      "notices": []
+      "notices": [
+        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check.",
+        "Parent-wave sidebands data are unavailable or fail consistency checks; this diagnostic was omitted.",
+        "Wind-driven currents and transverse variation data are unavailable or fail consistency checks; this diagnostic was omitted."
+      ]
     },
     {
       "id": "prescribed",
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "Awaiting validated run output.",
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
-      "observed_time_s": null,
-      "metrics": {},
+      "observed_time_s": 0.0,
+      "metrics": {
+        "mean_divergence_max_per_s": 2.2737367544323206e-13,
+        "mean_cfl": 0.327597984762828,
+        "parent_sideband_elevation_variance_fraction_initial": 0.0,
+        "parent_sideband_elevation_variance_fraction_final": 0.0
+      },
       "videos": [],
-      "figures": [],
-      "downloads": [],
-      "notices": []
+      "figures": [
+        {
+          "id": "sidebands",
+          "title": "Parent-wave sidebands",
+          "src": "media/prescribed/sidebands-3bb29a90de19c3db.png",
+          "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
+        },
+        {
+          "id": "mean_current",
+          "title": "Wind-driven currents and transverse variation",
+          "src": "media/prescribed/mean_current-fc51bdebb7650138.png",
+          "caption": "Physical wind age includes the developing layer before model initialization. The Lagrangian mean includes Stokes drift; the Eulerian mean excludes it. Crossflow RMS combines Eulerian transverse and vertical velocities in the upper 5 mm; the surface range is the streamwise-averaged Lagrangian velocity difference across transverse bands. These are wave-averaged currents, without instantaneous orbital velocities."
+        }
+      ],
+      "downloads": [
+        {
+          "title": "Parent-wave sidebands \u00b7 CSV",
+          "src": "media/prescribed/sidebands-ff3590389f1990c8.csv"
+        },
+        {
+          "title": "Wind-driven currents and transverse variation \u00b7 CSV",
+          "src": "media/prescribed/mean_current-860ce8c0f19db75e.csv"
+        }
+      ],
+      "notices": [
+        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check."
+      ]
     }
   ],
   "notes": [
-    "A wind-driven shear layer at physical age 16 seconds, followed for six seconds with prescribed or evolving 3 cm waves.",
-    "The original 10-second experiment remains available from the main gallery.",
-    "These are reduced-model comparisons; Cho does not yet feed back into the mean current.",
-    "The page shows the latest published snapshot, not a live scheduler connection."
+    "3 cm carrier, ka=0.11, initial wind age 16 s, six-second evolution. The surface wind stress grows as the square root of wind age; molecular water viscosity is 1.1e-6 m\u00b2/s.",
+    "Prescribed and evolving-wave cases share the same initial Lagrangian current and divergence-free Gaussian perturbations. This is a reduced, exploratory comparison, not a grid-converged reproduction of Wagner et al.",
+    "The parent contains 99 free modes (mx=3\u20135, my=-16\u201316) with gravity\u2013capillary dispersion and reciprocal current refraction. Intrinsic cubic interactions are omitted; the dominant carrier has second-order geometry and scattered modes have first-order geometry. Cross-bound resonant responses are not modeled.",
+    "Wind stress acts on the Eulerian current and viscosity acts on UL minus projected wave pseudomomentum. This physical stress convention differs slightly from the imposed UL-gradient convention described in Wagner et al.",
+    "Cho uses 2.4 times molecular wave damping and feels parent boundary residuals, orbital motion, and surface-current transport. Cho does not feed back into the mean flow.",
+    "Native fields and checkpoints remain on Unity. Only derived movies, figures and compact diagnostics are public."
   ]
 }

@@ -1,0 +1,2 @@
+time_s,physical_age_s,surface_UL_mean_m_s,surface_UE_mean_m_s,surface_UE_v_rms_m_s,surface_UL_crosswind_range_m_s,upper_5mm_UE_crossflow_rms_m_s,parent_transverse_action_fraction,parent_transverse_boundary_action_fraction,parent_streamwise_boundary_action_fraction
+0.0,16.0,0.15843815011315682,0.15552387042784585,0.04138147280073135,0.034328290355361474,0.04883587709299012,0.0,0.0,0.0
