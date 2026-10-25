@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Choppy waves, capillary roughness, and currents",
-  "updated_at": "2026-10-25T15:54:50+00:00",
+  "updated_at": "2026-10-25T16:17:57+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -39,8 +39,8 @@
       "id": "prescribed",
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
-      "status": "partial",
-      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "status": "outputs_available",
+      "status_text": "Surface, underwater, and slope outputs are available. Job status is not monitored by this page.",
       "tank_complete": true,
       "observed_time_s": 9.99999999999998,
       "metrics": {
@@ -57,6 +57,28 @@
       },
       "videos": [
         {
+          "id": "surface_startup",
+          "title": "Surface \u00b7 first second",
+          "src": "media/prescribed/surface_startup-bbea4564b20ed9f5.mp4",
+          "poster": "media/prescribed/surface_startup-139de48cb68c70e7.png",
+          "physical_interval_s": [
+            0.0,
+            1.0
+          ],
+          "physical_playback_speed": 0.04
+        },
+        {
+          "id": "surface_late",
+          "title": "Surface \u00b7 last second",
+          "src": "media/prescribed/surface_late-9afea3d0f6065c1b.mp4",
+          "poster": "media/prescribed/surface_late-0e28759fea505f15.png",
+          "physical_interval_s": [
+            9.0,
+            9.99999999999998
+          ],
+          "physical_playback_speed": 0.04
+        },
+        {
           "id": "surface_evolution",
           "title": "Surface \u00b7 full evolution",
           "src": "media/prescribed/surface_evolution-2b1c58a56efbe992.mp4",
@@ -66,6 +88,15 @@
             9.99999999999998
           ],
           "physical_playback_speed": 0.08
+        },
+        {
+          "id": "underwater",
+          "title": "Underwater mean-flow vortices",
+          "src": "media/prescribed/underwater-5fa14d01c5983763.mp4",
+          "physical_interval_s": [
+            0.0,
+            9.99999999999998
+          ]
         }
       ],
       "figures": [
@@ -92,10 +123,7 @@
           "src": "media/prescribed/sidebands-1fcded99fb31885d.csv"
         }
       ],
-      "notices": [
-        "Surface \u00b7 first second is awaiting its renderer completion record.",
-        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
-      ]
+      "notices": []
     }
   ],
   "notes": [
