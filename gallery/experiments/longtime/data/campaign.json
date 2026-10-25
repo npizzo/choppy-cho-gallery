@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Longer evolution of the original wave\u2013current comparison",
-  "updated_at": "2026-10-25T21:49:33+00:00",
+  "updated_at": "2026-10-25T23:57:13+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -32,11 +32,23 @@
       "metrics": {
         "mean_divergence_max_per_s": 1.3322676295501878e-15,
         "mean_cfl": 0.041656682396915355,
+        "maximum_disturbance_m": 0.000981331104412675,
+        "final_parent_mss": 0.04032354187168698,
+        "final_cho_disturbance_mss": 0.015403146247855071,
+        "final_total_mss": 0.052788627670075014,
+        "final_cross_slope_term": -0.002938060449467054,
+        "duration_s": 30.0,
         "parent_sideband_elevation_variance_fraction_initial": 3.287109426322516e-06,
         "parent_sideband_elevation_variance_fraction_final": 0.0008022179994378809
       },
       "videos": [],
       "figures": [
+        {
+          "id": "mss",
+          "title": "Mean square slope",
+          "src": "media/pilot/mss-f11e2bf069b286d5.png",
+          "caption": "Parent and total slopes are nonnegative. Their difference also contains the signed parent\u2013Cho cross term; the CSV includes every contribution."
+        },
         {
           "id": "sidebands",
           "title": "Parent-wave sidebands",
@@ -45,6 +57,10 @@
         }
       ],
       "downloads": [
+        {
+          "title": "Mean square slope \u00b7 CSV",
+          "src": "media/pilot/mss-a2cc98b9bdda6e48.csv"
+        },
         {
           "title": "Parent-wave sidebands \u00b7 CSV",
           "src": "media/pilot/sidebands-dfea8d38e8c39233.csv"
