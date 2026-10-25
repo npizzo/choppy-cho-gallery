@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "title": "Choppy waves, capillary roughness, and currents",
-  "updated_at": "2026-10-25T12:08:16+00:00",
+  "updated_at": "2026-10-25T12:26:31+00:00",
   "status": "awaiting_sync",
   "status_text": "Awaiting the first synchronized Unity outputs.",
   "validation": {
     "job_id": "66079691",
-    "state": "not_synchronized",
-    "description": "Validation was submitted; its result has not been synchronized."
+    "state": "record_available",
+    "description": "A successful numerical-consistency validation record is available. This gallery does not revalidate the current simulation source fingerprint."
   },
   "experiment": {
     "wavelength_m": 0.08,
