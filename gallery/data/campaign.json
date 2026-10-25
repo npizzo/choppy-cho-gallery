@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Choppy waves, capillary roughness, and currents",
-  "updated_at": "2026-10-25T13:45:30+00:00",
+  "updated_at": "2026-10-25T15:54:50+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -46,11 +46,35 @@
       "metrics": {
         "mean_divergence_max_per_s": 1.3426759704060487e-15,
         "mean_cfl": 0.004295874852049219,
+        "maximum_disturbance_m": 0.001170206698589027,
+        "final_parent_mss": 0.04032595923164271,
+        "final_cho_disturbance_mss": 0.019594095932681937,
+        "final_total_mss": 0.05700180958850272,
+        "final_cross_slope_term": -0.002918245575821927,
+        "duration_s": 9.99999999999998,
         "parent_sideband_elevation_variance_fraction_initial": 7.999999360000052e-08,
         "parent_sideband_elevation_variance_fraction_final": 1.6709593777537064e-07
       },
-      "videos": [],
+      "videos": [
+        {
+          "id": "surface_evolution",
+          "title": "Surface \u00b7 full evolution",
+          "src": "media/prescribed/surface_evolution-2b1c58a56efbe992.mp4",
+          "poster": "media/prescribed/surface_evolution-0e28759fea505f15.png",
+          "physical_interval_s": [
+            0.0,
+            9.99999999999998
+          ],
+          "physical_playback_speed": 0.08
+        }
+      ],
       "figures": [
+        {
+          "id": "mss",
+          "title": "Mean square slope",
+          "src": "media/prescribed/mss-18aeb88deb4fd644.png",
+          "caption": "Parent and total slopes are nonnegative. Their difference also contains the signed parent\u2013Cho cross term; the CSV includes every contribution."
+        },
         {
           "id": "sidebands",
           "title": "Parent-wave sidebands",
@@ -60,11 +84,16 @@
       ],
       "downloads": [
         {
+          "title": "Mean square slope \u00b7 CSV",
+          "src": "media/prescribed/mss-c875f7ef035769c8.csv"
+        },
+        {
           "title": "Parent-wave sidebands \u00b7 CSV",
           "src": "media/prescribed/sidebands-1fcded99fb31885d.csv"
         }
       ],
       "notices": [
+        "Surface \u00b7 first second is awaiting its renderer completion record.",
         "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
       ]
     }
