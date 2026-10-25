@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "title": "Choppy waves, capillary roughness, and currents",
-  "updated_at": "2026-10-25T12:27:35+00:00",
-  "status": "awaiting_sync",
-  "status_text": "Awaiting the first synchronized Unity outputs.",
+  "updated_at": "2026-10-25T13:45:30+00:00",
+  "status": "partial",
+  "status_text": "A partial output snapshot is available.",
   "validation": {
     "job_id": "66079691",
     "state": "record_available",
@@ -39,15 +39,34 @@
       "id": "prescribed",
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "No run outputs have been synchronized.",
-      "tank_complete": false,
-      "observed_time_s": null,
-      "metrics": {},
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "tank_complete": true,
+      "observed_time_s": 9.99999999999998,
+      "metrics": {
+        "mean_divergence_max_per_s": 1.3426759704060487e-15,
+        "mean_cfl": 0.004295874852049219,
+        "parent_sideband_elevation_variance_fraction_initial": 7.999999360000052e-08,
+        "parent_sideband_elevation_variance_fraction_final": 1.6709593777537064e-07
+      },
       "videos": [],
-      "figures": [],
-      "downloads": [],
-      "notices": []
+      "figures": [
+        {
+          "id": "sidebands",
+          "title": "Parent-wave sidebands",
+          "src": "media/prescribed/sidebands-d42db5af2ed56562.png",
+          "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
+        }
+      ],
+      "downloads": [
+        {
+          "title": "Parent-wave sidebands \u00b7 CSV",
+          "src": "media/prescribed/sidebands-1fcded99fb31885d.csv"
+        }
+      ],
+      "notices": [
+        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
+      ]
     }
   ],
   "notes": [
