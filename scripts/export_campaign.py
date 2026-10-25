@@ -307,6 +307,11 @@ def export_campaign(campaign, destination, validation_job="66079691"):
     if not str(validation_job).isdigit():
         raise ValueError("Validation job must be a numeric Slurm identifier")
     destination.mkdir(parents=True, exist_ok=True)
+    public = read_record(campaign, "public.json")
+    if public.get("validation_job") is not None:
+        validation_job = str(public["validation_job"])
+        if not validation_job.isdigit():
+            raise ValueError("Invalid validation job")
     validation = {"job_id": str(validation_job), "state": "not_synchronized", "description": "Validation was submitted; its result has not been synchronized."}
     try:
         record = read_record(campaign, "validation/passed.json")
@@ -327,6 +332,11 @@ def export_campaign(campaign, destination, validation_job="66079691"):
     except (ValueError, OSError):
         pass
     cases = [build_case(campaign, destination, *case) for case in CASES]
+    for case in cases:
+        supplied = public.get("cases", {}).get(case["id"], {})
+        for key in ("title", "description"):
+            if key in supplied:
+                case[key] = supplied[key]
     state = "outputs_available" if all(case["status"] == "outputs_available" for case in cases) else "partial" if any(case["status"] != "awaiting_sync" for case in cases) else "awaiting_sync"
     manifest = dict(schema_version=1, title="Choppy waves, capillary roughness, and currents", updated_at=datetime.now(timezone.utc).isoformat(timespec="seconds"), status=state,
                     status_text={"awaiting_sync": "Awaiting the first synchronized Unity outputs.", "partial": "A partial output snapshot is available.", "outputs_available": "Both experiment cases have surface, underwater, and slope outputs."}[state],
@@ -336,6 +346,10 @@ def export_campaign(campaign, destination, validation_job="66079691"):
                            "The parent retains nine free modes and bounded second-order corrections. Changes in crest shape and sideband content are limited by that representation.",
                            "Surface and underwater movies use different playback rates. Compare their physical time intervals, not their video clocks.",
                            "Only derived videos, plots, and compact diagnostics are public. Native fields, checkpoints, and host paths remain outside this gallery."])
+    if public.get("title"):
+        manifest["title"] = public["title"]
+    if public.get("notes"):
+        manifest["notes"] = public["notes"]
     from check_gallery import check_manifest
     check_manifest(manifest, destination)
     data = destination / "data"

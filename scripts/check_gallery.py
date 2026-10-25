@@ -130,6 +130,8 @@ def check_gallery(root):
     manifest = root / "data/campaign.json"
     require(manifest.is_file(), "Campaign manifest is missing")
     check_manifest(json.loads(manifest.read_text()), root)
+    for additional in (root / "experiments").glob("*/data/campaign.json"):
+        check_manifest(json.loads(additional.read_text()), additional.parent.parent)
     return total
 
 

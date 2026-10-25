@@ -41,14 +41,16 @@ def publishing_environment(key, known_hosts, state):
     return env
 
 
-def publish(root, campaign, repository, key, known_hosts, *, runner=command):
+def publish(root, campaign, repository, key, known_hosts, *, runner=command, slug=None, runtime_root=None):
     root, campaign = Path(root).resolve(), Path(campaign).resolve()
     separate_paths(root, campaign)
     validate_repository(repository)
     state = root / ".unity-publisher"
     state.mkdir(exist_ok=True, mode=0o700)
     env = publishing_environment(Path(key), Path(known_hosts), state)
-    python = campaign / "runtime/python-env/bin/python3"
+    if slug is not None and not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", slug):
+        raise ValueError("Invalid experiment slug")
+    python = Path(runtime_root or campaign) / "runtime/python-env/bin/python3"
     if not python.is_file():
         raise RuntimeError("Campaign Python runtime is missing; finish the existing bootstrap first")
     if not (campaign / "pilot.sbatch").is_file():
@@ -61,7 +63,7 @@ def publish(root, campaign, repository, key, known_hosts, *, runner=command):
                 runner(["git", "clone", "--single-branch", "--branch", "main",
                         f"https://github.com/{repository}.git", str(checkout)], root, env=env)
                 runner([str(python), str(root / "scripts/export_campaign.py"),
-                        "--campaign", str(campaign), "--destination", str(checkout / "gallery")], root, env=env)
+                        "--campaign", str(campaign), "--destination", str(checkout / "gallery" / "experiments" / slug if slug else checkout / "gallery")], root, env=env)
                 runner([str(python), str(root / "scripts/check_gallery.py"), str(checkout / "gallery")], root, env=env)
                 runner(["git", "add", "--", "gallery"], checkout, env=env)
                 changed = runner(["git", "diff", "--cached", "--quiet"], checkout, env=env, check=False)
@@ -89,8 +91,10 @@ def main():
     parser.add_argument("--repository", default=DEFAULT_REPOSITORY)
     parser.add_argument("--key", type=Path, default=root / ".unity-publisher/id_ed25519")
     parser.add_argument("--known-hosts", type=Path, default=root / ".unity-publisher/known_hosts")
+    parser.add_argument("--slug", help="Publish into a separate existing experiment page")
+    parser.add_argument("--runtime-root", type=Path, help="Reuse a pinned campaign runtime")
     args = parser.parse_args()
-    publish(root, args.campaign, args.repository, args.key, args.known_hosts)
+    publish(root, args.campaign, args.repository, args.key, args.known_hosts, slug=args.slug, runtime_root=args.runtime_root)
 
 
 if __name__ == "__main__":

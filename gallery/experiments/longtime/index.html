@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choppy gravity waves, parasitic capillary ripples, and three-dimensional mean flow. Movies and diagnostics from the coupled Unity experiments.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Choppy waves &amp; capillary ripples · Research gallery</title>
+  <link rel="stylesheet" href="assets/gallery.css">
+  <script defer src="assets/gallery.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to results</a>
+  <header class="wrap">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="../../">Waves <span>/</span> capillary ripples</a>
+      <div class="nav-links"><a href="../longtime/">10–30 s extension</a><a href="../veron-wagner/">Veron–Wagner</a><a href="#results">Movies</a><a href="#diagnostics">Diagnostics</a><a href="https://github.com/npizzo/choppy-cho-gallery">Repository <span aria-hidden="true">↗</span></a></div>
+    </nav>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">A numerical research gallery</p>
+      <h1 id="page-title">Same case, continued to 30 seconds</h1>
+      <p class="lead">Continuation of the original 8 cm case from its complete 10-second parent/current and Cho states, with every scientific parameter unchanged.</p>
+      <div class="hero-notes"><span>Second-order Lagrangian surface</span><span>Cho gravity–capillary response</span><span>Oceananigans mean flow</span></div>
+    </section>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="campaign-panel" aria-labelledby="campaign-title">
+      <div class="section-heading"><div><p class="eyebrow">Unity experiment · Monochromatic start</p><h2 id="campaign-title">Same case, continued to 30 seconds</h2></div><span class="status" id="campaign-status">Awaiting first sync</span></div>
+      <p id="campaign-description" class="campaign-description">Preparation and numerical validation are in progress. No new scientific outputs have been published yet.</p>
+      <div class="parameter-strip" aria-label="Experiment parameters">
+        <div><span class="small-label">Parent wavelength</span><strong id="wavelength">8 <span>cm</span></strong></div>
+        <div><span class="small-label">Initial steepness, ka</span><strong id="steepness">0.28</strong></div>
+        <div><span class="small-label">Cho viscosity</span><strong id="viscosity">2.4<span>× molecular</span></strong></div>
+        <div><span class="small-label">Target evolution</span><strong id="duration">30 <span>s</span></strong></div>
+      </div>
+      <div class="sync-line"><p id="sync-status" role="status" aria-live="polite">Loading the latest published snapshot…</p><button id="refresh-button" type="button">Refresh snapshot <span aria-hidden="true">↻</span></button></div>
+      <div id="data-error" class="data-error" role="alert" hidden></div>
+    </section>
+
+    <section id="results" class="section" aria-labelledby="results-title">
+      <div class="section-heading"><div><p class="eyebrow">Above &amp; below the surface</p><h2 id="results-title">Watch the evolution</h2></div><span class="small-label" id="result-count">Outputs not yet imported</span></div>
+      <div class="case-controls" id="case-controls" role="group" aria-label="Choose an experiment"></div>
+      <div class="case-heading"><div><h3 id="case-title">Two-way parent / current</h3><p id="case-description">The parent waves and mean current influence one another. Cho responds to both.</p></div><span id="case-status" class="status">Awaiting first sync</span></div>
+      <p class="case-notice" id="case-notice">A simulation array has not yet been confirmed in the published record.</p>
+      <div class="movie-grid">
+        <article class="movie-card" aria-labelledby="surface-title">
+          <div class="movie-heading"><span class="index-label">01</span><div><h3 id="surface-title">Parent → parent + Cho</h3><p>The same parent surface, with and without capillary roughness.</p></div></div>
+          <div class="movie-stage" id="surface-stage"><div class="media-placeholder"><span class="placeholder-label">SURFACE</span><h4>Waiting for the first surface movie</h4><p>Blue surface views will appear here when the outputs are imported from Unity.</p></div></div>
+          <div class="movie-tools" id="surface-tools" hidden><label for="surface-clip">Time window</label><select id="surface-clip"></select></div>
+          <div class="movie-caption" id="surface-caption">A fixed laboratory view, with the physical proportions of the surface preserved.</div>
+        </article>
+        <article class="movie-card" aria-labelledby="underwater-title">
+          <div class="movie-heading"><span class="index-label">02</span><div><h3 id="underwater-title">Underwater structures</h3><p>Streamwise vorticity in the three-dimensional mean flow.</p></div></div>
+          <div class="movie-stage" id="underwater-stage"><div class="media-placeholder"><span class="placeholder-label">MEAN FLOW</span><h4>Waiting for the first underwater movie</h4><p>Vorticity surfaces will reveal the evolving organization of the flow.</p></div></div>
+          <div class="movie-tools" id="underwater-tools" hidden></div>
+          <div class="movie-caption" id="underwater-caption">The current is resolved below a flat mean surface; the moving wave surface is reconstructed separately.</div>
+        </article>
+      </div>
+      <p class="section-note">Surface and underwater movies may use different slow-motion factors. Their time labels show physical simulation time; playback is independent.</p>
+      <div class="case-notices" id="case-notices" hidden></div>
+    </section>
+
+    <section id="diagnostics" class="section" aria-labelledby="diagnostics-title">
+      <div class="section-heading"><div><p class="eyebrow">The measurements behind the movies</p><h2 id="diagnostics-title">Surface roughness &amp; wave modulation</h2></div><span id="diagnostic-case" class="small-label">Two-way parent / current</span></div>
+      <div class="metrics" id="metrics" hidden></div>
+      <div id="figures" class="figure-grid"></div>
+      <div class="empty-results" id="empty-diagnostics"><div class="empty-mark" aria-hidden="true">MSS</div><div><h3>Diagnostics will follow the computed surface.</h3><p>Mean square slope separates the parent surface, the Cho disturbance, and their combined surface. The sideband history tracks the redistribution of parent-wave variance.</p><p class="small">No scientific results have been imported in this snapshot.</p></div></div>
+      <div id="downloads" class="downloads" hidden></div>
+      <p class="interpretation">The combined mean square slope includes a cross term between parent and disturbance slopes. That cross term may have either sign; each mean square slope is nonnegative.</p>
+    </section>
+
+    <section id="model" class="section model-section" aria-labelledby="model-title">
+      <div><p class="eyebrow">The comparison</p><h2 id="model-title">One initial wave field.<br>Two current couplings.</h2><p>Both experiments continue their original 10-second states, including accumulated Cho roughness. The comparison changes whether the evolving mean current feeds back on the parent waves.</p></div>
+      <div class="comparison-panel"><div><span class="case-dot"></span><h3>Two-way parent / current</h3><p>The parent waves drive the mean flow, and that current modifies the parent-wave evolution.</p></div><div><span class="case-dot muted-dot"></span><h3>Prescribed parent evolution</h3><p>The parent evolves under its intrinsic dynamics. The current feels the waves, but does not feed back on the parent.</p></div></div>
+    </section>
+
+    <details class="method-details"><summary>Model scope, numerical setup &amp; publication notes</summary><div class="method-body"><div><h3>How the components are coupled</h3><p>A bounded second-order Lagrangian reconstruction supplies the choppy surface. Its parent-wave dynamics couple to a three-dimensional Craik–Leibovich mean-flow model in Oceananigans.</p><p>The Cho disturbance feels the parent boundary forcing, parent orbital velocities, and the surface mean current. Cho does not yet feed momentum or energy back into the parent or current, so underwater changes cannot be attributed to capillary feedback.</p><p>This is a reduced wave / mean-flow model. It reconstructs a moving surface separately from a flat mean tank top; it does not resolve the moving air–water interface.</p></div><div><h3>Reference configuration</h3><table><tbody><tr><th scope="row">Domain, x × y × depth</th><td>32 × 32 × 12 cm</td></tr><tr><th scope="row">Parent free modes</th><td>9, including small sidebands</td></tr><tr><th scope="row">Mean-flow grid</th><td>33 × 33 × 32</td></tr><tr><th scope="row">Cho grid</th><td>512 × 256</td></tr><tr><th scope="row">Cho effective viscosity</th><td>2.4 × 10⁻⁶ m² s⁻¹</td></tr><tr><th scope="row">Time step</th><td>0.0005 s</td></tr><tr><th scope="row">Run duration</th><td>10–30 s continuation</td></tr></tbody></table></div><div class="publication-notes"><h3>Reading the published record</h3><ul id="notes"><li>Validation and job identifiers will be published with the first confirmed snapshot.</li><li>Software checks do not establish spatial or time-step convergence of the scientific results.</li><li>Only derived movies, figures and compact diagnostics are published. Raw fields remain in research storage.</li></ul></div></div></details>
+    <noscript><p class="data-error">Enable JavaScript to load the movies and diagnostics, or <a href="data/campaign.json">download the published snapshot</a>.</p></noscript>
+  </main>
+
+  <footer class="site-footer wrap"><div><strong>Choppy waves &amp; capillary ripples</strong><p>Nicholas Pizzo · Numerical research gallery</p></div><div class="footer-links"><a href="data/campaign.json">Published snapshot</a><a href="https://github.com/npizzo/choppy-cho-gallery">Code &amp; publishing workflow <span aria-hidden="true">↗</span></a></div><p class="footer-note">This page displays the last imported output. It does not query Unity or control a simulation.</p></footer>
+</body>
+</html>

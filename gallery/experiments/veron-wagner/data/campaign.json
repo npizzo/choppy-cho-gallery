@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "title": "Wind-driven onset: Veron\u2013Wagner comparison",
+  "updated_at": "2026-10-25T19:30:16+00:00",
+  "status": "awaiting_sync",
+  "status_text": "A wind-driven shear layer at physical age 16 seconds, followed for six seconds with prescribed or evolving 3 cm waves. Validation and submission are being prepared.",
+  "validation": {
+    "job_id": "0",
+    "state": "not_synchronized",
+    "description": "Validation is being prepared; job identifier will follow."
+  },
+  "experiment": {
+    "wavelength_m": 0.03,
+    "initial_steepness": 0.11,
+    "damping_multiplier": 2.4,
+    "duration_s": 6,
+    "domain_m": [
+      0.12,
+      0.12,
+      0.05
+    ]
+  },
+  "cases": [
+    {
+      "id": "pilot",
+      "title": "Coupled parent and current",
+      "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "Awaiting validated run output.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    },
+    {
+      "id": "prescribed",
+      "title": "Without current feedback to the parent",
+      "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "Awaiting validated run output.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    }
+  ],
+  "notes": [
+    "A wind-driven shear layer at physical age 16 seconds, followed for six seconds with prescribed or evolving 3 cm waves.",
+    "The original 10-second experiment remains available from the main gallery.",
+    "These are reduced-model comparisons; Cho does not yet feed back into the mean current.",
+    "The page shows the latest published snapshot, not a live scheduler connection."
+  ]
+}

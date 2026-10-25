@@ -41,6 +41,7 @@
   function renderSnapshot(data) {
     snapshot = data;
     applyStatus($("campaign-status"), data.status);
+    $("campaign-title").textContent = data.title || "Choppy waves + Cho";
     $("campaign-description").textContent = data.status_text || "The latest simulation output has not yet been synchronized.";
     const cases = data.cases.filter((entry) => entry && ["pilot", "prescribed"].includes(entry.id));
     if (!cases.some((entry) => entry.id === selectedCase)) selectedCase = cases[0]?.id || "pilot";
