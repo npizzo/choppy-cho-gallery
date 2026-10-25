@@ -20,6 +20,7 @@ class ExportTests(unittest.TestCase):
         root = Path(self.temporary.name).resolve()
         self.campaign, self.gallery = root / "campaign", root / "gallery"
         self.campaign.mkdir()
+        self.original_plot = exporter.plot_asset
         self.plot_patch = patch.object(exporter, "plot_asset", return_value=None)
         self.plot_patch.start()
         self.addCleanup(self.plot_patch.stop)
@@ -163,6 +164,83 @@ class ExportTests(unittest.TestCase):
         case = self.export()["cases"][0]
         self.assertEqual(case["status"], "partial")
         self.assertEqual(case["observed_time_s"], 3.25)
+
+    def mean_fixture(self, rows=None):
+        return self.write("data/pilot/mean_history.csv", ",".join(exporter.MEAN_COLUMNS)+"\n"+
+            (rows if rows is not None else "0,16,-0.02,-0.03,0.001,0.004,0.002,0,0,0\n1,17,-0.01,-0.02,0.002,0.008,0.003,0.02,0.001,0.002\n"))
+
+    def test_mean_history_allows_signed_means_and_exports_only_allowed_columns(self):
+        self.mean_fixture()
+        rows = exporter.read_mean_history(self.campaign, "data/pilot/mean_history.csv")
+        self.assertEqual(rows[0]["surface_UL_mean_m_s"], -.02)
+        case = self.export()["cases"][0]
+        self.assertEqual(case["status"], "partial")
+        self.assertEqual(case["metrics"], {})
+        self.assertEqual(len(case["downloads"]), 1)
+        public = (self.gallery/case["downloads"][0]["src"]).read_text()
+        self.assertEqual(public.splitlines()[0], ",".join(exporter.MEAN_COLUMNS))
+        self.assertIn("-0.02", public)
+
+    def test_invalid_mean_rms_action_fraction_or_time_origin_is_omitted(self):
+        for row in ("0,16,0.16,0.15,-0.001,0.004,0.002,0,0,0\n",
+                    "0,16,0.16,0.15,0.001,0.004,0.002,1.1,0,0\n",
+                    "0,16,0.16,0.15,0.001,0.004,0.002,0,0,0\n1,18,0.16,0.15,0.001,0.004,0.002,0,0,0\n"):
+            with self.subTest(row=row):
+                self.mean_fixture(row)
+                case = self.export()["cases"][0]
+                self.assertEqual(case["downloads"], [])
+                self.assertTrue(any("consistency" in notice for notice in case["notices"]))
+
+    def test_truncated_or_extended_mean_table_is_omitted(self):
+        path = self.mean_fixture()
+        text = path.read_text()
+        for damaged in (text+"2,18,0.16\n", text.replace("physical_age_s,", "unapproved_column,physical_age_s,")):
+            with self.subTest(damaged=damaged):
+                path.write_text(damaged)
+                case = self.export()["cases"][0]
+                self.assertEqual(case["downloads"], [])
+
+    def test_pipeline_running_alone_is_partial_without_claiming_completion(self):
+        self.write("data/pilot/pipeline_status.json", json.dumps({"current_stage":"tank","state":"running",
+            "stages":{"tank":{"detail":"/work/private/raw.bin"}}}))
+        case = self.export()["cases"][0]
+        self.assertEqual(case["status"], "partial")
+        self.assertFalse(case["tank_complete"])
+        self.assertIsNone(case["observed_time_s"])
+        self.assertEqual(case["metrics"], {})
+        self.assertTrue(any("parent/current integration — running" in notice for notice in case["notices"]))
+        self.assertNotIn("/work/", json.dumps(case))
+
+    def test_failed_stage_keeps_completed_outputs_and_does_not_claim_live_status(self):
+        self.completed_fixture()
+        self.write("data/pilot/pipeline_status.json", json.dumps({"current_stage":"render","state":"failed"}))
+        case = self.export()["cases"][0]
+        self.assertEqual(case["status"], "outputs_available")
+        self.assertEqual(len(case["videos"]), 2)
+        self.assertTrue(any("rendering — failed" in notice and "not a live" in notice for notice in case["notices"]))
+
+    def test_current_plot_has_two_panels_cm_s_and_physical_wind_age(self):
+        try:
+            import matplotlib.pyplot as plt
+        except ImportError:
+            self.skipTest("Matplotlib unavailable")
+        self.mean_fixture()
+        rows = exporter.read_mean_history(self.campaign, "data/pilot/mean_history.csv")
+        observed = {}
+        close = plt.close
+        def inspect(figure):
+            if hasattr(figure, "axes"):
+                observed["axes"] = [(ax.get_xlabel(), ax.get_ylabel(),
+                    [(list(line.get_xdata()),list(line.get_ydata())) for line in ax.lines]) for ax in figure.axes]
+            close(figure)
+        with patch.object(plt, "close", side_effect=inspect):
+            image = self.original_plot(self.gallery,"pilot","mean_current",rows)
+        self.assertTrue((self.gallery/image).read_bytes().startswith(b"\x89PNG"))
+        top, bottom = observed["axes"]
+        self.assertEqual(top[1], "Mean current (cm/s)")
+        self.assertEqual(top[2][0], ([16.,17.],[-2.,-1.]))
+        self.assertEqual(bottom[0], "Physical wind age (s)")
+        self.assertEqual(bottom[2][0], ([16.,17.],[.2,.3]))
 
     def test_checker_rejects_unsafe_references_private_data_and_false_claims(self):
         result = self.export()

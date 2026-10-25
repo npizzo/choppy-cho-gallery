@@ -21,6 +21,10 @@ CASES = (
     ("prescribed", "Without current feedback to the parent", "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current."),
 )
 MSS_COLUMNS = ("time_s", "parent_mss", "cho_mss", "total_mss", "cross_contribution")
+MEAN_COLUMNS = ("time_s", "physical_age_s", "surface_UL_mean_m_s", "surface_UE_mean_m_s",
+                "surface_UE_v_rms_m_s", "surface_UL_crosswind_range_m_s",
+                "upper_5mm_UE_crossflow_rms_m_s", "parent_transverse_action_fraction",
+                "parent_transverse_boundary_action_fraction", "parent_streamwise_boundary_action_fraction")
 VIDEOS = (
     ("surface_startup", "Surface · first second"),
     ("surface_late", "Surface · last second"),
@@ -132,6 +136,29 @@ def read_sidebands(root, relative):
     return output
 
 
+def read_mean_history(root, relative):
+    result = csv_rows(root, relative)
+    if result is None:
+        return None
+    columns, rows = result
+    if columns != list(MEAN_COLUMNS):
+        raise ValueError("Unexpected mean-current table columns")
+    check_times(rows, "time_s")
+    check_times(rows, "physical_age_s")
+    initial_age = rows[0]["physical_age_s"]-rows[0]["time_s"]
+    if initial_age < 0:
+        raise ValueError("Physical wind age precedes model elapsed time")
+    for row in rows:
+        if not math.isclose(row["physical_age_s"]-row["time_s"], initial_age, rel_tol=1e-10, abs_tol=1e-10):
+            raise ValueError("Physical wind age has an inconsistent time origin")
+        # Mean streamwise velocities are signed; only RMS/range are positive definite.
+        if any(row[key] < 0 for key in MEAN_COLUMNS[4:7]):
+            raise ValueError("Negative current RMS or crosswind range")
+        if any(not 0 <= row[key] <= 1 for key in MEAN_COLUMNS[7:]):
+            raise ValueError("Invalid parent action fraction")
+    return rows
+
+
 def install_bytes(destination, case_id, name, payload):
     if len(payload) >= MAX_ASSET:
         raise ValueError("Asset exceeds the public per-file limit")
@@ -186,20 +213,38 @@ def plot_asset(destination, case_id, name, rows):
     except ImportError:
         return None
     with plt.rc_context({"font.size": 11, "axes.spines.top": False, "axes.spines.right": False}):
-        fig, ax = plt.subplots(figsize=(8, 4.2), constrained_layout=True)
-        times = [row["time_s"] for row in rows]
+        if name == "mean_current":
+            fig, axes = plt.subplots(2, 1, figsize=(8, 6.4), sharex=True, constrained_layout=True)
+            times = [row["physical_age_s"] for row in rows]
+            for key, label, color in (("surface_UL_mean_m_s", "Surface Lagrangian mean", "#166b83"),
+                                      ("surface_UE_mean_m_s", "Surface Eulerian mean", "#cb7047")):
+                axes[0].plot(times, [100*row[key] for row in rows], label=label, color=color, lw=1.8)
+            for key, label, color in (("upper_5mm_UE_crossflow_rms_m_s", "Upper 5 mm crossflow RMS", "#166b83"),
+                                      ("surface_UL_crosswind_range_m_s", "Surface Lagrangian crosswind range", "#cb7047")):
+                axes[1].plot(times, [100*row[key] for row in rows], label=label, color=color, lw=1.8)
+            axes[0].set_ylabel("Mean current (cm/s)")
+            axes[1].set_ylabel("Current variation (cm/s)")
+            axes[1].set_ylim(bottom=0)
+            axes[1].set_xlabel("Physical wind age (s)")
+            for ax in axes:
+                ax.legend(frameon=False, fontsize=9)
+                ax.grid(alpha=.15)
+        else:
+            fig, ax = plt.subplots(figsize=(8, 4.2), constrained_layout=True)
+            times = [row["time_s"] for row in rows]
         if name == "mss":
             for key, label, color in (("parent_mss", "Parent", "#7a8790"), ("total_mss", "Parent + Cho", "#166b83"), ("cho_mss", "Cho disturbance", "#cb7047")):
                 ax.plot(times, [row[key] for row in rows], label=label, color=color, lw=1.8)
             ax.set_ylabel("Mean square slope")
             ax.set_ylim(bottom=0)
             ax.legend(frameon=False)
-        else:
+        elif name == "sidebands":
             ax.plot(times, [100 * row["sideband_elevation_variance_fraction"] for row in rows], color="#166b83", lw=1.8)
             ax.set_ylabel("Free-mode sideband variance (%)")
             ax.set_ylim(bottom=0)
-        ax.set_xlabel("Physical time (s)")
-        ax.grid(alpha=.15)
+        if name != "mean_current":
+            ax.set_xlabel("Model elapsed time (s)")
+            ax.grid(alpha=.15)
         output = io.BytesIO()
         fig.savefig(output, format="png", dpi=150, metadata={"Software": "choppy-cho-gallery"})
         plt.close(fig)
@@ -221,6 +266,19 @@ def build_case(campaign, destination, case_id, title, description):
             case["notices"].append(f"The {name} record is unavailable or incomplete; its fields were omitted.")
             return {}
     metadata, status, checks = record("metadata.toml"), record("status.toml"), record("checks.json")
+    pipeline = record("pipeline_status.json")
+    stage_names = {"initialization": "initialization", "tank": "parent/current integration",
+                   "cho": "Cho roughness", "render": "rendering"}
+    pipeline_stage = pipeline.get("current_stage")
+    pipeline_state = pipeline.get("state")
+    pipeline_available = (isinstance(pipeline_stage, str) and isinstance(pipeline_state, str)
+        and pipeline_stage in stage_names and pipeline_state in {"pending", "running", "complete", "failed"})
+    if pipeline_available:
+        message = f"Recorded pipeline stage: {stage_names[pipeline_stage]} — {pipeline_state}."
+        if pipeline_state == "failed":
+            message += " Any completed outputs shown here remain available."
+        message += " This synchronized record is not a live job-status check."
+        case["notices"].append(message)
     case["tank_complete"] = metadata.get("complete") is True
     if finite(status.get("time")) and status["time"] >= 0:
         case["observed_time_s"] = status["time"]
@@ -234,6 +292,7 @@ def build_case(campaign, destination, case_id, title, description):
     for name, reader, filename, columns, title, caption in (
         ("mss", read_mss, "surface/mean_square_slope.csv", MSS_COLUMNS, "Mean square slope", "Parent and total slopes are nonnegative. Their difference also contains the signed parent–Cho cross term; the CSV includes every contribution."),
         ("sidebands", read_sidebands, "parent.csv", ("time_s", "sideband_elevation_variance_fraction"), "Parent-wave sidebands", "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."),
+        ("mean_current", read_mean_history, "mean_history.csv", MEAN_COLUMNS, "Wind-driven currents and transverse variation", "Physical wind age includes the developing layer before model initialization. The Lagrangian mean includes Stokes drift; the Eulerian mean excludes it. Crossflow RMS combines Eulerian transverse and vertical velocities in the upper 5 mm; the surface range is the streamwise-averaged Lagrangian velocity difference across transverse bands. These are wave-averaged currents, without instantaneous orbital velocities."),
     ):
         try:
             rows = reader(campaign, relative / filename)
@@ -250,7 +309,7 @@ def build_case(campaign, destination, case_id, title, description):
                 mss = rows
                 last = rows[-1]
                 case["metrics"].update(final_parent_mss=last["parent_mss"], final_cho_disturbance_mss=last["cho_mss"], final_total_mss=last["total_mss"], final_cross_slope_term=last["cross_contribution"], duration_s=last["time_s"])
-            else:
+            elif name == "sidebands":
                 case["metrics"].update(parent_sideband_elevation_variance_fraction_initial=rows[0]["sideband_elevation_variance_fraction"], parent_sideband_elevation_variance_fraction_final=rows[-1]["sideband_elevation_variance_fraction"])
         except (ValueError, OSError, KeyError, OverflowError):
             case["notices"].append(f"{title} data are unavailable or fail consistency checks; this diagnostic was omitted.")
@@ -285,7 +344,7 @@ def build_case(campaign, destination, case_id, title, description):
             case["videos"].append(video)
         except (ValueError, OSError, KeyError):
             case["notices"].append(f"{title} could not be safely exported, or exceeds the 90 MiB file limit.")
-    if metadata or status or checks or case["videos"] or case["downloads"]:
+    if metadata or status or checks or case["videos"] or case["downloads"] or pipeline_available:
         case["status"] = "partial"
         case["status_text"] = "Some outputs are available; this snapshot does not establish the job's current state."
     ids = {video["id"] for video in case["videos"]}
