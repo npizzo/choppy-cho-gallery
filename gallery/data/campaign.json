@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "title": "Choppy waves, capillary roughness, and currents",
+  "updated_at": "2026-10-25T12:08:16+00:00",
+  "status": "awaiting_sync",
+  "status_text": "Awaiting the first synchronized Unity outputs.",
+  "validation": {
+    "job_id": "66079691",
+    "state": "not_synchronized",
+    "description": "Validation was submitted; its result has not been synchronized."
+  },
+  "experiment": {
+    "wavelength_m": 0.08,
+    "initial_steepness": 0.28,
+    "damping_multiplier": 2.4,
+    "duration_s": 10.0,
+    "domain_m": [
+      0.32,
+      0.32,
+      0.12
+    ]
+  },
+  "cases": [
+    {
+      "id": "pilot",
+      "title": "Coupled parent and current",
+      "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "No run outputs have been synchronized.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    },
+    {
+      "id": "prescribed",
+      "title": "Without current feedback to the parent",
+      "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "No run outputs have been synchronized.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    }
+  ],
+  "notes": [
+    "The parent and current use a reduced reciprocal coupling. Cho responds to parent curvature, parent orbital motion, and the surface mean current; Cho does not feed back on the parent or current.",
+    "The moving surface is reconstructed separately from the wave-averaged Oceananigans current; this is not an interface-resolving flow calculation.",
+    "The parent retains nine free modes and bounded second-order corrections. Changes in crest shape and sideband content are limited by that representation.",
+    "Surface and underwater movies use different playback rates. Compare their physical time intervals, not their video clocks.",
+    "Only derived videos, plots, and compact diagnostics are public. Native fields, checkpoints, and host paths remain outside this gallery."
+  ]
+}
