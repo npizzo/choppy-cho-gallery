@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:40:58+00:00",
+  "updated_at": "2026-10-26T12:41:37+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -85,7 +85,19 @@
         "parent_sideband_elevation_variance_fraction_initial": 0.0,
         "parent_sideband_elevation_variance_fraction_final": 0.0
       },
-      "videos": [],
+      "videos": [
+        {
+          "id": "surface_startup",
+          "title": "Surface \u00b7 first second",
+          "src": "media/prescribed/surface_startup-63beaded3abe162a.mp4",
+          "poster": "media/prescribed/surface_startup-62da5990340a4345.png",
+          "physical_interval_s": [
+            0.0,
+            0.25
+          ],
+          "physical_playback_speed": 0.1
+        }
+      ],
       "figures": [
         {
           "id": "mss",
@@ -121,7 +133,7 @@
         }
       ],
       "notices": [
-        "Recorded pipeline stage: Cho roughness \u2014 complete. This synchronized record is not a live job-status check.",
+        "Recorded pipeline stage: rendering \u2014 running. This synchronized record is not a live job-status check.",
         "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
       ]
     }
