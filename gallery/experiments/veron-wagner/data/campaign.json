@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "title": "Wind-driven onset: Veron\u2013Wagner comparison",
-  "updated_at": "2026-10-26T01:56:11+00:00",
+  "title": "Wind-driven onset: fine-current reference (stopped)",
+  "updated_at": "2026-10-26T01:58:12+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -60,9 +60,7 @@
           "src": "media/pilot/mean_current-3590df8f366209da.csv"
         }
       ],
-      "notices": [
-        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check."
-      ]
+      "notices": []
     },
     {
       "id": "prescribed",
@@ -103,12 +101,11 @@
           "src": "media/prescribed/mean_current-20b61d7afb3b88c6.csv"
         }
       ],
-      "notices": [
-        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check."
-      ]
+      "notices": []
     }
   ],
   "notes": [
+    "Fine-grid jobs were stopped at the user request on 26 October 2026; completed histories and restart checkpoints are preserved. Coarse-current wave-response runs now have their own gallery page.",
     "3 cm carrier, ka=0.11, initial wind age 16 s, six-second evolution. The surface wind stress grows as the square root of wind age; molecular water viscosity is 1.1e-6 m\u00b2/s.",
     "Prescribed and evolving-wave cases share the same initial Lagrangian current and divergence-free Gaussian perturbations. This is a reduced, exploratory comparison, not a grid-converged reproduction of Wagner et al.",
     "The parent contains 99 free modes (mx=3\u20135, my=-16\u201316) with gravity\u2013capillary dispersion and reciprocal current refraction. Intrinsic cubic interactions are omitted; the dominant carrier has second-order geometry and scattered modes have first-order geometry. Cross-bound resonant responses are not modeled.",
