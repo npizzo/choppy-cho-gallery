@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:06:12+00:00",
+  "updated_at": "2026-10-26T12:40:58+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -76,11 +76,23 @@
       "metrics": {
         "mean_divergence_max_per_s": 1.0658141036401503e-14,
         "mean_cfl": 0.021711148182467936,
+        "maximum_disturbance_m": 7.884472142904997e-05,
+        "final_parent_mss": 0.006762432691806266,
+        "final_cho_disturbance_mss": 3.618802818821854e-05,
+        "final_total_mss": 0.00629237233339777,
+        "final_cross_slope_term": -0.0005062483865967173,
+        "duration_s": 5.999999999999894,
         "parent_sideband_elevation_variance_fraction_initial": 0.0,
         "parent_sideband_elevation_variance_fraction_final": 0.0
       },
       "videos": [],
       "figures": [
+        {
+          "id": "mss",
+          "title": "Mean square slope",
+          "src": "media/prescribed/mss-391741a7e397c083.png",
+          "caption": "Parent and total slopes are nonnegative. Their difference also contains the signed parent\u2013Cho cross term; the CSV includes every contribution."
+        },
         {
           "id": "sidebands",
           "title": "Parent-wave sidebands",
@@ -96,6 +108,10 @@
       ],
       "downloads": [
         {
+          "title": "Mean square slope \u00b7 CSV",
+          "src": "media/prescribed/mss-7e56a9fec47b46a7.csv"
+        },
+        {
           "title": "Parent-wave sidebands \u00b7 CSV",
           "src": "media/prescribed/sidebands-6adb91606e886e70.csv"
         },
@@ -105,7 +121,7 @@
         }
       ],
       "notices": [
-        "Recorded pipeline stage: Cho roughness \u2014 running. This synchronized record is not a live job-status check.",
+        "Recorded pipeline stage: Cho roughness \u2014 complete. This synchronized record is not a live job-status check.",
         "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
       ]
     }
