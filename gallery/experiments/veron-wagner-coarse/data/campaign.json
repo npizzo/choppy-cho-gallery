@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "title": "Wind-driven wave response: coarse-current exploration",
+  "updated_at": "2026-10-26T01:54:49+00:00",
+  "status": "awaiting_sync",
+  "status_text": "Awaiting the first synchronized Unity outputs.",
+  "validation": {
+    "job_id": "66129692",
+    "state": "not_synchronized",
+    "description": "Validation was submitted; its result has not been synchronized."
+  },
+  "experiment": {
+    "wavelength_m": 0.03,
+    "initial_steepness": 0.11,
+    "damping_multiplier": 2.4,
+    "duration_s": 6.0,
+    "domain_m": [
+      0.12,
+      0.12,
+      0.05
+    ]
+  },
+  "cases": [
+    {
+      "id": "pilot",
+      "title": "Coupled parent and current",
+      "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "No run outputs have been synchronized.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    },
+    {
+      "id": "prescribed",
+      "title": "Without current feedback to the parent",
+      "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
+      "status": "awaiting_sync",
+      "status_text": "No run outputs have been synchronized.",
+      "tank_complete": false,
+      "observed_time_s": null,
+      "metrics": {},
+      "videos": [],
+      "figures": [],
+      "downloads": [],
+      "notices": []
+    }
+  ],
+  "notes": [
+    "Exploratory 33 x 65 x 48 current grid (15.5 times fewer cells than the reference), retaining all 99 parent modes, the 384 x 384 Cho grid, and the same 0.00025 s time steps. Current small scales and onset timing are not grid converged.",
+    "The paired cases share the same coarse-grid random current initialization. Its spectrum differs from the fine-grid noise realization, so this is not a strict resolution-convergence pair.",
+    "3 cm carrier, ka=0.11, initial wind age 16 s, six-second evolution. The surface wind stress grows as the square root of wind age; molecular water viscosity is 1.1e-6 m\u00b2/s.",
+    "Prescribed and evolving-wave cases share the same initial Lagrangian current and divergence-free Gaussian perturbations. This is a reduced, exploratory comparison, not a grid-converged reproduction of Wagner et al.",
+    "The parent contains 99 free modes (mx=3\u20135, my=-16\u201316) with gravity\u2013capillary dispersion and reciprocal current refraction. Intrinsic cubic interactions are omitted; the dominant carrier has second-order geometry and scattered modes have first-order geometry. Cross-bound resonant responses are not modeled.",
+    "Wind stress acts on the Eulerian current and viscosity acts on UL minus projected wave pseudomomentum. This physical stress convention differs slightly from the imposed UL-gradient convention described in Wagner et al.",
+    "Cho uses 2.4 times molecular wave damping and feels parent boundary residuals, orbital motion, and surface-current transport. Cho does not feed back into the mean flow.",
+    "Native fields and checkpoints remain on Unity. Only derived movies, figures and compact diagnostics are public."
+  ]
+}
