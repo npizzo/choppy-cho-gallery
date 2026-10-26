@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:47:26+00:00",
+  "updated_at": "2026-10-26T12:47:45+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -69,8 +69,8 @@
       "id": "prescribed",
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
-      "status": "partial",
-      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "status": "outputs_available",
+      "status_text": "Surface, underwater, and slope outputs are available. Job status is not monitored by this page.",
       "tank_complete": true,
       "observed_time_s": 5.999999999999894,
       "metrics": {
@@ -118,6 +118,15 @@
             5.999999999999894
           ],
           "physical_playback_speed": 0.2
+        },
+        {
+          "id": "underwater",
+          "title": "Underwater mean-flow vortices",
+          "src": "media/prescribed/underwater-936354bb31d0ae69.mp4",
+          "physical_interval_s": [
+            0.0,
+            5.999999999999894
+          ]
         }
       ],
       "figures": [
@@ -155,8 +164,7 @@
         }
       ],
       "notices": [
-        "Recorded pipeline stage: rendering \u2014 running. This synchronized record is not a live job-status check.",
-        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
+        "Recorded pipeline stage: rendering \u2014 complete. This synchronized record is not a live job-status check."
       ]
     }
   ],
