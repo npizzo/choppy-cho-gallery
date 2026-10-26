@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:54:28+00:00",
+  "updated_at": "2026-10-26T12:58:52+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -63,6 +63,17 @@
             5.999999999999894
           ],
           "physical_playback_speed": 0.1
+        },
+        {
+          "id": "surface_evolution",
+          "title": "Surface \u00b7 full evolution",
+          "src": "media/pilot/surface_evolution-d278e0217addae28.mp4",
+          "poster": "media/pilot/surface_evolution-90b690004b2fcb01.png",
+          "physical_interval_s": [
+            0.0,
+            5.999999999999894
+          ],
+          "physical_playback_speed": 0.2
         }
       ],
       "figures": [
