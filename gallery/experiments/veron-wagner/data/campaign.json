@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven onset: Veron\u2013Wagner comparison",
-  "updated_at": "2026-10-25T20:19:06+00:00",
+  "updated_at": "2026-10-26T01:56:02+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -28,18 +28,40 @@
       "status": "partial",
       "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
-      "observed_time_s": 0.0,
+      "observed_time_s": 0.5999999999999616,
       "metrics": {
-        "mean_divergence_max_per_s": 2.2737367544323206e-13,
-        "mean_cfl": 0.327597984762828
+        "mean_divergence_max_per_s": 4.973799150320701e-14,
+        "mean_cfl": 0.06424183993276461,
+        "parent_sideband_elevation_variance_fraction_initial": 0.0,
+        "parent_sideband_elevation_variance_fraction_final": 0.002473029679697874
       },
       "videos": [],
-      "figures": [],
-      "downloads": [],
+      "figures": [
+        {
+          "id": "sidebands",
+          "title": "Parent-wave sidebands",
+          "src": "media/pilot/sidebands-9dff042fffb57120.png",
+          "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
+        },
+        {
+          "id": "mean_current",
+          "title": "Wind-driven currents and transverse variation",
+          "src": "media/pilot/mean_current-49c9eeab09c48ff9.png",
+          "caption": "Physical wind age includes the developing layer before model initialization. The Lagrangian mean includes Stokes drift; the Eulerian mean excludes it. Crossflow RMS combines Eulerian transverse and vertical velocities in the upper 5 mm; the surface range is the streamwise-averaged Lagrangian velocity difference across transverse bands. These are wave-averaged currents, without instantaneous orbital velocities."
+        }
+      ],
+      "downloads": [
+        {
+          "title": "Parent-wave sidebands \u00b7 CSV",
+          "src": "media/pilot/sidebands-6fb20e4f730572d1.csv"
+        },
+        {
+          "title": "Wind-driven currents and transverse variation \u00b7 CSV",
+          "src": "media/pilot/mean_current-3590df8f366209da.csv"
+        }
+      ],
       "notices": [
-        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check.",
-        "Parent-wave sidebands data are unavailable or fail consistency checks; this diagnostic was omitted.",
-        "Wind-driven currents and transverse variation data are unavailable or fail consistency checks; this diagnostic was omitted."
+        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check."
       ]
     },
     {
@@ -49,10 +71,10 @@
       "status": "partial",
       "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
-      "observed_time_s": 0.0,
+      "observed_time_s": 1.049999999999934,
       "metrics": {
-        "mean_divergence_max_per_s": 2.2737367544323206e-13,
-        "mean_cfl": 0.327597984762828,
+        "mean_divergence_max_per_s": 4.929390229335695e-14,
+        "mean_cfl": 0.07235146841554377,
         "parent_sideband_elevation_variance_fraction_initial": 0.0,
         "parent_sideband_elevation_variance_fraction_final": 0.0
       },
@@ -61,24 +83,24 @@
         {
           "id": "sidebands",
           "title": "Parent-wave sidebands",
-          "src": "media/prescribed/sidebands-3bb29a90de19c3db.png",
+          "src": "media/prescribed/sidebands-9e712f6e2a215976.png",
           "caption": "Share of retained free-mode elevation variance outside the largest initial mode. Bound harmonics and Cho roughness are excluded."
         },
         {
           "id": "mean_current",
           "title": "Wind-driven currents and transverse variation",
-          "src": "media/prescribed/mean_current-fc51bdebb7650138.png",
+          "src": "media/prescribed/mean_current-6cacf388b81b54cb.png",
           "caption": "Physical wind age includes the developing layer before model initialization. The Lagrangian mean includes Stokes drift; the Eulerian mean excludes it. Crossflow RMS combines Eulerian transverse and vertical velocities in the upper 5 mm; the surface range is the streamwise-averaged Lagrangian velocity difference across transverse bands. These are wave-averaged currents, without instantaneous orbital velocities."
         }
       ],
       "downloads": [
         {
           "title": "Parent-wave sidebands \u00b7 CSV",
-          "src": "media/prescribed/sidebands-ff3590389f1990c8.csv"
+          "src": "media/prescribed/sidebands-8c99e5fd5fe73386.csv"
         },
         {
           "title": "Wind-driven currents and transverse variation \u00b7 CSV",
-          "src": "media/prescribed/mean_current-860ce8c0f19db75e.csv"
+          "src": "media/prescribed/mean_current-20b61d7afb3b88c6.csv"
         }
       ],
       "notices": [
