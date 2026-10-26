@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:59:12+00:00",
+  "updated_at": "2026-10-26T12:59:39+00:00",
   "status": "outputs_available",
   "status_text": "Both experiment cases have surface, underwater, and slope outputs.",
   "validation": {
