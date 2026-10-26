@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Longer evolution of the original wave\u2013current comparison",
-  "updated_at": "2026-10-25T23:57:13+00:00",
+  "updated_at": "2026-10-26T00:03:47+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -41,7 +41,30 @@
         "parent_sideband_elevation_variance_fraction_initial": 3.287109426322516e-06,
         "parent_sideband_elevation_variance_fraction_final": 0.0008022179994378809
       },
-      "videos": [],
+      "videos": [
+        {
+          "id": "surface_startup",
+          "title": "Surface \u00b7 first second",
+          "src": "media/pilot/surface_startup-f4cbc2b18c95360c.mp4",
+          "poster": "media/pilot/surface_startup-2f29a10c2eb4bc14.png",
+          "physical_interval_s": [
+            10.0,
+            11.0
+          ],
+          "physical_playback_speed": 0.08
+        },
+        {
+          "id": "surface_late",
+          "title": "Surface \u00b7 last second",
+          "src": "media/pilot/surface_late-9a79069b7955cd25.mp4",
+          "poster": "media/pilot/surface_late-fc701c4c6838bab8.png",
+          "physical_interval_s": [
+            29.0,
+            30.0
+          ],
+          "physical_playback_speed": 0.08
+        }
+      ],
       "figures": [
         {
           "id": "mss",
