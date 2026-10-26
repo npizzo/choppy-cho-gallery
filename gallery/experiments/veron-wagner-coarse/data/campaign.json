@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T12:05:18+00:00",
+  "updated_at": "2026-10-26T12:05:57+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -61,7 +61,7 @@
         }
       ],
       "notices": [
-        "Recorded pipeline stage: Cho roughness \u2014 pending. This synchronized record is not a live job-status check.",
+        "Recorded pipeline stage: Cho roughness \u2014 running. This synchronized record is not a live job-status check.",
         "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
       ]
     },
@@ -105,7 +105,7 @@
         }
       ],
       "notices": [
-        "Recorded pipeline stage: Cho roughness \u2014 pending. This synchronized record is not a live job-status check.",
+        "Recorded pipeline stage: Cho roughness \u2014 running. This synchronized record is not a live job-status check.",
         "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
       ]
     }
