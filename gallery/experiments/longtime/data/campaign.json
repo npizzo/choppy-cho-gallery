@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "title": "Longer evolution of the original wave\u2013current comparison",
-  "updated_at": "2026-10-26T00:03:47+00:00",
+  "updated_at": "2026-10-26T00:04:20+00:00",
   "status": "partial",
   "status_text": "A partial output snapshot is available.",
   "validation": {
@@ -25,8 +25,8 @@
       "id": "pilot",
       "title": "Coupled parent and current",
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
-      "status": "partial",
-      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "status": "outputs_available",
+      "status_text": "Surface, underwater, and slope outputs are available. Job status is not monitored by this page.",
       "tank_complete": true,
       "observed_time_s": 30.0,
       "metrics": {
@@ -63,6 +63,15 @@
             30.0
           ],
           "physical_playback_speed": 0.08
+        },
+        {
+          "id": "underwater",
+          "title": "Underwater mean-flow vortices",
+          "src": "media/pilot/underwater-b0650b37d3fca30a.mp4",
+          "physical_interval_s": [
+            9.99999999999998,
+            30.0
+          ]
         }
       ],
       "figures": [
@@ -89,9 +98,7 @@
           "src": "media/pilot/sidebands-dfea8d38e8c39233.csv"
         }
       ],
-      "notices": [
-        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
-      ]
+      "notices": []
     },
     {
       "id": "prescribed",
