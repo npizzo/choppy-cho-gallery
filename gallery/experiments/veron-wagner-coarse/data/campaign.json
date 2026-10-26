@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "title": "Wind-driven wave response: coarse-current exploration",
-  "updated_at": "2026-10-26T01:54:49+00:00",
-  "status": "awaiting_sync",
-  "status_text": "Awaiting the first synchronized Unity outputs.",
+  "updated_at": "2026-10-26T03:12:57+00:00",
+  "status": "partial",
+  "status_text": "A partial output snapshot is available.",
   "validation": {
     "job_id": "66129692",
-    "state": "not_synchronized",
-    "description": "Validation was submitted; its result has not been synchronized."
+    "state": "record_available",
+    "description": "A successful numerical-consistency validation record is available. This gallery does not revalidate the current simulation source fingerprint."
   },
   "experiment": {
     "wavelength_m": 0.03,
@@ -25,15 +25,17 @@
       "id": "pilot",
       "title": "Coupled parent and current",
       "description": "The parent waves and the wave-averaged current act on each other. Cho follows the evolving parent and surface current.",
-      "status": "awaiting_sync",
-      "status_text": "No run outputs have been synchronized.",
+      "status": "partial",
+      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
       "tank_complete": false,
       "observed_time_s": null,
       "metrics": {},
       "videos": [],
       "figures": [],
       "downloads": [],
-      "notices": []
+      "notices": [
+        "Recorded pipeline stage: parent/current integration \u2014 running. This synchronized record is not a live job-status check."
+      ]
     },
     {
       "id": "prescribed",
