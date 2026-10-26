@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "title": "Longer evolution of the original wave\u2013current comparison",
-  "updated_at": "2026-10-26T03:47:57+00:00",
-  "status": "partial",
-  "status_text": "A partial output snapshot is available.",
+  "updated_at": "2026-10-26T03:48:41+00:00",
+  "status": "outputs_available",
+  "status_text": "Both experiment cases have surface, underwater, and slope outputs.",
   "validation": {
     "job_id": "66113349",
     "state": "record_available",
@@ -104,8 +104,8 @@
       "id": "prescribed",
       "title": "Without current feedback to the parent",
       "description": "The parent retains its intrinsic evolution. Current feedback to the parent is disabled; Cho still feels the parent and surface current.",
-      "status": "partial",
-      "status_text": "Some outputs are available; this snapshot does not establish the job's current state.",
+      "status": "outputs_available",
+      "status_text": "Surface, underwater, and slope outputs are available. Job status is not monitored by this page.",
       "tank_complete": true,
       "observed_time_s": 30.0,
       "metrics": {
@@ -142,6 +142,15 @@
             30.0
           ],
           "physical_playback_speed": 0.08
+        },
+        {
+          "id": "underwater",
+          "title": "Underwater mean-flow vortices",
+          "src": "media/prescribed/underwater-6c4ee7ec6352392c.mp4",
+          "physical_interval_s": [
+            9.99999999999998,
+            30.0
+          ]
         }
       ],
       "figures": [
@@ -168,9 +177,7 @@
           "src": "media/prescribed/sidebands-2b06fd414ea5fed8.csv"
         }
       ],
-      "notices": [
-        "The parent/current integration has a completion record. Cho diagnostics and rendering have separate completion requirements."
-      ]
+      "notices": []
     }
   ],
   "notes": [
