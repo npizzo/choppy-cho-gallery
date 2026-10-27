@@ -1,0 +1,15 @@
+{
+  "frame": "fixed laboratory",
+  "vertical_exaggeration": 1,
+  "cho_enabled": true,
+  "cho_damping_multiplier": 2.4,
+  "cho_feedback_enabled": false,
+  "fps": 60,
+  "physical_playback_speed": 0.1,
+  "physical_interval_s": [
+    2.75,
+    3.25
+  ],
+  "left": "Parent wave evolving under the prescribed current",
+  "right": "The same evolving parent wave plus passive Cho roughness"
+}

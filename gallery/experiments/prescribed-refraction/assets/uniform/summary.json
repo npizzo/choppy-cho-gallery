@@ -1,0 +1,39 @@
+{
+  "case": "uniform",
+  "cho_enabled": true,
+  "cho_feedback_enabled": false,
+  "action_and_refraction_metrics_scope": "parent wave",
+  "cho": {
+    "damping_multiplier": 2.4,
+    "duration_s": 6.0,
+    "max_cho_mss": 2.3367325697862853e-06,
+    "max_total_mss": 0.001802265492328363,
+    "max_parent_mss": 0.0018022654989042163,
+    "max_abs_cho_m": 2.9521945180022158e-05,
+    "grid_nx": 128,
+    "grid_ny": 1024,
+    "dt_s": 0.0005,
+    "domain_Lx": 0.08,
+    "domain_Ly": 0.64,
+    "render_repeats_x": 4
+  },
+  "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+  "duration_s": 6.0,
+  "free_modes": 33,
+  "max_transverse_action_fraction": 0.0,
+  "max_slope_ratio": 0.0,
+  "peak_slope_ratio_time_s": 0.0,
+  "max_boundary_action": 0.0,
+  "max_action_error": 6.661338147750939e-16,
+  "max_hamiltonian_error": 4.440892098500626e-16,
+  "initial_amplitude_m": 0.0007639437268410976,
+  "phase_speed_m_s": 0.36143907637570244,
+  "max_surface_current_m_s": 0.04,
+  "geometry": {
+    "min_J": 0.939454144124889,
+    "max_slope": 0.06015116794140382,
+    "max_map_order_ratio": 0.03034289986095109,
+    "max_map_gradient_order_ratio": 0.009097597918505873,
+    "max_mean_level_m": 9.483435570881007e-10
+  }
+}

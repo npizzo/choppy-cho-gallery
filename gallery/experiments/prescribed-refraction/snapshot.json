@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "title": "Prescribed-current refraction",
+  "source_fingerprint": "30512a80a9e51ef47c25a89c1eef30c1f723e109cce04b16b3859ac6e792412d",
+  "updated_at": "2026-10-27T01:14:35.253579+00:00",
+  "cho_enabled": true,
+  "cho_damping_multiplier": 2.4,
+  "two_way_coupling": false,
+  "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+  "cases": [
+    {
+      "id": "uniform",
+      "title": "Uniform current",
+      "status": "complete",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": 0.0,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {
+        "case": "uniform",
+        "cho_enabled": true,
+        "cho_feedback_enabled": false,
+        "action_and_refraction_metrics_scope": "parent wave",
+        "cho": {
+          "damping_multiplier": 2.4,
+          "duration_s": 6.0,
+          "max_cho_mss": 2.3367325697862853e-06,
+          "max_total_mss": 0.001802265492328363,
+          "max_parent_mss": 0.0018022654989042163,
+          "max_abs_cho_m": 2.9521945180022158e-05,
+          "grid_nx": 128,
+          "grid_ny": 1024,
+          "dt_s": 0.0005,
+          "domain_Lx": 0.08,
+          "domain_Ly": 0.64,
+          "render_repeats_x": 4
+        },
+        "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+        "duration_s": 6.0,
+        "free_modes": 33,
+        "max_transverse_action_fraction": 0.0,
+        "max_slope_ratio": 0.0,
+        "peak_slope_ratio_time_s": 0.0,
+        "max_boundary_action": 0.0,
+        "max_action_error": 6.661338147750939e-16,
+        "max_hamiltonian_error": 4.440892098500626e-16,
+        "initial_amplitude_m": 0.0007639437268410976,
+        "phase_speed_m_s": 0.36143907637570244,
+        "max_surface_current_m_s": 0.04,
+        "geometry": {
+          "min_J": 0.939454144124889,
+          "max_slope": 0.06015116794140382,
+          "max_map_order_ratio": 0.03034289986095109,
+          "max_map_gradient_order_ratio": 0.009097597918505873,
+          "max_mean_level_m": 9.483435570881007e-10
+        }
+      },
+      "assets": [
+        "assets/uniform/summary.json",
+        "assets/uniform/cho_summary.json",
+        "assets/uniform/diagnostics.csv",
+        "assets/uniform/mean_square_slope.csv",
+        "assets/uniform/surface_diagnostics.csv",
+        "assets/uniform/surface_comparison.json",
+        "assets/uniform/surface_comparison.png",
+        "assets/uniform/transverse_response.png",
+        "assets/uniform/overhead_comparison.png",
+        "assets/uniform/surface_comparison.mp4",
+        "assets/uniform/parent_plus_cho.json",
+        "assets/uniform/parent_plus_cho.png",
+        "assets/uniform/parent_plus_cho.mp4"
+      ],
+      "cho_video": {
+        "frame": "fixed laboratory",
+        "vertical_exaggeration": 1,
+        "cho_enabled": true,
+        "cho_damping_multiplier": 2.4,
+        "cho_feedback_enabled": false,
+        "fps": 60,
+        "physical_playback_speed": 0.1,
+        "physical_interval_s": [
+          2.75,
+          3.25
+        ],
+        "left": "Parent wave evolving under the prescribed current",
+        "right": "The same evolving parent wave plus passive Cho roughness"
+      }
+    },
+    {
+      "id": "weak",
+      "title": "Weak variation",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": 0.01,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {},
+      "assets": []
+    },
+    {
+      "id": "moderate",
+      "title": "Moderate variation",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": 0.02,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {},
+      "assets": []
+    },
+    {
+      "id": "strong",
+      "title": "Strong variation",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": 0.03,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {},
+      "assets": []
+    },
+    {
+      "id": "reverse",
+      "title": "Reversed variation",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": -0.03,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {},
+      "assets": []
+    },
+    {
+      "id": "surface_shear",
+      "title": "Surface-confined shear",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.06,
+        "U0": 0.04,
+        "delta_U": 0.03,
+        "duration": 6.0,
+        "shear_depth": 0.02
+      },
+      "metrics": {},
+      "assets": []
+    },
+    {
+      "id": "strong_half_amplitude",
+      "title": "Half wave amplitude",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "steepness": 0.03,
+        "U0": 0.04,
+        "delta_U": 0.03,
+        "duration": 6.0,
+        "shear_depth": null
+      },
+      "metrics": {},
+      "assets": []
+    }
+  ],
+  "completed_cases": 1
+}
