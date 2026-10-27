@@ -1,0 +1,13 @@
+{
+  "frame": "fixed laboratory",
+  "vertical_exaggeration": 1,
+  "cho_enabled": false,
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "physical_interval_s": [
+    0.0,
+    6.0
+  ],
+  "left": "Uniform-current exact translation of the initial reconstructed profile",
+  "right": "Prescribed-current evolution with all-mode bounded gravity-capillary reconstruction"
+}
