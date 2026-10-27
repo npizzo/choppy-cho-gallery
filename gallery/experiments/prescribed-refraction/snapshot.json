@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Prescribed-current refraction",
   "source_fingerprint": "30512a80a9e51ef47c25a89c1eef30c1f723e109cce04b16b3859ac6e792412d",
-  "updated_at": "2026-10-27T03:18:58.290138+00:00",
+  "updated_at": "2026-10-27T03:55:21.075710+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "two_way_coupling": false,
@@ -422,7 +422,7 @@
     {
       "id": "strong_half_amplitude",
       "title": "Half wave amplitude",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "Lx": 0.32,
         "Ly": 0.64,
@@ -433,9 +433,45 @@
         "duration": 6.0,
         "shear_depth": null
       },
-      "metrics": {},
-      "assets": []
+      "metrics": {
+        "case": "strong_half_amplitude",
+        "cho_enabled": true,
+        "cho_feedback_enabled": false,
+        "action_and_refraction_metrics_scope": "parent wave",
+        "cho": {
+          "damping_multiplier": 2.4,
+          "duration_s": 6.0,
+          "max_cho_mss": 3.141363898863015e-06,
+          "max_total_mss": 0.0005540121731348309,
+          "max_parent_mss": 0.0005916060019743149,
+          "max_abs_cho_m": 9.070603118743747e-05,
+          "grid_nx": 128,
+          "grid_ny": 1024,
+          "dt_s": 0.0005,
+          "domain_Lx": 0.08,
+          "domain_Ly": 0.64,
+          "render_repeats_x": 4
+        },
+        "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+        "duration_s": 6.0,
+        "free_modes": 33,
+        "max_transverse_action_fraction": 0.9993107072301185,
+        "max_slope_ratio": 0.5032668112536499,
+        "peak_slope_ratio_time_s": 3.29,
+        "max_boundary_action": 7.17686907498387e-13,
+        "max_action_error": 1.5543122344752192e-15,
+        "max_hamiltonian_error": 1.9984014443252818e-15,
+        "initial_amplitude_m": 0.0003819718634205488,
+        "phase_speed_m_s": 0.36143907637570244,
+        "max_surface_current_m_s": 0.07
+      },
+      "assets": [
+        "assets/strong_half_amplitude/summary.json",
+        "assets/strong_half_amplitude/cho_summary.json",
+        "assets/strong_half_amplitude/diagnostics.csv",
+        "assets/strong_half_amplitude/mean_square_slope.csv"
+      ]
     }
   ],
-  "completed_cases": 6
+  "completed_cases": 7
 }
