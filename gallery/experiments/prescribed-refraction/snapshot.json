@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Prescribed-current refraction",
   "source_fingerprint": "30512a80a9e51ef47c25a89c1eef30c1f723e109cce04b16b3859ac6e792412d",
-  "updated_at": "2026-10-27T03:04:00.091462+00:00",
+  "updated_at": "2026-10-27T03:18:58.290138+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "two_way_coupling": false,
@@ -369,7 +369,7 @@
     {
       "id": "surface_shear",
       "title": "Surface-confined shear",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "Lx": 0.32,
         "Ly": 0.64,
@@ -380,8 +380,44 @@
         "duration": 6.0,
         "shear_depth": 0.02
       },
-      "metrics": {},
-      "assets": []
+      "metrics": {
+        "case": "surface_shear",
+        "cho_enabled": true,
+        "cho_feedback_enabled": false,
+        "action_and_refraction_metrics_scope": "parent wave",
+        "cho": {
+          "damping_multiplier": 2.4,
+          "duration_s": 6.0,
+          "max_cho_mss": 0.00010757309591032818,
+          "max_total_mss": 0.001940999596534155,
+          "max_parent_mss": 0.002237556113113278,
+          "max_abs_cho_m": 0.0006844322197139263,
+          "grid_nx": 128,
+          "grid_ny": 1024,
+          "dt_s": 0.0005,
+          "domain_Lx": 0.08,
+          "domain_Ly": 0.64,
+          "render_repeats_x": 4
+        },
+        "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+        "duration_s": 6.0,
+        "free_modes": 33,
+        "max_transverse_action_fraction": 0.9988498588653179,
+        "max_slope_ratio": 0.4378669502357537,
+        "peak_slope_ratio_time_s": 3.71,
+        "max_boundary_action": 2.493667126989536e-15,
+        "max_action_error": 1.3322676295501878e-15,
+        "max_hamiltonian_error": 1.5543122344752192e-15,
+        "initial_amplitude_m": 0.0007639437268410976,
+        "phase_speed_m_s": 0.36143907637570244,
+        "max_surface_current_m_s": 0.07
+      },
+      "assets": [
+        "assets/surface_shear/summary.json",
+        "assets/surface_shear/cho_summary.json",
+        "assets/surface_shear/diagnostics.csv",
+        "assets/surface_shear/mean_square_slope.csv"
+      ]
     },
     {
       "id": "strong_half_amplitude",
@@ -401,5 +437,5 @@
       "assets": []
     }
   ],
-  "completed_cases": 5
+  "completed_cases": 6
 }
