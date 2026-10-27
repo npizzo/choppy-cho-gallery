@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Prescribed-current refraction",
   "source_fingerprint": "30512a80a9e51ef47c25a89c1eef30c1f723e109cce04b16b3859ac6e792412d",
-  "updated_at": "2026-10-27T02:22:04.178107+00:00",
+  "updated_at": "2026-10-27T02:29:01.123597+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "two_way_coupling": false,
@@ -148,7 +148,7 @@
     {
       "id": "moderate",
       "title": "Moderate variation",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "Lx": 0.32,
         "Ly": 0.64,
@@ -159,8 +159,75 @@
         "duration": 6.0,
         "shear_depth": null
       },
-      "metrics": {},
-      "assets": []
+      "metrics": {
+        "case": "moderate",
+        "cho_enabled": true,
+        "cho_feedback_enabled": false,
+        "action_and_refraction_metrics_scope": "parent wave",
+        "cho": {
+          "damping_multiplier": 2.4,
+          "duration_s": 6.0,
+          "max_cho_mss": 3.8971964048042625e-05,
+          "max_total_mss": 0.0019362518537169163,
+          "max_parent_mss": 0.002167128276554391,
+          "max_abs_cho_m": 0.00048514551599510014,
+          "grid_nx": 128,
+          "grid_ny": 1024,
+          "dt_s": 0.0005,
+          "domain_Lx": 0.08,
+          "domain_Ly": 0.64,
+          "render_repeats_x": 4
+        },
+        "interpretation": "Externally forced conservative parent-wave scattering under a steady prescribed current, with passive Cho roughness at 2.4 times molecular viscosity; not spontaneous instability. Cho does not feed back on the parent or prescribed current.",
+        "duration_s": 6.0,
+        "free_modes": 33,
+        "max_transverse_action_fraction": 0.998482808273489,
+        "max_slope_ratio": 0.4005302799224632,
+        "peak_slope_ratio_time_s": 3.91,
+        "max_boundary_action": 1.4080168668696848e-17,
+        "max_action_error": 1.9984014443252818e-15,
+        "max_hamiltonian_error": 2.220446049250313e-15,
+        "initial_amplitude_m": 0.0007639437268410976,
+        "phase_speed_m_s": 0.36143907637570244,
+        "max_surface_current_m_s": 0.06,
+        "geometry": {
+          "min_J": 0.8157421841105736,
+          "max_slope": 0.18607843012509112,
+          "max_map_order_ratio": 0.12860422092963256,
+          "max_map_gradient_order_ratio": 0.05791901058740177,
+          "max_mean_level_m": 2.2899501962919684e-08
+        }
+      },
+      "assets": [
+        "assets/moderate/summary.json",
+        "assets/moderate/cho_summary.json",
+        "assets/moderate/diagnostics.csv",
+        "assets/moderate/mean_square_slope.csv",
+        "assets/moderate/surface_diagnostics.csv",
+        "assets/moderate/surface_comparison.json",
+        "assets/moderate/surface_comparison.png",
+        "assets/moderate/transverse_response.png",
+        "assets/moderate/overhead_comparison.png",
+        "assets/moderate/surface_comparison.mp4",
+        "assets/moderate/parent_plus_cho.json",
+        "assets/moderate/parent_plus_cho.png",
+        "assets/moderate/parent_plus_cho.mp4"
+      ],
+      "cho_video": {
+        "frame": "fixed laboratory",
+        "vertical_exaggeration": 1,
+        "cho_enabled": true,
+        "cho_damping_multiplier": 2.4,
+        "cho_feedback_enabled": false,
+        "fps": 60,
+        "physical_playback_speed": 0.1,
+        "physical_interval_s": [
+          2.75,
+          3.25
+        ],
+        "left": "Parent wave evolving under the prescribed current",
+        "right": "The same evolving parent wave plus passive Cho roughness"
+      }
     },
     {
       "id": "strong",
@@ -298,5 +365,5 @@
       "assets": []
     }
   ],
-  "completed_cases": 3
+  "completed_cases": 4
 }
