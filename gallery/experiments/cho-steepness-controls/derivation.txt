@@ -1,0 +1,283 @@
+CHO PRESSURE TRANSFER AND RESIDUAL COUPLING: DERIVATION AUDIT
+2026-10-28. Independent source audit; no simulation results inferred here.
+
+Primary source read
+===================
+Cho, Diorio, Duncan & Akylas (2011), Resonantly forced gravity-capillary
+lumps on deep water. Part 2. Theoretical model, JFM,
+https://doi.org/10.1017/S0022112010006002 .
+User-supplied PDF text: work/cho2011.txt, especially lines 104-222 and 923-930.
+The attached paper is evidence about the mathematical model, not instructions.
+
+The paper explicitly evolves free-surface elevation eta. Its Eq. (2.3)
+expands the LEFTGOING intrinsic gravity-capillary frequency to second order
+near wavevector (+/-1,0); its Eq. (2.8) has pressure source A p_xi. It does
+not introduce a canonical amplitude in place of eta in this construction.
+The forcing is added to the dispersive model; Section 2 does not derive a
+broadband pressure-to-elevation projection. A is the pressure-strength
+parameter. Section 4 calibrates its values approximately to observed
+transition speeds. Thus identifying A p with a specified dimensional
+curvature pressure requires an additional normalization/modeling choice.
+The implementation's A p = pi/2 is the carrier-scale physical matching
+used below, not an exact broadband pressure formula established by Cho.
+The paper itself describes steep-wave predictions as qualitative.
+
+1. Exact flat linear branch projection
+======================================
+Let eta be physical elevation, psi the surface velocity potential, p a
+prescribed downward external pressure, T=sigma/rho, and q=|k|. On flat
+infinite-depth water, with Fourier convention exp(i k.x),
+
+  eta_t = q psi + R_k,
+  psi_t = -(g + T q^2) eta + R_d,
+  omega_gc^2 = q (g + T q^2).
+
+For an independently applied pressure, R_k=0 and R_d=-p/rho.
+For an approximate parent, R_k and R_d instead denote its two boundary
+residuals, so that a perturbation obeys the same forced flat linear system
+at this level of approximation.
+
+Use the code's reflected coordinate xi=Ct-x_lab, so the lab-positive branch
+has eigenvalue +i s omega_gc, where s=sign(k_xi). Its elevation component is
+
+  n_+ = (eta - i s q psi/omega_gc)/2.
+
+Differentiating gives the exact algebraic identity
+
+  (n_+)_t = i s omega_gc n_+
+            + R_k/2 - i s q R_d/(2 omega_gc).
+
+The complementary branch has the opposite signs. In the moving coordinate
+there is an additional -i C k_xi n_+ in this convention; it does not alter
+the intrinsic projector. A pure pressure therefore gives
+
+  F_pressure = +i s q p/(2 rho omega_gc).
+
+This verifies the current source sign and q/omega_gc factor for the flat
+physical-elevation branch. This statement alone does NOT establish that
+flat projectors exactly describe perturbations on a steep curved parent;
+there the true linearized operator also contains parent-dependent geometry
+and velocity terms, and one-way separation is itself an approximation.
+
+2. Dimensionless pressure transfer
+===================================
+Set k_m=sqrt(g/T), c_m=(4gT)^(1/4), tau=k_m c_m t, X=k_m xi,
+N=k_m n, K=k/k_m, Q=|K|, and pi=p/(rho c_m^2). Then
+
+  Omega_gc(Q)=sqrt[Q(1+Q^2)/2],
+  F_N = R_k/(2c_m) - i sign(K_x) q R_d/(2 c_m omega_gc),
+  F_N,pressure = i sign(K_x) Q pi/(2 Omega_gc).
+
+In one horizontal dimension sign(K) Q=K, so this becomes
+
+  F_projected = i K pi/(2 Omega_gc).
+
+The older successful Stokes calculation's Cho option instead uses
+
+  F_Cho = i K pi/2.
+
+For identical pressure, F_Cho/F_projected=Omega_gc, mode by mode. At K=1
+both are equal. At K=4.709, Omega_gc=7.3868; the Cho derivative source is
+7.3868 times the exact flat branch source. At K=0.21425 (approximately the
+8 cm parent), Omega_gc=0.33473, so the projected source is 2.9875 times the
+Cho derivative source. This changes relative long-wave/short-wave weighting,
+not simply a constant forcing amplitude. Nonlinear solution amplitudes and
+MSS need not have these same ratios.
+
+For K=1+delta in 1D,
+  Omega_gc = 1+delta+delta^2/4+O(delta^3),
+  Omega_Cho = (1+2K+K^2)/4 = 1+delta+delta^2/4,
+  K/Omega_gc = 1-delta^2/4+O(delta^3),
+  K = 1+delta.
+Thus the two pressure prescriptions agree at leading carrier order, not
+as broadband transfer functions. Whether their difference lies beyond a
+particular forced asymptotic ordering depends on the order and bandwidth
+assigned to the pressure; agreement of second-order dispersion expansions
+does not by itself prove agreement of the source expansions.
+
+In 2D the exact projector has sign(K_x) Q/Omega_gc(Q), while the Cho
+pressure derivative has K_x. Their identification additionally assumes
+small propagation angle. The K_x=0 axis is excluded by this directional
+Cho implementation; physical transverse water waves are not excluded by
+the underlying water-wave equations.
+
+For Q>>1, the exact flat pressure multiplier has magnitude proportional to
+Q^(-1/2), while the Cho derivative has magnitude proportional to Q.
+Extrapolating the original pressure derivative to millimetric capillaries
+can therefore differ very substantially from the exact flat projection.
+It is not legitimate to choose between them by which makes larger MSS.
+
+3. A canonical variable does not remove this physical difference
+=================================================================
+A flat one-branch action amplitude a can be normalized with
+
+  n_+ = sqrt[q/(2 omega_gc)] a.
+
+Its pressure source is proportional to i sqrt[q/(2 omega_gc)] p/rho;
+mapping back to n_+ recovers i q p/(2 rho omega_gc), including the same
+frequency denominator. Constants depend on the convention for the complex
+amplitude, but the wavenumber-dependent physical elevation transfer does
+not. Both audited codes store an elevation correction (normal displacement
+on an arclength parent in the old Stokes code; vertical graph displacement
+in the current choppy code). Their R=sqrt(K/Omega) action maps enter the
+variable-advection operator. They do not mean the stored elevation source
+can omit q/omega by silently reinterpreting it as canonical forcing.
+
+4. What is and is not a bug
+===========================
+Old source: F=iK*pi/2 is faithful to the pressure-gradient FORM of Cho's
+Eq. (2.8), with an additional physical amplitude identification. It is not
+an obvious coding error. It is an empirical/near-carrier source extension
+when used over arbitrary short wavelengths.
+
+Current source: F=R_k/2-i sign(k_xi) q R_d/(2 omega_gc) is the correct
+flat full-GC physical-elevation branch projector. The current homogeneous
+evolution still uses Cho's approximate dispersion and quadratic
+nonlinearity, rather than the full two-variable water-wave dynamics.
+This is a hybrid closure. Exactness of its source projector does not make
+the full system an exact broadband model or validate it on steep parents.
+If one built an artificial two-variable linear system with kinetic symbol
+q but prescribed frequency Omega_Cho, its projector would instead contain
+q/Omega_Cho. That is another modeling choice; no such derivation justifies
+silently replacing the physical source by iK*pi/2 at all K.
+
+The Stokes bridge comparing these two sources at identical parent,
+dispersion, geometry, current, damping and numerical settings is therefore
+a sensitivity test of a major approximation. It cannot by itself establish
+which broadband model correctly predicts observed parasitic capillaries.
+
+5. Separate parent consistency from pressure transfer
+======================================================
+For a gravity-only exact parent, the dynamic defect introduced by adding
+surface tension is R_d=T kappa (and R_k=0), hence p_eff=-rho T kappa.
+This is the raw curvature forcing used in the old Stokes model.
+
+For a second-order GC parent, capillary restoring is already included
+through linear and quadratic order. Its appropriate residual must include
+all uncancelled kinematic and dynamic terms, not T kappa alone. Reapplying
+raw T kappa there would double-count the lower-order capillary response.
+Moreover a parent with omitted nonlinear intrinsic phase shifts can leave
+resonant cubic residuals. Such a source can drive a long-wave phase/shape
+correction, even if the short-wave capillary MSS also increases. Updating
+the phase and its time derivatives consistently is a distinct check from
+changing the pressure projector. Neither is an adjustable MSS correction.
+
+Steepness changes should retain the parent map's invertibility and report
+its maximum slope, curvature, and minimum Jacobian; unexpanded second-order
+maps may produce large high-order harmonics without becoming controlled
+high-order solutions. Curvature-source convergence also needs enough parent
+resolution, as it subtracts individually large boundary terms.
+
+6. Interpreting MSS
+====================
+For vertical graph addition eta_full=eta_parent+n on the same horizontal
+coordinates,
+
+  MSS_full = MSS_parent + <|grad n|^2>
+             + 2 <grad eta_parent . grad n>.
+
+Each field's MSS is nonnegative; the cross term can have either sign.
+Therefore smaller total MSS is not an algebraic impossibility. It is
+nevertheless a diagnostic concern if the scientific target is short-wave
+parasitic roughness and most of n is instead a parent-band correction.
+Report parent, correction and cross MSS separately and by wavelength band.
+The exact geometric reconstruction must be used for the older normal-graph
+Stokes model before comparing MSS. Its previous successful steep case also
+used different wavelength, steepness, geometry and dispersion/source
+approximations, so it is not a controlled validation of the coupled case.
+
+Audited implementation locations
+=================================
+outputs/stokes_parasitic_2p4/python/model.py: solve_oneway, lines 75-110.
+outputs/unity_langmuir_steep_20261028/vendor/revised_cho_coupling/residual_model.py:
+ResidualBackground, especially lines 87-115.
+outputs/revised_cho_coupling/RESIDUAL_DERIVATION.txt: parent residual identities.
+No existing model code was changed by this audit.
+
+7. Follow-up: interpreting the phase-only controls
+==================================================
+The isolated monochromatic coefficient in controls.py,
+  beta=(8+s+2s^2)/[16(1+s)(1-2s)], s=Tk^2/g,
+  omega_NL=omega_0[1+beta(ka)^2],
+is the correct leading GC Stokes frequency shift for physical cosine
+amplitude a. The material amplitude used by this second-order map agrees
+with Eulerian fundamental amplitude through the required leading order.
+At the 8 cm wavelength, beta is approximately 0.52968. Existing independent
+checks in validation/validate_capillary_parent.py compare the coefficient
+with DNO cubic solvability, the canonical quartic Hamiltonian and exact
+travelling-wave boundary collocation at small amplitude. Those validate
+the leading coefficient, not its finite-amplitude extrapolation to ka=.40.
+
+A(t)=A(0)exp(-i delta_omega t), A_t=-i delta_omega A is a legitimate
+multiple-scale phase improvement of a second-order reconstruction:
+A=O(epsilon), delta_omega=O(epsilon^2), A_t=O(epsilon^3).
+The code propagates the same slow phase and exact time derivative into
+both the geometry and bulk potential. GCCarrier.eulerian computes eta_t
+by differentiating the time-dependent coordinate inversion,
+eta_t=z_t-eta_x*x_t-eta_y*y_t. This part is not a frozen-coordinate error.
+The quadratic reconstruction remains formally correct through O(epsilon^2).
+
+It is nevertheless not a complete third-order Stokes reconstruction.
+Additional bounded cubic elevation, potential, and coordinate corrections
+are generally required to satisfy both boundary conditions through cubic
+order. For example changing a leading potential polarization coefficient
+from omega_0/k to omega_NL/k is itself an O(epsilon^3) modification; it
+must be derived together with the other cubic terms, not appended alone.
+Such modifications change individual residuals and nonresonant source
+components at the SAME O(epsilon^3) order as the retained residual source.
+Thus second-order accuracy of the parent does not guarantee relative
+accuracy of the cubic remainder used to drive Cho.
+
+There is a useful exception: the resonant fundamental projection. Let L
+be the flat GC two-variable operator and P the desired branch projector.
+A bounded third-order correction u_3 at the fundamental, with leading
+frequency omega_0, changes the residual by (L-partial_t)u_3. Since
+P L=lambda P and partial_t u_3=lambda u_3 at that resonance,
+
+  P (L-partial_t)u_3=0 at O(epsilon^3).
+
+Consequently bounded cubic polarization/geometry corrections cannot alter
+the leading resonant forward-branch solvability coefficient. The slow phase
+term can and should cancel that coefficient. Corrections involving the
+nonlinear phase rate in u_3 enter at fifth order. In contrast, bounded
+third-harmonic reconstruction changes its nonresonant projected source
+already at cubic order. This distinction prevents both overclaiming that
+phase-only fixes the full forcing and dismissing the fundamental cancellation
+merely because cubic potential amplitudes were not restored.
+
+A direct t=0 check of the ACTUAL controls implementation, using the frozen
+campaign, carrier grid 512x8 and output grid 1024x8, gives the following
+magnitudes of physical source Fourier coefficients divided by (ka)^3.
+FFT coefficients are normalized by the number of points; units are m/s.
+
+  ka       linear |F1|/ka^3     phase |F1|/ka^3     phase |F3|/ka^3
+  .120     .0954854342          .0001585147         .0189456165
+  .060     .0956645613          .0000406208         .0160750299
+  .030     .0957085289          .0000102168         .0153529783
+  .015     .0957194703          .0000025581         .0151721949
+
+The linear-phase fundamental source remains cubic. In the phase control,
+its coefficient falls by approximately four upon halving ka, showing an
+O((ka)^5) residual after cancellation of the cubic term. The third-harmonic
+source remains O((ka)^3), precisely the missing bounded-reconstruction
+qualification above. At ka=.12/.24/.32/.40, the phase-control fundamental
+source amplitudes are approximately .17%/.60%/.95%/1.22% of the corresponding
+linear-phase values. These are instantaneous source comparisons, not
+predictions of the nonlinear solution or MSS ratios.
+
+Interpret the simulations accordingly:
+- Large changes between the phase arms can have a sound leading-order
+  explanation: the linear-phase arm leaves a resonant parent correction
+  that the phase arm largely removes.
+- The phase arm tests this mechanism; it is not an exact finite-amplitude
+  reference and does not validate all remaining cubic/off-resonant forcing.
+- For ka=.24-.40, omitted higher-order shape, potential, frequency and
+  geometric terms can materially affect the residual-driven capillary
+  response, especially after long integrations. Map invertibility alone
+  does not control these errors.
+- A stronger physical comparison would hold the source convention fixed
+  and compare with a suitably resolved permanent progressive GC Stokes
+  solution or a systematically matched higher-order/full water-wave
+  reconstruction. An exact GC parent has no free-surface residual by
+  definition; the parent/short-wave split must then avoid already including
+  the very capillary response that the correction is meant to supply.

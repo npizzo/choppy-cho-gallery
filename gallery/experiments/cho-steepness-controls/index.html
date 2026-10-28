@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Steepness and capillary roughness · Choppy–Cho gallery</title>
+  <meta name="description" content="Prescribed-parent controls separating wave steepness, parent phase, and the pressure transfer used to drive Cho roughness.">
+  <link rel="stylesheet" href="style.css">
+  <script src="page.js" defer></script>
+</head>
+<body>
+<main>
+  <nav aria-label="Gallery navigation"><a href="../../">Choppy–Cho gallery</a><span aria-hidden="true"> / </span><a href="../langmuir-steepening/">Coupled steepening runs</a></nav>
+  <header>
+    <p class="eyebrow">Steepness and pressure-transfer controls</p>
+    <h1>Do steeper parent waves produce more capillary roughness?</h1>
+    <p class="lede">These experiments ask whether the weak capillary contribution in the coupled runs comes from insufficient curvature, the parent-wave phase approximation, or the way pressure drives the Cho correction.</p>
+    <p class="scope"><strong>Prescribed-parent controls; not two-way current runs.</strong> There is no evolving mean current in these tests. All cases retain 2.4× viscous damping, with effective viscosity 2.4 × 10<sup>−6</sup> m<sup>2</sup> s<sup>−1</sup>.</p>
+  </header>
+
+  <aside id="status" class="status" role="status">Loading saved diagnostics…</aside>
+  <noscript><p class="status">Enable JavaScript to load the saved results table. The <a href="plots/analysis.json">analysis data</a> are also available directly.</p></noscript>
+  <p id="saved-scope" class="small" hidden></p>
+
+  <section aria-labelledby="measure-title">
+    <h2 id="measure-title">Measure slope where the capillaries live</h2>
+    <p>Mean-square slope (MSS) is positive definite. The parent, Cho correction, and combined surface each have a nonnegative MSS. Their <em>cross contribution</em> can have either sign:</p>
+    <p class="equation" aria-label="Total mean square slope equals parent mean square slope plus correction mean square slope plus twice the mean dot product of their slopes.">MSS<sub>total</sub> = MSS<sub>parent</sub> + MSS<sub>Cho</sub> + 2⟨∇η<sub>parent</sub> · ∇η<sub>Cho</sub>⟩</p>
+    <p>A correction can therefore add short ripples while reducing slope at the carrier wavelength. The plots separate those effects. Here the <strong>capillary band</strong> means wavelengths at or below 17.14 mm, where surface tension contributes at least as much as gravity to the linear restoring force. MSS is evaluated in physical horizontal coordinates.</p>
+  </section>
+
+  <section aria-labelledby="sweep-title">
+    <h2 id="sweep-title">1. Increase curvature; compare the parent phases</h2>
+    <p>An 8 cm, initially monochromatic parent is prescribed at nominal leading-amplitude steepness <i>ka</i> = 0.12, 0.24, 0.32, and 0.40. Each has a linear-phase arm and an arm with the isolated-wave Stokes frequency correction. Geometry and harmonic-potential coefficients remain second order in both arms. Each run lasts 6 seconds.</p>
+    <p>Both arms use the same projected kinematic and dynamic residuals, Cho dispersion and nonlinearity, parent orbital transport, and damping as the frozen Langmuir campaign. These long-crested, one-period tests isolate the forced response; they exclude transverse and subharmonic instabilities.</p>
+    <p>The phase correction has a specific mathematical role: it cancels the leading resonant cubic residual at the parent wavelength. An independent small-amplitude check finds that this residual then scales as the fifth power of amplitude. Bounded third-order geometry and potential corrections are still omitted, so other source harmonics remain approximate. See the <a href="derivation.txt">derivation audit</a>.</p>
+    <div id="sweep-pending" class="pending">The steepness sweep will appear when its saved diagnostics are available.</div>
+    <div id="sweep-results" hidden>
+      <figure>
+        <img id="sweep-plot" alt="Mean-square slope versus parent steepness, including all wavelengths, the capillary band, and the signed cross contribution." loading="lazy">
+        <figcaption>Compare the capillary-band response with the full slope budget. Late averages summarize the saved interval; they do not establish saturation.</figcaption>
+      </figure>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Steepness comparison, scroll horizontally if needed">
+        <table>
+          <caption>Saved late-interval averages · MSS is dimensionless</caption>
+          <thead><tr><th scope="col"><i>ka</i></th><th scope="col">Parent phase</th><th scope="col">Averaged interval (s)</th><th scope="col">Parent MSS</th><th scope="col">Total MSS</th><th scope="col">Total change</th><th scope="col">Parent capillary MSS</th><th scope="col">Total capillary MSS</th><th scope="col">Capillary share of total</th></tr></thead>
+          <tbody id="sweep-rows"></tbody>
+        </table>
+      </div>
+      <figure>
+        <img src="plots/steep_profiles.png" alt="Parent and parent plus Cho profiles at six seconds, showing short ripples ahead of the crest for ka 0.32 and 0.40." loading="lazy">
+        <figcaption>The saved physical profiles at six seconds. Positive horizontal distance points in the propagation direction; the parent crest defines the origin.</figcaption>
+      </figure>
+      <figure>
+        <img id="diagnostics-plot" alt="Correction amplitude, curvature times displacement, slope, map Jacobian, and spectral-edge diagnostics across the steepness controls." loading="lazy">
+        <figcaption>Check the size of the correction as well as the roughness it produces. An invertible parent map or a small spectral tail does not establish validity of the retained-order model.</figcaption>
+      </figure>
+    </div>
+    <p class="caution">The <i>ka</i> = 0.40 case is an exploratory curvature stress test. A second-order parent is not an exact steep Stokes wave, and a large Cho correction may exceed the perturbative coupling assumption. Changing only the phase is a sensitivity test, not a complete higher-order parent model.</p>
+    <p id="late-checks" class="small" hidden></p>
+  </section>
+
+  <section aria-labelledby="bridge-title">
+    <h2 id="bridge-title">2. Keep the exact Stokes parent; change only the pressure transfer</h2>
+    <p>The earlier pronounced ripple response used a 12 cm exact gravity Stokes wave at <i>kH</i>/2 = 0.40 (first-harmonic <i>ka</i> ≈ 0.354). Two 10-second runs retain that parent, arclength transport, normal displacement geometry, original Cho dispersion and nonlinearity, and 2.4× damping.</p>
+    <p>Only the pressure source changes: the Cho pressure derivative <span class="math">iKπ̂/2</span>, or the same source divided by the dimensionless gravity–capillary frequency <span class="math">Ω<sub>GC</sub>(K) = √[|K|(1 + K²)/2]</span>. This division changes how each wavelength is forced; it is not a uniform forcing multiplier.</p>
+    <div id="bridge-pending" class="pending">The exact-Stokes pressure comparison will appear when its saved diagnostics are available.</div>
+    <div id="bridge-results" hidden>
+      <figure>
+        <img id="bridge-plot" alt="Exact-Stokes parent, correction, total, and signed cross-term mean-square slopes for the two pressure-source choices." loading="lazy">
+        <figcaption>Within this pair, the pressure-source weighting is the only changed model term. The 12 cm exact parent is a separate control from the 8 cm second-order sweep.</figcaption>
+      </figure>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Stokes pressure comparison, scroll horizontally if needed">
+        <table>
+          <caption>Exact-Stokes comparison · mean over each run’s final 2 seconds</caption>
+          <thead><tr><th scope="col">Pressure source</th><th scope="col">Saved duration (s)</th><th scope="col">Parent MSS</th><th scope="col">Total MSS</th><th scope="col">Total change</th><th scope="col">Parent capillary MSS</th><th scope="col">Total capillary MSS</th><th scope="col">Capillary share of total</th></tr></thead>
+          <tbody id="bridge-rows"></tbody>
+        </table>
+      </div>
+      <p id="source-ratio" class="small" hidden></p>
+    </div>
+    <p class="caution">The frequency-divided source comes from a flat, one-way elevation projection. It is not an exact curved-parent linearization. The other source follows the pressure-derivative extension of Cho. This comparison measures sensitivity to those closures; choosing whichever creates more roughness would not validate the physics.</p>
+  </section>
+
+  <footer>
+    <p>Results are read from saved diagnostics; this page runs no solver. Missing cases remain pending. <a href="plots/analysis.json">Analysis JSON</a> · <a href="plots/sweep_summary.csv">Sweep CSV</a> · <a href="derivation.txt">Derivation</a> · <a href="results.txt">Results and checks</a> · <a href="../langmuir-steepening/">Return to coupled runs</a></p>
+  </footer>
+</main>
+</body>
+</html>

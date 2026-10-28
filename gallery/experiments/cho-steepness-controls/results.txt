@@ -1,0 +1,76 @@
+STEEPNESS AND CAPILLARY ROUGHNESS — COMPLETED UNITY CONTROLS
+28 October 2026
+
+All eight 6-second second-order GC-parent controls and both 10-second exact
+gravity Stokes source controls completed. Effective viscosity is 2.4e-6 m^2/s.
+These are long-crested prescribed-parent calculations with parent orbital
+transport; they are not evolving-current or two-way tank simulations.
+
+NONLINEAR-PHASE PARENT: TIME AVERAGES OVER 4–6 SECONDS
+Nominal ka    Parent MSS    Parent+Cho MSS    Total/parent    Capillary share
+0.12          0.0072365     0.0072171         0.99732         0.000%
+0.24          0.0294010     0.0286992         0.97613         1.658%
+0.32          0.0531598     0.1059876         1.99376         52.419%
+0.40          0.0849918     0.3831759         4.50839         78.834%
+
+Capillary band: physical horizontal wavelengths <=17.1398 mm. Nominal ka
+specifies the leading parent amplitude, not an exact finite-amplitude Fourier
+coefficient of the unexpanded reconstructed graph.
+
+At ka=.32 the total MSS nearly doubles, and about 94% of the correction MSS
+lies in the capillary band. The final capillary correction RMS height is
+235.8 micrometres. The saved profile has short ripples on the forward face.
+At ka=.40 the total MSS is 4.51 times the parent value; this is an exploratory
+high-curvature result from a second-order parent, not an exact steep wave.
+
+PHASE CONSISTENCY
+The recent coupled campaign uses linear intrinsic parent phases. In the
+controlled sweep this leaves a leading cubic resonant residual at the parent
+wavelength, causing Cho to make a substantial long-wave adjustment. The
+known isolated GC Stokes frequency shift cancels that cubic fundamental
+residual; direct small-amplitude evaluation confirms fifth-order scaling
+after the correction. It is not a source filter or amplitude calibration.
+
+With linear phases, late total/parent MSS ratios are:
+  ka=0.12: 0.87567
+  ka=0.24: 0.64264
+  ka=0.32: 0.53444
+  ka=0.40: 0.54758
+
+This demonstrates a material problem with treating the linear-phase coupled
+parent response as a pure capillary roughness prediction. It does not imply
+that every negative total-minus-parent MSS is an arithmetic error. All MSS
+values are positive and the signed cross contribution closes the budget.
+
+EXACT STOKES PRESSURE COMPARISON
+Both cases preserve the exact 12 cm gravity Stokes parent at kH/2=.40,
+original Cho propagation/nonlinearity, and normal/arclength geometry.
+  legacy: parent 0.0854669, total 0.1507736, increase 76.41%, capillary total 0.0655868.
+  gc: parent 0.0854669, total 0.1289777, increase 50.91%, capillary total 0.0473500.
+The frequency-divided pressure projection weakens the short-wave response
+but still supports substantial capillary MSS. Pressure transfer alone does
+not explain the weak coupled result. See derivation.txt for the physical
+elevation projection, Cho source normalization, and scope of this comparison.
+
+NUMERICAL CHECKS
+Unity passed the phase-derivative, invariant-y, repeated-domain, source-ratio,
+unforced-parity, and legacy-Stokes parity tests. At ka=.40, a startup space/
+time/background refinement over 0–0.5 s changed capillary MSS by <0.028%.
+The targeted 5.5–6 s restart refinements doubled space and parent-grid resolution
+and halved time/background intervals, starting from identical saved states:
+  ka32_stokes_phase: final capillary MSS change 0.00935%; Cho slope-history relative L2 change 0.00537%.
+  ka40_stokes_phase: final capillary MSS change 0.02152%; Cho slope-history relative L2 change 0.02244%.
+These are targeted startup and late checks, not full-trajectory convergence.
+
+INTERPRETATION LIMITS
+The corrected phase is formally consistent at retained order and removes the
+leading resonant defect. It does not restore bounded cubic potential and
+surface geometry; those can alter off-resonant forcing at the same cubic
+order. The coupled model should retain consistent nonlinear parent dynamics
+before using a steeper two-way run for quantitative roughness predictions.
+At ka=.32, maximum |curvature*correction| is 0.052; at ka=.40 it is 0.190.
+The parent maps remain invertible. Short-wave slope alone is not used as a
+failure criterion, and neither slopes nor forcing were clipped or amplified.
+
+JOBS
+Verification 66254616; ten-member control array 66254617; late refinement 66255160.
