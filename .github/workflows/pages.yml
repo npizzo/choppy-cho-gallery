@@ -2,7 +2,7 @@ name: Publish research gallery
 on:
   push:
     branches: [main]
-    paths: ['gallery/**', 'scripts/check_gallery.py', '.github/workflows/pages.yml']
+    paths: ['gallery/**', 'scripts/check_gallery.py', 'scripts/apply_movie_supplements.py', 'tests/test_movie_supplements.py', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,6 +20,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
+      - run: python3 -m unittest discover -s tests -p 'test_movie_supplements.py' -v
+      - run: python3 scripts/apply_movie_supplements.py gallery
       - run: python3 scripts/check_gallery.py gallery
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4

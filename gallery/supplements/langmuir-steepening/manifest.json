@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "experiment": "langmuir-steepening",
+  "source_fingerprint": "475aa2260526f62033e761d5d26ecaecff66395b0810ff5e820c0a94f5210af6",
+  "cases": {
+    "steep12": {
+      "sha256": {
+        "video": "7730fc16a6bf664b19bd9ab338e88902c3b037e4142b8a5f69623497504f2680",
+        "poster": "45be726bedf62e06f8d29d6e7aceca2cabe3b101c7ee5713a3be042c806f4fc3",
+        "metadata": "7b36741392c2fa2633df1d4477501e439e10b2a9cf5934642434f43cb00cb5d4"
+      },
+      "video": "steep12/parent_plus_cho_evolution.mp4",
+      "poster": "steep12/parent_plus_cho_evolution.png",
+      "metadata": "steep12/parent_plus_cho_evolution.json"
+    }
+  }
+}
