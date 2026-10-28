@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "title": "Nonlinear steep parent waves with Langmuir currents and Cho roughness",
+  "source_fingerprint": "78c67fde19df2d17603e6a52b34ae85046920fd7d7abc80d34e645f2c24b3f63",
+  "updated_at": "2026-10-28T21:06:30.263870+00:00",
+  "cho_enabled": true,
+  "cho_damping_multiplier": 2.4,
+  "cho_feedback_enabled": false,
+  "interpretation": "Initially monochromatic 8 cm waves at ka=0.30 evolve for six seconds with 231 free modes, the retained nonlinear gravity-capillary quartet model, and reciprocal parent-current feedback. Passive Cho at 2.4 times viscosity follows the surface and does not feed the parent or mean current.",
+  "cases": [
+    {
+      "id": "steep30",
+      "title": "Steep nonlinear parent: ka = 0.30",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "g": 9.81,
+        "T": 7.3e-05,
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "carrier_mx": 4,
+        "damping_multiplier": 2.4,
+        "initial_age": 16.0,
+        "mx_min": 1,
+        "mx_max": 7,
+        "my_max": 16,
+        "steepness": 0.3,
+        "duration": 6.0,
+        "seed": 2026,
+        "seed_velocity": 0.05,
+        "nu_mean": 1.1e-06,
+        "wind_alpha": 1.2e-05,
+        "nx": 33,
+        "ny": 65,
+        "nz": 48,
+        "cho_nx": 512,
+        "cho_ny": 1024,
+        "carrier_nx": 256,
+        "carrier_ny": 512,
+        "dt": 0.0005,
+        "cho_dt": 0.00025,
+        "free_modes": 231,
+        "current_to_wave_feedback": true,
+        "intrinsic_model": "tensor"
+      },
+      "metrics": {},
+      "assets": [],
+      "saved_stage": "tank",
+      "saved_state": "running",
+      "saved_status_at": "2026-10-28T21:06:30.263870+00:00"
+    }
+  ],
+  "intrinsic_model": "tensor",
+  "native_nonlinear_tensor_terms": {
+    "steep30": 2775232
+  },
+  "submitted_jobs": {
+    "array_job": "66256004",
+    "final_gallery_job": "66256006"
+  },
+  "completed_cases": 0
+}
