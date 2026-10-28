@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Steeper parent waves and longer Langmuir/Cho evolution",
   "source_fingerprint": "475aa2260526f62033e761d5d26ecaecff66395b0810ff5e820c0a94f5210af6",
-  "updated_at": "2026-10-28T12:24:15.423033+00:00",
+  "updated_at": "2026-10-28T16:33:33.714789+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "cho_feedback_enabled": false,
@@ -11,7 +11,7 @@
     {
       "id": "steep12",
       "title": "Twice the parent steepness: ka = 0.12",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "Lx": 0.32,
         "Ly": 0.64,
@@ -36,11 +36,150 @@
         "free_modes": 231,
         "current_to_wave_feedback": true
       },
-      "metrics": {},
-      "assets": [],
-      "saved_stage": "tank",
-      "saved_state": "running",
-      "saved_status_at": "2026-10-28T12:24:15.421425+00:00"
+      "metrics": {
+        "duration_s": 5.99999999999979,
+        "free_modes": 231,
+        "max_transverse_action_fraction": 0.6936128889532613,
+        "max_slope_ratio": 0.3468142878596545,
+        "peak_slope_ratio_time_s": 5.074999999999341,
+        "max_transverse_boundary_action": 0.00028820160893348044,
+        "max_streamwise_boundary_action": 0.006885368543259319,
+        "max_action_error": 6.257928714659133e-05,
+        "minimum_map_jacobian": 0.7282934919987026,
+        "maximum_physical_slope": 0.30153657046434734,
+        "maximum_quadratic_to_linear_map_rms": 0.15235798652842986,
+        "maximum_quadratic_to_linear_map_gradient_rms": 0.07870501350208368,
+        "geometry_samples": 31,
+        "max_parent_transverse_mss": 0.0008256952507285774,
+        "max_cho_transverse_mss": 3.8795397649829274e-05,
+        "max_total_transverse_mss": 0.0007049425585021184,
+        "max_parent_surface_slope_ratio": 0.34347714894941256,
+        "max_cho_surface_slope_ratio": 0.6812911328892106,
+        "max_total_surface_slope_ratio": 0.3419279250911245,
+        "bound_geometry_validated": true,
+        "bound_geometry_full_second_order": true,
+        "cho": {
+          "cho_enabled": true,
+          "cho_feedback_enabled": false,
+          "duration_s": 6.0,
+          "damping_multiplier": 2.4,
+          "max_cho_mss": 0.0001392391756363119,
+          "max_total_mss": 0.007265341627478194,
+          "max_parent_mss": 0.007858065889049302,
+          "max_abs_cho_m": 0.0010826727375388145,
+          "grid_nx": 512,
+          "grid_ny": 1024,
+          "dt_s": 0.0004999999999999824
+        }
+      },
+      "assets": [
+        "assets/steep12/summary.json",
+        "assets/steep12/cho_summary.json",
+        "assets/steep12/diagnostics.csv",
+        "assets/steep12/mean_square_slope.csv",
+        "assets/steep12/surface_transverse.csv",
+        "assets/steep12/parent_plus_cho.json",
+        "assets/steep12/parent_plus_cho.png",
+        "assets/steep12/parent_plus_cho.mp4",
+        "assets/steep12/parent_evolution.json",
+        "assets/steep12/parent_evolution.png",
+        "assets/steep12/parent_evolution.mp4",
+        "assets/steep12/current_diagnostics.csv",
+        "assets/steep12/underwater.json",
+        "assets/steep12/underwater.mp4",
+        "assets/steep12/transverse_response.png"
+      ],
+      "parent_plus_cho": {
+        "frame": "fixed laboratory",
+        "cho_enabled": true,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          5.5,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.1,
+        "fps": 60,
+        "playback_duration_s": 4.999999999997904
+      },
+      "parent_evolution": {
+        "frame": "fixed laboratory",
+        "cho_enabled": false,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.2,
+        "fps": 20,
+        "playback_duration_s": 29.999999999998952
+      },
+      "underwater": {
+        "quantity": "Streamwise vorticity of the wave-averaged Eulerian current",
+        "time_seconds": [
+          0.0,
+          0.2,
+          0.4,
+          0.5999999999999891,
+          0.7999999999999671,
+          0.999999999999945,
+          1.1999999999999231,
+          1.399999999999901,
+          1.599999999999879,
+          1.799999999999857,
+          1.999999999999835,
+          2.1999999999999016,
+          2.3999999999999684,
+          2.599999999999967,
+          2.7999999999999625,
+          2.9999999999999583,
+          3.199999999999954,
+          3.3999999999999497,
+          3.5999999999999455,
+          3.799999999999941,
+          3.999999999999937,
+          4.199999999999826,
+          4.399999999999715,
+          4.599999999999604,
+          4.799999999999494,
+          4.999999999999383,
+          5.199999999999272,
+          5.399999999999161,
+          5.59999999999905,
+          5.8000000000000025,
+          5.99999999999979
+        ],
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 601,
+        "encoded_duration_s": 30.05,
+        "threshold_per_s": 6.110228538513184,
+        "threshold_rule": "late_half_absolute_vorticity_q95_fixed",
+        "reference_time_interval_s": [
+          2.999999999999895,
+          5.99999999999979
+        ],
+        "physical_vertical_aspect": true,
+        "temporal_display": "Saved current snapshots are held until the next saved time",
+        "description": "Mean-current structures; instantaneous wave orbital velocity is not included.",
+        "panels": [
+          "3D streamwise vorticity isosurfaces",
+          "near-surface streamwise velocity anomaly",
+          "streamwise-averaged transverse rolls"
+        ],
+        "cross_section_display": "Depth axis stretched for legibility; vector components use equal screen scale and a fixed velocity key",
+        "roll_coherence_definition": "Volume-weighted energy in streamwise-averaged lateral anomalies divided by total transverse current energy in the displayed layer",
+        "current_surface_depth_m": -0.0020461463373475704,
+        "streak_color_limit_m_s": 0.0766814798116684,
+        "roll_vorticity_color_limit_per_s": 5.159857273101807,
+        "vector_reference_m_s": 0.014007427729666233,
+        "display_top_depth_m": 0.025,
+        "source_snapshot_dt_max_s": 0.2000000000009523,
+        "original_global_max_threshold_per_s": 208.56268310546875
+      }
     },
     {
       "id": "long10",
@@ -164,5 +303,5 @@
     ],
     "poster": "assets/baseline_wide/underwater.png"
   },
-  "completed_cases": 0
+  "completed_cases": 1
 }
