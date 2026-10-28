@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "title": "Same steep parent/current history, Cho at 1\u00d7 damping",
+  "source_fingerprint": "f296d3cae9a862009d5a1b86971d9f94515c03b56f5329516f5a6d6d6b5145f6",
+  "updated_at": "2026-10-28T22:11:02.245190+00:00",
+  "cho_enabled": true,
+  "cho_damping_multiplier": 1.0,
+  "cho_feedback_enabled": false,
+  "interpretation": "Passive Cho at one times molecular viscosity is replayed over the exact six-second parent/current history of the original ka=0.30, 8 cm, nonlinear 231-mode Langmuir case. The parent waves and currents are not reintegrated; only Cho damping changes from 2.4 to 1.0.",
+  "cases": [
+    {
+      "id": "steep30",
+      "title": "Same steep parent, 1\u00d7 Cho damping: ka = 0.30",
+      "status": "awaiting_completed_run",
+      "parameters": {
+        "g": 9.81,
+        "T": 7.3e-05,
+        "Lx": 0.32,
+        "Ly": 0.64,
+        "H": 0.12,
+        "carrier_mx": 4,
+        "damping_multiplier": 1.0,
+        "nu_cho": 1e-06,
+        "initial_age": 16.0,
+        "mx_min": 1,
+        "mx_max": 7,
+        "my_max": 16,
+        "steepness": 0.3,
+        "duration": 6.0,
+        "seed": 2026,
+        "seed_velocity": 0.05,
+        "nu_mean": 1.1e-06,
+        "wind_alpha": 1.2e-05,
+        "nx": 33,
+        "ny": 65,
+        "nz": 48,
+        "cho_nx": 512,
+        "cho_ny": 1024,
+        "carrier_nx": 256,
+        "carrier_ny": 512,
+        "dt": 0.0005,
+        "cho_dt": 0.00025,
+        "free_modes": 231,
+        "current_to_wave_feedback": true,
+        "intrinsic_model": "tensor"
+      },
+      "metrics": {},
+      "assets": []
+    }
+  ],
+  "planned_parent_reuse": {
+    "source_experiment": "langmuir-steep30",
+    "source_case": "steep30",
+    "source_fingerprint": "78c67fde19df2d17603e6a52b34ae85046920fd7d7abc80d34e645f2c24b3f63",
+    "baseline_damping_multiplier": 2.4,
+    "changed_parameter": "damping_multiplier"
+  },
+  "intrinsic_model": "tensor",
+  "native_nonlinear_tensor_terms": {
+    "steep30": 2775232
+  },
+  "submitted_jobs": {
+    "array_job": "66257754",
+    "final_gallery_job": "66257756"
+  },
+  "completed_cases": 0
+}
