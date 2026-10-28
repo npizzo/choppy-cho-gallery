@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Langmuir waves: transverse mode comparison",
   "source_fingerprint": "7b3e2659075212941f9483f59d376bbe41b513312b583d8eb8a75f7291f5aeb6",
-  "updated_at": "2026-10-28T05:27:50.267351+00:00",
+  "updated_at": "2026-10-28T07:09:10.195111+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "cho_feedback_enabled": false,
@@ -217,7 +217,7 @@
     {
       "id": "prescribed",
       "title": "Prescribed-parent control",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "Lx": 0.32,
         "Ly": 0.64,
@@ -242,13 +242,85 @@
         "free_modes": 1,
         "current_to_wave_feedback": false
       },
-      "metrics": {},
-      "assets": []
+      "metrics": {
+        "duration_s": 5.99999999999979,
+        "free_modes": 1,
+        "max_transverse_action_fraction": 0.0,
+        "max_slope_ratio": 0.0,
+        "peak_slope_ratio_time_s": 0.0,
+        "max_transverse_boundary_action": 0.0,
+        "max_streamwise_boundary_action": 0.0,
+        "max_action_error": 4.058279744811877e-05,
+        "minimum_map_jacobian": 0.9394541441248295,
+        "maximum_physical_slope": 0.06015018714434191,
+        "maximum_quadratic_to_linear_map_rms": 0.030342899860950914,
+        "maximum_quadratic_to_linear_map_gradient_rms": 0.009097597918505992,
+        "geometry_samples": 31,
+        "max_parent_transverse_mss": 0.0,
+        "max_cho_transverse_mss": 6.958937283105028e-08,
+        "max_total_transverse_mss": 6.958937283105028e-08,
+        "max_parent_surface_slope_ratio": 0.0,
+        "max_cho_surface_slope_ratio": 0.4096851096267339,
+        "max_total_surface_slope_ratio": 0.006242049127207916,
+        "bound_geometry_validated": true,
+        "bound_geometry_full_second_order": true,
+        "cho": {
+          "cho_enabled": true,
+          "cho_feedback_enabled": false,
+          "duration_s": 6.0,
+          "damping_multiplier": 2.4,
+          "max_cho_mss": 5.440532000304476e-07,
+          "max_total_mss": 0.0018022654828339995,
+          "max_parent_mss": 0.0018022654828339995,
+          "max_abs_cho_m": 2.2399255612981506e-05,
+          "grid_nx": 512,
+          "grid_ny": 1024,
+          "dt_s": 0.0004999999999999824
+        }
+      },
+      "assets": [
+        "assets/prescribed/summary.json",
+        "assets/prescribed/cho_summary.json",
+        "assets/prescribed/diagnostics.csv",
+        "assets/prescribed/mean_square_slope.csv",
+        "assets/prescribed/surface_transverse.csv",
+        "assets/prescribed/parent_plus_cho.json",
+        "assets/prescribed/parent_plus_cho.png",
+        "assets/prescribed/parent_plus_cho.mp4",
+        "assets/prescribed/parent_evolution.json",
+        "assets/prescribed/parent_evolution.png",
+        "assets/prescribed/parent_evolution.mp4",
+        "assets/prescribed/underwater.json",
+        "assets/prescribed/underwater.mp4",
+        "assets/prescribed/transverse_response.png"
+      ],
+      "parent_plus_cho": {
+        "frame": "fixed laboratory",
+        "cho_enabled": true,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          5.5,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.1,
+        "fps": 60
+      },
+      "parent_evolution": {
+        "frame": "fixed laboratory",
+        "cho_enabled": false,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.2,
+        "fps": 20
+      }
     }
   ],
   "submitted_jobs": {
     "array_job": "66227539",
     "final_gallery_job": "66227543"
   },
-  "completed_cases": 2
+  "completed_cases": 3
 }
