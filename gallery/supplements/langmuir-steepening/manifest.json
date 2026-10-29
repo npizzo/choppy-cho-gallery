@@ -12,6 +12,16 @@
       "video": "steep12/parent_plus_cho_evolution.mp4",
       "poster": "steep12/parent_plus_cho_evolution.png",
       "metadata": "steep12/parent_plus_cho_evolution.json"
+    },
+    "long10": {
+      "sha256": {
+        "video": "8b07d217e3405c6b494b1fd2028e126b3ef9ad2a3a00fde22be8b23ddbf216c8",
+        "poster": "9a7d7d54a994cc0b4ba7706478c14237958b1e910ff039b871388990aa8ad7ed",
+        "metadata": "c638c81090173e4f63bdc2571557ac76d7cea50866478c4ed52e6fde5cec11ad"
+      },
+      "video": "long10/parent_plus_cho_evolution.mp4",
+      "poster": "long10/parent_plus_cho_evolution.png",
+      "metadata": "long10/parent_plus_cho_evolution.json"
     }
   }
 }
