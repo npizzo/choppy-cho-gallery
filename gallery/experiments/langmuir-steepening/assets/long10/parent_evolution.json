@@ -1,0 +1,12 @@
+{
+  "frame": "fixed laboratory",
+  "cho_enabled": false,
+  "vertical_exaggeration": 1,
+  "physical_interval_s": [
+    0.0,
+    29.999999999999925
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 149.99999999999963
+}

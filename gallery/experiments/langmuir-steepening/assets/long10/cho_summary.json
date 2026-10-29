@@ -1,0 +1,13 @@
+{
+  "cho_enabled": true,
+  "cho_feedback_enabled": false,
+  "duration_s": 30.0,
+  "damping_multiplier": 2.4,
+  "max_cho_mss": 0.00012319746666311567,
+  "max_total_mss": 0.005050967196886336,
+  "max_parent_mss": 0.005455304786743244,
+  "max_abs_cho_m": 0.0011342113139107823,
+  "grid_nx": 512,
+  "grid_ny": 1024,
+  "dt_s": 0.0004999999999999988
+}
