@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f6f1">
+<title>GMF physics · Choppy waves &amp; capillary ripples</title>
+<style>
+:root{--paper:#f7f6f1;--ink:#16343b;--muted:#607477;--line:#d8e2df;--blue:#18799a;--teal:#18765c;--amber:#98711c}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1160px;margin:auto;padding:0 28px}nav{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 0;border-bottom:1px solid var(--line)}a{color:var(--blue);text-underline-offset:3px}nav a{text-decoration:none;font-size:14px}.eyebrow{text-transform:uppercase;font-weight:650;letter-spacing:.14em;font-size:12px;color:var(--muted);margin:0 0 10px}header{padding:44px 0 24px}h1{font-size:clamp(34px,5vw,56px);line-height:1.08;letter-spacing:-.045em;max-width:920px;margin:0 0 22px}h2{font-size:25px;line-height:1.25;letter-spacing:-.025em;margin:0 0 12px}h3{font-size:19px;line-height:1.3;margin:0 0 10px}p{margin:0 0 14px}.lead{font-size:20px;color:var(--muted);max-width:900px}.small{font-size:13px;color:var(--muted)}.statusbar{background:#fff;border:1px solid var(--line);padding:18px 22px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:16px}.badge{display:inline-block;padding:4px 11px;border-radius:999px;background:#edf1f0;font-size:12px;font-weight:650;color:#597073;white-space:nowrap}.completed{background:#e6f3eb;color:#216848}.running{background:#e5f0f7;color:#24647a}.preliminary{background:#faf0d5;color:#866217}.failed{background:#fae7e2;color:#9c4433}.queued{background:#edf1f0;color:#597073}.counts{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:18px 0 30px}.count{padding:14px 16px;background:white}.count strong{font-size:23px;display:block}.count span{font-size:12px;color:var(--muted)}.note{background:#eaf2ef;padding:20px 22px;border-radius:10px;margin:22px 0}.section{padding:30px 0;border-top:1px solid var(--line)}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:22px 0}.flow>div{border-top:3px solid #88aaa4;padding:16px 2px}.step{color:var(--muted);font-size:12px;letter-spacing:.1em}.flow h3{font-size:17px;margin:8px 0}.flow p{font-size:14px;color:var(--muted)}.case-grid{display:grid;gap:20px}.case{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}.case-head{padding:22px 24px}.case-title{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.case-title h3{font-size:22px}.params{display:flex;gap:10px 18px;flex-wrap:wrap;margin:14px 0;font-size:13px;color:var(--muted)}.params strong{color:var(--ink);font-weight:600}.case-body{padding:0 24px 24px}.highlights{padding:0;list-style:none;margin:18px 0}.highlights li{border-left:3px solid #85ada5;padding:7px 14px;margin:9px 0;background:#f5f8f6}.figure-grid{display:grid;gap:22px}figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}figure h3{font-size:17px;padding:18px 20px 0}figure img{width:100%;height:auto;display:block}figcaption{padding:10px 20px 18px;color:var(--muted);font-size:13px}.downloads{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 0}.downloads a{border:1px solid var(--line);padding:7px 11px;border-radius:6px;font-size:12px;text-decoration:none;background:#fff}.empty{padding:24px;border:1px dashed #b9cbc6;border-radius:10px;color:var(--muted)}.retained{border-left:3px solid var(--amber);background:#fff9e9;padding:12px 16px;font-size:13px;margin:0 0 18px}.metrics{overflow:auto;margin:15px 0}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}th{font-weight:600;color:var(--muted)}details{margin:22px 0;border:1px solid var(--line);border-radius:10px;padding:20px 24px}summary{cursor:pointer;font-weight:650}.method{padding-top:18px}.method li{margin:9px 0}footer{padding:25px 0 36px;color:var(--muted);font-size:13px}[hidden]{display:none!important}@media(max-width:700px){.wrap{padding:0 17px}.flow{grid-template-columns:1fr;gap:2px}.counts{grid-template-columns:repeat(3,1fr)}.statusbar,.case-title{align-items:flex-start;flex-direction:column}.lead{font-size:18px}.case-head{padding:18px}.case-body{padding:0 18px 18px}figure h3{padding:14px 12px 0}figcaption{padding:10px 12px 15px}}
+</style></head>
+<body><div class="wrap">
+<nav aria-label="Main navigation"><a href="../../">← Choppy waves &amp; capillary ripples</a><a href="../radar-backscatter/">First backscatter experiment</a></nav>
+<header><p class="eyebrow">A controlled radar-physics campaign</p><h1 id="title">From wave modulation<br>to radar motion.</h1><p class="lead" id="description">How do parent waves, capillary roughness, and current forcing affect the wind and current signatures a radar sees?</p></header>
+<main>
+<div class="statusbar"><div><span id="status" class="badge queued">Queued</span><p class="small" id="status-text" style="margin:8px 0 0"></p></div><a class="small" href="snapshot.json">Published campaign record</a></div>
+<div id="counts" class="counts" aria-label="Case states"></div>
+<div class="note"><strong>A test of the physics behind a geophysical model function.</strong><p style="margin:7px 0 0">The aim is to measure how the waves modulate radar power, then test whether that modulation explains the Doppler return. These experiments do not yet provide an absolute calibration from surface roughness to 10 m wind speed.</p></div>
+<div class="flow"><div><span class="step">01 · SURFACE RESPONSE</span><h3>Change the physical controls</h3><p>Compare the prescribed wave and stress settings using the parent surface and the combined parent + Cho surface.</p></div><div><span class="step">02 · POWER MODULATION</span><h3>Measure the modulation response</h3><p>The modulation transfer function (MTF) describes how the radar return changes with the parent-wave variation. Estimate it from backscatter.</p></div><div><span class="step">03 · INDEPENDENT TEST</span><h3>Test the Doppler prediction</h3><p>Use the measured modulation to predict the frequency response and compare with the coherent Doppler calculation. Agreement must be checked independently of the fit.</p></div></div>
+<section id="comparison-section" class="section" hidden><p class="eyebrow">Across completed cases</p><h2>What changes with the controls?</h2><div id="comparison"></div></section>
+<section class="section"><p class="eyebrow">Results publish as each case becomes available</p><h2>Campaign cases</h2><div id="cases" class="case-grid"></div></section>
+<details open><summary>Forcing, interpretation, and validation</summary><div class="method"><ul><li>The friction velocity specifies current-delivered, effective water-side stress: τ<sub>c</sub> = ρ<sub>water</sub>u<sub>*,c</sub>². Changing it alters the mean-flow forcing and the Craik–Leibovich wave/current interaction. It is not identified with the total atmospheric stress.</li><li>Cho feels the resulting parent-wave field and mean-current transport. This stress pathway is indirect: no direct aerodynamic growth or pressure forcing is added to either the parent waves or Cho.</li><li>A modulation fit and a Doppler prediction are separate tests. Matching the fitted backscatter alone does not establish the kinematic prediction.</li><li>Queued and running cases contain no inferred result. Preliminary analyses are labelled explicitly; completed analyses require recorded passing checks and inspectable outputs.</li><li>Numerical completion is separate from physical validity. The scattering approximation, finite footprint, time sampling, and steep-slope limitations remain part of each case's interpretation.</li><li>Apparent radar velocity can include wave-motion bias. It is not automatically the model's Eulerian current or Stokes drift. An absolute U<sub>10</sub> geophysical model function is not calibrated here.</li></ul><div id="method-data"></div><ul id="notes"></ul></div></details>
+</main><footer><strong>Nicholas Pizzo · Numerical research gallery</strong><p id="published" style="margin-top:6px"></p><p>This page displays the last published snapshot. It does not query Unity or start simulations.</p><a href="https://github.com/npizzo/choppy-cho-gallery">Gallery repository</a></footer>
+</div>
+<script type="application/json" id="gmf-data">{
+  "schema_version": 1,
+  "experiment": "gmf-physics",
+  "campaign_id": "unity-gmf-20261029",
+  "title": "Wave roughness, current stress and Doppler GMF physics",
+  "status": "failed",
+  "description": "Controlled short-wave damping, parent steepness, directional spreading, and effective current-stress experiments.",
+  "counts": {
+    "completed": 0,
+    "failed": 23,
+    "preliminary": 0,
+    "queued": 0,
+    "running": 0
+  },
+  "completed_results": 0,
+  "cases": [
+    {
+      "id": "legacy_parent",
+      "title": "Existing parent only",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "damping_multiplier": 0.0,
+        "carrier_wavelength_m": 0.08,
+        "history_duration_s": 6.0,
+        "current_initialization": "Legacy Lagrangian initialization"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308389",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "result": null
+    },
+    {
+      "id": "legacy_cho24",
+      "title": "Existing parent + Cho, damping 2.4",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "history_duration_s": 6.0,
+        "current_initialization": "Legacy Lagrangian initialization"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308389",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "result": null
+    },
+    {
+      "id": "legacy_cho1",
+      "title": "Existing parent + Cho, damping 1",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "damping_multiplier": 1.0,
+        "carrier_wavelength_m": 0.08,
+        "history_duration_s": 6.0,
+        "current_initialization": "Legacy Lagrangian initialization"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308389",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "result": null
+    },
+    {
+      "id": "ak15_uw000_a000_mono_s2026",
+      "title": "ak 0.15; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_0",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak15_uw005_a000_mono_s2026",
+      "title": "ak 0.15; current friction velocity 0.005 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.005,
+        "tau_current_Pa": 0.025625000000000002,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_1",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak15_uw010_a000_mono_s2026",
+      "title": "ak 0.15; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_2",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak15_uw000_a000_mono_s2027",
+      "title": "ak 0.15; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_3",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak15_uw005_a000_mono_s2027",
+      "title": "ak 0.15; current friction velocity 0.005 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.005,
+        "tau_current_Pa": 0.025625000000000002,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_4",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak15_uw010_a000_mono_s2027",
+      "title": "ak 0.15; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.15,
+        "actual_carrier_ak": 0.15,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_5",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw000_a000_mono_s2026",
+      "title": "ak 0.30; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_6",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw005_a000_mono_s2026",
+      "title": "ak 0.30; current friction velocity 0.005 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.005,
+        "tau_current_Pa": 0.025625000000000002,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_7",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a000_mono_s2026",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_8",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw000_a000_oblique_s2026",
+      "title": "ak 0.30; current friction velocity 0.000 m/s; oblique; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 0,
+        "sea_state": "oblique",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_9",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a000_oblique_s2026",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; oblique; stress 0 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 0,
+        "sea_state": "oblique",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_10",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a090_mono_s2026",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; mono; stress 90 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 90,
+        "sea_state": "mono",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_11",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a090_oblique_s2026",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; oblique; stress 90 degrees; seed 2026",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 90,
+        "sea_state": "oblique",
+        "seed": 2026,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_12",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw000_a000_mono_s2027",
+      "title": "ak 0.30; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_13",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw005_a000_mono_s2027",
+      "title": "ak 0.30; current friction velocity 0.005 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.005,
+        "tau_current_Pa": 0.025625000000000002,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_14",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a000_mono_s2027",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 0,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_15",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw000_a000_oblique_s2027",
+      "title": "ak 0.30; current friction velocity 0.000 m/s; oblique; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 0,
+        "sea_state": "oblique",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.0,
+        "tau_current_Pa": 0.0,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_16",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a000_oblique_s2027",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; oblique; stress 0 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 0,
+        "sea_state": "oblique",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_17",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a090_mono_s2027",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; mono; stress 90 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.3,
+        "stress_angle_deg": 90,
+        "sea_state": "mono",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.0,
+        "directional_action_rms_deg": 0.0,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_18",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    },
+    {
+      "id": "ak30_uw010_a090_oblique_s2027",
+      "title": "ak 0.30; current friction velocity 0.010 m/s; oblique; stress 90 degrees; seed 2027",
+      "status": "failed",
+      "parameters": {
+        "reference_ak": 0.3,
+        "actual_carrier_ak": 0.2683281572999747,
+        "stress_angle_deg": 90,
+        "sea_state": "oblique",
+        "seed": 2027,
+        "duration_s": 6.0,
+        "oblique_action_fraction": 0.2,
+        "directional_action_rms_deg": 11.880252051541438,
+        "ustar_current_m_s": 0.01,
+        "tau_current_Pa": 0.10250000000000001,
+        "damping_multiplier": 2.4,
+        "carrier_wavelength_m": 0.08,
+        "initial_current": "Matched Eulerian profile and current seed"
+      },
+      "message": "Validation gate failed; production was not started. Diagnostic outputs are preserved.",
+      "job_id": "66308390_19",
+      "run_id": "gmf-20261029-v1",
+      "source_fingerprint": "bc60b13c30b45aef655657fc437dd594cdf669cd191768a81cff2774a8cbc027",
+      "target_time_s": 6.0,
+      "result": null
+    }
+  ],
+  "comparisons": null,
+  "notes": [
+    "Effective stress enters only the resolved CL currents; there is no direct aerodynamic parent or Cho growth.",
+    "All new cases share an inherited Eulerian shear profile and matched current seeds. Zero applied stress does not mean zero initial current.",
+    "No atmospheric stress partition, U10 calibration, or complete ocean wind-sea representation is claimed.",
+    "The MTF predicts a declared parent graph-motion component. Total Doppler includes intrinsic and residual motion and is reported separately.",
+    "The finite-patch SSA1 calculation needs electromagnetic and resolution validation at strong slopes.",
+    "Six-second runs and saved 10 ms surfaces test transient statistics; they do not resolve operational millisecond radar coherence."
+  ],
+  "method": "Ka-band 35.75 GHz, 56 degree incidence, VV; 12 viewing azimuths. Surface-derived complex MTF predicts held-out hydrodynamic covariances and a separately evaluated coherent SSA1 orbital-motion contribution.",
+  "source_updated_at_utc": "2026-10-29T23:02:35.099486+00:00",
+  "assets": [],
+  "published_at_utc": "2026-10-29T23:02:43.076417+00:00",
+  "content_sha256": "8b4f9733001744521e1981d758f21bccd308c352fbffc55579f9d20319ba8a89"
+}</script>
+<script>
+"use strict";
+const data=JSON.parse(document.getElementById("gmf-data").textContent),byId=id=>document.getElementById(id);
+const labels={queued:"Queued",running:"Running",failed:"Failed",preliminary:"Preliminary",completed:"Completed"};
+const element=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=text;if(cls)el.className=cls;return el;};
+const asset=path=>typeof path==="string"&&/^(cases\/[A-Za-z0-9][A-Za-z0-9_-]*|comparisons)\/(?:[A-Za-z0-9][A-Za-z0-9_.-]*\/)*[A-Za-z0-9][A-Za-z0-9_.-]*\.(png|csv|json)$/.test(path);
+const fmt=value=>typeof value==="number"?Number(value.toPrecision(5)).toString():typeof value==="string"?value:JSON.stringify(value);
+const descriptions={queued:"The campaign is queued. No simulated outcome is implied.",running:"Cases are running or being analysed; completed outputs publish incrementally.",failed:"One or more required stages failed. Previously completed results remain labelled separately.",preliminary:"Some outputs are available, with incomplete validation or analysis explicitly marked.",completed:"All declared cases and their analyses are recorded as complete."};
+byId("title").textContent=data.title;byId("description").textContent=data.description;byId("status").className="badge "+data.status;byId("status").textContent=labels[data.status]||data.status;byId("status-text").textContent=descriptions[data.status]+" "+data.completed_results+" completed result set"+(data.completed_results===1?"":"s")+" published.";
+for(const key of ["queued","running","preliminary","completed","failed"]){const tile=element("div",undefined,"count");tile.append(element("strong",data.counts[key]||0),element("span",labels[key]));byId("counts").appendChild(tile);}
+function resultView(result,container){
+ if(result.retained_previous_publication)container.appendChild(element("p","These are the last completed published results. They have been retained while the current status snapshot lacks a replacement analysis.","retained"));
+ if(result.status==="preliminary")container.appendChild(element("p","Preliminary analysis: these outputs have not been marked as a completed validated result.","retained"));
+ if(result.method)container.appendChild(element("p",typeof result.method==="string"?result.method:JSON.stringify(result.method),"small"));
+ if(Array.isArray(result.highlights)&&result.highlights.length){const list=element("ul",undefined,"highlights");result.highlights.forEach(value=>list.appendChild(element("li",typeof value==="string"?value:JSON.stringify(value))));container.appendChild(list);}
+ if(result.metrics&&typeof result.metrics==="object"&&!Array.isArray(result.metrics)){const table=element("table"),tbody=element("tbody"),wrap=element("div",undefined,"metrics");for(const [key,value] of Object.entries(result.metrics)){if(value!==null&&typeof value==="object")continue;const row=element("tr");row.append(element("th",key.replaceAll("_"," ")),element("td",fmt(value)));tbody.appendChild(row);}table.appendChild(tbody);wrap.appendChild(table);container.appendChild(wrap);}
+ const figures=element("div",undefined,"figure-grid");for(const figure of result.figures||[]){if(!asset(figure.src))continue;const f=element("figure"),image=element("img");image.src=figure.src;image.alt=figure.title||figure.file;image.loading="lazy";f.append(element("h3",figure.title||figure.file),image,element("figcaption",figure.caption||""));figures.appendChild(f);}container.appendChild(figures);
+ const downloads=element("div",undefined,"downloads");for(const item of [...(result.downloads||[]),{src:result.summary_src,file:"Analysis summary JSON"}]){if(!asset(item.src))continue;const link=element("a",item.file);link.href=item.src;downloads.appendChild(link);}container.appendChild(downloads);
+ if(Array.isArray(result.limitations)&&result.limitations.length){const box=element("details"),list=element("ul");box.appendChild(element("summary","Case-specific interpretation"));for(const value of result.limitations)list.appendChild(element("li",typeof value==="string"?value:JSON.stringify(value)));box.appendChild(list);container.appendChild(box);}
+}
+const parameterNames={ustar_water_m_s:"Current-stress friction velocity (m/s)",ustar_water:"Current-stress friction velocity (m/s)",ak:"Parent ak",steepness:"Parent ak",damping_multiplier:"Cho damping multiplier",duration_s:"Duration (s)",wavelength_m:"Parent wavelength (m)",wind_alpha:"Current-stress parameter"};
+for(const c of data.cases){const card=element("article",undefined,"case"),head=element("div",undefined,"case-head"),title=element("div",undefined,"case-title");title.append(element("h3",c.title),element("span",labels[c.status]||c.status,"badge "+c.status));head.appendChild(title);if(c.message)head.appendChild(element("p",c.message,"small"));const params=element("div",undefined,"params");for(const [key,value] of Object.entries(c.parameters||{})){const p=element("span");p.append(document.createTextNode((parameterNames[key]||key.replaceAll("_"," "))+": "),element("strong",fmt(value)));params.appendChild(p);}head.appendChild(params);if(c.stage)head.appendChild(element("p","Stage: "+c.stage,"small"));if(c.physical_time_s!==undefined)head.appendChild(element("p","Physical progress: "+fmt(c.physical_time_s)+" s"+(c.target_time_s!==undefined?" / "+fmt(c.target_time_s)+" s":""),"small"));card.appendChild(head);const body=element("div",undefined,"case-body");if(c.publication_note)body.appendChild(element("p",c.publication_note,"retained"));if(c.result)resultView(c.result,body);else body.appendChild(element("p",c.status==="failed"?"This case has no published validated analysis. The failure is preserved in its status.":"No analysis has been published for this case yet.","empty"));card.appendChild(body);byId("cases").appendChild(card);}
+if(data.comparisons){byId("comparison-section").hidden=false;resultView(data.comparisons,byId("comparison"));}
+for(const note of data.notes||[])byId("notes").appendChild(element("li",typeof note==="string"?note:JSON.stringify(note)));
+if(data.method&&Object.keys(data.method).length)byId("method-data").appendChild(element("p",typeof data.method==="string"?data.method:JSON.stringify(data.method),"small"));
+if(data.published_at_utc){const date=new Date(data.published_at_utc);byId("published").textContent="Published "+(Number.isNaN(date.getTime())?data.published_at_utc:date.toLocaleString())+". Plot times refer to physical simulation time.";}
+</script></body></html>
