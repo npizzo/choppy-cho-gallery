@@ -1,41 +1,946 @@
 {
-  "schema_version": 1,
-  "experiment": "radar-backscatter",
-  "status": "running",
-  "method": "Preliminary coherent first-order small-slope approximation with a linear Bragg reference",
-  "cases": [
-    "Parent only",
-    "Parent + Cho, 2.4\u00d7 damping",
-    "Parent + Cho, 1\u00d7 damping"
-  ],
+  "status": "complete",
+  "synthetic": false,
+  "method": "Coherent SSA1 with linear Bragg reference; analytic instantaneous surface derivatives",
   "bands": [
     "C",
     "X",
     "Ku"
   ],
   "incidence_deg": [
-    30,
-    50,
-    60
+    30.0,
+    50.0,
+    60.0
   ],
   "azimuth_deg": [
-    0,
-    30,
-    60,
-    90,
-    120,
-    150,
-    180,
-    210,
-    240,
-    270,
-    300,
-    330
+    0.0,
+    30.0,
+    60.0,
+    90.0,
+    120.0,
+    150.0,
+    180.0,
+    210.0,
+    240.0,
+    270.0,
+    300.0,
+    330.0
   ],
-  "limitations": [],
-  "figures": [],
-  "downloads": [],
-  "assets": [],
-  "published_at_utc": "2026-10-29T18:06:02.722918+00:00",
-  "content_sha256": "297979584ecff43676b28767ab51854bb3fafb76240dd71db378d3d056d237fd"
+  "cases": [
+    "Parent only",
+    "Parent + Cho (2.4\u00d7)",
+    "Parent + Cho (1\u00d7)"
+  ],
+  "averaging_interval_s": [
+    4,
+    6
+  ],
+  "time_window": "Hann",
+  "sample_interval_s": 0.01999999999999935,
+  "samples": 301,
+  "validation": {
+    "passed": true,
+    "meaning": "Analytic unit checks, finite values, exact derivative attribution; accuracy diagnostics are reported separately.",
+    "spatial_quadrature_max_amplitude_relative_l2": 4.8537343375966224e-05,
+    "spatial_quadrature_max_derivative_relative_l2": 0.0011302366901298848,
+    "temporal_power_relative_change_median": 0.00013668270423950154,
+    "temporal_power_relative_change_max": 0.10157067169097614,
+    "temporal_width_relative_change_median": 0.0008228370446773307,
+    "temporal_width_relative_change_max": 0.2316575861479593,
+    "centroid_component_max_closure_error_hz": 3.197442310920451e-14
+  },
+  "highlights": [
+    "C, 50\u00b0 incidence, along-wave view: Parent + Cho (2.4\u00d7) changes return by +1.24 dB and apparent look-current by +0.02 cm/s relative to the parent.",
+    "C, 50\u00b0 incidence, along-wave view: Parent + Cho (1\u00d7) changes return by +1.22 dB and apparent look-current by +0.02 cm/s relative to the parent.",
+    "X, 50\u00b0 incidence, along-wave view: Parent + Cho (2.4\u00d7) changes return by +9.16 dB and apparent look-current by +0.07 cm/s relative to the parent.",
+    "X, 50\u00b0 incidence, along-wave view: Parent + Cho (1\u00d7) changes return by +8.98 dB and apparent look-current by +0.06 cm/s relative to the parent.",
+    "Ku, 50\u00b0 incidence, along-wave view: Parent + Cho (2.4\u00d7) changes return by +16.65 dB and apparent look-current by -0.71 cm/s relative to the parent.",
+    "Ku, 50\u00b0 incidence, along-wave view: Parent + Cho (1\u00d7) changes return by +16.66 dB and apparent look-current by -0.86 cm/s relative to the parent."
+  ],
+  "limitations": [
+    "Preliminary first-order small-slope approximation (SSA1), with a linear Bragg reference; not weighted-curvature approximation or a full Maxwell solution.",
+    "No shadowing, multiple reflection, breaking foam, or unresolved roughness. Peak Cho slopes in these inputs exceed the weak-slope regime; large-event absolute returns need further electromagnetic validation.",
+    "Finite 0.32 m \u00d7 0.64 m Hann-illuminated periodic simulation patch. No claim of a statistically representative satellite footprint. No coherent tiling.",
+    "Power is a normalized finite-patch roughness return after subtracting flat-reference aperture leakage, not a calibrated ocean wind product.",
+    "HH and VV differ by constant dielectric Bragg factors at each look in SSA1; their normalized Doppler spectra therefore coincide by construction.",
+    "Doppler width includes the explicitly differentiated 2 s temporal Hann window. RHS derivatives avoid a finite-difference alias assumption, but time-quadrature sensitivity remains reported.",
+    "Apparent-current change is the change from parent-only Doppler converted to horizontal look velocity. Actual parent/current histories are identical; this is not a retrieved physical current.",
+    "The Cho model is directional and excludes longitudinal-zero modes. Transverse returns are a model experiment, not a complete directional wind sea.",
+    "Kinematic centroid attribution is parent surface derivative versus Cho derivative on the same full geometry; it does not classify free versus parent-locked waves.",
+    "Seawater dielectric properties are model assumptions; power ratios and frequency moments at a fixed look are independent of the common polarization prefactor.",
+    "Halving temporal sample density changes some significant-return powers by more than 10%; these views require finer time quadrature."
+  ],
+  "wall_seconds": 5147.690045338997,
+  "source_parent_history_sha256": "dae53ee1d2ee571a5399bf7e1423bdba550d944c19c0a66c0fc15d4830555271",
+  "source_current_history_sha256": "6d2d05ac2da38befe53704e21630ec843fa8d0d8092e39bf2b70a7795c4b61f2",
+  "radar_configuration": [
+    {
+      "band": "C",
+      "incidence_deg": 30.0,
+      "dielectric": {
+        "wavelength_m": 0.056,
+        "frequency_hz": 5353436750.0,
+        "incidence_deg": 30.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 112.19973762820688,
+        "qz_rad_m": 194.3356461679519,
+        "bragg_wavelength_m": 0.05600000000000001,
+        "epsilon_real": 66.6945980528164,
+        "epsilon_imag": 34.97490070898074,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.822245082262628,
+            "imag": 0.03982613807720795,
+            "power": 0.6776730965792209
+          },
+          "VV": {
+            "real": 1.2854765085154063,
+            "imag": 0.08182929595654295,
+            "power": 1.6591458876217027
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          0.0005178615275160917,
+          9.99224001207696e-11,
+          1.3743937503505982e-10,
+          1.2006370052950109e-05,
+          1.3743937503513897e-10,
+          9.99224001207696e-11,
+          0.0005178615275160917,
+          9.992240012077211e-11,
+          1.3743937503511937e-10,
+          1.2006370052950109e-05,
+          1.3743937503505982e-10,
+          9.992240012076743e-11
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.822245082262628,
+          0.03982613807720795
+        ],
+        "VV": [
+          1.2854765085154063,
+          0.08182929595654295
+        ]
+      }
+    },
+    {
+      "band": "C",
+      "incidence_deg": 50.0,
+      "dielectric": {
+        "wavelength_m": 0.056,
+        "frequency_hz": 5353436750.0,
+        "incidence_deg": 50.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 171.8999710589904,
+        "qz_rad_m": 144.24120231498395,
+        "bragg_wavelength_m": 0.0365514041013038,
+        "epsilon_real": 66.6945980528164,
+        "epsilon_imag": 34.97490070898074,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8649116485415848,
+            "imag": 0.03114756680438772,
+            "power": 0.7490423307007557
+          },
+          "VV": {
+            "real": 2.7314186336490995,
+            "imag": 0.22110639964869802,
+            "power": 7.509535792211123
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          1.6882543839652916e-05,
+          8.723021094064046e-12,
+          4.223072520375554e-12,
+          5.328491175396231e-07,
+          4.223072520375526e-12,
+          8.723021094064046e-12,
+          1.6882543839652916e-05,
+          8.723021094063684e-12,
+          4.223072520379551e-12,
+          5.328491175396231e-07,
+          4.223072520375554e-12,
+          8.723021094064064e-12
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8649116485415848,
+          0.03114756680438772
+        ],
+        "VV": [
+          2.7314186336490995,
+          0.22110639964869802
+        ]
+      }
+    },
+    {
+      "band": "C",
+      "incidence_deg": 60.0,
+      "dielectric": {
+        "wavelength_m": 0.056,
+        "frequency_hz": 5353436750.0,
+        "incidence_deg": 60.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 194.3356461679519,
+        "qz_rad_m": 112.19973762820692,
+        "bragg_wavelength_m": 0.03233161507461905,
+        "epsilon_real": 66.6945980528164,
+        "epsilon_imag": 34.97490070898074,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8933206789170466,
+            "imag": 0.025045268123660504,
+            "power": 0.7986491008361991
+          },
+          "VV": {
+            "real": 4.571377291032226,
+            "imag": 0.44817949582719624,
+            "power": 21.09835519744505
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          1.0060699356888558e-06,
+          2.511065977071008e-13,
+          1.3313074507597743e-14,
+          5.570842561332931e-08,
+          1.3313074507598585e-14,
+          2.511065977071008e-13,
+          1.0060699356888558e-06,
+          2.5110659770705517e-13,
+          1.3313074507603197e-14,
+          5.570842561332931e-08,
+          1.3313074507597743e-14,
+          2.5110659770711217e-13
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8933206789170466,
+          0.025045268123660504
+        ],
+        "VV": [
+          4.571377291032226,
+          0.44817949582719624
+        ]
+      }
+    },
+    {
+      "band": "X",
+      "incidence_deg": 30.0,
+      "dielectric": {
+        "wavelength_m": 0.03,
+        "frequency_hz": 9993081933.333334,
+        "incidence_deg": 30.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 209.43951023931953,
+        "qz_rad_m": 362.7598728468436,
+        "bragg_wavelength_m": 0.030000000000000002,
+        "epsilon_real": 55.8657434305699,
+        "epsilon_imag": 37.70645590811188,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8150962361697579,
+            "imag": 0.051121909355896056,
+            "power": 0.6669953238342982
+          },
+          "VV": {
+            "real": 1.2702948969126924,
+            "imag": 0.1046776732663988,
+            "power": 1.6246065404028946
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          5.0053217826104474e-05,
+          3.853078351089672e-12,
+          8.612040277128466e-12,
+          7.717822984815368e-07,
+          8.61204027712629e-12,
+          3.853078351089672e-12,
+          5.0053217826104474e-05,
+          3.853078351089993e-12,
+          8.61204027712333e-12,
+          7.717822984815368e-07,
+          8.612040277128466e-12,
+          3.853078351089747e-12
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8150962361697579,
+          0.051121909355896056
+        ],
+        "VV": [
+          1.2702948969126924,
+          0.1046776732663988
+        ]
+      }
+    },
+    {
+      "band": "X",
+      "incidence_deg": 50.0,
+      "dielectric": {
+        "wavelength_m": 0.03,
+        "frequency_hz": 9993081933.333334,
+        "incidence_deg": 50.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 320.8799459767821,
+        "qz_rad_m": 269.2502443213034,
+        "bragg_wavelength_m": 0.01958110933998418,
+        "epsilon_real": 55.8657434305699,
+        "epsilon_imag": 37.70645590811188,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8594533021200317,
+            "imag": 0.04007441546902426,
+            "power": 0.7402659373002104
+          },
+          "VV": {
+            "real": 2.688368383746079,
+            "imag": 0.2812196177971302,
+            "power": 7.306409040159469
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          2.1778714360112635e-06,
+          5.9171367720732995e-15,
+          6.4059430923255394e-15,
+          3.059822373521236e-08,
+          6.405943092319309e-15,
+          5.9171367720732995e-15,
+          2.1778714360112635e-06,
+          5.9171367720655884e-15,
+          6.405943092356479e-15,
+          3.059822373521236e-08,
+          6.4059430923255394e-15,
+          5.9171367720750934e-15
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8594533021200317,
+          0.04007441546902426
+        ],
+        "VV": [
+          2.688368383746079,
+          0.2812196177971302
+        ]
+      }
+    },
+    {
+      "band": "X",
+      "incidence_deg": 60.0,
+      "dielectric": {
+        "wavelength_m": 0.03,
+        "frequency_hz": 9993081933.333334,
+        "incidence_deg": 60.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 362.75987284684356,
+        "qz_rad_m": 209.43951023931962,
+        "bragg_wavelength_m": 0.017320508075688773,
+        "epsilon_real": 55.8657434305699,
+        "epsilon_imag": 37.70645590811188,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8889994219372725,
+            "imag": 0.03226957819296802,
+            "power": 0.7913612978815567
+          },
+          "VV": {
+            "real": 4.480207692770997,
+            "imag": 0.5666613433384842,
+            "power": 20.393366048398597
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          8.09320813683418e-07,
+          2.2309286072289553e-39,
+          4.574830024822675e-38,
+          3.048679158815261e-10,
+          4.574830024821815e-38,
+          2.2309286072289553e-39,
+          8.09320813683418e-07,
+          2.2309286072286476e-39,
+          1.9585344150389152e-38,
+          3.048679158815261e-10,
+          4.574830024822675e-38,
+          4.931910949384614e-39
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8889994219372725,
+          0.03226957819296802
+        ],
+        "VV": [
+          4.480207692770997,
+          0.5666613433384842
+        ]
+      }
+    },
+    {
+      "band": "Ku",
+      "incidence_deg": 30.0,
+      "dielectric": {
+        "wavelength_m": 0.022,
+        "frequency_hz": 13626929909.09091,
+        "incidence_deg": 30.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 285.5993321445266,
+        "qz_rad_m": 494.67255388205945,
+        "bragg_wavelength_m": 0.022000000000000002,
+        "epsilon_real": 46.977192076646325,
+        "epsilon_imag": 39.070056616763594,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8089640971991684,
+            "imag": 0.062021124728109826,
+            "power": 0.6582695304698054
+          },
+          "VV": {
+            "real": 1.2571318953110766,
+            "imag": 0.12662050475977207,
+            "power": 1.596413354434039
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          1.875576969886542e-05,
+          4.385699346230197e-13,
+          9.335177894636771e-14,
+          2.357366224297756e-08,
+          9.335177894633723e-14,
+          4.385699346230197e-13,
+          1.875576969886542e-05,
+          4.385699346220947e-13,
+          9.335177894650895e-14,
+          2.357366224297756e-08,
+          9.335177894636771e-14,
+          4.385699346220023e-13
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8089640971991684,
+          0.062021124728109826
+        ],
+        "VV": [
+          1.2571318953110766,
+          0.12662050475977207
+        ]
+      }
+    },
+    {
+      "band": "Ku",
+      "incidence_deg": 50.0,
+      "dielectric": {
+        "wavelength_m": 0.022,
+        "frequency_hz": 13626929909.09091,
+        "incidence_deg": 50.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 437.56356269561195,
+        "qz_rad_m": 367.15942407450467,
+        "bragg_wavelength_m": 0.014359480182655064,
+        "epsilon_real": 46.977192076646325,
+        "epsilon_imag": 39.070056616763594,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8548109849040526,
+            "imag": 0.04871381646854165,
+            "power": 0.7330748558275673
+          },
+          "VV": {
+            "real": 2.650546490255201,
+            "imag": 0.33846523864830447,
+            "power": 7.139955414777417
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          4.93768912057475e-07,
+          6.351397935083561e-16,
+          2.738175082098741e-16,
+          1.2034510416523041e-08,
+          2.7381750824877384e-16,
+          6.351397935083561e-16,
+          4.93768912057475e-07,
+          6.351397935133693e-16,
+          2.738175082182856e-16,
+          1.2034510416523041e-08,
+          2.738175082098741e-16,
+          6.351397935131271e-16
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8548109849040526,
+          0.04871381646854165
+        ],
+        "VV": [
+          2.650546490255201,
+          0.33846523864830447
+        ]
+      }
+    },
+    {
+      "band": "Ku",
+      "incidence_deg": 60.0,
+      "dielectric": {
+        "wavelength_m": 0.022,
+        "frequency_hz": 13626929909.09091,
+        "incidence_deg": 60.0,
+        "azimuths_deg": [
+          0.0,
+          30.0,
+          60.0,
+          90.0,
+          120.0,
+          150.0,
+          180.0,
+          210.0,
+          240.0,
+          270.0,
+          300.0,
+          330.0
+        ],
+        "qh_rad_m": 494.6725538820594,
+        "qz_rad_m": 285.5993321445267,
+        "bragg_wavelength_m": 0.012701705922171767,
+        "epsilon_real": 46.977192076646325,
+        "epsilon_imag": 39.070056616763594,
+        "dielectric_model": "Klein-Swift1977; assumed20C,35ppt",
+        "dielectric_high_frequency_caveat": "Original model precision uncertain at X band and above; ratios and moments at fixed look cancel B.",
+        "polarization": {
+          "HH": {
+            "real": 0.8853453348282825,
+            "imag": 0.03927397933426327,
+            "power": 0.7853788073549517
+          },
+          "VV": {
+            "real": 4.3993127803695655,
+            "imag": 0.678452933854005,
+            "power": 19.8142513229781
+          }
+        },
+        "window": "hann",
+        "physical_area_m2": 0.20479999999999127,
+        "effective_area_m2": 0.028799999999998774,
+        "flat_reference_unit_kernel_power": [
+          7.658066285349799e-08,
+          2.111372158562038e-17,
+          1.6793083700031758e-16,
+          3.2178338258485428e-09,
+          1.6793083699541488e-16,
+          2.111372158562038e-17,
+          7.658066285349799e-08,
+          2.111372158600926e-17,
+          1.679308370007326e-16,
+          3.2178338258485428e-09,
+          1.6793083700031758e-16,
+          2.1113721585516608e-17
+        ],
+        "reference_subtraction": "Flat eta=0 field; not ensemble diffuse-mean subtraction",
+        "normalization": "sigma_patch=abs(B_p*s)**2; unit B amplitudes returned",
+        "ensemble_nrcs": "Not established from one deterministic small patch",
+        "doppler_sign": "Positive for translating roughness toward positive horizontal look azimuth",
+        "limitations": [
+          "SSA1; not WCA or full Maxwell solution",
+          "No shadowing, multiple scattering, foam or cross polarization",
+          "HH and VV normalized Doppler spectra identical by construction",
+          "Strong local slopes require a separate electromagnetic-validity assessment"
+        ],
+        "sources": {
+          "ssa1": "https://doi.org/10.1109/TAP.2017.2752219",
+          "ssa1_open": "https://repository.library.noaa.gov/view/noaa/31128/noaa_31128_DS1.pdf",
+          "polarization_kernels": "https://psl.noaa.gov/psd3/multi/ocean/img/WRM_2001.pdf",
+          "dielectric": "https://doi.org/10.1109/TAP.1977.1141539",
+          "dielectric_open": "https://aquarius.oceansciences.org/docs/ed_klien_swift_1978.pdf"
+        }
+      },
+      "polarization": {
+        "HH": [
+          0.8853453348282825,
+          0.03927397933426327
+        ],
+        "VV": [
+          4.3993127803695655,
+          0.678452933854005
+        ]
+      }
+    }
+  ],
+  "figures": [
+    {
+      "file": "directional_backscatter.png",
+      "title": "Power and motion versus viewing direction",
+      "caption": "VV power and Doppler moments at 50\u00b0 incidence. Zero azimuth looks along +x, the initial parent-wave direction. Positive Doppler corresponds to translation in the look direction.",
+      "src": "results/directional_backscatter.png"
+    },
+    {
+      "file": "cho_effect.png",
+      "title": "What changes when Cho is included?",
+      "caption": "Changes relative to the identical parent-only case. Current differences are apparent radar velocities, not changes in the simulated current.",
+      "src": "results/cho_effect.png"
+    },
+    {
+      "file": "kinematic_contributions.png",
+      "title": "Parent and Cho motion contributions",
+      "caption": "Exact additive contributions to the centroid on each full instantaneous geometry. Contributions can be signed; widths include cross terms.",
+      "src": "results/kinematic_contributions.png"
+    },
+    {
+      "file": "incidence_comparison.png",
+      "title": "Incidence angles 30\u00b0, 50\u00b0, and 60\u00b0",
+      "caption": "Absolute finite-patch estimates under SSA1. HH values and the linear Bragg reference are included in the downloadable table.",
+      "src": "results/incidence_comparison.png"
+    }
+  ],
+  "schema_version": 1,
+  "experiment": "radar-backscatter",
+  "downloads": [
+    {
+      "file": "directional_returns.csv",
+      "src": "results/directional_returns.csv",
+      "bytes": 204589
+    },
+    {
+      "file": "quadrature_checks.csv",
+      "src": "results/quadrature_checks.csv",
+      "bytes": 1670
+    },
+    {
+      "file": "return_history.csv",
+      "src": "results/return_history.csv",
+      "bytes": 1519237
+    },
+    {
+      "file": "sampling_checks.csv",
+      "src": "results/sampling_checks.csv",
+      "bytes": 41659
+    }
+  ],
+  "assets": [
+    {
+      "file": "cho_effect.png",
+      "bytes": 343586,
+      "sha256": "c2f81afa89d363202c66d5147b79d58c6b6d760621bdbc927ec4ba9da1b21885"
+    },
+    {
+      "file": "directional_backscatter.png",
+      "bytes": 633966,
+      "sha256": "e1dfaf5dda82d752c21135dc98093421ef6cdfaee4ad41a6f51d0200916e4af4"
+    },
+    {
+      "file": "directional_returns.csv",
+      "bytes": 204589,
+      "sha256": "9b1661a7d1ebb38caab82e1c489e28cfb5f08ee4e495cc285269fa4e3f9c71c5"
+    },
+    {
+      "file": "incidence_comparison.png",
+      "bytes": 409617,
+      "sha256": "41e8ff960fced8a468575748240bc2521a2d539fcb825802a3afc7489d33da23"
+    },
+    {
+      "file": "kinematic_contributions.png",
+      "bytes": 263919,
+      "sha256": "5dffe697b4faf010a9b41893a44edc43a51ccb1adccd77d4f6dde024c9f95750"
+    },
+    {
+      "file": "quadrature_checks.csv",
+      "bytes": 1670,
+      "sha256": "fbe7bc3357229dffd45b4b718be52830b585681a1764e81d09484f535a298524"
+    },
+    {
+      "file": "return_history.csv",
+      "bytes": 1519237,
+      "sha256": "683f4ae9dd8a97f2a784d6b302bc265cc187b751abddb32b6842df775379a090"
+    },
+    {
+      "file": "sampling_checks.csv",
+      "bytes": 41659,
+      "sha256": "1eca99d74705e40c1a1274fee936837e89c09bd8b29e8b66d7df894dc21f67fd"
+    }
+  ],
+  "published_at_utc": "2026-10-29T19:33:22.151783+00:00",
+  "content_sha256": "86bcd73e5bfcfa988772f0099d9aca6070e9d09e4d5a940bc5e5e88c6442c0f0"
 }
