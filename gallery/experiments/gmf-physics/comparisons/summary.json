@@ -6,7 +6,8 @@
   "method": "Matched parent/full, per-seed comparisons across effective current-delivered stress. Legacy cases excluded.",
   "validation": {
     "passed": false,
-    "meaning": "Only finished pairs with passing per-case numerical/adapter checks and matching geometry, histories, and time windows enter; this is not physical or GMF validation."
+    "coherent_comparison_physically_validated": false,
+    "meaning": "Only finished pairs with passing per-case numerical/adapter checks and matching geometry, histories, and time windows enter; weak coherent returns may leave closure unavailable. This is not electromagnetic, physical, or GMF validation."
   },
   "metrics": {
     "declared_new_cases": 20,
@@ -15,6 +16,7 @@
     "missing_pairs": 0,
     "invalid_pairs": 0,
     "available_pairs": 0,
+    "quadrature_failed_pairs": 0,
     "paired_direction_rows": 0,
     "valid_power_differences": 0,
     "valid_doppler_differences": 0
@@ -23,19 +25,19 @@
   "excluded_or_unavailable": [
     {
       "case_id": "ak15_uw000_a000_mono_s2026",
-      "reason": "Case is queued"
+      "reason": "Case is running"
     },
     {
       "case_id": "ak15_uw005_a000_mono_s2026",
-      "reason": "Case is queued"
+      "reason": "Case is running"
     },
     {
       "case_id": "ak15_uw010_a000_mono_s2026",
-      "reason": "Case is queued"
+      "reason": "Case is running"
     },
     {
       "case_id": "ak15_uw000_a000_mono_s2027",
-      "reason": "Case is queued"
+      "reason": "Case is running"
     },
     {
       "case_id": "ak15_uw005_a000_mono_s2027",
@@ -118,7 +120,7 @@
     {
       "file": "metrics.csv",
       "src": "comparisons/metrics.csv",
-      "bytes": 224
+      "bytes": 251
     }
   ],
   "summary_src": "comparisons/summary.json"

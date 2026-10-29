@@ -3,14 +3,14 @@
   "experiment": "gmf-physics",
   "campaign_id": "unity-gmf-20261029",
   "title": "Wave roughness, current stress and Doppler GMF physics",
-  "status": "queued",
+  "status": "running",
   "description": "Controlled short-wave damping, parent steepness, directional spreading, and effective current-stress experiments.",
   "counts": {
     "completed": 0,
     "failed": 0,
     "preliminary": 0,
-    "queued": 23,
-    "running": 0
+    "queued": 19,
+    "running": 4
   },
   "completed_results": 0,
   "cases": [
@@ -68,7 +68,7 @@
     {
       "id": "ak15_uw000_a000_mono_s2026",
       "title": "ak 0.15; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2026",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.15,
         "actual_carrier_ak": 0.15,
@@ -84,7 +84,7 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Evolving parent and CL current under effective current stress; passive Cho follows.",
       "job_id": "66309200_0",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -94,7 +94,7 @@
     {
       "id": "ak15_uw005_a000_mono_s2026",
       "title": "ak 0.15; current friction velocity 0.005 m/s; mono; stress 0 degrees; seed 2026",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.15,
         "actual_carrier_ak": 0.15,
@@ -110,7 +110,7 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Evolving parent and CL current under effective current stress; passive Cho follows.",
       "job_id": "66309200_1",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -120,7 +120,7 @@
     {
       "id": "ak15_uw010_a000_mono_s2026",
       "title": "ak 0.15; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2026",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.15,
         "actual_carrier_ak": 0.15,
@@ -136,7 +136,7 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Evolving parent and CL current under effective current stress; passive Cho follows.",
       "job_id": "66309200_2",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -146,7 +146,7 @@
     {
       "id": "ak15_uw000_a000_mono_s2027",
       "title": "ak 0.15; current friction velocity 0.000 m/s; mono; stress 0 degrees; seed 2027",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.15,
         "actual_carrier_ak": 0.15,
@@ -162,7 +162,7 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Evolving parent and CL current under effective current stress; passive Cho follows.",
       "job_id": "66309200_3",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -594,7 +594,8 @@
     "method": "Matched parent/full, per-seed comparisons across effective current-delivered stress. Legacy cases excluded.",
     "validation": {
       "passed": false,
-      "meaning": "Only finished pairs with passing per-case numerical/adapter checks and matching geometry, histories, and time windows enter; this is not physical or GMF validation."
+      "coherent_comparison_physically_validated": false,
+      "meaning": "Only finished pairs with passing per-case numerical/adapter checks and matching geometry, histories, and time windows enter; weak coherent returns may leave closure unavailable. This is not electromagnetic, physical, or GMF validation."
     },
     "metrics": {
       "declared_new_cases": 20,
@@ -603,6 +604,7 @@
       "missing_pairs": 0,
       "invalid_pairs": 0,
       "available_pairs": 0,
+      "quadrature_failed_pairs": 0,
       "paired_direction_rows": 0,
       "valid_power_differences": 0,
       "valid_doppler_differences": 0
@@ -611,19 +613,19 @@
     "excluded_or_unavailable": [
       {
         "case_id": "ak15_uw000_a000_mono_s2026",
-        "reason": "Case is queued"
+        "reason": "Case is running"
       },
       {
         "case_id": "ak15_uw005_a000_mono_s2026",
-        "reason": "Case is queued"
+        "reason": "Case is running"
       },
       {
         "case_id": "ak15_uw010_a000_mono_s2026",
-        "reason": "Case is queued"
+        "reason": "Case is running"
       },
       {
         "case_id": "ak15_uw000_a000_mono_s2027",
-        "reason": "Case is queued"
+        "reason": "Case is running"
       },
       {
         "case_id": "ak15_uw005_a000_mono_s2027",
@@ -706,7 +708,7 @@
       {
         "file": "metrics.csv",
         "src": "comparisons/metrics.csv",
-        "bytes": 224
+        "bytes": 251
       }
     ],
     "summary_src": "comparisons/summary.json"
@@ -720,14 +722,14 @@
     "Six-second runs and saved 10 ms surfaces test transient statistics; they do not resolve operational millisecond radar coherence."
   ],
   "method": "Ka-band 35.75 GHz, 56 degree incidence, VV; 12 viewing azimuths. Surface-derived complex MTF predicts held-out hydrodynamic covariances and a separately evaluated coherent SSA1 orbital-motion contribution.",
-  "source_updated_at_utc": "2026-10-29T23:06:16.935748+00:00",
+  "source_updated_at_utc": "2026-10-29T23:16:34.066554+00:00",
   "assets": [
     {
       "src": "comparisons/metrics.csv",
-      "bytes": 224,
-      "sha256": "75eb7f02b01f7fbf24437d56ff881fee88b74615591afe47afff54ba25cb091c"
+      "bytes": 251,
+      "sha256": "ec8ce172b1466aebc59ae8dc8d8be5c01de25db66cb93bc1cc0c94d352f04d04"
     }
   ],
-  "published_at_utc": "2026-10-29T23:06:32.617976+00:00",
-  "content_sha256": "bb84dc26e0057b0c259fe14b8617f6f190aee8aa0e7bae0aad1f35f839b68e80"
+  "published_at_utc": "2026-10-29T23:16:42.299039+00:00",
+  "content_sha256": "5ae48c4a155de9ca3f1f50cde6dd4b1d7811f7cb6aae479151b266bd39db019d"
 }

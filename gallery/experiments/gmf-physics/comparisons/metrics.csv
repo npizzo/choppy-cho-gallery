@@ -5,6 +5,7 @@ unfinished_cases,20
 missing_pairs,0
 invalid_pairs,0
 available_pairs,0
+quadrature_failed_pairs,0
 paired_direction_rows,0
 valid_power_differences,0
 valid_doppler_differences,0
