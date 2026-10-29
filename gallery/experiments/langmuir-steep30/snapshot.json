@@ -2,7 +2,7 @@
   "schema_version": 1,
   "title": "Nonlinear steep parent waves with Langmuir currents and Cho roughness",
   "source_fingerprint": "78c67fde19df2d17603e6a52b34ae85046920fd7d7abc80d34e645f2c24b3f63",
-  "updated_at": "2026-10-28T23:07:13.639835+00:00",
+  "updated_at": "2026-10-29T03:50:46.221317+00:00",
   "cho_enabled": true,
   "cho_damping_multiplier": 2.4,
   "cho_feedback_enabled": false,
@@ -11,7 +11,7 @@
     {
       "id": "steep30",
       "title": "Steep nonlinear parent: ka = 0.30",
-      "status": "awaiting_completed_run",
+      "status": "complete",
       "parameters": {
         "g": 9.81,
         "T": 7.3e-05,
@@ -43,11 +43,233 @@
         "current_to_wave_feedback": true,
         "intrinsic_model": "tensor"
       },
-      "metrics": {},
-      "assets": [],
-      "saved_stage": "cho",
-      "saved_state": "running",
-      "saved_status_at": "2026-10-28T23:07:13.639835+00:00"
+      "metrics": {
+        "duration_s": 5.99999999999979,
+        "free_modes": 231,
+        "max_transverse_action_fraction": 0.21823847658759762,
+        "max_slope_ratio": 0.2649670891300896,
+        "peak_slope_ratio_time_s": 5.99999999999979,
+        "max_transverse_boundary_action": 0.0001660769739874964,
+        "max_streamwise_boundary_action": 0.008346889115081349,
+        "max_action_error": 6.341497722672784e-05,
+        "minimum_map_jacobian": 0.5859393101379436,
+        "maximum_physical_slope": 0.4977575143943628,
+        "maximum_quadratic_to_linear_map_rms": 0.19804867655101804,
+        "maximum_quadratic_to_linear_map_gradient_rms": 0.09829654982902784,
+        "geometry_samples": 31,
+        "max_parent_transverse_mss": 0.003016374646711945,
+        "max_cho_transverse_mss": 0.003879545017898069,
+        "max_total_transverse_mss": 0.006644544389585741,
+        "max_parent_surface_slope_ratio": 0.26428532252040643,
+        "max_cho_surface_slope_ratio": 0.21988225349789617,
+        "max_total_surface_slope_ratio": 0.22658295357726121,
+        "bound_geometry_validated": true,
+        "bound_geometry_full_second_order": true,
+        "cho": {
+          "cho_enabled": true,
+          "cho_feedback_enabled": false,
+          "duration_s": 6.0,
+          "damping_multiplier": 2.4,
+          "max_cho_mss": 0.09472579431150285,
+          "max_total_mss": 0.13860214655029862,
+          "max_parent_mss": 0.047682740212620665,
+          "max_abs_cho_m": 0.005598127376288176,
+          "grid_nx": 512,
+          "grid_ny": 1024,
+          "dt_s": 0.0002499999999999912
+        },
+        "capillary": {
+          "duration_s": 6.0,
+          "physical_interval_s": [
+            0.0,
+            6.0
+          ],
+          "late_interval_s": [
+            3.9999999999997904,
+            5.99999999999979
+          ],
+          "capillary_max_wavelength_m": 0.01713984123334848,
+          "crossover_wavenumber_per_m": 366.5836352646359,
+          "grid_shape": [
+            512,
+            1024
+          ],
+          "final": {
+            "all_parent_mss": 0.046201997986685346,
+            "all_cho_mss": 0.09245781547586288,
+            "all_cross_mss": -0.0025924844308400016,
+            "all_total_mss": 0.1360673290317082,
+            "capillary_parent_mss": 2.179933153939028e-05,
+            "capillary_cho_mss": 0.08760824619141046,
+            "capillary_cross_mss": -0.00035673107846216976,
+            "capillary_total_mss": 0.08727331444448766,
+            "longer_parent_mss": 0.046180198655145964,
+            "longer_cho_mss": 0.004849569284452418,
+            "longer_cross_mss": -0.002235753352377832,
+            "longer_total_mss": 0.04879401458722056,
+            "capillary_cho_height_rms_m": 0.0002794065396183605
+          },
+          "late_mean": {
+            "all_parent_mss": 0.04653935502171461,
+            "all_cho_mss": 0.0928536985862371,
+            "all_cross_mss": -0.002679023246051928,
+            "all_total_mss": 0.13671403036189977,
+            "capillary_parent_mss": 2.3441798334203494e-05,
+            "capillary_cho_mss": 0.08807700166483678,
+            "capillary_cross_mss": -0.0003888513040235257,
+            "capillary_total_mss": 0.08771159215914748,
+            "longer_parent_mss": 0.0465159132233804,
+            "longer_cho_mss": 0.004776696921400288,
+            "longer_cross_mss": -0.002290171942028403,
+            "longer_total_mss": 0.049002438202752296,
+            "capillary_cho_height_rms_m": 0.0002824960853287573
+          }
+        }
+      },
+      "assets": [
+        "assets/steep30/summary.json",
+        "assets/steep30/cho_summary.json",
+        "assets/steep30/diagnostics.csv",
+        "assets/steep30/mean_square_slope.csv",
+        "assets/steep30/capillary_mss.csv",
+        "assets/steep30/capillary_mss.json",
+        "assets/steep30/surface_transverse.csv",
+        "assets/steep30/parent_plus_cho.json",
+        "assets/steep30/parent_plus_cho.png",
+        "assets/steep30/parent_plus_cho.mp4",
+        "assets/steep30/parent_evolution.json",
+        "assets/steep30/parent_evolution.png",
+        "assets/steep30/parent_evolution.mp4",
+        "assets/steep30/parent_plus_cho_evolution.json",
+        "assets/steep30/parent_plus_cho_evolution.png",
+        "assets/steep30/parent_plus_cho_evolution.mp4",
+        "assets/steep30/current_diagnostics.csv",
+        "assets/steep30/underwater.json",
+        "assets/steep30/underwater.mp4",
+        "assets/steep30/transverse_response.png"
+      ],
+      "parent_plus_cho": {
+        "frame": "fixed laboratory",
+        "cho_enabled": true,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          5.5,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.1,
+        "fps": 60,
+        "playback_duration_s": 4.999999999997904
+      },
+      "parent_evolution": {
+        "frame": "fixed laboratory",
+        "cho_enabled": false,
+        "vertical_exaggeration": 1,
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.2,
+        "fps": 20,
+        "playback_duration_s": 29.999999999998952
+      },
+      "parent_plus_cho_evolution": {
+        "frame": "fixed laboratory",
+        "quantity": "parent_plus_cho",
+        "cho_enabled": true,
+        "damping_multiplier": 2.4,
+        "source_fingerprint": "78c67fde19df2d17603e6a52b34ae85046920fd7d7abc80d34e645f2c24b3f63",
+        "vertical_exaggeration": 1,
+        "forcing_gain": 1,
+        "source_grid_shape": [
+          512,
+          1024
+        ],
+        "display_grid_shape": [
+          512,
+          1024
+        ],
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "physical_playback_speed": 0.2,
+        "fps": 20,
+        "video_frame_count": 601,
+        "encoded_duration_s": 30.05,
+        "playback_duration_s": 30.0,
+        "render_complete": true,
+        "full_saved_interval": true,
+        "all_frames_decoded": true,
+        "sha256": "5bd17144a7d1f08b9611cda490ac2b187ccaecc56fcf399545603d7d21fccec7",
+        "temporal_limitation": "The saved-state cadence limits the resolved evolution; slow playback does not restore unsaved motion."
+      },
+      "underwater": {
+        "quantity": "Streamwise vorticity of the wave-averaged Eulerian current",
+        "time_seconds": [
+          0.0,
+          0.2,
+          0.4,
+          0.5999999999999891,
+          0.7999999999999671,
+          0.999999999999945,
+          1.1999999999999231,
+          1.399999999999901,
+          1.599999999999879,
+          1.799999999999857,
+          1.999999999999835,
+          2.1999999999999016,
+          2.3999999999999684,
+          2.599999999999967,
+          2.7999999999999625,
+          2.9999999999999583,
+          3.199999999999954,
+          3.3999999999999497,
+          3.5999999999999455,
+          3.799999999999941,
+          3.999999999999937,
+          4.199999999999826,
+          4.399999999999715,
+          4.599999999999604,
+          4.799999999999494,
+          4.999999999999383,
+          5.199999999999272,
+          5.399999999999161,
+          5.59999999999905,
+          5.8000000000000025,
+          5.99999999999979
+        ],
+        "physical_interval_s": [
+          0.0,
+          5.99999999999979
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 601,
+        "encoded_duration_s": 30.05,
+        "threshold_per_s": 7.670680999755859,
+        "threshold_rule": "late_half_absolute_vorticity_q95_fixed",
+        "reference_time_interval_s": [
+          2.999999999999895,
+          5.99999999999979
+        ],
+        "physical_vertical_aspect": true,
+        "temporal_display": "Saved current snapshots are held until the next saved time",
+        "description": "Mean-current structures; instantaneous wave orbital velocity is not included.",
+        "panels": [
+          "3D streamwise vorticity isosurfaces",
+          "near-surface streamwise velocity anomaly",
+          "streamwise-averaged transverse rolls"
+        ],
+        "cross_section_display": "Depth axis stretched for legibility; vector components use equal screen scale and a fixed velocity key",
+        "roll_coherence_definition": "Volume-weighted energy in streamwise-averaged lateral anomalies divided by total transverse current energy in the displayed layer",
+        "current_surface_depth_m": -0.0020461463373475704,
+        "streak_color_limit_m_s": 0.0413803867995739,
+        "roll_vorticity_color_limit_per_s": 4.768505096435547,
+        "vector_reference_m_s": 0.017637141048908234,
+        "display_top_depth_m": 0.025,
+        "source_snapshot_dt_max_s": 0.2000000000009523,
+        "original_global_max_threshold_per_s": 208.56268310546875
+      }
     }
   ],
   "intrinsic_model": "tensor",
@@ -58,5 +280,5 @@
     "array_job": "66256004",
     "final_gallery_job": "66256006"
   },
-  "completed_cases": 0
+  "completed_cases": 1
 }
