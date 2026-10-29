@@ -1,0 +1,13 @@
+{
+  "parent_current_reused": true,
+  "source_experiment": "langmuir-steep30",
+  "source_case": "steep30",
+  "source_fingerprint": "78c67fde19df2d17603e6a52b34ae85046920fd7d7abc80d34e645f2c24b3f63",
+  "source_kind": "production",
+  "validation_passed": true,
+  "parent_history_sha256": "dae53ee1d2ee571a5399bf7e1423bdba550d944c19c0a66c0fc15d4830555271",
+  "current_history_sha256": "6d2d05ac2da38befe53704e21630ec843fa8d0d8092e39bf2b70a7795c4b61f2",
+  "changed_parameter": "damping_multiplier",
+  "baseline_damping_multiplier": 2.4,
+  "damping_multiplier": 1.0
+}

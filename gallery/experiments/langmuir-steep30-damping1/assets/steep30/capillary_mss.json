@@ -1,0 +1,47 @@
+{
+  "duration_s": 6.0,
+  "physical_interval_s": [
+    0.0,
+    6.0
+  ],
+  "late_interval_s": [
+    3.9999999999997904,
+    5.99999999999979
+  ],
+  "capillary_max_wavelength_m": 0.01713984123334848,
+  "crossover_wavenumber_per_m": 366.5836352646359,
+  "grid_shape": [
+    512,
+    1024
+  ],
+  "final": {
+    "all_parent_mss": 0.046201997986685346,
+    "all_cho_mss": 0.19653393013221332,
+    "all_cross_mss": -0.0025313046994101932,
+    "all_total_mss": 0.2402046234194885,
+    "capillary_parent_mss": 2.179933153939028e-05,
+    "capillary_cho_mss": 0.19128040680914968,
+    "capillary_cross_mss": -0.00034427222653904844,
+    "capillary_total_mss": 0.19095793391415,
+    "longer_parent_mss": 0.046180198655145964,
+    "longer_cho_mss": 0.005253523323063636,
+    "longer_cross_mss": -0.0021870324728711444,
+    "longer_total_mss": 0.04924668950533847,
+    "capillary_cho_height_rms_m": 0.00036745248249278785
+  },
+  "late_mean": {
+    "all_parent_mss": 0.04653935502171461,
+    "all_cho_mss": 0.1939008635375964,
+    "all_cross_mss": -0.002563681266718688,
+    "all_total_mss": 0.23787653729259234,
+    "capillary_parent_mss": 2.3441798334203494e-05,
+    "capillary_cho_mss": 0.1888136648835023,
+    "capillary_cross_mss": -0.0003784727036083385,
+    "capillary_total_mss": 0.18845863397822815,
+    "longer_parent_mss": 0.0465159132233804,
+    "longer_cho_mss": 0.005087198654094124,
+    "longer_cross_mss": -0.00218520856311035,
+    "longer_total_mss": 0.04941790331436419,
+    "capillary_cho_height_rms_m": 0.00036969120187064326
+  }
+}

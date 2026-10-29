@@ -1,0 +1,31 @@
+{
+  "frame": "fixed laboratory",
+  "quantity": "parent_plus_cho",
+  "cho_enabled": true,
+  "damping_multiplier": 1.0,
+  "source_fingerprint": "f296d3cae9a862009d5a1b86971d9f94515c03b56f5329516f5a6d6d6b5145f6",
+  "vertical_exaggeration": 1,
+  "forcing_gain": 1,
+  "source_grid_shape": [
+    512,
+    1024
+  ],
+  "display_grid_shape": [
+    512,
+    1024
+  ],
+  "physical_interval_s": [
+    0.0,
+    5.99999999999979
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "video_frame_count": 601,
+  "encoded_duration_s": 30.05,
+  "playback_duration_s": 30.0,
+  "render_complete": true,
+  "full_saved_interval": true,
+  "all_frames_decoded": true,
+  "sha256": "3cd27548a9016aafb73c8717a965156deffa0219626d2f6821a29b4b3b25a5e1",
+  "temporal_limitation": "The saved-state cadence limits the resolved evolution; slow playback does not restore unsaved motion."
+}

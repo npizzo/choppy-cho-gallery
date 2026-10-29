@@ -1,0 +1,83 @@
+{
+  "duration_s": 5.99999999999979,
+  "free_modes": 231,
+  "max_transverse_action_fraction": 0.21823847658759762,
+  "max_slope_ratio": 0.2649670891300896,
+  "peak_slope_ratio_time_s": 5.99999999999979,
+  "max_transverse_boundary_action": 0.0001660769739874964,
+  "max_streamwise_boundary_action": 0.008346889115081349,
+  "max_action_error": 6.341497722672784e-05,
+  "minimum_map_jacobian": 0.5859393101379436,
+  "maximum_physical_slope": 0.4977575143943628,
+  "maximum_quadratic_to_linear_map_rms": 0.19804867655101804,
+  "maximum_quadratic_to_linear_map_gradient_rms": 0.09829654982902784,
+  "geometry_samples": 31,
+  "max_parent_transverse_mss": 0.003016374646711945,
+  "max_cho_transverse_mss": 0.011485889698879797,
+  "max_total_transverse_mss": 0.014245396499250138,
+  "max_parent_surface_slope_ratio": 0.26428532252040643,
+  "max_cho_surface_slope_ratio": 0.2617589232526803,
+  "max_total_surface_slope_ratio": 0.25108584543197104,
+  "bound_geometry_validated": true,
+  "bound_geometry_full_second_order": true,
+  "cho": {
+    "cho_enabled": true,
+    "cho_feedback_enabled": false,
+    "duration_s": 6.0,
+    "damping_multiplier": 1.0,
+    "max_cho_mss": 0.19832516151168328,
+    "max_total_mss": 0.24228512930186036,
+    "max_parent_mss": 0.047682740212620665,
+    "max_abs_cho_m": 0.007347035687416792,
+    "grid_nx": 512,
+    "grid_ny": 1024,
+    "dt_s": 0.0002499999999999912
+  },
+  "capillary": {
+    "duration_s": 6.0,
+    "physical_interval_s": [
+      0.0,
+      6.0
+    ],
+    "late_interval_s": [
+      3.9999999999997904,
+      5.99999999999979
+    ],
+    "capillary_max_wavelength_m": 0.01713984123334848,
+    "crossover_wavenumber_per_m": 366.5836352646359,
+    "grid_shape": [
+      512,
+      1024
+    ],
+    "final": {
+      "all_parent_mss": 0.046201997986685346,
+      "all_cho_mss": 0.19653393013221332,
+      "all_cross_mss": -0.0025313046994101932,
+      "all_total_mss": 0.2402046234194885,
+      "capillary_parent_mss": 2.179933153939028e-05,
+      "capillary_cho_mss": 0.19128040680914968,
+      "capillary_cross_mss": -0.00034427222653904844,
+      "capillary_total_mss": 0.19095793391415,
+      "longer_parent_mss": 0.046180198655145964,
+      "longer_cho_mss": 0.005253523323063636,
+      "longer_cross_mss": -0.0021870324728711444,
+      "longer_total_mss": 0.04924668950533847,
+      "capillary_cho_height_rms_m": 0.00036745248249278785
+    },
+    "late_mean": {
+      "all_parent_mss": 0.04653935502171461,
+      "all_cho_mss": 0.1939008635375964,
+      "all_cross_mss": -0.002563681266718688,
+      "all_total_mss": 0.23787653729259234,
+      "capillary_parent_mss": 2.3441798334203494e-05,
+      "capillary_cho_mss": 0.1888136648835023,
+      "capillary_cross_mss": -0.0003784727036083385,
+      "capillary_total_mss": 0.18845863397822815,
+      "longer_parent_mss": 0.0465159132233804,
+      "longer_cho_mss": 0.005087198654094124,
+      "longer_cross_mss": -0.00218520856311035,
+      "longer_total_mss": 0.04941790331436419,
+      "capillary_cho_height_rms_m": 0.00036969120187064326
+    }
+  }
+}
