@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "preliminary",
+  "numerical_status": "completed",
+  "synthetic": false,
+  "method": "Matched parent/full, per-seed comparisons across effective current-delivered stress. Legacy cases excluded.",
+  "validation": {
+    "passed": false,
+    "meaning": "Only finished pairs with passing per-case numerical/adapter checks and matching geometry, histories, and time windows enter; this is not physical or GMF validation."
+  },
+  "metrics": {
+    "declared_new_cases": 20,
+    "legacy_excluded": 3,
+    "unfinished_cases": 20,
+    "missing_pairs": 0,
+    "invalid_pairs": 0,
+    "available_pairs": 0,
+    "paired_direction_rows": 0,
+    "valid_power_differences": 0,
+    "valid_doppler_differences": 0
+  },
+  "figures": [],
+  "excluded_or_unavailable": [
+    {
+      "case_id": "ak15_uw000_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak15_uw005_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak15_uw010_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak15_uw000_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak15_uw005_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak15_uw010_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw000_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw005_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a000_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw000_a000_oblique_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a000_oblique_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a090_mono_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a090_oblique_s2026",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw000_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw005_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a000_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw000_a000_oblique_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a000_oblique_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a090_mono_s2027",
+      "reason": "Case is queued"
+    },
+    {
+      "case_id": "ak30_uw010_a090_oblique_s2027",
+      "reason": "Case is queued"
+    }
+  ],
+  "highlights": [
+    "0 of 20 new-case parent/full pairs are available; 20 unfinished, 0 missing paired analyses, 0 excluded by checks.",
+    "Separate seed curves retain realization differences; no two-seed confidence estimate is claimed.",
+    "No matched completed numerical pair is available yet; no stress-response curve is inferred."
+  ],
+  "limitations": [
+    "Effective stress is tau_c = rho_water u*,c\u00b2; no direct aerodynamic parent/Cho growth and no U10 mapping.",
+    "Only matching reference/actual steepness, stress direction, sea state, duration, radar geometry, and fit/test windows are connected across stress. Each seed remains separate.",
+    "Parent/full differences include interference in the coherent scattering response; a signed difference is not a negative absolute power.",
+    "Bragg-band variance is an uncalibrated geometric roughness proxy; coherent Doppler retains the parent-coordinate-motion limitations of each case.",
+    "Unfinished cases and invalid directional measurements are not assigned zero. Scientific conclusions remain preliminary."
+  ],
+  "downloads": [
+    {
+      "file": "metrics.csv",
+      "src": "comparisons/metrics.csv",
+      "bytes": 224
+    }
+  ],
+  "summary_src": "comparisons/summary.json"
+}
