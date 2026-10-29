@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment": "radar-backscatter",
+  "status": "running",
+  "method": "Preliminary coherent first-order small-slope approximation with a linear Bragg reference",
+  "cases": [
+    "Parent only",
+    "Parent + Cho, 2.4\u00d7 damping",
+    "Parent + Cho, 1\u00d7 damping"
+  ],
+  "bands": [
+    "C",
+    "X",
+    "Ku"
+  ],
+  "incidence_deg": [
+    30,
+    50,
+    60
+  ],
+  "azimuth_deg": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "limitations": [],
+  "figures": [],
+  "downloads": [],
+  "assets": [],
+  "published_at_utc": "2026-10-29T18:06:02.722918+00:00",
+  "content_sha256": "297979584ecff43676b28767ab51854bb3fafb76240dd71db378d3d056d237fd"
+}

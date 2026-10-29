@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f6f1">
+<title>Radar backscatter · Choppy waves &amp; capillary ripples</title>
+<style>
+:root{color-scheme:light;--paper:#f7f6f1;--ink:#16343b;--muted:#5d7175;--line:#d9e2df;--blue:#18799a;--amber:#ac731d;--teal:#18765c}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1180px;margin:auto;padding:0 28px}nav{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:26px 0;border-bottom:1px solid var(--line)}a{color:var(--blue);text-underline-offset:3px}nav a{font-size:14px;text-decoration:none}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:650;color:var(--muted);margin-bottom:8px}h1{font-size:clamp(32px,5vw,56px);line-height:1.08;letter-spacing:-.045em;max-width:850px;margin:12px 0 22px}h2{font-size:25px;line-height:1.2;letter-spacing:-.025em;margin:0 0 12px}h3{font-size:18px;line-height:1.3;margin:0 0 8px}p{margin:0 0 14px}.lead{font-size:20px;color:var(--muted);max-width:860px}header{padding:42px 0 24px}.statusbar{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px 20px;margin:22px 0}.status{font-size:13px;border-radius:999px;padding:5px 12px;background:#edf3f1;color:var(--teal);font-weight:650;white-space:nowrap}.status.running{background:#f7efd9;color:#856021}.status.failed{background:#fae8e4;color:#9c4133}.small{font-size:13px;color:var(--muted)}.setup{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:22px 0 30px}.setup>div{background:#fff;padding:16px 18px}.setup strong{display:block;font-size:18px;font-weight:600}.label{font-size:12px;color:var(--muted)}.legend{display:flex;gap:20px;flex-wrap:wrap;margin:18px 0}.legend span{font-size:14px;display:flex;align-items:center;gap:8px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}.parent{background:#405c6a}.cho24{background:#168fba}.cho1{background:#d48b27}.note{padding:18px 22px;background:#edf3f1;border-radius:10px;margin:18px 0 30px}.highlights{display:grid;gap:10px;margin:20px 0 30px}.highlight{border-left:3px solid var(--blue);padding:10px 18px;background:#fff}.section{padding:30px 0;border-top:1px solid var(--line)}.figures{display:grid;gap:28px}figure{margin:0;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}figure h3{padding:20px 24px 0}figure img{width:100%;height:auto;display:block}figcaption{padding:12px 24px 22px;color:var(--muted);font-size:14px}.placeholder{padding:50px 28px;text-align:center;border:1px dashed #baccc8;border-radius:12px;color:var(--muted)}.downloads{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.downloads a{border:1px solid var(--line);background:white;padding:8px 12px;border-radius:7px;font-size:13px;text-decoration:none}details{border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:24px 0}summary{cursor:pointer;font-weight:650}.methods{padding-top:20px;max-width:960px}.methods li{margin:8px 0}code{font-size:.9em}footer{padding:24px 0 40px;font-size:13px;color:var(--muted)}[hidden]{display:none!important}@media(max-width:700px){.wrap{padding:0 18px}.setup{grid-template-columns:repeat(2,1fr)}.statusbar{align-items:flex-start;flex-direction:column}.lead{font-size:18px}figure h3{padding:16px 14px 0}figcaption{padding:12px 14px 18px}}
+</style>
+</head>
+<body><div class="wrap">
+<nav aria-label="Main navigation"><a href="../../">← Choppy waves &amp; capillary ripples</a><div><a href="../langmuir-steep30/">2.4× surface movies</a> · <a href="../langmuir-steep30-damping1/">1× surface movies</a></div></nav>
+<header><p class="eyebrow">Unity · Existing surface histories</p><h1>How roughness changes<br>the radar return.</h1><p class="lead">Directional backscatter and Doppler from the same evolving parent waves, with and without Cho gravity–capillary roughness.</p></header>
+<main>
+<div class="statusbar"><div><span id="status" class="status running">Postprocessing</span><p id="status-text" class="small" style="margin:8px 0 0">Reading the published record.</p></div><a href="snapshot.json" class="small">Download the complete summary</a></div>
+<div class="setup"><div><span class="label">Parent wavelength / steepness</span><strong>8 cm / ak = 0.30</strong></div><div><span class="label">Radar bands</span><strong id="bands">C · X · Ku</strong></div><div><span class="label">Incidence from vertical</span><strong id="incidence">30°, 50°, 60°</strong></div><div><span class="label">Physical averaging window</span><strong id="interval">Pending</strong></div></div>
+<div class="legend" aria-label="Surface comparison"><span><i class="dot parent" style="background:#555b65"></i>Parent only</span><span><i class="dot cho24" style="background:#1672b8"></i>Parent + Cho, 2.4× damping</span><span><i class="dot cho1" style="background:#d4611c"></i>Parent + Cho, 1× damping</span></div>
+<p class="small">Azimuth is measured from +x, the initial parent-wave propagation direction. A 90° look is across that direction. Incidence is measured from the vertical.</p>
+<div class="note"><strong>The current is the same in both Cho cases.</strong> Differences in radar-inferred velocity are caused by the changed surface response and scattering weights. They are not changes in the simulated mean current.</div>
+<div id="highlights" class="highlights" hidden></div>
+<section class="section"><p class="eyebrow">Three surfaces · Multiple viewing directions</p><h2>Backscatter, Doppler, and apparent current</h2><p>Backscatter measures returned power. The Doppler centroid measures the mean frequency shift; the Doppler width describes its spread. Apparent-current differences express a frequency shift as an equivalent horizontal speed along the radar look.</p><div id="figures" class="figures"></div><div id="pending" class="placeholder"><h3>The radar diagnostics are being prepared.</h3><p>Validated plots and numerical tables will appear here after the Unity postprocessing completes.</p><p class="small">This page shows the latest published snapshot; it does not query the scheduler.</p></div></section>
+<section class="section"><h2>Numerical results</h2><p class="small">CSV tables retain the units and viewing geometry used in the plots. The summary records the approximation and validation evidence.</p><div id="downloads" class="downloads"><a href="snapshot.json">Summary JSON</a></div></section>
+<details open><summary>How to interpret this first experiment</summary><div class="methods"><p id="method"></p><ul><li>This is a preliminary coherent first-order small-slope approximation (SSA1), with a linear Bragg reference. It is not the full weighted-curvature calculation in Nouguier et al. (2011).</li><li>Microwave phase is retained. These results are not optical brightness from the blue surface movies, and no backward ray-tracing or shadowing correction is implied.</li><li>The finite simulated patch is 0.32 × 0.64 m. Its response is a controlled surface experiment, not a calibrated kilometre-scale scatterometer footprint.</li><li>The strongest Cho events have steep local slopes. Passing numerical checks does not establish the accuracy of this electromagnetic approximation for those events.</li><li>For SSA1 at a fixed look, polarization changes a geometry-independent coefficient. Normalized Doppler centroid and width therefore coincide for HH and VV in this approximation; a stronger polarization-dependent kinematic model requires additional scattering terms.</li><li>An apparent-current difference is a diagnostic of retrieval ambiguity. It is not a new mean current, and no wind-retrieval product is computed here.</li></ul><ul id="limitations"></ul><p class="small">Reference: <a href="https://doi.org/10.1109/TGRS.2011.2153207">Nouguier, Guérin &amp; Soriano (2011), nonlinear ocean Doppler signatures</a>.</p></div></details>
+</main><footer><strong>Nicholas Pizzo · Numerical research gallery</strong><p id="published" style="margin-top:5px"></p><a href="https://github.com/npizzo/choppy-cho-gallery">Gallery repository</a></footer>
+</div>
+<script id="radar-data" type="application/json">{
+  "schema_version": 1,
+  "experiment": "radar-backscatter",
+  "status": "running",
+  "method": "Preliminary coherent first-order small-slope approximation with a linear Bragg reference",
+  "cases": [
+    "Parent only",
+    "Parent + Cho, 2.4\u00d7 damping",
+    "Parent + Cho, 1\u00d7 damping"
+  ],
+  "bands": [
+    "C",
+    "X",
+    "Ku"
+  ],
+  "incidence_deg": [
+    30,
+    50,
+    60
+  ],
+  "azimuth_deg": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "limitations": [],
+  "figures": [],
+  "downloads": [],
+  "assets": [],
+  "published_at_utc": "2026-10-29T18:06:02.722918+00:00",
+  "content_sha256": "297979584ecff43676b28767ab51854bb3fafb76240dd71db378d3d056d237fd"
+}</script>
+<script>
+"use strict";
+const data=JSON.parse(document.getElementById("radar-data").textContent);
+const byId=id=>document.getElementById(id);
+const status=byId("status");status.className="status "+data.status;status.textContent=data.status==="complete"?"Results available":data.status==="failed"?"Postprocessing needs attention":"Postprocessing on Unity";
+byId("status-text").textContent=data.status==="complete"?"Published diagnostics from the three existing surface histories.":data.status==="failed"?"The postprocessing did not complete. No partial scientific result is presented as final.":"The existing wave and current simulations are reused; this job computes their radar response.";
+const bandItems=Array.isArray(data.bands)?data.bands:[];byId("bands").textContent=bandItems.map(b=>typeof b==="string"?b:b.name||b.band||"").join(" · ")||"C · X · Ku";
+const angles=data.incidence_deg||data.incidence_angles_deg; if(Array.isArray(angles))byId("incidence").textContent=angles.map(x=>x+"°").join(", ");
+const interval=data.averaging_interval_s||data.late_interval_s||data.time_interval_s;if(Array.isArray(interval)&&interval.length===2)byId("interval").textContent=interval[0]+"–"+interval[1]+" s";
+byId("method").textContent=typeof data.method==="string"?data.method:"Coherent scattering from the saved laboratory-frame surface, with moments obtained from its motion.";
+if(Array.isArray(data.highlights)&&data.highlights.length){byId("highlights").hidden=false;data.highlights.forEach(text=>{const el=document.createElement("div");el.className="highlight";el.textContent=typeof text==="string"?text.text||text:"";byId("highlights").appendChild(el);});}
+const safeAsset=path=>typeof path==="string"&&/^results\/[A-Za-z0-9][A-Za-z0-9_.-]*\.(png|csv)$/.test(path);
+for(const f of data.figures||[]){if(!safeAsset(f.src))continue;const fig=document.createElement("figure"),h=document.createElement("h3"),im=document.createElement("img"),cap=document.createElement("figcaption");h.textContent=f.title||f.file;im.src=f.src;im.alt=f.alt||f.title||f.file;im.loading="lazy";cap.textContent=f.caption||"";fig.append(h,im,cap);byId("figures").appendChild(fig);}
+byId("pending").hidden=data.status==="complete"&&(data.figures||[]).length>0;
+for(const d of data.downloads||[]){if(!safeAsset(d.src))continue;const a=document.createElement("a");a.href=d.src;a.textContent=d.file;a.setAttribute("download","");byId("downloads").appendChild(a);}
+for(const text of data.limitations||[]){const item=document.createElement("li");item.textContent=typeof text==="string"?text:JSON.stringify(text);byId("limitations").appendChild(item);}
+if(data.published_at_utc){const date=new Date(data.published_at_utc);byId("published").textContent="Published "+(Number.isNaN(date.getTime())?data.published_at_utc:date.toLocaleString())+". Times in the plots are physical simulation times.";}
+</script>
+</body></html>
