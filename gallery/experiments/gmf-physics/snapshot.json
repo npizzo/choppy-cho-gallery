@@ -9,8 +9,8 @@
     "completed": 0,
     "failed": 0,
     "preliminary": 2,
-    "queued": 17,
-    "running": 4
+    "queued": 16,
+    "running": 5
   },
   "completed_results": 0,
   "cases": [
@@ -279,7 +279,7 @@
     {
       "id": "legacy_cho1",
       "title": "Existing parent + Cho, damping 1",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.3,
         "damping_multiplier": 1.0,
@@ -287,7 +287,7 @@
         "history_duration_s": 6.0,
         "current_initialization": "Legacy Lagrangian initialization"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Ka-band MTF and independent coherent Doppler analysis of saved surfaces.",
       "job_id": "66309199",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -950,7 +950,7 @@
     "Six-second runs and saved 10 ms surfaces test transient statistics; they do not resolve operational millisecond radar coherence."
   ],
   "method": "Ka-band 35.75 GHz, 56 degree incidence, VV; 12 viewing azimuths. Surface-derived complex MTF predicts held-out hydrodynamic covariances and a separately evaluated coherent SSA1 orbital-motion contribution.",
-  "source_updated_at_utc": "2026-10-30T00:21:21.288369+00:00",
+  "source_updated_at_utc": "2026-10-30T00:21:39.379910+00:00",
   "assets": [
     {
       "src": "cases/legacy_cho24/figures/doppler_prediction.png",
@@ -1023,6 +1023,6 @@
       "sha256": "ec8ce172b1466aebc59ae8dc8d8be5c01de25db66cb93bc1cc0c94d352f04d04"
     }
   ],
-  "published_at_utc": "2026-10-30T00:21:30.047246+00:00",
-  "content_sha256": "ac82be71add3c81787463ce422ab0a443e9204a1e567b6127997171b99018822"
+  "published_at_utc": "2026-10-30T00:21:49.084326+00:00",
+  "content_sha256": "4d5d72812a8170da11a10bcee8d728c69446c006de97b43da8c16c68d75ac61e"
 }
