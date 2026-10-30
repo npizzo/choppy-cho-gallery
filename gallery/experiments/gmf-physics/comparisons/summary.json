@@ -12,14 +12,14 @@
   "metrics": {
     "declared_new_cases": 20,
     "legacy_excluded": 3,
-    "unfinished_cases": 11,
+    "unfinished_cases": 10,
     "missing_pairs": 0,
     "invalid_pairs": 0,
-    "available_pairs": 9,
+    "available_pairs": 10,
     "quadrature_failed_pairs": 0,
-    "paired_direction_rows": 18,
-    "valid_power_differences": 18,
-    "valid_doppler_differences": 5
+    "paired_direction_rows": 20,
+    "valid_power_differences": 20,
+    "valid_doppler_differences": 7
   },
   "figures": [
     {
@@ -37,12 +37,24 @@
     {
       "file": "figures/group_01_cho_effect.png",
       "src": "comparisons/figures/group_01_cho_effect.png",
-      "title": "Cho effect \u00b7 ak 0.3, mono, stress 0\u00b0",
+      "title": "Cho effect \u00b7 ak 0.3, oblique, stress 0\u00b0",
       "caption": "Held-out band-variance and coherent-velocity differences, using matched parent/full histories. Each seed is a separate line; two seeds are not a confidence interval. Gray crosses mark unavailable estimates. A finite, resolved band variance can be reported even when coherent Doppler or an MTF fit is too weak."
     },
     {
       "file": "figures/group_01_mtf.png",
       "src": "comparisons/figures/group_01_mtf.png",
+      "title": "Modulation response \u00b7 ak 0.3, oblique, stress 0\u00b0",
+      "caption": "Training-interval numerical m_r and m_i at fixed sea-state settings; solid curves include Cho, dashed curves are parent-only. Colors identify individual seeds. The horizontal coordinate is effective current-stress friction velocity squared, not atmospheric stress or U10. Missing coefficients remain masked."
+    },
+    {
+      "file": "figures/group_02_cho_effect.png",
+      "src": "comparisons/figures/group_02_cho_effect.png",
+      "title": "Cho effect \u00b7 ak 0.3, mono, stress 0\u00b0",
+      "caption": "Held-out band-variance and coherent-velocity differences, using matched parent/full histories. Each seed is a separate line; two seeds are not a confidence interval. Gray crosses mark unavailable estimates. A finite, resolved band variance can be reported even when coherent Doppler or an MTF fit is too weak."
+    },
+    {
+      "file": "figures/group_02_mtf.png",
+      "src": "comparisons/figures/group_02_mtf.png",
       "title": "Modulation response \u00b7 ak 0.3, mono, stress 0\u00b0",
       "caption": "Training-interval numerical m_r and m_i at fixed sea-state settings; solid curves include Cho, dashed curves are parent-only. Colors identify individual seeds. The horizontal coordinate is effective current-stress friction velocity squared, not atmospheric stress or U10. Missing coefficients remain masked."
     }
@@ -50,10 +62,6 @@
   "excluded_or_unavailable": [
     {
       "case_id": "ak30_uw000_a000_oblique_s2026",
-      "reason": "Case is running"
-    },
-    {
-      "case_id": "ak30_uw010_a000_oblique_s2026",
       "reason": "Case is running"
     },
     {
@@ -94,7 +102,7 @@
     }
   ],
   "highlights": [
-    "9 of 20 new-case parent/full pairs are available; 11 unfinished, 0 missing paired analyses, 0 excluded by checks.",
+    "10 of 20 new-case parent/full pairs are available; 10 unfinished, 0 missing paired analyses, 0 excluded by checks.",
     "Separate seed curves retain realization differences; no two-seed confidence estimate is claimed."
   ],
   "limitations": [
@@ -108,7 +116,7 @@
     {
       "file": "metrics.csv",
       "src": "comparisons/metrics.csv",
-      "bytes": 6804
+      "bytes": 7640
     }
   ],
   "summary_src": "comparisons/summary.json"
