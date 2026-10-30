@@ -1,11 +1,3 @@
-availability_metric,count
-declared_new_cases,20
-legacy_excluded,3
-unfinished_cases,20
-missing_pairs,0
-invalid_pairs,0
-available_pairs,0
-quadrature_failed_pairs,0
-paired_direction_rows,0
-valid_power_differences,0
-valid_doppler_differences,0
+case_id,seed,reference_ak,actual_carrier_ak,sea_state,stress_angle_deg,duration_s,ustar_current_m_s,ustar_current_squared_m2_s2,relative_azimuth_deg,azimuth_deg,wavelength_m,incidence_deg,full_electromagnetic_quadrature_within_5_percent,parent_electromagnetic_quadrature_within_5_percent,training_start_s,training_end_s,heldout_start_s,heldout_end_s,parent_bragg_variance_m2,full_bragg_variance_m2,delta_bragg_variance_m2,parent_total_velocity_m_s,full_total_velocity_m_s,delta_total_velocity_m_s,parent_mtf_valid,full_mtf_valid,parent_mr,parent_mi,full_mr,full_mi
+ak15_uw010_a000_mono_s2026,2026,0.15,0.15,mono,0.0,6.0,0.01,0.0001,0.0,0.0,0.008385803020979021,56.0,True,True,1.0099999999999647,3.9899999999998603,4.26999999999985,5.989999999999791,4.181928089762353e-20,9.889797834513332e-10,9.889797834095139e-10,0.007652967015225269,0.42018599674937707,0.4125330297341518,True,True,9.090393731163875,0.5771447621840669,-0.618033339126918,13.791195048433016
+ak15_uw010_a000_mono_s2026,2026,0.15,0.15,mono,0.0,6.0,0.01,0.0001,60.0,60.0,0.008385803020979021,56.0,True,True,1.0099999999999647,3.9899999999998603,4.26999999999985,5.989999999999791,3.433762356086799e-24,4.9406527287606e-16,4.940652694422976e-16,,0.2079015625566704,,False,True,,,-5.395975360693826,1.43979582882709
