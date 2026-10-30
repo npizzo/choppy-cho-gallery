@@ -9,8 +9,8 @@
     "completed": 0,
     "failed": 0,
     "preliminary": 12,
-    "queued": 8,
-    "running": 3
+    "queued": 7,
+    "running": 4
   },
   "completed_results": 0,
   "cases": [
@@ -1778,7 +1778,7 @@
     {
       "id": "ak30_uw010_a090_oblique_s2026",
       "title": "ak 0.30; current friction velocity 0.010 m/s; oblique; stress 90 degrees; seed 2026",
-      "status": "queued",
+      "status": "running",
       "parameters": {
         "reference_ak": 0.3,
         "actual_carrier_ak": 0.2683281572999747,
@@ -1794,7 +1794,7 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Validation retry after correcting a test installation path; no production history was advanced.",
+      "message": "Evolving parent and CL current under effective current stress; passive Cho follows.",
       "job_id": "66309200_12",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
@@ -2048,7 +2048,7 @@
       },
       {
         "case_id": "ak30_uw010_a090_oblique_s2026",
-        "reason": "Case is queued"
+        "reason": "Case is running"
       },
       {
         "case_id": "ak30_uw000_a000_mono_s2027",
@@ -2108,7 +2108,7 @@
     "Six-second runs and saved 10 ms surfaces test transient statistics; they do not resolve operational millisecond radar coherence."
   ],
   "method": "Ka-band 35.75 GHz, 56 degree incidence, VV; 12 viewing azimuths. Surface-derived complex MTF predicts held-out hydrodynamic covariances and a separately evaluated coherent SSA1 orbital-motion contribution.",
-  "source_updated_at_utc": "2026-10-30T15:43:42.684939+00:00",
+  "source_updated_at_utc": "2026-10-30T15:44:19.623826+00:00",
   "assets": [
     {
       "src": "cases/ak15_uw000_a000_mono_s2026/figures/doppler_prediction.png",
@@ -2551,6 +2551,6 @@
       "sha256": "6463d0f4b3d6f3d7b8f6be2ebef4f7d3fe1bd4ae6b61cbc17beda5dba9414ab6"
     }
   ],
-  "published_at_utc": "2026-10-30T15:43:58.526987+00:00",
-  "content_sha256": "4c51975e542567472431dfbe702bcda0de824c861edbf7ce9b85ac1ba51ab651"
+  "published_at_utc": "2026-10-30T15:44:36.237400+00:00",
+  "content_sha256": "cfb458cd902926a692f7fec84d10ece49441cb33379982cd27c634476e3ae487"
 }
