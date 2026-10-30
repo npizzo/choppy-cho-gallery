@@ -1,0 +1,39 @@
+{
+  "source_cases": [
+    "langmuir-steep30",
+    "langmuir-steep30-damping1"
+  ],
+  "damping_multipliers": [
+    2.4,
+    1.0
+  ],
+  "source_indices": [
+    0,
+    120,
+    240,
+    360,
+    480,
+    600
+  ],
+  "times_s": [
+    0.0,
+    1.199999999999958,
+    2.399999999999916,
+    3.599999999999874,
+    4.799999999999832,
+    5.99999999999979
+  ],
+  "original_nx": 512,
+  "original_ny": 1024,
+  "source_frame": "xi=C*t-x_lab; y=y_lab",
+  "phase_speed_m_s": 0.3614390763757024,
+  "parent_history_sha256": "dae53ee1d2ee571a5399bf7e1423bdba550d944c19c0a66c0fc15d4830555271",
+  "current_history_sha256": "6d2d05ac2da38befe53704e21630ec843fa8d0d8092e39bf2b70a7795c4b61f2",
+  "parent_frames_identical": true,
+  "source_dtype": "float32",
+  "nominal_initial_ak": 0.3,
+  "carrier_wavelength_m": 0.08,
+  "reintegrated": false,
+  "read_only_saved_data": true,
+  "volume_compensation": "Raw stream omits the spatially uniform compensation; it has zero slope."
+}
