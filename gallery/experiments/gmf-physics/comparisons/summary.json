@@ -12,14 +12,14 @@
   "metrics": {
     "declared_new_cases": 20,
     "legacy_excluded": 3,
-    "unfinished_cases": 7,
+    "unfinished_cases": 6,
     "missing_pairs": 0,
     "invalid_pairs": 0,
-    "available_pairs": 13,
+    "available_pairs": 14,
     "quadrature_failed_pairs": 0,
-    "paired_direction_rows": 26,
-    "valid_power_differences": 26,
-    "valid_doppler_differences": 12
+    "paired_direction_rows": 28,
+    "valid_power_differences": 28,
+    "valid_doppler_differences": 13
   },
   "figures": [
     {
@@ -85,10 +85,6 @@
   ],
   "excluded_or_unavailable": [
     {
-      "case_id": "ak30_uw000_a000_mono_s2027",
-      "reason": "Case is running"
-    },
-    {
       "case_id": "ak30_uw005_a000_mono_s2027",
       "reason": "Case is running"
     },
@@ -114,7 +110,7 @@
     }
   ],
   "highlights": [
-    "13 of 20 new-case parent/full pairs are available; 7 unfinished, 0 missing paired analyses, 0 excluded by checks.",
+    "14 of 20 new-case parent/full pairs are available; 6 unfinished, 0 missing paired analyses, 0 excluded by checks.",
     "Separate seed curves retain realization differences; no two-seed confidence estimate is claimed."
   ],
   "limitations": [
@@ -128,7 +124,7 @@
     {
       "file": "metrics.csv",
       "src": "comparisons/metrics.csv",
-      "bytes": 10032
+      "bytes": 10738
     }
   ],
   "summary_src": "comparisons/summary.json"
