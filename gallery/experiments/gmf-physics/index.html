@@ -28,9 +28,9 @@
   "counts": {
     "completed": 0,
     "failed": 0,
-    "preliminary": 18,
+    "preliminary": 19,
     "queued": 1,
-    "running": 4
+    "running": 3
   },
   "completed_results": 0,
   "cases": [
@@ -2578,7 +2578,7 @@
     {
       "id": "ak30_uw010_a000_mono_s2027",
       "title": "ak 0.30; current friction velocity 0.010 m/s; mono; stress 0 degrees; seed 2027",
-      "status": "running",
+      "status": "preliminary",
       "parameters": {
         "reference_ak": 0.3,
         "actual_carrier_ak": 0.3,
@@ -2594,12 +2594,129 @@
         "carrier_wavelength_m": 0.08,
         "initial_current": "Matched Eulerian profile and current seed"
       },
-      "message": "Parent/current and Cho complete; computing Ka-band roughness and Doppler diagnostics.",
+      "message": "Run and analysis complete; effective current-stress experiment, preliminary physical interpretation.",
       "job_id": "66309200_15",
       "run_id": "gmf-20261029T230616Z",
       "source_fingerprint": "14887fcaf3f43000ec0cfd45c5e9f15dc46a1cf05e3fed0d15ca7818e59481f0",
       "target_time_s": 6.0,
-      "result": null
+      "result": {
+        "schema_version": 1,
+        "status": "preliminary",
+        "numerical_status": "completed",
+        "scientific_status": "preliminary",
+        "synthetic": false,
+        "method": "Preliminary numerical MTF and held-out coherent SSA1 comparison at fixed effective current stress and sea state.",
+        "validation": {
+          "passed": true,
+          "meaning": "Finite declared-valid outputs, graph-coordinate consistency, and derivative-partition closure when coherent velocities are available; not electromagnetic, hydrodynamic, or GMF validation.",
+          "finite_declared_valid_outputs": true,
+          "parent_graph_kinematic_rms_error_m_s": 2.2751243446271317e-08,
+          "parent_graph_kinematic_tolerance_m_s": 1e-07,
+          "parent_graph_kinematic_check_passed": true,
+          "component_velocity_max_closure_error_m_s": 6.228351168147128e-14,
+          "component_velocity_closure_check_available": true,
+          "component_velocity_closure_check_passed": true,
+          "component_velocity_closure_samples": 3000,
+          "electromagnetic_quadrature_within_5_percent": true,
+          "electromagnetic_quadrature_relative_errors": {
+            "s": 0.0004689570179525118,
+            "sdot": 0.0035924410639823876
+          },
+          "coherent_comparison_physically_validated": false,
+          "external_adapter_checks_supplied": true,
+          "external_adapter_checks_passed": true
+        },
+        "metrics": {
+          "total_directions": 12,
+          "valid_mtf_directions": 12,
+          "valid_heldout_directions": 12,
+          "covariance_heldout_frame_samples": 1044,
+          "coherent_heldout_frame_samples": 1044
+        },
+        "training_time_s": [
+          1.0099999999999647,
+          3.9899999999998603
+        ],
+        "heldout_time_s": [
+          4.26999999999985,
+          5.989999999999791
+        ],
+        "wavelength_m": 0.008385803020979021,
+        "incidence_deg": 56.0,
+        "independent_spatial_roughness_directions": 6,
+        "opposite_lobe_dependence": "Opposite spatial lobes of each real surface have identical roughness envelopes and are NOT independent MTF observations; coherent opposite-look Doppler remains separately evaluated",
+        "velocity_description": "Full parent material-coordinate xt,yt,zt reconstructed with full amplitude rates; evaluated on saved grid and mapped to fixed laboratory coordinates. Eulerian saved mean current is separate. Exact graph-motion decomposition, not an assertion that xt,yt,zt equal the complete fluid orbital velocity.",
+        "prediction_calibration": "This realization training frames only",
+        "highlights": [
+          "12 of 12 directions support the MTF fit; 12 support a held-out coherent comparison.",
+          "Regression coefficients use roughness and slopes; Doppler is evaluated as a separate diagnostic."
+        ],
+        "limitations": [
+          "Finite deterministic periodic patch; conditional held-out times do not establish independent sea-state validation",
+          "Local spatial Bragg envelopes cannot identify opposite-traveling free/bound populations",
+          "MTF regression predicts an orbital correction only; no total Doppler or calibrated U10 relationship claimed",
+          "Parent and local-band scales must be separated; repeat bandwidth, patch, resolution, and temporal-block sensitivity studies",
+          "SSA1 lacks shadowing, multiple scattering, foam, and wave-breaking physics; dielectric precision at Ka is uncertain",
+          "Incidence-only first-order tilt and one propagation-axis MTF need not describe strong slopes or crossing waves; slope-induced local azimuth rotation is not modelled",
+          "Weak-return masks use only training thresholds; insufficient heldout samples are reported rather than assigned zero error",
+          "No velocity is divided by the paper Stokes proxy to infer mr; normalization convention therefore does not create a factor-of-two ambiguity",
+          "Scientific status remains preliminary even when numerical presentation checks pass. This is not an absolute wind-speed GMF calibration.",
+          "Friction velocity parameterizes current-delivered effective water-side stress only; no direct aerodynamic growth is supplied to the parent waves or Cho.",
+          "The fields labelled orbital in source diagnostics are parent material-coordinate motion. They are not rigorously established as the complete fluid velocity.",
+          "MTF plots use viewing azimuth at fixed case settings, not U10. No wind-speed dependence or confidence interval is manufactured from one case.",
+          "The independent comparison means an independently differentiated coherent return and data withheld from coefficient fitting; nearby times are not independent sea-state realizations."
+        ],
+        "figures": [
+          {
+            "file": "figures/mtf_coefficients.png",
+            "src": "cases/ak30_uw010_a000_mono_s2027/figures/mtf_coefficients.png",
+            "title": "Measured modulation coefficients",
+            "caption": "Numerical m_r and m_i versus radar viewing azimuth at the fixed case settings. Gray crosses mark unavailable directions. Vertical intervals appear only when supplied by the temporal-block analysis; they are conditional within this realization, not ensemble or model confidence."
+          },
+          {
+            "file": "figures/hydro_covariance.png",
+            "src": "cases/ak30_uw010_a000_mono_s2027/figures/hydro_covariance.png",
+            "title": "Held-out modulation test",
+            "caption": "The left panel compares time-mean covariances on the held-out interval. The right panel compares valid held-out frame diagnostics. The MTF is fitted from roughness and parent slopes, not from these velocity covariances."
+          },
+          {
+            "file": "figures/doppler_prediction.png",
+            "src": "cases/ak30_uw010_a000_mono_s2027/figures/doppler_prediction.png",
+            "title": "MTF prediction versus coherent Doppler",
+            "caption": "The coherent comparison uses the derivative contribution formed from parent material-coordinate motion, h_t = w \u2212 u h_x \u2212 v h_y on the selected surface. These u,v,w are not asserted to be the complete fluid orbital velocity. Aggregates use the same coherent-power time weights; temporal holdout is conditional within the realization."
+          },
+          {
+            "file": "figures/motion_partition.png",
+            "src": "cases/ak30_uw010_a000_mono_s2027/figures/motion_partition.png",
+            "title": "Total return and motion contributions",
+            "caption": "Signed components share the same coherent scattering amplitude and sum to the total. The parent-coordinate motion already contains its supplied amplitude-rate history. The residual closes the graph evolution and must not be interpreted as an isolated intrinsic-wave velocity."
+          },
+          {
+            "file": "figures/parent_full_comparison.png",
+            "src": "cases/ak30_uw010_a000_mono_s2027/figures/parent_full_comparison.png",
+            "title": "Effect of adding Cho",
+            "caption": "Both analyses use matching radar geometry, propagation axis, and train/test time windows. Available history hashes are checked for agreement. Invalid directional values remain masked; no result is invented for a missing parent-only analysis."
+          }
+        ],
+        "parent_comparison_available": true,
+        "input_sha256": {
+          "mtf_summary.json": "546e953b8938cf6a93b65068a8b1f254542f0b5a3531e1367ecb7d49734bf98b",
+          "mtf_timeseries.csv": "501b1b3b6791f9dabcfbb4938fe30d8fc09d66cd96d044fbd75ee6cb2f3e787f"
+        },
+        "downloads": [
+          {
+            "file": "metrics.csv",
+            "src": "cases/ak30_uw010_a000_mono_s2027/metrics.csv",
+            "bytes": 3856
+          },
+          {
+            "file": "mtf_timeseries.csv",
+            "src": "cases/ak30_uw010_a000_mono_s2027/mtf_timeseries.csv",
+            "bytes": 1250382
+          }
+        ],
+        "summary_src": "cases/ak30_uw010_a000_mono_s2027/summary.json"
+      }
     },
     {
       "id": "ak30_uw000_a000_oblique_s2027",
@@ -2720,14 +2837,14 @@
     "metrics": {
       "declared_new_cases": 20,
       "legacy_excluded": 3,
-      "unfinished_cases": 5,
+      "unfinished_cases": 4,
       "missing_pairs": 0,
       "invalid_pairs": 0,
-      "available_pairs": 15,
+      "available_pairs": 16,
       "quadrature_failed_pairs": 0,
-      "paired_direction_rows": 30,
-      "valid_power_differences": 30,
-      "valid_doppler_differences": 14
+      "paired_direction_rows": 32,
+      "valid_power_differences": 32,
+      "valid_doppler_differences": 15
     },
     "figures": [
       {
@@ -2793,10 +2910,6 @@
     ],
     "excluded_or_unavailable": [
       {
-        "case_id": "ak30_uw010_a000_mono_s2027",
-        "reason": "Case is running"
-      },
-      {
         "case_id": "ak30_uw000_a000_oblique_s2027",
         "reason": "Case is running"
       },
@@ -2814,7 +2927,7 @@
       }
     ],
     "highlights": [
-      "15 of 20 new-case parent/full pairs are available; 5 unfinished, 0 missing paired analyses, 0 excluded by checks.",
+      "16 of 20 new-case parent/full pairs are available; 4 unfinished, 0 missing paired analyses, 0 excluded by checks.",
       "Separate seed curves retain realization differences; no two-seed confidence estimate is claimed."
     ],
     "limitations": [
@@ -2828,7 +2941,7 @@
       {
         "file": "metrics.csv",
         "src": "comparisons/metrics.csv",
-        "bytes": 11460
+        "bytes": 12214
       }
     ],
     "summary_src": "comparisons/summary.json"
@@ -2842,7 +2955,7 @@
     "Six-second runs and saved 10 ms surfaces test transient statistics; they do not resolve operational millisecond radar coherence."
   ],
   "method": "Ka-band 35.75 GHz, 56 degree incidence, VV; 12 viewing azimuths. Surface-derived complex MTF predicts held-out hydrodynamic covariances and a separately evaluated coherent SSA1 orbital-motion contribution.",
-  "source_updated_at_utc": "2026-10-31T02:30:13.518760+00:00",
+  "source_updated_at_utc": "2026-10-31T03:08:53.573645+00:00",
   "assets": [
     {
       "src": "cases/ak15_uw000_a000_mono_s2026/figures/doppler_prediction.png",
@@ -3265,6 +3378,41 @@
       "sha256": "91ae4a3f2590319d35b62205ba7f978ae12b90c1e54a18d0913d9abcd63c3c53"
     },
     {
+      "src": "cases/ak30_uw010_a000_mono_s2027/figures/doppler_prediction.png",
+      "bytes": 167575,
+      "sha256": "e8794a9138dc74496cc985ebbb010c836e53de2a46b194e5f8abee62480464f4"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/figures/hydro_covariance.png",
+      "bytes": 190355,
+      "sha256": "cd330cd17efcfa2dd9fbeb0046b6244c628c997845ad3c514b8287310cdc7fb1"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/figures/motion_partition.png",
+      "bytes": 152870,
+      "sha256": "829b7b95ad2288484e60282f916a47340ef8918e0dccaf62a213b1f0aa160ca5"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/figures/mtf_coefficients.png",
+      "bytes": 128730,
+      "sha256": "75422fa63cb624db93a7185291945edac9dd8b4cd5e89594dfb63a6526ecf1fc"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/figures/parent_full_comparison.png",
+      "bytes": 215821,
+      "sha256": "4e65ceb15e342c12946ff4f9d541b1acec34ddba9e6fbefead6f83721b66e4eb"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/metrics.csv",
+      "bytes": 3856,
+      "sha256": "93ec249556c1ad4a68f9a92605e7dc0e9b95ad891710b0190e71b8cae8bd3985"
+    },
+    {
+      "src": "cases/ak30_uw010_a000_mono_s2027/mtf_timeseries.csv",
+      "bytes": 1250382,
+      "sha256": "501b1b3b6791f9dabcfbb4938fe30d8fc09d66cd96d044fbd75ee6cb2f3e787f"
+    },
+    {
       "src": "cases/ak30_uw010_a000_oblique_s2026/figures/doppler_prediction.png",
       "bytes": 148973,
       "sha256": "42f213efd6e5417ae0be21b032770c66dc3c6c1b58bb711b9c7e10dcfa7f2e54"
@@ -3501,13 +3649,13 @@
     },
     {
       "src": "comparisons/figures/group_03_cho_effect.png",
-      "bytes": 188555,
-      "sha256": "a25029c6b1238dea70c43e636b76ac6c6d762fd35d2ea3b234dda197f0628a37"
+      "bytes": 205640,
+      "sha256": "1749e6dd1fc97adfe0720eac93b1318ef95085882ab76b3eb02f808c51b14b3d"
     },
     {
       "src": "comparisons/figures/group_03_mtf.png",
-      "bytes": 183144,
-      "sha256": "8ddcab9d1019f7a13288aaf3b616bd8fc87d2a3f13f33440df12fcc46cb6539d"
+      "bytes": 206545,
+      "sha256": "70bdd73c9cadb12ec25da1e84e1a3327fe3be4292a137d9988ee15192a6e23b7"
     },
     {
       "src": "comparisons/figures/group_04_cho_effect.png",
@@ -3521,12 +3669,12 @@
     },
     {
       "src": "comparisons/metrics.csv",
-      "bytes": 11460,
-      "sha256": "293ceffa26055c8390238c53ba6211aad9dcadffa8168feb79425f609bf64491"
+      "bytes": 12214,
+      "sha256": "497bfacce8dfeccfa2ecc58829d01dfa34791cc7cc7d73fed8f22538d3298472"
     }
   ],
-  "published_at_utc": "2026-10-31T02:31:29.944373+00:00",
-  "content_sha256": "0a8c22569b9ee313f00c1e6505774af0f4d3d12f3931b51f5ead86f728283225"
+  "published_at_utc": "2026-10-31T03:09:22.497811+00:00",
+  "content_sha256": "eada954b1c5fb3784e2a29a7e4f3f0abf6233dab8a1f8e4892e7863e9bb1d0c0"
 }</script>
 <script>
 "use strict";
