@@ -1,0 +1,51 @@
+{
+  "description": "Two-constant wave-only calibration; no dye observations or simulation outputs used.",
+  "method": "Least squares of logarithmic characteristic steepness, single 3 cm unsheared deep-water carrier.",
+  "fit_interval_s": [
+    15.0,
+    20.0
+  ],
+  "heldout_interval_s": [
+    20.0,
+    29.86111111111111
+  ],
+  "wind_input_coefficient": 0.03543838762483152,
+  "parent_damping_coefficient": 1453.9418226610092,
+  "parent_damping_threshold": 0.05,
+  "parent_damping_exponent": 2,
+  "energy_rate_equation": "Gamma = Cin*omega*(ustar_air/c)^2 - 4*nu*k^2*(1 + Cpc*max(s-0.05,0)^2)",
+  "amplitude_rate_equation": "d(log s)/dt = Gamma/2",
+  "wind_stress_equation": "ustar_water^2 = alpha*sqrt(physical_age); rho_air*ustar_air^2 = rho_water*ustar_water^2",
+  "assumptions": {
+    "g": 9.81,
+    "tension_over_density": 7.2e-05,
+    "parent_nu": 1.1e-06,
+    "water_density": 1000.0,
+    "air_density": 1.2,
+    "wind_alpha": 1.2e-05,
+    "wavelength_m": 0.03
+  },
+  "train_slope_rmse": 0.0032739114158112717,
+  "heldout_slope_rmse": 0.03343125511307115,
+  "solver_tolerance_max_slope_change": 5.4177994313064914e-09,
+  "no_extra_loss_analytic_max_relative_error": 1.0658141036401503e-14,
+  "maximum_uncapped_wave_stress_fraction_in_fit": 0.18887478931718607,
+  "reviewed_reference_coefficients": [
+    0.03543838744926643,
+    1453.9417767169325
+  ],
+  "source": {
+    "title": "Public measured total along-wind characteristic steepness",
+    "url": "https://github.com/glwagner/NumericalWaveTanks.jl/blob/6defa95dab158d2b94d687df2a6ba110faf427a0/analysis/steepness_data.jl"
+  },
+  "caveats": [
+    "Measured slope is the full observed surface, not a separately observed 3 cm parent band.",
+    "The calibration starts at measured age 15; coupled simulations start at measured age 16.",
+    "The physical wave-input stress cap is included in coupled runs but was inactive in this calibration fit interval.",
+    "The functional form is empirical; this does not identify parasitic-capillary loss as the unique mechanism.",
+    "Later measured waves are held out. No measured dye record is provided."
+  ],
+  "created_at_utc": "2026-10-31T21:56:16.539668+00:00",
+  "observed_input_sha256": "1afa1bf33ffe202e14f1a241a88c87c8e7f926ccf2fc8fe732f4d9c103e09c86",
+  "preparation_source_sha256": "5a97febdc26422fd952206284024f0f78e07b691d9bb6a887ed5cb5bbaadd43a"
+}

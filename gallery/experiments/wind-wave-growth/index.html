@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Testing a minimal wind-growth and parent-wave damping closure against wave evolution and dye deepening in a coupled choppy-wave and current model.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Wind growth &amp; parent-wave damping · Choppy / Cho</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="page.js"></script>
+</head>
+<body>
+  <a class="skip" href="#results">Skip to results</a>
+  <header class="wrap">
+    <nav aria-label="Main navigation"><a class="brand" href="../../">Choppy <span>/</span> Cho</a><div><a href="#experiment">Experiment</a><a href="#results">Results</a><a href="#method">Model</a><a href="https://github.com/npizzo/choppy-cho-gallery">Repository ↗</a></div></nav>
+    <section class="hero">
+      <p class="eyebrow">Wind-wave development · Unity campaign</p>
+      <h1>Let the waves grow.<br>Then follow the dye.</h1>
+      <p class="lead">One wind-growth coefficient and one parent-loss coefficient, added to the evolving choppy-wave model. The test is whether the resulting wave history produces the expected deepening of the surface layer.</p>
+      <div class="hero-notes"><span>Phase-retaining parent waves</span><span>Two-way wave–current coupling</span><span>Passive dye</span></div>
+    </section>
+  </header>
+  <main class="wrap">
+    <section class="status-panel" aria-labelledby="campaign-heading">
+      <div class="section-head"><div><p class="eyebrow">Published experiment snapshot</p><h2 id="campaign-heading">Wind growth + parent damping</h2></div><span class="badge" id="status">Awaiting snapshot</span></div>
+      <p id="status-description" class="muted">The page will show verified results as the Unity calculations finish. No simulation results are implied by an empty panel.</p>
+      <div class="metrics"><div><span>Cases completed</span><strong id="completed">—</strong></div><div><span>Wave-growth coefficient</span><strong id="input-coefficient">—</strong></div><div><span>Parent-loss coefficient</span><strong id="loss-coefficient">—</strong></div><div><span>Comparison</span><strong class="text-metric">Wave history<br>+ dye depth</strong></div></div>
+      <div class="sync"><span id="updated">Loading the most recent published record…</span><button type="button" id="refresh">Refresh snapshot ↻</button></div>
+    </section>
+    <p class="notice"><strong>A controlled numerical benchmark.</strong> The public measured wave-steepness record is available; the measured dye profiles are not included in this campaign. Agreement between numerical cases is not validation against laboratory dye observations.</p>
+    <div id="error" role="alert" hidden></div>
+
+    <section class="section" id="experiment" aria-labelledby="experiment-heading">
+      <div class="section-head"><div><p class="eyebrow">Matched comparisons</p><h2 id="experiment-heading">Change the waves. Hold the dye experiment fixed.</h2></div></div>
+      <div class="comparison-grid">
+        <article class="comparison"><span class="case-letter fixed">A</span><h3>Fixed reference</h3><p>Prescribed reference waves establish the comparison with the original fixed-slope approach.</p></article>
+        <article class="comparison"><span class="case-letter observed">B</span><h3>Measured wave history</h3><p>The observed characteristic steepness supplies the time-dependent wave amplitude.</p></article>
+        <article class="comparison"><span class="case-letter wind">C</span><h3>Wind + molecular loss</h3><p>The parent evolves with wind growth and molecular damping, without the extra parent-loss term.</p></article>
+        <article class="comparison"><span class="case-letter damped">D</span><h3>Wind + parent loss</h3><p>The same evolution includes the single steepness-dependent parent-loss coefficient.</p></article>
+      </div>
+      <p class="small muted">The main group uses a 3 cm carrier in a 12 × 12 × 5 cm domain, following physical ages 16–29.8611 s, the end of the public wave record. The stress history, initial current perturbations, dye initialization, diffusivity, and grid are matched. The fixed and damped cases are also repeated at higher resolution.</p>
+      <div class="table-scroll"><table><caption>Run configuration and latest stage</caption><thead><tr><th scope="col">Case</th><th scope="col">Wave treatment</th><th scope="col">Wavelength</th><th scope="col">Evolution</th><th scope="col">Stage</th></tr></thead><tbody id="case-table"><tr><td colspan="5" class="muted">Waiting for the published run configurations.</td></tr></tbody></table></div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-heading">
+      <div class="section-head"><div><p class="eyebrow">Evidence from the calculation</p><h2 id="results-heading">Wave development, mixing, and budgets</h2></div><span class="small muted" id="result-status">No derived results loaded</span></div>
+      <div class="figure-grid" id="figures"></div>
+      <div class="empty" id="empty"><span class="empty-symbol">η → dye</span><div><h3>Results will appear here after analysis.</h3><p>We will compare wave steepness, surface velocity, dye centroid and 99% depth, together with the wind input, parent loss, and momentum accounting.</p><p class="small">Only computed figures are displayed. Missing results remain explicitly marked as unavailable.</p></div></div>
+      <div class="findings" id="findings" hidden></div>
+      <div class="downloads" id="downloads"><a href="snapshot.json">Published snapshot (JSON)</a></div>
+    </section>
+
+    <section class="section model" id="method" aria-labelledby="model-heading">
+      <div><p class="eyebrow">The deliberately small addition</p><h2 id="model-heading">Two coefficients.<br>An evolving parent wave.</h2><p>The prognostic parent retains complex amplitudes, phases, gravity–capillary dispersion, and two-way coupling to the three-dimensional current. Wind and damping enter as extra amplitude tendencies. The fixed and observed controls use prescribed amplitudes and linear phases.</p><p>This first 3 cm test uses a narrow nine-mode parent band, linear intrinsic evolution, and carrier-self surface reconstruction. Broad-band cubic interactions are excluded because of the near-resonant 3 cm regime. The proposed parent loss remains an empirical surrogate.</p></div>
+      <div class="equation-panel"><p class="equation" aria-label="Time derivative of b equals existing dynamics plus half wind growth minus molecular and parent loss rates, times b">ḃ<sub>j</sub> = F<sub>existing,j</sub><br> + ½ (Γ<sub>wind,j</sub> − Γ<sub>ν,j</sub> − Γ<sub>pc,j</sub>) b<sub>j</sub></p><dl><dt>Wind growth</dt><dd>Γ<sub>wind</sub> = ℓ C<sub>in</sub> ω (u<sub>*a</sub> / c)² [cos θ]<sub>+</sub>.</dd><dt>Molecular loss</dt><dd>Γ<sub>ν</sub> = 4ν<sub>p</sub>k².</dd><dt>Extra parent loss</dt><dd>Γ<sub>pc</sub> = 4ν<sub>p</sub>k² C<sub>pc</sub> [s<sub>p</sub> − 0.05]<sub>+</sub>².</dd></dl><p class="small muted">Γ denotes an energy growth or loss rate. Amplitude tendencies contain the factor ½. The steepness uses the whole designated parent band, normalized to ak for a sinusoid. The common factor ℓ ≤ 1 limits wave-input momentum to the available stress; it is not fitted.</p></div>
+    </section>
+    <details class="methods"><summary>Calibration, momentum accounting, and interpretation</summary><div class="method-grid"><div><h3>Wave observations set the coefficients</h3><p>The initial coefficient estimates come from wave evolution, not dye-depth fitting. The 3 cm measured series is total characteristic along-wind slope; interpreting it as a single parent is a reduced-model assumption. Transferring its loss coefficient to another wavelength is a sensitivity experiment.</p><h3>Stress is shared consistently</h3><p>The source-induced wave momentum change receives an equal and opposite horizontal-mean Eulerian-current tendency at each depth. Wind stress is imposed once, and the wave-input limiter enforces its available budget. The analysis checks the combined momentum change against the applied wind impulse.</p></div><div><h3>Cho is a separate field</h3><p>The four main cases retain a one-way Cho calculation with the existing 2.4× molecular disturbance damping; the two refined cases focus on the parent, current, and dye. The new coefficient acts on the parent. The computed Cho response does not supply a reciprocal parent-energy debit or feed directly into the dye.</p><h3>What constitutes a useful result</h3><p>A plausible wave history and dye response with fixed coefficients is useful evidence. Software checks, agreement between numerical controls, and fitting the observed wave curve do not by themselves establish physical validity or spatial convergence.</p></div></div><ul id="caveats" class="small muted"></ul></details>
+    <section class="references"><h2>Sources</h2><p><a href="https://doi.org/10.1029/JC087iC03p01961">Plant (1982)</a> · <a href="https://doi.org/10.1063/1.1519260">Zhang (2002)</a> · <a href="https://doi.org/10.1017/jfm.2014.740">Melville &amp; Fedorov (2015)</a> · <a href="https://doi.org/10.1017/jfm.2023.920">Wagner et al. (2023)</a> · <a href="https://github.com/glwagner/NumericalWaveTanks.jl/blob/6defa95dab158d2b94d687df2a6ba110faf427a0/analysis/steepness_data.jl">Public wave-steepness record</a></p></section>
+    <noscript><p class="notice">JavaScript is required to display the current run table and figures. The complete published record is available in <a href="snapshot.json">snapshot.json</a>.</p></noscript>
+  </main>
+  <footer class="wrap"><div><strong>Choppy waves &amp; capillary ripples</strong><p>Nicholas Pizzo · Numerical research gallery</p></div><div><a href="../../">All experiments</a><a href="https://github.com/npizzo/choppy-cho-gallery">Gallery repository ↗</a></div><p class="footer-note">This is the last published snapshot, not a live connection to Unity. Raw field histories and restart files remain in research storage.</p></footer>
+</body>
+</html>
