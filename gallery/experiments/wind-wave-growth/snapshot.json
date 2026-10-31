@@ -2,7 +2,7 @@
   "schema_version": 1,
   "campaign": "Minimal wind growth and parent loss",
   "state": "running",
-  "updated_at_utc": "2026-10-31T22:41:05.632591+00:00",
+  "updated_at_utc": "2026-10-31T22:42:12.601067+00:00",
   "scientific_status": "preliminary",
   "numerical_complete": false,
   "measured_dye_available": false,
@@ -75,19 +75,32 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 0.0,
-        "final_physical_age_s": 16.0,
-        "final_parent_alongwind_steepness": null,
-        "final_parent_omni_steepness": null,
-        "final_surface_stokes_shear_s_inv": null,
-        "final_surface_UE_mean_m_s": null,
-        "final_dye_centroid_depth_m": null,
-        "final_dye_z99_depth_m": null
+        "final_elapsed_s": 0.049999999999999996,
+        "final_physical_age_s": 16.05,
+        "final_parent_alongwind_steepness": 0.10999997622771629,
+        "final_parent_omni_steepness": 0.10999997622771629,
+        "final_surface_stokes_shear_s_inv": 1.261204652440404,
+        "final_surface_UE_mean_m_s": 0.15357531317963916,
+        "final_dye_centroid_depth_m": 0.00036917580894485215,
+        "final_dye_z99_depth_m": 0.0013430534504930037,
+        "max_parent_streamwise_boundary_action_fraction": 0.0,
+        "max_parent_transverse_boundary_action_fraction": 0.0,
+        "max_parent_omni_steepness": 0.11,
+        "wave_training_interval_slope_rmse": 0.05906281297933507,
+        "max_dye_relative_mass_error": 2.220446049250313e-16,
+        "max_dye_negative_mass_fraction": 5.630510206512758e-31,
+        "minimum_wind_input_limiter": 1.0,
+        "fraction_of_records_with_wind_limiter": 0.0,
+        "max_momentum_residual_Pa_s": 1.0581813203458523e-16,
+        "max_momentum_residual_over_final_impulse": 4.4056487122834376e-14
       },
       "checks": {
-        "malformed_complete_history_rows": 1,
-        "expected_histories_present": false,
-        "final_history_times_aligned": false
+        "malformed_complete_history_rows": 0,
+        "expected_histories_present": true,
+        "final_history_times_aligned": false,
+        "parent_band_boundary_action_below_5percent": true,
+        "dye_mass_conserved": true,
+        "dye_negative_mass_below_limit": true
       },
       "updated_at_utc": "2026-10-31T22:39:18.794094+00:00"
     },
@@ -180,7 +193,7 @@
       "wave_mode": "wind_visc",
       "wave_treatment": "Prognostic \u00b7 wind and molecular loss",
       "status": "pending",
-      "stage": "validation",
+      "stage": "queued",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -255,7 +268,7 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:27.151916+00:00"
+      "updated_at_utc": "2026-10-31T22:41:41.219282+00:00"
     },
     {
       "case": "wind_damped",
@@ -429,7 +442,7 @@
       "wave_mode": "wind_damped",
       "wave_treatment": "Prognostic \u00b7 wind and extra parent loss",
       "status": "pending",
-      "stage": "validation",
+      "stage": "queued",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -504,10 +517,35 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:28.887635+00:00"
+      "updated_at_utc": "2026-10-31T22:41:41.407472+00:00"
     }
   ],
-  "figures": [],
+  "figures": [
+    {
+      "file": "wave_evolution.png",
+      "title": "Wave evolution",
+      "description": "Parent-wave steepness and surface-current response. Measured wave slope is shown where available; it is not a separate parent-band measurement.",
+      "alt": "Wave evolution for the matched Unity calculations"
+    },
+    {
+      "file": "dye_deepening.png",
+      "title": "Dye deepening",
+      "description": "Dye centroid and 99% depth for matched numerical cases. These curves do not contain measured laboratory dye profiles.",
+      "alt": "Dye deepening for the matched Unity calculations"
+    },
+    {
+      "file": "momentum_budget.png",
+      "title": "Input, loss, and momentum accounting",
+      "description": "Wave source/loss diagnostics and the implemented momentum checks. Budget closure is assessed independently from dye agreement.",
+      "alt": "Input, loss, and momentum accounting for the matched Unity calculations"
+    },
+    {
+      "file": "dye_profiles.png",
+      "title": "Vertical dye profiles",
+      "description": "Horizontally averaged dye concentration, with mass and vertical-depth diagnostics.",
+      "alt": "Vertical dye profiles for the matched Unity calculations"
+    }
+  ],
   "downloads": [
     {
       "file": "case_metrics.csv",
