@@ -32,9 +32,11 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "pending",
-    "stage": "validation",
-    "message": "Awaiting measured operator comparison and production execution."
+    "status": "queued",
+    "stage": "production",
+    "message": "Validated 15-second ak = 0.2 run, with Cho at 2.4 times molecular damping, submitted to Unity.",
+    "updated_at_utc": "2026-10-31T20:20:13.817755+00:00",
+    "job_id": "66454698"
   },
   "benchmark": {
     "passed": true,
@@ -91,7 +93,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-10-31T20:18:17.493117+00:00",
+  "updated_at_utc": "2026-10-31T20:20:29.259405+00:00",
   "assets": [
     "assets/operator_comparison.json"
   ]
