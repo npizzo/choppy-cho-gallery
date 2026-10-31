@@ -1,7 +1,7 @@
 case,status,complete,final_dye_centroid_depth_m,final_dye_z99_depth_m,final_elapsed_s,final_parent_alongwind_steepness,final_parent_omni_steepness,final_physical_age_s,final_surface_UE_mean_m_s,final_surface_stokes_shear_s_inv
-fixed,failed,False,,,0.0,,,16.0,,
-observed,failed,False,,,0.0,,,16.0,,
-wind_visc,failed,False,,,0.0,,,16.0,,
-wind_damped,failed,False,,,0.0,,,16.0,,
-fixed_refined,failed,False,,,0.0,,,16.0,,
-wind_damped_refined,failed,False,,,0.0,,,16.0,,
+fixed,pending,False,,,0.0,,,16.0,,
+observed,pending,False,,,0.0,,,16.0,,
+wind_visc,pending,False,,,0.0,,,16.0,,
+wind_damped,pending,False,,,0.0,,,16.0,,
+fixed_refined,pending,False,,,0.0,,,16.0,,
+wind_damped_refined,pending,False,,,0.0,,,16.0,,
