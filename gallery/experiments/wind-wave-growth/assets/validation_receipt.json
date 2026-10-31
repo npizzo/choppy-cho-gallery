@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "source_fingerprint": "5e8fa1e9b2cfe76330570ebd56a7e469440a99a299dc373f1fe704610cad2e82",
+  "evidence": {
+    "wave_source_checks.toml": "4ba0ff61f0a609fec5371f158673775c38dda07093093572ade707f822b168a0",
+    "input_validation.json": "31edec681cc25a183124207bb369eef595dd5ae31f500fc87d794596a374216a",
+    "calibration.json": "13edbc2f778707a33c30eadd1d29e0aa617411cd08e31c1ea26cb73c432781f6",
+    "unit_tests_passed.json": "1b41934ef904997866b4711f4ebfb484c122e589d69a37d0b004735426aabf85",
+    "smoke_fixed/metadata.toml": "cd4fa14cd68dc523376ca2f087c4e4ab7dfac738ba65ba93e5c64bb011845818",
+    "smoke_fixed/dye_metadata.toml": "a3e33f956838107a57ec781d68e9645467a7a22546b5f219bf716fda0e3e4511",
+    "smoke_fixed/status.toml": "09e89c909e58b36bef0fd22c0155d0090b06313e96d9af125bb4f846b93ea90f",
+    "smoke_fixed/parent.csv": "4ba281b921533dc5e6d4d801fbac2bdd67d733a55855997b3263538c31d3cd75",
+    "smoke_fixed/wave_source_history.csv": "b6b9989178475c3f127b8348d8bd87571ca322ed870eed1cff8ef2b97a8692ad",
+    "smoke_fixed/dye_history.csv": "48b6680b6f012215cb3b92a4396704a58f78acab6c596053ce4392357b4453f8",
+    "smoke_wind_damped/metadata.toml": "014f1dae9f99be5dd2c02a62fb8232aba0e7b88784b3d409973872c8b99245d1",
+    "smoke_wind_damped/dye_metadata.toml": "2866d3a5b838c88373b4c66b3f1395e196c6008989598d5d35d42ac91e1d3dc4",
+    "smoke_wind_damped/status.toml": "08e769cf8193e709c2bf6d5dff085c95fc2f30ca78dcce4295cab2274adeb17a",
+    "smoke_wind_damped/parent.csv": "4501bad35ee9a7d414d1665521718627b5f87173fa2f26a9c3223ef4ef30b095",
+    "smoke_wind_damped/wave_source_history.csv": "da60950a1a0e7d03cf7aa53c852e1f00bf4b9534799f4f40a7e047e674031066",
+    "smoke_wind_damped/dye_history.csv": "2b5bc5be4914dd881d5af55cee4064f2aa7b3af0ed5cdf8b741fb81054733833",
+    "smoke_wind_damped_refined/metadata.toml": "1368a447e381d52b36db9e7ef840b3cad17a344038c444c6b9321557ae6287d3",
+    "smoke_wind_damped_refined/dye_metadata.toml": "01aa2ef578c9b746b5e0c68646035d260b27614d2cde53c45dde4a6a0cc8051e",
+    "smoke_wind_damped_refined/status.toml": "ee896cca382709cdde48b4c28ff8f601b6dc3075a34468513d3f776955241251",
+    "smoke_wind_damped_refined/parent.csv": "5551aecc66689cba5350fdbcc745905eea17a5aeca1051ff2b74b08ee7fdb880",
+    "smoke_wind_damped_refined/wave_source_history.csv": "f1533182a750043255dc867d1708a9b5b1ba18d7e90bf54251f4dd422bb17d31",
+    "smoke_wind_damped_refined/dye_history.csv": "10205796dac7e6079fc91c8e74770e3cebd15af1967d6c0827619780a55c65ec",
+    "smoke_wind_damped/cho_summary.json": "6e6897a806a61cbc03dfa04ddae6941ff0f4c6f9261a82e195f44210908d3271"
+  },
+  "time_utc": "2026-10-31T22:38:24.502600+00:00",
+  "scope": "Unity source normalization and momentum tests, passive diffusion/advection tests, a 0.1 s stirred fixed-wave dye check and 0.04 s coupled growing-wave checks on both grids with a 512-square Cho replay. These are numerical checks, not physical validation or long-time convergence."
+}

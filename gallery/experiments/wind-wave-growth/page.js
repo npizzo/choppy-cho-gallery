@@ -8,6 +8,8 @@ function badge(state) { const values=['pending','running','partial','complete','
 function uniqueCoefficient(cases, key) { const vals=[...new Set(cases.map(c=>c.config?.[key]).filter(finite))].filter(x=>x>0); return vals.length===1?fmt(vals[0]):vals.length>1?'Varied':'—'; }
 function render(s) {
   if(s.schema_version!==1 || !Array.isArray(s.cases)) throw new Error('The published snapshot has an unsupported format.');
+  const version=encodeURIComponent(s.updated_at_utc||'');
+  const assetUrl=name=>'assets/'+name+(version?'?v='+version:'');
   const complete=s.cases.filter(c=>c.complete===true).length;
   const state=s.state || (complete===s.cases.length&&complete?'complete':'pending');
   const b=badge(state);b.id='status';$('status').replaceWith(b);
@@ -23,13 +25,16 @@ function render(s) {
     row.append(element('td',finite(c.actual_final_time_s)&&c.status==='validity_limit'?fmt(c.actual_final_time_s)+' / '+fmt(c.duration_s)+' s':finite(c.duration_s)?fmt(c.duration_s)+' s':'—'));
     const stage=element('td');stage.append(badge(c.status));if(c.stage)stage.append(element('div',c.stage.replaceAll('_',' '),'small muted'));row.append(stage);tbody.append(row);}
   const figures=$('figures');figures.replaceChildren();
-  for(const f of (s.figures||[])){if(!safeFile(f.file))continue;const card=element('figure',undefined,'figure');const a=element('a');a.href='assets/'+f.file;const img=element('img');img.src=a.href;img.alt=f.alt||f.title||'Computed diagnostic';img.loading='lazy';a.append(img);card.append(a);const caption=element('figcaption');caption.append(element('h3',f.title));caption.append(element('p',f.description));card.append(caption);figures.append(card);}
+  for(const f of (s.figures||[])){if(!safeFile(f.file))continue;const card=element('figure',undefined,'figure');const a=element('a');a.href=assetUrl(f.file);const img=element('img');img.src=a.href;img.alt=f.alt||f.title||'Computed diagnostic';img.loading='lazy';a.append(img);card.append(a);const caption=element('figcaption');caption.append(element('h3',f.title));caption.append(element('p',f.description));card.append(caption);figures.append(card);}
   $('empty').hidden=figures.childElementCount>0;
   $('result-status').textContent=figures.childElementCount?figures.childElementCount+' computed figures · preliminary':'No derived results published yet';
   const findings=$('findings');findings.replaceChildren();for(const f of s.findings||[])findings.append(element('p',f));findings.hidden=!findings.childElementCount;
-  const downloads=$('downloads');downloads.replaceChildren();const snapshot=element('a','Published snapshot (JSON)');snapshot.href='snapshot.json';downloads.append(snapshot);
-  for(const d of s.downloads||[]){if(!safeFile(d.file))continue;const a=element('a',d.label);a.href='assets/'+d.file;downloads.append(a);}
+  const downloads=$('downloads');downloads.replaceChildren();const snapshot=element('a','Published snapshot (JSON)');snapshot.href='snapshot.json'+(version?'?v='+version:'');downloads.append(snapshot);
+  for(const d of s.downloads||[]){if(!safeFile(d.file))continue;const a=element('a',d.label);a.href=assetUrl(d.file);downloads.append(a);}
   const caveats=$('caveats');caveats.replaceChildren();for(const c of s.caveats||[])caveats.append(element('li',c));
 }
-async function load(){const button=$('refresh');button.disabled=true;$('error').hidden=true;try{const r=await fetch('snapshot.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('The published snapshot is unavailable (HTTP '+r.status+').');render(await r.json());}catch(e){$('error').textContent=e.message+' The last visible results, if any, are unchanged.';$('error').hidden=false;}finally{button.disabled=false;}}
+let loading=false;
+async function load(){if(loading)return;loading=true;const button=$('refresh');button.disabled=true;$('error').hidden=true;try{const r=await fetch('snapshot.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('The published snapshot is unavailable (HTTP '+r.status+').');render(await r.json());}catch(e){$('error').textContent=e.message+' The last visible results, if any, are unchanged.';$('error').hidden=false;}finally{button.disabled=false;loading=false;}}
 $('refresh').addEventListener('click',load);load();
+setInterval(()=>{if(!document.hidden)load();},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "campaign": "Minimal wind growth and parent loss",
-  "state": "pending",
-  "updated_at_utc": "2026-10-31T21:59:32.356494+00:00",
+  "state": "running",
+  "updated_at_utc": "2026-10-31T22:39:33.382358+00:00",
   "scientific_status": "preliminary",
   "numerical_complete": false,
   "measured_dye_available": false,
@@ -13,8 +13,8 @@
       "label": "Fixed reference",
       "wave_mode": "fixed",
       "wave_treatment": "Prescribed fixed amplitude",
-      "status": "pending",
-      "stage": "validation",
+      "status": "running",
+      "stage": "tank",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -68,6 +68,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -88,15 +89,15 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:24.790908+00:00"
+      "updated_at_utc": "2026-10-31T22:39:18.794094+00:00"
     },
     {
       "case": "observed",
       "label": "Measured wave history",
       "wave_mode": "observed",
       "wave_treatment": "Prescribed measured amplitude",
-      "status": "pending",
-      "stage": "validation",
+      "status": "running",
+      "stage": "tank",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -150,6 +151,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -170,7 +172,7 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:26.097787+00:00"
+      "updated_at_utc": "2026-10-31T22:39:22.592727+00:00"
     },
     {
       "case": "wind_visc",
@@ -232,6 +234,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -259,8 +262,8 @@
       "label": "Wind + parent loss",
       "wave_mode": "wind_damped",
       "wave_treatment": "Prognostic \u00b7 wind and extra parent loss",
-      "status": "pending",
-      "stage": "validation",
+      "status": "running",
+      "stage": "tank",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -314,6 +317,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -334,15 +338,15 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:27.990973+00:00"
+      "updated_at_utc": "2026-10-31T22:39:22.590291+00:00"
     },
     {
       "case": "fixed_refined",
       "label": "Fixed reference \u00b7 refined",
       "wave_mode": "fixed",
       "wave_treatment": "Prescribed fixed amplitude",
-      "status": "pending",
-      "stage": "validation",
+      "status": "running",
+      "stage": "tank",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -396,6 +400,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -416,7 +421,7 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T21:57:28.461258+00:00"
+      "updated_at_utc": "2026-10-31T22:39:22.583542+00:00"
     },
     {
       "case": "wind_damped_refined",
@@ -478,6 +483,7 @@
         "dye_diffusivity": 1e-07,
         "dye_initial_width": 0.0005,
         "dye_enabled": true,
+        "dye_advection": "conservative_weno5",
         "dye_mass_tolerance": 1e-06,
         "dye_negative_mass_tolerance": 0.0001,
         "wind_growth_coefficient": 0.03543838762483152,
@@ -520,6 +526,10 @@
       "label": "Coefficient calibration (JSON)"
     },
     {
+      "file": "validation_receipt.json",
+      "label": "Numerical check receipt (JSON)"
+    },
+    {
       "file": "run_configurations.json",
       "label": "Run configurations (JSON)"
     },
@@ -547,7 +557,8 @@
     "The wind input is reduced when its wave-momentum demand exceeds the supplied stress. The limiter is recorded; it is a budget bound, not a fitted coefficient.",
     "A trajectory that reaches the declared parent-band steepness limit of 0.35 stops there and is not a complete matched benchmark.",
     "This first 3 cm benchmark uses linear intrinsic evolution with a narrow nine-mode parent band and carrier-self surface reconstruction; near-resonant broad-band cubic dynamics are excluded.",
-    "Momentum and dye use conservative WENO5 advection with first-order upwind fallback at boundaries. Dye mass and negative-concentration checks remain active; concentration is not clipped.",
+    "Momentum retains WENO5 advection with first-order upwind fallback at boundaries. Dye adds a common-face flux limiter around the native WENO donor reconstruction; adjacent cells share the same limited flux, and cell concentrations are not clipped.",
+    "The native RK3 time integrator is not SSP, so the dye flux limiter is not a strict positivity guarantee. Dye mass and negative-concentration checks remain active.",
     "Numerical completion and budget checks do not establish physical validity or resolution convergence."
   ],
   "findings": []
