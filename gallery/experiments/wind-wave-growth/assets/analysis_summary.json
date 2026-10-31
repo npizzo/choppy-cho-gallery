@@ -80,7 +80,7 @@
         "final_dye_z99_depth_m": null
       },
       "checks": {
-        "malformed_complete_history_rows": 0,
+        "malformed_complete_history_rows": 1,
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
