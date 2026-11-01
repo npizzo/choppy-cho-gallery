@@ -33,9 +33,9 @@
   },
   "status": {
     "status": "running",
-    "stage": "tank",
-    "message": "Three-dimensional current and parent waves.",
-    "updated_at_utc": "2026-10-31T20:20:37.311171+00:00",
+    "stage": "geometry",
+    "message": "Validated 15-second ak = 0.2 run, with Cho at 2.4 times molecular damping, submitted to Unity.",
+    "updated_at_utc": "2026-11-01T01:07:43.138865+00:00",
     "job_id": "66454698"
   },
   "benchmark": {
@@ -93,7 +93,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-10-31T20:20:53.865613+00:00",
+  "updated_at_utc": "2026-11-01T01:08:48.667800+00:00",
   "assets": [
     "assets/operator_comparison.json"
   ]
