@@ -2,11 +2,11 @@
   "schema_version": 1,
   "campaign": "Minimal wind growth and parent loss",
   "state": "running",
-  "updated_at_utc": "2026-11-01T06:21:06.421278+00:00",
+  "updated_at_utc": "2026-11-01T07:46:55.049233+00:00",
   "scientific_status": "preliminary",
   "numerical_complete": false,
   "measured_dye_available": false,
-  "description": "1 of 6 matched calculations have completed their recorded stages and have analyzed trajectories. 2 parent/current/dye trajectories are available while later stages finish.",
+  "description": "2 of 6 matched calculations have completed their recorded stages and have analyzed trajectories.",
   "cases": [
     {
       "case": "fixed",
@@ -269,19 +269,32 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 0.0,
-        "final_physical_age_s": 16.0,
-        "final_parent_alongwind_steepness": null,
-        "final_parent_omni_steepness": null,
-        "final_surface_stokes_shear_s_inv": null,
-        "final_surface_UE_mean_m_s": null,
-        "final_dye_centroid_depth_m": null,
-        "final_dye_z99_depth_m": null
+        "final_elapsed_s": 2.6749999999996055,
+        "final_physical_age_s": 18.674999999999606,
+        "final_parent_alongwind_steepness": 0.2042536470911204,
+        "final_parent_omni_steepness": 0.20737681287686677,
+        "final_surface_stokes_shear_s_inv": 4.463367535209151,
+        "final_surface_UE_mean_m_s": 0.08906254717779097,
+        "final_dye_centroid_depth_m": 0.006162760890184488,
+        "final_dye_z99_depth_m": 0.021255513570543273,
+        "max_parent_streamwise_boundary_action_fraction": 0.016229899846855914,
+        "max_parent_transverse_boundary_action_fraction": 0.49019985870451294,
+        "max_parent_omni_steepness": 0.20737681287686677,
+        "wave_training_interval_slope_rmse": 0.03296957243162104,
+        "max_dye_relative_mass_error": 4.440892098500626e-16,
+        "max_dye_negative_mass_fraction": 5.202402259452551e-16,
+        "minimum_wind_input_limiter": 1.0,
+        "fraction_of_records_with_wind_limiter": 0.0,
+        "max_momentum_residual_Pa_s": 6.480789553120481e-06,
+        "max_momentum_residual_over_final_impulse": 4.859380911604797e-05
       },
       "checks": {
         "malformed_complete_history_rows": 0,
-        "expected_histories_present": false,
-        "final_history_times_aligned": false
+        "expected_histories_present": true,
+        "final_history_times_aligned": false,
+        "parent_band_boundary_action_below_5percent": false,
+        "dye_mass_conserved": true,
+        "dye_negative_mass_below_limit": true
       },
       "updated_at_utc": "2026-11-01T06:20:52.405647+00:00"
     },
@@ -290,9 +303,9 @@
       "label": "Wind + parent loss",
       "wave_mode": "wind_damped",
       "wave_treatment": "Prognostic \u00b7 wind and extra parent loss",
-      "status": "running",
-      "stage": "cho",
-      "complete": false,
+      "status": "complete",
+      "stage": "analysis_available",
+      "complete": true,
       "trajectory_complete": true,
       "duration_s": 13.86111111111111,
       "actual_final_time_s": 13.86111111111111,
@@ -380,7 +393,7 @@
         "dye_mass_conserved": true,
         "dye_negative_mass_below_limit": true
       },
-      "updated_at_utc": "2026-11-01T04:54:58.058455+00:00"
+      "updated_at_utc": "2026-11-01T07:46:37.813656+00:00"
     },
     {
       "case": "fixed_refined",
@@ -449,24 +462,24 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 1.5149999999997146,
-        "final_physical_age_s": 17.514999999999716,
-        "final_parent_alongwind_steepness": 0.10999989995409507,
-        "final_parent_omni_steepness": 0.10999989995409507,
-        "final_surface_stokes_shear_s_inv": 1.261202903410706,
-        "final_surface_UE_mean_m_s": 0.13162296669251836,
-        "final_dye_centroid_depth_m": 0.002261008626296999,
-        "final_dye_z99_depth_m": 0.007617042937015951,
+        "final_elapsed_s": 1.7349999999995926,
+        "final_physical_age_s": 17.734999999999594,
+        "final_parent_alongwind_steepness": 0.1099998854259843,
+        "final_parent_omni_steepness": 0.1099998854259843,
+        "final_surface_stokes_shear_s_inv": 1.261202570266871,
+        "final_surface_UE_mean_m_s": 0.12529646041089543,
+        "final_dye_centroid_depth_m": 0.002756762106549715,
+        "final_dye_z99_depth_m": 0.009012143362022267,
         "max_parent_streamwise_boundary_action_fraction": 0.0,
         "max_parent_transverse_boundary_action_fraction": 0.0,
         "max_parent_omni_steepness": 0.11,
-        "wave_training_interval_slope_rmse": 0.04153623889412916,
+        "wave_training_interval_slope_rmse": 0.039064579095358896,
         "max_dye_relative_mass_error": 4.440892098500626e-16,
         "max_dye_negative_mass_fraction": 3.994959149671359e-17,
         "minimum_wind_input_limiter": 1.0,
         "fraction_of_records_with_wind_limiter": 0.0,
-        "max_momentum_residual_Pa_s": 8.1601392309949e-15,
-        "max_momentum_residual_over_final_impulse": 1.0965692613460632e-13
+        "max_momentum_residual_Pa_s": 1.4641066137244252e-14,
+        "max_momentum_residual_over_final_impulse": 1.7124366275278115e-13
       },
       "checks": {
         "malformed_complete_history_rows": 0,
@@ -642,8 +655,9 @@
     "Numerical completion and budget checks do not establish physical validity or resolution convergence."
   ],
   "findings": [
+    "Retained-band sensitivity \u2014 Wind + molecular loss: maximum recorded edge-action fractions are transverse 49.0%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
     "Retained-band sensitivity \u2014 Wind + parent loss: maximum recorded edge-action fractions are streamwise 6.6%, transverse 67.8%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
     "Near-floor dye sensitivity (z99 \u2265 90% of the configured depth): Fixed reference: z99=49.2 mm of H=50 mm at elapsed 13.9 s; Measured wave history: z99=49.4 mm of H=50 mm at elapsed 13.2 s; Wind + parent loss: z99=49.3 mm of H=50 mm at elapsed 13.9 s. These depths may depend on the bottom boundary; further deepening needs a domain-depth sensitivity check.",
-    "Grid and perturbation sensitivity \u2014 Fixed reference at matched elapsed 1.51 s: coarse/refined differences are 52.3% for dye-centroid depth and 65.0% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result."
+    "Grid and perturbation sensitivity \u2014 Fixed reference at matched elapsed 1.73 s: coarse/refined differences are 46.5% for dye-centroid depth and 61.9% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result."
   ]
 }
