@@ -2,7 +2,7 @@
   "schema_version": 1,
   "campaign": "Minimal wind growth and parent loss",
   "state": "running",
-  "updated_at_utc": "2026-11-01T06:20:27.001022+00:00",
+  "updated_at_utc": "2026-11-01T06:21:06.421278+00:00",
   "scientific_status": "preliminary",
   "numerical_complete": false,
   "measured_dye_available": false,
@@ -207,8 +207,8 @@
       "label": "Wind + molecular loss",
       "wave_mode": "wind_visc",
       "wave_treatment": "Prognostic \u00b7 wind and molecular loss",
-      "status": "pending",
-      "stage": "queued",
+      "status": "running",
+      "stage": "tank",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
@@ -283,7 +283,7 @@
         "expected_histories_present": false,
         "final_history_times_aligned": false
       },
-      "updated_at_utc": "2026-10-31T22:41:41.219282+00:00"
+      "updated_at_utc": "2026-11-01T06:20:52.405647+00:00"
     },
     {
       "case": "wind_damped",
