@@ -1,0 +1,9 @@
+{
+  "physical_interval_s": [
+    0.0,
+    15.0
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 75.0
+}

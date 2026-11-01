@@ -1,0 +1,10 @@
+{
+  "physical_interval_s": [
+    0.0,
+    14.999999999999979
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 74.99999999999989,
+  "quantity": "Wave-averaged Eulerian current; instantaneous orbital velocity excluded"
+}
