@@ -25,7 +25,18 @@ function render(s) {
     row.append(element('td',finite(c.actual_final_time_s)&&c.status==='validity_limit'?fmt(c.actual_final_time_s)+' / '+fmt(c.duration_s)+' s':finite(c.duration_s)?fmt(c.duration_s)+' s':'—'));
     const stage=element('td');stage.append(badge(c.status));if(c.stage)stage.append(element('div',c.stage.replaceAll('_',' '),'small muted'));row.append(stage);tbody.append(row);}
   const figures=$('figures');figures.replaceChildren();
-  for(const f of (s.figures||[])){if(!safeFile(f.file))continue;const card=element('figure',undefined,'figure');const a=element('a');a.href=assetUrl(f.file);const img=element('img');img.src=a.href;img.alt=f.alt||f.title||'Computed diagnostic';img.loading='lazy';a.append(img);card.append(a);const caption=element('figcaption');caption.append(element('h3',f.title));caption.append(element('p',f.description));card.append(caption);figures.append(card);}
+  let dyePanels=0;
+  for(const f of (s.figures||[])){
+    if(!safeFile(f.file))continue;
+    const wide=f.layout==='wide';if(wide)dyePanels++;
+    const card=element('figure',undefined,wide?'figure figure-wide':'figure');
+    const a=element('a');a.href=assetUrl(f.file);a.target='_blank';a.rel='noopener';
+    const img=element('img');img.src=a.href;img.alt=f.alt||f.title||'Computed diagnostic';img.loading=wide?'eager':'lazy';a.append(img);card.append(a);
+    const caption=element('figcaption');caption.append(element('h3',f.title));caption.append(element('p',f.description));
+    if(wide){const links=element('div',undefined,'figure-downloads');const png=element('a','Open full PNG ↗');png.href=a.href;png.target='_blank';png.rel='noopener';links.append(png);if(safeFile(f.vector_file)){const svg=element('a','Download SVG');svg.href=assetUrl(f.vector_file);svg.download=f.vector_file;links.append(svg);}caption.append(links);}
+    card.append(caption);figures.append(card);
+  }
+  $('dye-guide').hidden=dyePanels===0;
   $('empty').hidden=figures.childElementCount>0;
   $('result-status').textContent=figures.childElementCount?figures.childElementCount+' computed figures · preliminary':'No derived results published yet';
   const findings=$('findings');findings.replaceChildren();for(const f of s.findings||[])findings.append(element('p',f));findings.hidden=!findings.childElementCount;
