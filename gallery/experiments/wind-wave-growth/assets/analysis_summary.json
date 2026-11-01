@@ -202,12 +202,12 @@
       "label": "Wind + molecular loss",
       "wave_mode": "wind_visc",
       "wave_treatment": "Prognostic \u00b7 wind and molecular loss",
-      "status": "running",
-      "stage": "tank",
+      "status": "validity_limit",
+      "stage": "validity_limit",
       "complete": false,
       "trajectory_complete": false,
       "duration_s": 13.86111111111111,
-      "actual_final_time_s": null,
+      "actual_final_time_s": 3.8227499999989694,
       "wavelength_m": 0.03,
       "config": {
         "benchmark_group": "wagner_3cm",
@@ -264,24 +264,24 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 2.749999999999564,
-        "final_physical_age_s": 18.749999999999563,
-        "final_parent_alongwind_steepness": 0.21363606542054242,
-        "final_parent_omni_steepness": 0.21691900904733705,
-        "final_surface_stokes_shear_s_inv": 4.88828805137687,
-        "final_surface_UE_mean_m_s": 0.08702094734107138,
-        "final_dye_centroid_depth_m": 0.006406465110754493,
-        "final_dye_z99_depth_m": 0.02192256990941538,
+        "final_elapsed_s": 3.8227499999989694,
+        "final_physical_age_s": 19.82274999999897,
+        "final_parent_alongwind_steepness": 0.3441177854433495,
+        "final_parent_omni_steepness": 0.3500069575593036,
+        "final_surface_stokes_shear_s_inv": 12.713570956666162,
+        "final_surface_UE_mean_m_s": 0.06462791239667363,
+        "final_dye_centroid_depth_m": 0.00929088426590431,
+        "final_dye_z99_depth_m": 0.028156600742670346,
         "max_parent_streamwise_boundary_action_fraction": 0.016229899846855914,
-        "max_parent_transverse_boundary_action_fraction": 0.49391072796871344,
-        "max_parent_omni_steepness": 0.21691900904733705,
-        "wave_training_interval_slope_rmse": 0.036320273357366484,
+        "max_parent_transverse_boundary_action_fraction": 0.550169294023106,
+        "max_parent_omni_steepness": 0.3500069575593036,
+        "wave_training_interval_slope_rmse": 0.09893493186998766,
         "max_dye_relative_mass_error": 4.440892098500626e-16,
-        "max_dye_negative_mass_fraction": 1.3111381112262146e-15,
-        "minimum_wind_input_limiter": 1.0,
-        "fraction_of_records_with_wind_limiter": 0.0,
-        "max_momentum_residual_Pa_s": 8.083458931162912e-06,
-        "max_momentum_residual_over_final_impulse": 5.878064722178806e-05
+        "max_dye_negative_mass_fraction": 9.912466705846144e-13,
+        "minimum_wind_input_limiter": 0.5718745732061743,
+        "fraction_of_records_with_wind_limiter": 0.18798955613577023,
+        "max_momentum_residual_Pa_s": 0.0001458092978711134,
+        "max_momentum_residual_over_final_impulse": 0.0007513982334225886
       },
       "checks": {
         "malformed_complete_history_rows": 0,
@@ -291,7 +291,7 @@
         "dye_mass_conserved": true,
         "dye_negative_mass_below_limit": true
       },
-      "updated_at_utc": "2026-11-01T06:20:52.405647+00:00"
+      "updated_at_utc": "2026-11-01T08:27:13.278968+00:00"
     },
     {
       "case": "wind_damped",
@@ -457,24 +457,24 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 1.744999999999587,
-        "final_physical_age_s": 17.744999999999585,
-        "final_parent_alongwind_steepness": 0.10999988509580004,
-        "final_parent_omni_steepness": 0.10999988509580004,
-        "final_surface_stokes_shear_s_inv": 1.2612025626954222,
-        "final_surface_UE_mean_m_s": 0.12514657758463765,
-        "final_dye_centroid_depth_m": 0.0027811128993600097,
-        "final_dye_z99_depth_m": 0.00907852803561142,
+        "final_elapsed_s": 1.8399999999995345,
+        "final_physical_age_s": 17.839999999999534,
+        "final_parent_alongwind_steepness": 0.10999987882229816,
+        "final_parent_omni_steepness": 0.10999987882229816,
+        "final_surface_stokes_shear_s_inv": 1.2612024188378823,
+        "final_surface_UE_mean_m_s": 0.12233286441144404,
+        "final_dye_centroid_depth_m": 0.0030211268079170764,
+        "final_dye_z99_depth_m": 0.00979023528975498,
         "max_parent_streamwise_boundary_action_fraction": 0.0,
         "max_parent_transverse_boundary_action_fraction": 0.0,
         "max_parent_omni_steepness": 0.11,
-        "wave_training_interval_slope_rmse": 0.03901143646934281,
+        "wave_training_interval_slope_rmse": 0.038029148758496924,
         "max_dye_relative_mass_error": 4.440892098500626e-16,
         "max_dye_negative_mass_fraction": 3.994959149671359e-17,
         "minimum_wind_input_limiter": 1.0,
         "fraction_of_records_with_wind_limiter": 0.0,
-        "max_momentum_residual_Pa_s": 1.4932499681208355e-14,
-        "max_momentum_residual_over_final_impulse": 1.7362590970052912e-13
+        "max_momentum_residual_Pa_s": 1.7458257062230587e-14,
+        "max_momentum_residual_over_final_impulse": 1.922450506906666e-13
       },
       "checks": {
         "malformed_complete_history_rows": 0,
@@ -553,19 +553,32 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 0.0,
-        "final_physical_age_s": 16.0,
-        "final_parent_alongwind_steepness": null,
-        "final_parent_omni_steepness": null,
-        "final_surface_stokes_shear_s_inv": null,
-        "final_surface_UE_mean_m_s": null,
-        "final_dye_centroid_depth_m": null,
-        "final_dye_z99_depth_m": null
+        "final_elapsed_s": 0.10000000000000002,
+        "final_physical_age_s": 16.1,
+        "final_parent_alongwind_steepness": 0.05295901599060225,
+        "final_parent_omni_steepness": 0.05295907834886623,
+        "final_surface_stokes_shear_s_inv": 0.2923370979300764,
+        "final_surface_UE_mean_m_s": 0.15820723347524038,
+        "final_dye_centroid_depth_m": 0.00039892523286064337,
+        "final_dye_z99_depth_m": 0.001475469163994753,
+        "max_parent_streamwise_boundary_action_fraction": 3.307794044826173e-05,
+        "max_parent_transverse_boundary_action_fraction": 3.716193577927726e-05,
+        "max_parent_omni_steepness": 0.05295907834886623,
+        "wave_training_interval_slope_rmse": 6.741495285417633e-05,
+        "max_dye_relative_mass_error": 2.220446049250313e-16,
+        "max_dye_negative_mass_fraction": 1.3669939643169905e-25,
+        "minimum_wind_input_limiter": 1.0,
+        "fraction_of_records_with_wind_limiter": 0.0,
+        "max_momentum_residual_Pa_s": 9.583422597159164e-12,
+        "max_momentum_residual_over_final_impulse": 1.9934348693669527e-09
       },
       "checks": {
         "malformed_complete_history_rows": 0,
-        "expected_histories_present": false,
-        "final_history_times_aligned": false
+        "expected_histories_present": true,
+        "final_history_times_aligned": true,
+        "parent_band_boundary_action_below_5percent": true,
+        "dye_mass_conserved": true,
+        "dye_negative_mass_below_limit": true
       },
       "updated_at_utc": "2026-11-01T07:49:39.815650+00:00"
     }
@@ -598,18 +611,25 @@
       "base": "fixed",
       "refined": "fixed_refined",
       "status": "available",
-      "comparison_elapsed_s": 1.744999999999587,
-      "dye_centroid_depth_m_coarse": 0.004064920476331561,
-      "dye_centroid_depth_m_refined": 0.0027811128993600097,
-      "dye_centroid_depth_m_relative_difference": 0.4616164907461977,
-      "dye_z99_depth_m_coarse": 0.01470341363128021,
-      "dye_z99_depth_m_refined": 0.00907852803561142,
-      "dye_z99_depth_m_relative_difference": 0.6195812331695867
+      "comparison_elapsed_s": 1.8399999999995345,
+      "dye_centroid_depth_m_coarse": 0.0043264399812286405,
+      "dye_centroid_depth_m_refined": 0.0030211268079170764,
+      "dye_centroid_depth_m_relative_difference": 0.43206169628196295,
+      "dye_z99_depth_m_coarse": 0.015561665077126944,
+      "dye_z99_depth_m_refined": 0.00979023528975498,
+      "dye_z99_depth_m_relative_difference": 0.5895087928490844
     },
     {
       "base": "wind_damped",
       "refined": "wind_damped_refined",
-      "status": "awaiting_both_histories"
+      "status": "available",
+      "comparison_elapsed_s": 0.10000000000000002,
+      "dye_centroid_depth_m_coarse": 0.00044537986127569316,
+      "dye_centroid_depth_m_refined": 0.00039892523286064337,
+      "dye_centroid_depth_m_relative_difference": 0.11644946117328656,
+      "dye_z99_depth_m_coarse": 0.0016890459887483555,
+      "dye_z99_depth_m_refined": 0.001475469163994753,
+      "dye_z99_depth_m_relative_difference": 0.14475180502949636
     }
   ]
 }
