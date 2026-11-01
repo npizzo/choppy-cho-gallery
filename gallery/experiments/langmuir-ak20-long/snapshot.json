@@ -33,9 +33,9 @@
   },
   "status": {
     "status": "running",
-    "stage": "spectra",
-    "message": "Omnidirectional elevation spectra at six times for the parent, Cho disturbance, and complete surface.",
-    "updated_at_utc": "2026-11-01T07:53:19.440974+00:00",
+    "stage": "render",
+    "message": "Blue parent evolution, resolved parent/Cho late comparison and underwater currents.",
+    "updated_at_utc": "2026-11-01T07:55:35.669108+00:00",
     "job_id": "66454698"
   },
   "benchmark": {
@@ -93,7 +93,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-01T07:54:44.888492+00:00",
+  "updated_at_utc": "2026-11-01T07:55:43.961142+00:00",
   "assets": [
     "assets/operator_comparison.json"
   ]
