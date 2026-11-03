@@ -2,11 +2,11 @@
   "schema_version": 1,
   "campaign": "Minimal wind growth and parent loss",
   "state": "running",
-  "updated_at_utc": "2026-11-01T14:47:02.802856+00:00",
+  "updated_at_utc": "2026-11-03T01:12:27.370567+00:00",
   "scientific_status": "preliminary",
   "numerical_complete": false,
   "measured_dye_available": false,
-  "description": "2 of 6 matched calculations have completed their recorded stages and have analyzed trajectories. 1 stopped at the declared model-validity limit; their available trajectories are shown separately.",
+  "description": "Completed finer-grid wind + parent-loss trajectory: physical ages 16\u201329.861 s, with the tested 0.5 ms continuation after age 18 s. The slower refined run remains a separate reference. 3 of 7 matched calculations have completed their recorded stages and have analyzed trajectories. 1 stopped at the declared model-validity limit; their available trajectories are shown separately.",
   "cases": [
     {
       "case": "fixed",
@@ -172,11 +172,11 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 13.235000000000296,
-        "final_physical_age_s": 29.235000000000298,
-        "final_parent_alongwind_steepness": 0.17953873510877358,
-        "final_parent_omni_steepness": 0.17953873510877358,
-        "final_surface_stokes_shear_s_inv": 3.359825360128599,
+        "final_elapsed_s": 13.240000000000284,
+        "final_physical_age_s": 29.240000000000286,
+        "final_parent_alongwind_steepness": 0.17953250834722098,
+        "final_parent_omni_steepness": 0.17953250834722098,
+        "final_surface_stokes_shear_s_inv": 3.3595923132757846,
         "final_surface_UE_mean_m_s": 0.09483442247893531,
         "final_dye_centroid_depth_m": 0.022716599063077984,
         "final_dye_z99_depth_m": 0.049375590802605465,
@@ -184,7 +184,7 @@
         "max_parent_transverse_boundary_action_fraction": 0.0,
         "max_parent_omni_steepness": 0.17990364288096197,
         "wave_training_interval_slope_rmse": 1.4762557341281401e-05,
-        "wave_heldout_interval_slope_rmse": 9.89873081337155e-06,
+        "wave_heldout_interval_slope_rmse": 9.90203102563312e-06,
         "max_dye_relative_mass_error": 6.661338147750939e-16,
         "max_dye_negative_mass_fraction": 3.566019865396381e-12,
         "minimum_wind_input_limiter": 1.0,
@@ -195,7 +195,7 @@
       "checks": {
         "malformed_complete_history_rows": 0,
         "expected_histories_present": true,
-        "final_history_times_aligned": true,
+        "final_history_times_aligned": false,
         "parent_band_boundary_action_below_5percent": true,
         "dye_mass_conserved": true,
         "dye_negative_mass_below_limit": true
@@ -462,24 +462,25 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 2.7899999999999627,
-        "final_physical_age_s": 18.789999999999964,
-        "final_parent_alongwind_steepness": 0.10999981575711613,
-        "final_parent_omni_steepness": 0.10999981575711613,
-        "final_surface_stokes_shear_s_inv": 1.2612009726919744,
-        "final_surface_UE_mean_m_s": 0.10074078854118143,
-        "final_dye_centroid_depth_m": 0.0057281638687375295,
-        "final_dye_z99_depth_m": 0.017746106501628906,
+        "final_elapsed_s": 8.339999999999904,
+        "final_physical_age_s": 24.339999999999904,
+        "final_parent_alongwind_steepness": 0.10999944925336973,
+        "final_parent_omni_steepness": 0.10999944925336973,
+        "final_surface_stokes_shear_s_inv": 1.2611925684213268,
+        "final_surface_UE_mean_m_s": 0.10528573386175054,
+        "final_dye_centroid_depth_m": 0.014985587706711696,
+        "final_dye_z99_depth_m": 0.04230931248843991,
         "max_parent_streamwise_boundary_action_fraction": 0.0,
         "max_parent_transverse_boundary_action_fraction": 0.0,
         "max_parent_omni_steepness": 0.11,
-        "wave_training_interval_slope_rmse": 0.030914724264980317,
+        "wave_training_interval_slope_rmse": 0.02586251348593441,
+        "wave_heldout_interval_slope_rmse": 0.014601377333759784,
         "max_dye_relative_mass_error": 4.440892098500626e-16,
         "max_dye_negative_mass_fraction": 3.994959149671359e-17,
         "minimum_wind_input_limiter": 1.0,
         "fraction_of_records_with_wind_limiter": 0.0,
-        "max_momentum_residual_Pa_s": 2.7255975254547593e-14,
-        "max_momentum_residual_over_final_impulse": 1.9524530313039542e-13
+        "max_momentum_residual_Pa_s": 4.2155168245017194e-13,
+        "max_momentum_residual_over_final_impulse": 9.395740946238123e-13
       },
       "checks": {
         "malformed_complete_history_rows": 0,
@@ -558,37 +559,230 @@
         "parent_loss_coefficient": 1453.9418226610092
       },
       "metrics": {
-        "final_elapsed_s": 1.129999999999928,
-        "final_physical_age_s": 17.129999999999928,
-        "final_parent_alongwind_steepness": 0.08438759363627021,
-        "final_parent_omni_steepness": 0.0844313768240471,
-        "final_surface_stokes_shear_s_inv": 0.742967322126423,
-        "final_surface_UE_mean_m_s": 0.1519697337482303,
-        "final_dye_centroid_depth_m": 0.0012061072039609877,
-        "final_dye_z99_depth_m": 0.0049594655840470726,
-        "max_parent_streamwise_boundary_action_fraction": 0.0002812319474604169,
-        "max_parent_transverse_boundary_action_fraction": 0.01648474406109289,
-        "max_parent_omni_steepness": 0.0844313768240471,
-        "wave_training_interval_slope_rmse": 0.0026698607067179186,
-        "max_dye_relative_mass_error": 3.3306690738754696e-16,
+        "final_elapsed_s": 5.444999999999583,
+        "final_physical_age_s": 21.44499999999958,
+        "final_parent_alongwind_steepness": 0.11205259605916103,
+        "final_parent_omni_steepness": 0.11280129583166469,
+        "final_surface_stokes_shear_s_inv": 1.3239117281948418,
+        "final_surface_UE_mean_m_s": 0.09865236348089049,
+        "final_dye_centroid_depth_m": 0.010718349025812634,
+        "final_dye_z99_depth_m": 0.032405068352116644,
+        "max_parent_streamwise_boundary_action_fraction": 0.016548953035858623,
+        "max_parent_transverse_boundary_action_fraction": 0.7575654624842564,
+        "max_parent_omni_steepness": 0.11367761688039976,
+        "wave_training_interval_slope_rmse": 0.00337175515885387,
+        "wave_heldout_interval_slope_rmse": 0.002746683246118307,
+        "max_dye_relative_mass_error": 4.440892098500626e-16,
         "max_dye_negative_mass_fraction": 4.1835447018278143e-17,
         "minimum_wind_input_limiter": 1.0,
         "fraction_of_records_with_wind_limiter": 0.0,
-        "max_momentum_residual_Pa_s": 8.52088566372089e-10,
-        "max_momentum_residual_over_final_impulse": 1.5440109819818913e-08
+        "max_momentum_residual_Pa_s": 8.544280640288004e-06,
+        "max_momentum_residual_over_final_impulse": 3.024814775612486e-05
       },
       "checks": {
         "malformed_complete_history_rows": 0,
         "expected_histories_present": true,
         "final_history_times_aligned": true,
-        "parent_band_boundary_action_below_5percent": true,
+        "parent_band_boundary_action_below_5percent": false,
         "dye_mass_conserved": true,
         "dye_negative_mass_below_limit": true
       },
       "updated_at_utc": "2026-11-01T07:49:39.815650+00:00"
+    },
+    {
+      "case": "wind_damped_refined_fast",
+      "label": "Wind + parent loss \u00b7 refined \u00b7 faster continuation",
+      "wave_mode": "wind_damped",
+      "wave_treatment": "0.125 ms to wind age 18 s; 0.5 ms thereafter",
+      "status": "complete",
+      "stage": "analysis_available",
+      "complete": true,
+      "trajectory_complete": true,
+      "duration_s": 13.86111111111111,
+      "actual_final_time_s": 13.86111111111111,
+      "wavelength_m": 0.03,
+      "config": {
+        "nx": 65,
+        "ny": 129,
+        "nz": 96,
+        "dt": 0.0005,
+        "H": 0.05,
+        "Lx": 0.12,
+        "Ly": 0.12,
+        "initial_age": 16.0,
+        "duration": 13.86111111111111,
+        "wind_input_coefficient": 0.03543838762483152,
+        "parent_damping_coefficient": 1453.9418226610092
+      },
+      "metrics": {
+        "final_elapsed_s": 13.86111111111111,
+        "final_dye_z99_depth_m": 0.04859321004054556,
+        "final_dye_centroid_depth_m": 0.020368414008546054,
+        "final_parent_steepness": 0.1198918355864405,
+        "max_dye_relative_mass_error": 4.440892098500626e-16,
+        "max_parent_transverse_boundary_action_fraction": 0.7575559934147761,
+        "max_parent_streamwise_boundary_action_fraction": 0.04340892635433303
+      },
+      "checks": {
+        "initial_profile_surface_orientation": true,
+        "grid_centers_match_faces": true,
+        "max_profile_relative_mass_error": 4.440892098500626e-16,
+        "independent_z99_records": 2774,
+        "max_independent_z99_error_m": 1.457167719820518e-16,
+        "max_profile_vs_recorded_mass_error": 4.440892098500626e-16,
+        "snapshot_checks": [
+          {
+            "time_s": 1.9999999999994458,
+            "physical_age_s": 17.999999999999446,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 4.8603565616645035e-11,
+            "snapshot_vs_profile_relative_l1": 3.994707242680665e-10,
+            "snapshot_vs_profile_z99_error_m": 3.2911867675622375e-13,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000000_dye.bin",
+              "sha256": "74dce7896679c95c10bb3aede3e9a8837aa3cfe49e715e97e20d5157d5ab3775"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000000.toml",
+              "sha256": "7ffcfb68dabe717e9f2656d487aa620fe4201be3c2fb209cd1c5f0e54fffb66c"
+            }
+          },
+          {
+            "time_s": 3.499999999999414,
+            "physical_age_s": 19.499999999999414,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 6.936340390950591e-12,
+            "snapshot_vs_profile_relative_l1": 2.448760553021562e-10,
+            "snapshot_vs_profile_z99_error_m": 5.449217466146905e-13,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000003_dye.bin",
+              "sha256": "b7ebf0d46fb889b227b85f8b2efe5dfe137f12462d233081827d09193fe26f0e"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000003.toml",
+              "sha256": "22f80a53e4bd06e5015c7d9c27ccfdf7448c1b98bf554f9e3a51e81bb32bb0dc"
+            }
+          },
+          {
+            "time_s": 3.999999999999403,
+            "physical_age_s": 19.999999999999403,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 3.5444536194972904e-11,
+            "snapshot_vs_profile_relative_l1": 3.1458868844058407e-10,
+            "snapshot_vs_profile_z99_error_m": 4.655338614600879e-13,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000004_dye.bin",
+              "sha256": "34a6545b30f5855ba9b207d31e2aa13505e30b3b549fee5b628ef6b64abc9b11"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000004.toml",
+              "sha256": "65b088f12a62e917ab8afc56efdcc7e8e9e47f98b999004f8f4cd83562818803"
+            }
+          },
+          {
+            "time_s": 4.499999999999126,
+            "physical_age_s": 20.499999999999126,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 7.531275603156474e-11,
+            "snapshot_vs_profile_relative_l1": 2.80169397848224e-10,
+            "snapshot_vs_profile_z99_error_m": 1.4595755160051738e-12,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000005_dye.bin",
+              "sha256": "41e93579f0c347da5671df937133bb7981956abf9e6379c870ed4a70ebcfeed5"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000005.toml",
+              "sha256": "b9fac08475f98b0fb2f06427e1a8310cc2253158465673da6ed6629ff6621004"
+            }
+          },
+          {
+            "time_s": 5.499999999998572,
+            "physical_age_s": 21.499999999998572,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 2.015165811997122e-12,
+            "snapshot_vs_profile_relative_l1": 2.694043838547801e-10,
+            "snapshot_vs_profile_z99_error_m": 1.7564560916838445e-12,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000007_dye.bin",
+              "sha256": "3b36fcd0e3e56c09d1f835b25cf4d7ace7266ffe4e0e520b227438fcfaef223c"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000007.toml",
+              "sha256": "3ced429ee7952a2e6058a7f995c7450359bb5366dba9bdb90e52ef2a803b41e4"
+            }
+          },
+          {
+            "time_s": 13.86111111111111,
+            "physical_age_s": 29.86111111111111,
+            "shape": [
+              65,
+              129,
+              96
+            ],
+            "storage_order": "F",
+            "scalar_type": "float32",
+            "snapshot_relative_mass_error": 3.7483904868906854e-11,
+            "snapshot_vs_profile_relative_l1": 2.5188708011745294e-10,
+            "snapshot_vs_profile_z99_error_m": 5.079270337660091e-13,
+            "data": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000024_dye.bin",
+              "sha256": "06265fb965b6c45b086cbfaac2c95158abae16cb1f53b929caf815b4a52cd488"
+            },
+            "metadata": {
+              "file": "performance/fast_continuation_20261101/segment/snapshots/frame_000024.toml",
+              "sha256": "08ed4ec2f0e35fbef0415cc02683667a7adb94f95965a405df757df0aad5f29a"
+            }
+          }
+        ],
+        "maximum_recorded_negative_mass_fraction": 4.1835447018278143e-17
+      }
     }
   ],
   "figures": [
+    {
+      "file": "fast_continuation_evolution.png",
+      "vector_file": "fast_continuation_evolution.svg",
+      "layout": "wide",
+      "title": "Completed finer run: wave evolution and dye deepening",
+      "description": "The original history through age 18 s is joined to the completed 0.5 ms continuation after matching the saved fields and seam diagnostics. The dashed line marks the timestep change. Bottom proximity and wave-band edge action remain interpretation limits."
+    },
+    {
+      "file": "fast_continuation_transverse.png",
+      "vector_file": "fast_continuation_transverse.svg",
+      "layout": "wide",
+      "title": "Completed finer run: transverse dye structure",
+      "description": "True fixed-x dye sections at six saved ages, including the final state. The shared scale is C*=Hc/M0; the full domain is 12 cm across and 50 mm deep. Simulation fields only; no laboratory comparison or interpolation."
+    },
     {
       "file": "dye_depth_time.png",
       "vector_file": "dye_depth_time.svg",
@@ -631,6 +825,30 @@
     }
   ],
   "downloads": [
+    {
+      "file": "fast_continuation_evolution.png",
+      "label": "Completed finer run: wave evolution and dye deepening (PNG)"
+    },
+    {
+      "file": "fast_continuation_evolution.svg",
+      "label": "Completed finer run: wave evolution and dye deepening (SVG)"
+    },
+    {
+      "file": "fast_continuation_transverse.png",
+      "label": "Completed finer run: transverse dye structure (PNG)"
+    },
+    {
+      "file": "fast_continuation_transverse.svg",
+      "label": "Completed finer run: transverse dye structure (SVG)"
+    },
+    {
+      "file": "fast_continuation.json",
+      "label": "Completed finer run: checks + provenance (JSON)"
+    },
+    {
+      "file": "fast_continuation_dye.csv",
+      "label": "Completed finer run: dye history (CSV)"
+    },
     {
       "file": "dye_depth_time.png",
       "label": "Dye depth\u2013time evolution (PNG)"
@@ -692,6 +910,8 @@
     "More than 5% of parent action on either retained-band boundary flags possible spectral truncation; inspect the boundary-action checks before interpreting dye differences.",
     "Cho remains one-way and does not directly transport the mean-model dye or deposit turbulence.",
     "A clean validity stop is partial scientific output, not completion of the target interval.",
+    "The 0.5 ms timestep passed a 0.1 s comparison near wind age 18 s; full-trajectory temporal convergence is not established.",
+    "The wave band is unchanged and remains narrow. Late dye reaches near the bottom. This run has no additional Cho replay.",
     "The initial coefficients were estimated from wave data over 15\u201320 s. That interval is calibration, not independent validation; later wave data provide a held-out comparison.",
     "No laboratory dye profiles are included. Dye comparisons here are among matched numerical experiments.",
     "Cho remains a one-way disturbance calculation. Its damping and the empirical parent-loss coefficient are distinct.",
@@ -706,8 +926,10 @@
   "findings": [
     "Retained-band sensitivity \u2014 Wind + molecular loss: maximum recorded edge-action fractions are transverse 55.0%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
     "Retained-band sensitivity \u2014 Wind + parent loss: maximum recorded edge-action fractions are streamwise 6.6%, transverse 67.8%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
-    "Near-floor dye sensitivity (z99 \u2265 90% of the configured depth): Fixed reference: z99=49.2 mm of H=50 mm at elapsed 13.9 s; Measured wave history: z99=49.4 mm of H=50 mm at elapsed 13.2 s; Wind + parent loss: z99=49.3 mm of H=50 mm at elapsed 13.9 s. These depths may depend on the bottom boundary; further deepening needs a domain-depth sensitivity check.",
-    "Grid and perturbation sensitivity \u2014 Fixed reference at matched elapsed 2.79 s: coarse/refined differences are 20.2% for dye-centroid depth and 37.3% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result.",
-    "Grid and perturbation sensitivity \u2014 Wind + parent loss at matched elapsed 1.13 s: coarse/refined differences are 69.5% for dye-centroid depth and 73.7% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result."
+    "Retained-band sensitivity \u2014 Wind + parent loss \u00b7 refined: maximum recorded edge-action fractions are transverse 75.8%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
+    "Retained-band sensitivity \u2014 Wind + parent loss \u00b7 refined \u00b7 faster continuation: maximum recorded edge-action fractions are transverse 75.8%. Values above 5% flag possible sensitivity to the chosen parent band; they do not establish truncation error.",
+    "Near-floor dye sensitivity (z99 \u2265 90% of the configured depth): Fixed reference: z99=49.2 mm of H=50 mm at elapsed 13.9 s; Measured wave history: z99=49.4 mm of H=50 mm at elapsed 13.2 s; Wind + parent loss: z99=49.3 mm of H=50 mm at elapsed 13.9 s; Wind + parent loss \u00b7 refined \u00b7 faster continuation: z99=48.6 mm of H=50 mm at elapsed 13.9 s. These depths may depend on the bottom boundary; further deepening needs a domain-depth sensitivity check.",
+    "Grid and perturbation sensitivity \u2014 Fixed reference at matched elapsed 8.34 s: coarse/refined differences are 10.4% for dye-centroid depth and 4.1% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result.",
+    "Grid and perturbation sensitivity \u2014 Wind + parent loss at matched elapsed 5.44 s: coarse/refined differences are 8.7% for dye-centroid depth and 7.8% for z99, relative to the refined values. Both the grid and perturbation realization differ; this is a sensitivity comparison, not a convergence result."
   ]
 }
