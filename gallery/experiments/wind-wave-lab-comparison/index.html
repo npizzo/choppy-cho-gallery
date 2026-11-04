@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dye mixing, transverse structure, surface evolution, laboratory slope comparisons and upwelling contours for the wind-growth experiments of the coupled choppy-wave, Cho ripple and current model.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Wind-wave lab comparison &amp; upwelling · Choppy / Cho</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fig { margin: 18px 0 30px; }
+    .fig img, .fig video { width: 100%; height: auto; display: block; border: 1px solid rgba(0,0,0,.08); border-radius: 6px; background: #fff; }
+    .fig figcaption { font-size: .92rem; line-height: 1.5; margin-top: 8px; opacity: .85; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+    .video-grid figure { margin: 0; }
+    .table-wrap { overflow-x: auto; }
+    table.data { border-collapse: collapse; font-size: .92rem; margin: 10px 0 18px; min-width: 520px; }
+    table.data th, table.data td { padding: 5px 10px; border-bottom: 1px solid rgba(0,0,0,.1); text-align: right; }
+    table.data th:first-child, table.data td:first-child { text-align: left; }
+    .dl a { margin-right: 14px; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#dye">Skip to results</a>
+  <header class="wrap">
+    <nav aria-label="Main navigation"><a class="brand" href="../../">Choppy <span>/</span> Cho</a><div><a href="#dye">Dye</a><a href="#transverse">Transverse</a><a href="#surface">Surface</a><a href="#lab">Lab comparison</a><a href="#upwelling">Upwelling</a></div></nav>
+    <section class="hero">
+      <p class="eyebrow">Wind-wave development · derived analyses</p>
+      <h1>Compare the surface with the lab.<br>Then find the upwelling.</h1>
+      <p class="lead">Post-processing of the <a href="../wind-wave-growth/">wind growth &amp; parent damping</a> runs, with the 8 cm <a href="../langmuir-steep30/">ak = 0.3</a> case: dye-mixing movies, cross-wind structure, parent + Cho surface evolution, comparisons with laboratory slope fields and Veron &amp; Melville (2001), and upwelling contoured in the style of their Fig. 15.</p>
+      <div class="hero-notes"><span>Simulation fields only, unless labelled lab</span><span>Wave-averaged (Lagrangian-mean) current and dye</span><span>Cho ripples are one-way</span></div>
+    </section>
+  </header>
+  <main class="wrap">
+    <p class="notice"><strong>Read with the caveats.</strong> The wind runs use a 12 × 12 cm periodic domain whose retained parent band is 2.4–4 cm along the wind and has cross-wind modes only at the 12 cm domain width. Cross-wind structure at that scale is set by the domain, not by physics. The Cho ripple field responds to the parent waves and surface current but does not feed back on either.</p>
+
+    <section class="section" id="dye" aria-labelledby="dye-heading">
+      <div class="section-head"><div><p class="eyebrow">Passive dye, all wind-growth runs</p><h2 id="dye-heading">Dye mixing</h2></div></div>
+      <p class="muted">Box views (top surface and two side faces) of the wave-averaged dye, C* = Hc/M₀ on a log scale (1 = fully mixed). Saved 3D fields are every 0.5 s and are not interpolated in time; true aspect ratio. Runs that stopped early end at their last saved field.</p>
+      <div class="video-grid">
+        <figure class="fig"><video controls preload="metadata" src="media/dye_fixed.mp4"></video><figcaption>Fixed reference (33×65×48), complete.</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/dye_wind_damped.mp4"></video><figcaption>Wind + parent loss (33×65×48), complete.</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/dye_wind_damped_refined_fast.mp4"></video><figcaption>Wind + parent loss, finer grid (65×129×96): 0.125 ms to wind age 18 s, 0.5 ms after.</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/dye_observed.mp4"></video><figcaption>Measured wave history (33×65×48), stopped at 13.0 s elapsed.</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/dye_wind_visc.mp4"></video><figcaption>Wind + molecular loss (33×65×48), validity stop at 3.82 s (parent steepness 0.35).</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/dye_fixed_refined.mp4"></video><figcaption>Fixed reference, finer grid; cancelled at 10.5 s elapsed.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="transverse" aria-labelledby="transverse-heading">
+      <div class="section-head"><div><p class="eyebrow">Cross-wind (y–z) structure</p><h2 id="transverse-heading">Transverse dye structure</h2></div></div>
+      <figure class="fig"><img src="media/transverse_sections_refined.png" alt="Cross-wind dye sections at fixed x for the finer-grid fixed-wave and wind + parent-loss runs at six wind ages."><figcaption>Fixed-x dye sections on the finer grid (Δy ≈ 0.92 mm) at the times shown in Wagner et al. (2023), Fig. 4, nearest saved field. Both runs in a row share one linear colour scale.</figcaption></figure>
+      <figure class="fig"><img src="media/transverse_spectrum_refined.png" alt="Cross-wind spectrum of dye anomaly versus wind age."><figcaption>Cross-wind spectrum of the dye anomaly (2–15 mm depth, averaged along the wind). The first plumes are 1.2–1.7 cm apart at ages 17.5–18.5 s; variance moves to the domain-wide (12 cm) mode by about 20.5 s (wind) and 22 s (fixed). The first spacing shrinks with grid refinement (about 2.5 cm → 1.7 cm), so it is not converged.</figcaption></figure>
+      <figure class="fig"><img src="media/transverse_sections_wind_visc.png" alt="Cross-wind dye sections comparing wind + molecular loss, wind + parent loss and fixed waves."><figcaption>Standard grid: wind + molecular loss (no extra parent loss) against wind + parent loss and fixed waves. Early plume spacing is unchanged by the parent damping; after age 19 s the steeper parent waves mix deeper.</figcaption></figure>
+    </section>
+
+    <section class="section" id="surface" aria-labelledby="surface-heading">
+      <div class="section-head"><div><p class="eyebrow">Parent + Cho surface, 512 × 512</p><h2 id="surface-heading">Surface evolution</h2></div></div>
+      <div class="video-grid">
+        <figure class="fig"><video controls preload="metadata" src="media/surface_wind_damped_cho512.mp4"></video><figcaption>Wind + parent loss, wind ages 16–29.9 s. Laboratory frame, true vertical scale, 0.2× real time; surface saved every 0.02 s and linearly interpolated.</figcaption></figure>
+        <figure class="fig"><video controls preload="metadata" src="media/surface_wind_visc_cho512.mp4"></video><figcaption>Wind + molecular loss, ages 16–19.8 s. Ripple slopes exceed about 0.5 after age 18.6 s, beyond the intended range of the Cho model.</figcaption></figure>
+      </div>
+      <figure class="fig"><img src="media/surface_crosswind_spectra.png" alt="Cross-wind spectra of the ripple and parent surface elevation versus wind age."><figcaption>Cross-wind structure of the surface. Ripple variance that varies across the wind sits mainly at 12 and 6 cm: the parent band can vary across the wind only at the 12 cm domain width, and the ripples inherit that pattern.</figcaption></figure>
+      <figure class="fig"><img src="media/surface_ripples_topview.png" alt="Top views of the Cho ripple elevation for the two wind runs."><figcaption>Ripple (Cho) elevation, top view, laboratory frame. Without the extra parent loss the ripples grow to about 6× the rms height of the parent-loss run by age 19.8 s.</figcaption></figure>
+    </section>
+
+    <section class="section" id="lab" aria-labelledby="lab-heading">
+      <div class="section-head"><div><p class="eyebrow">Along-wind slope η<sub>x</sub></p><h2 id="lab-heading">Laboratory comparison</h2></div></div>
+      <figure class="fig"><img src="media/slope_lab_vs_model.png" alt="Laboratory along-wind slope images compared with model slope fields and along-wind slope spectra."><figcaption>Laboratory along-wind slope images A and B (digitized from their colour scale, which saturates at ±0.39) against model η<sub>x</sub> at the same physical scale; the model's 12 cm periodic domain is tiled 2 × 2. The lab's dominant along-wind wavelengths are 7.5 cm (A) and 5.6 cm (B); the model stays at 3 cm. At 0.2–1 cm wavelengths the lab slope spectrum is 10–100× the model's.</figcaption></figure>
+      <div class="table-wrap"><table class="data">
+        <thead><tr><th>Case</th><th>Main along-wind λ (cm)</th><th>rms slope</th><th>Skewness</th><th>Cross-wind crest length (cm)</th></tr></thead>
+        <tbody>
+          <tr><td>Lab image A</td><td>7.5</td><td>0.14</td><td>−0.44</td><td>&gt;20</td></tr>
+          <tr><td>Lab image B</td><td>5.6</td><td>0.11</td><td>−1.0</td><td>≈6</td></tr>
+          <tr><td>Wind + parent loss, age 20 / 29.8 s</td><td>3.0</td><td>0.09 / 0.10</td><td>−0.55 / −1.0</td><td>5 / 8</td></tr>
+          <tr><td>Wind + molecular loss, age 18.5 s</td><td>3.0</td><td>0.15</td><td>−0.38</td><td>5</td></tr>
+        </tbody>
+      </table></div>
+      <figure class="fig"><img src="media/vm2001_wavelength_vs_time.png" alt="Dominant along-wind wavelength versus time digitized from Veron and Melville 2001."><figcaption>Wavelength of the wind-forced waves versus time, digitized from Veron &amp; Melville (2001) Fig. 8a (slope spectrogram, 5 m/s, 10.72 m fetch). The waves appear at about 3.3 cm near 15 s and lengthen to about 6 cm by 30 s and 13 cm by 50 s. The frequency-based Table 1–2 values sit lower because of the Doppler shift by the surface drift. The model's parent band is fixed at 2.4–4 cm.</figcaption></figure>
+      <figure class="fig"><img src="media/vm2001_model_comparison_public.png" alt="Model along-wind slope at wind age 19.8 s and along-wind slope spectra compared with statistics digitized from Veron and Melville 2001 Fig. 15b."><figcaption>Model η<sub>x</sub> at wind age 19.8 s and along-wind slope spectra, with statistics digitized from Veron &amp; Melville (2001) Fig. 15b (not reproduced here; see the paper). The lab surface at 20 s is broadband (≈1–4 cm) and short-crested; the model is narrowband at 3 cm plus harmonics.</figcaption></figure>
+      <p class="dl muted">Data: <a href="media/vm2001_fig8a_ridge.csv">VM2001 Fig. 8a wavelength record (CSV)</a><a href="media/vm2001_fig6b_peakfreq.csv">VM2001 Fig. 6b peak frequency (CSV)</a><a href="media/slope_statistics.csv">Slope statistics, lab and model (CSV)</a></p>
+    </section>
+
+    <section class="section" id="upwelling" aria-labelledby="upwelling-heading">
+      <div class="section-head"><div><p class="eyebrow">After Veron &amp; Melville (2001), Fig. 15</p><h2 id="upwelling-heading">Upwelling over the surface slope</h2></div></div>
+      <p class="muted">Grey: along-wind slope of parent + ripples (−0.4 … 0.2, as in their figure). White contours: upwelling. Their contours are surface temperature (warm, upwelled water); here the closest analogue is low surface dye (dye-free water reaching the surface). Contours of the wave-averaged vertical velocity w are shown for comparison.</p>
+      <figure class="fig"><img src="media/wdr_upwelling_contours_full.png" alt="Finer-grid wind + parent-loss run: along-wind slope with upwelling contours at seven wind ages."><figcaption>Finer grid (current 65×129×96). From about age 19.5 s the band of steeper, rougher waves sits on the upwelled-water region, as described in Veron &amp; Melville's Fig. 15 caption: the correlation between local rms slope and low surface dye is +0.65, +0.69, +0.67, +0.62 and +0.59 at ages 19.5, 21, 24, 27 and 29.9 s. Ripple slopes reach 0.59 by the end.</figcaption></figure>
+      <figure class="fig"><img src="media/wind_damped_upwelling_contours.png" alt="Standard-grid wind + parent-loss run: along-wind slope with upwelling contours."><figcaption>Standard grid (33×65×48): the same association, with correlation +0.57 to +0.74 after age 19.5 s. Because cross-wind modulation is limited to the 12 cm domain, there is room for only one rough band and one upwelling band.</figcaption></figure>
+      <figure class="fig"><img src="media/steep30_upwelling_sequence_z1cm_avg1s.png" alt="Steep 8 cm waves: along-wind slope with time-averaged upwelling contours."><figcaption>8 cm waves, ak = 0.3 (32 × 64 cm, WENO5): w &gt; +1σ at 1 cm depth, averaged over ±1 s. Along-wind-uniform rolls grow to 22–29% of the w variance at 2 cm depth by 2–6 s (random noise gives 3%), but their cross-wind width is one 1 cm grid cell, so they are under-resolved.</figcaption></figure>
+      <figure class="fig"><img src="media/steep30_upwelling_vmwindow_z1cm_avg1s.png" alt="Steep 8 cm waves cropped to a 32 by 27 cm window."><figcaption>The same, cropped to a 32 × 27 cm window (Veron &amp; Melville's images are 36.8 × 27 cm).</figcaption></figure>
+      <figure class="fig"><img src="media/steep30_upwelling_sequence_z1cm.png" alt="Steep 8 cm waves with instantaneous upwelling contours."><figcaption>Instantaneous w contours for the same run.</figcaption></figure>
+      <p class="notice"><strong>Why no ak = 0.2 panel.</strong> The <a href="../langmuir-ak20-long/">ak = 0.2, 15 s run</a> uses fourth-order centred advection, which leaves the grid-scale seed noise in place: 62–85% of near-surface w variance stays at sub-4-cell scales, and its along-wind-uniform part stays at the random-noise level. Contours there would trace noise, not upwelling.</p>
+    </section>
+
+    <section class="references"><h2>Sources</h2><p><a href="https://doi.org/10.1017/S0022112001005638">Veron &amp; Melville (2001), J. Fluid Mech. 446</a> · <a href="https://doi.org/10.1017/S0022112098001098">Melville, Shear &amp; Veron (1998), J. Fluid Mech. 364</a> · <a href="https://doi.org/10.1017/jfm.2023.920">Wagner et al. (2023), J. Fluid Mech. 976</a></p></section>
+  </main>
+  <footer class="wrap"><div><strong>Choppy waves &amp; capillary ripples</strong><p>Nicholas Pizzo · Numerical research gallery</p></div><div><a href="../../">All experiments</a><a href="https://github.com/npizzo/choppy-cho-gallery">Gallery repository ↗</a></div><p class="footer-note">Derived figures and movies only. Raw field histories remain in research storage.</p></footer>
+</body>
+</html>
