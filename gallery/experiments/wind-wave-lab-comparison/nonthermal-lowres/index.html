@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Partial nonthermal wind-growth tests: evolving parent waves, passive-dye deepening and transverse circulation at two current-grid resolutions.">
+<title>Nonthermal wind-growth tests · Choppy / Cho</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+figure{margin:24px 0 38px}figure img{display:block;width:100%;height:auto;border:1px solid #ddd;border-radius:6px}figcaption{margin-top:10px;line-height:1.6;color:#4e5358}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{text-align:left;padding:12px;border-bottom:1px solid #d4d7d4}.notice{padding:20px;background:#f2e8d5;border-left:4px solid #b27c28;line-height:1.7}.details{line-height:1.7;max-width:90ch}.download{display:flex;flex-wrap:wrap;gap:16px;margin:16px 0}nav div{display:flex;flex-wrap:wrap;gap:15px}.section{padding-top:32px}code{font-size:.92em}footer{padding:36px 0}
+</style>
+</head>
+<body>
+<a class="skip" href="#results">Skip to results</a>
+<header class="wrap">
+<nav aria-label="Main navigation"><a class="brand" href="../../../">Choppy <span>/</span> Cho</a><div><a href="../">Lab comparison</a><a href="#dye">Dye &amp; circulation</a><a href="#waves">Waves</a><a href="#data">Data</a></div></nav>
+<section class="hero"><p class="eyebrow">4 November 2026 · Nonthermal growth tests</p>
+<h1>Growing waves.<br>Dye and transverse circulation.</h1>
+<p class="lead">Two lower-resolution tests of wind-forced parent waves coupled to currents and the original passive dye. Wave amplitudes evolve; no fixed-slope prescription is imposed.</p>
+<div class="hero-notes"><span>Wave / current / passive dye</span><span>No thermal physics or buoyancy</span><span>Partial integrations</span></div></section>
+</header>
+<main class="wrap" id="results">
+<p class="notice"><strong>Both tests stopped at the 90-minute integration wall limit.</strong> The target was wind age 19.8 s. The coarse test reached 18.953 s and the finer test reached 16.997 s. These are exploratory results, not a spatial-convergence demonstration or a reproduction of the laboratory instability. Checkpoints were saved. No CHO ripple replay has been performed for these cases.</p>
+<div class="table-wrap"><table><caption>Saved coverage; both runs start at wind age 16.5 s</caption><thead><tr><th>Current grid (x × y × z)</th><th>Physical time evolved</th><th>Final wind age</th><th>Status</th></tr></thead><tbody>
+<tr><td>33 × 65 × 48</td><td>2.453 s</td><td>18.953 s</td><td>Partial · wall limit</td></tr>
+<tr><td>65 × 129 × 64</td><td>0.497 s</td><td>16.997 s</td><td>Partial · wall limit</td></tr>
+</tbody></table></div>
+<section class="section" id="dye"><h2>Dye deepening and transverse structure</h2>
+<p class="details">Histories use absolute wind age. The centroid is the concentration-weighted mean depth; z99 is the depth containing 99% of the column-integrated dye. Curves stop where data stop. Dye is initially confined to a 0.5 mm Gaussian layer; its diffusivity is 10⁻⁷ m² s⁻¹.</p>
+<figure><a href="media/evolution.png"><img src="media/evolution.png" alt="Dye centroid and 99-percent mass depths, parent slope RMS and near-surface transverse flow histories for the two grids."></a><figcaption>Dye-depth diagnostics in the spirit of a dye-deepening comparison, alongside the evolving parent waves and Eulerian crossflow. These are numerical histories only; no measured laboratory dye curves are overlaid.</figcaption></figure>
+<figure><a href="media/transverse_evolution.png"><img loading="lazy" src="media/transverse_evolution.png" alt="Streamwise-mean dye concentration and transverse velocity sections at three saved ages in the coarse case."></a><figcaption>Transverse sections through the upper 8 mm of the coarse run, averaged along the wind. Rows show log dye concentration divided by initial column mass, Eulerian cross-wind velocity v, and vertical velocity w. Positive w means upwelling. Color limits are shared within each row; the vertical scale is expanded. Values below 1 m⁻¹ in the normalized dye field share the darkest color.</figcaption></figure>
+<figure><a href="media/matched_age.png"><img loading="lazy" src="media/matched_age.png" alt="Coarse and finer grid dye and transverse-flow sections compared at the same wind age of 16.9 seconds."></a><figcaption>Both grids at wind age 16.900 s (0.400 s after initialization). This compares the same physical time, using shared color scales. The grids sample the same physical perturbation pattern, but the coarser grid underresolves its shortest wavelengths. Short time-step checks passed; spatial convergence remains unestablished.</figcaption></figure>
+</section>
+<section class="section" id="waves"><h2>Wave growth and surface organization</h2>
+<p class="details">A single wind-input coefficient drives the retained parent-wave band. The wind energy-growth rate is Γ<sub>in</sub> = C<sub>in</sub> ω (u<sub>*air</sub>/c)² max(cos θ, 0), with C<sub>in</sub> = 0.0267739 and a cap from the supplied total stress. Molecular parent damping is retained; the extra parent-damping coefficient is zero. The 205 retained modes have independently randomized initial phases.</p>
+<figure><a href="media/spectrum.png"><img loading="lazy" src="media/spectrum.png" alt="Alongwind parent-slope spectra and the wavelength of their dominant bin, with crosswind modes summed at each alongwind wavenumber."></a><figcaption>The alongwind slope spectrum sums 2kₓ²|A|² over all retained kᵧ at each kₓ. Dashed lines show initialization; solid lines show each run’s own final age. The dominant wavelength can change as modal amplitudes evolve, but it is restricted to the retained Fourier bins. This diagnostic is not a largest-individual-mode or elevation-spectrum peak. Intrinsic wave evolution is linear; explicit intrinsic nonlinear wave–wave transfer is absent.</figcaption></figure>
+<figure><a href="media/surface_upwelling.png"><img loading="lazy" src="media/surface_upwelling.png" alt="Final coarse-run alongwind parent slope with subsurface upwelling contours, and the corresponding Eulerian vertical velocity map."></a><figcaption>A Figure-15-style diagnostic at the coarse run’s final saved age: parent-only alongwind slope with positive Eulerian-w contours at the subsurface depth printed in the right panel. Contour labels are mm/s, at 25%, 50% and 75% of the positive maximum. The 256² spectral rendering adds no dynamical resolution; w is taken from the current grid. No capillary-ripple field or measured thermal image is included. This is a structural diagnostic, not evidence that the observed Langmuir-cell scale has been reproduced.</figcaption></figure>
+</section>
+<section class="section" id="setup"><h2>What was simulated</h2>
+<p class="details">The periodic horizontal domain is 24 × 24 cm, with depth 1.25 m and exponentially stretched vertical cells. Both grids use the same parent-wave modes, wind forcing, initial physical perturbation pattern (0.1 mm/s horizontal RMS in the upper 5 mm), 1 ms time step, and two-way wave/current coupling. The total wind-stress ramp is an approximate Veron–Melville normalization, not an exact measured wind history. Oceananigans 0.107.0 advances the current with WENO5 advection and molecular viscosity 1.1 × 10⁻⁶ m²/s. The original passive dye is transported conservatively.</p>
+<p class="details">The short checks compare 1 ms and 0.5 ms steps over 0.02 s. They support the chosen step for the initial state only; they do not establish long-time accuracy or resolve the lab cell scale. The finite parent band, domain size, perturbation resolution and current grid all remain sensitivity questions.</p>
+<p class="details"><strong>No new physics was introduced for this publication.</strong> There is no thermal forcing, temperature tracer, buoyancy, convection, extra parent-wave decay, or CHO feedback. CHO settings retained in configuration files are placeholders for a possible replay, not completed CHO results.</p>
+</section>
+<section class="section" id="data"><h2>Download the evidence</h2>
+<p class="details">Histories are copied from the saved nonthermal r2 runs. Summary metadata include end times, wall-limit termination, dye-mass errors and snapshot ages. Configurations omit machine paths; time-step checks retain numeric and Boolean validation fields.</p>
+<div class="download"><a href="data/summary.json">Run summary</a><a href="build_results.py.txt">Figure-generation source</a></div>
+<table><thead><tr><th>Data</th><th>33 × 65 × 48</th><th>65 × 129 × 64</th></tr></thead><tbody>
+<tr><td>Dye history</td><td><a href="data/low_33_dye_history.csv">CSV</a></td><td><a href="data/low_65_dye_history.csv">CSV</a></td></tr>
+<tr><td>Dye profiles</td><td><a href="data/low_33_dye_profiles.csv">CSV</a></td><td><a href="data/low_65_dye_profiles.csv">CSV</a></td></tr>
+<tr><td>Current diagnostics</td><td><a href="data/low_33_mean_history.csv">CSV</a></td><td><a href="data/low_65_mean_history.csv">CSV</a></td></tr>
+<tr><td>Wave input / loss</td><td><a href="data/low_33_wave_source_history.csv">CSV</a></td><td><a href="data/low_65_wave_source_history.csv">CSV</a></td></tr>
+<tr><td>Wave slope history</td><td><a href="data/low_33_wave_slopes.csv">CSV</a></td><td><a href="data/low_65_wave_slopes.csv">CSV</a></td></tr>
+<tr><td>Initial / final slope spectrum</td><td><a href="data/low_33_alongwind_slope_spectrum.csv">CSV</a></td><td><a href="data/low_65_alongwind_slope_spectrum.csv">CSV</a></td></tr>
+<tr><td>Configuration</td><td><a href="data/low_33_configuration.json">JSON</a></td><td><a href="data/low_65_configuration.json">JSON</a></td></tr>
+<tr><td>Short validation checks</td><td><a href="data/low_33_checks.json">JSON</a></td><td><a href="data/low_65_checks.json">JSON</a></td></tr>
+</tbody></table>
+<p class="details">Laboratory context: <a href="https://doi.org/10.1017/S0022112001005638">Veron &amp; Melville (2001), Experiments on the stability and transition of wind-driven water surfaces</a>. Dye-benchmark context: <a href="https://doi.org/10.1017/jfm.2023.920">Wagner et al. (2023), Transition to turbulence in wind-drift layers</a>. Neither laboratory agreement nor a full Figure 15 reproduction is claimed here.</p>
+</section>
+</main><footer class="wrap"><a href="../">← Wind-wave lab comparison</a> · <a href="../../../">Gallery home</a></footer>
+</body></html>

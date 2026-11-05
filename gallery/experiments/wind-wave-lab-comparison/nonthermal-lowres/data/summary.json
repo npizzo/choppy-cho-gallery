@@ -1,0 +1,76 @@
+{
+  "publication_date": "2026-11-04",
+  "physics": "wave/current/passive dye; no thermal physics or buoyancy",
+  "cho_replay_performed": false,
+  "complete": false,
+  "cases": [
+    {
+      "id": "low_33",
+      "grid": [
+        33,
+        65,
+        48
+      ],
+      "final_wind_age_s": 18.95299999999984,
+      "elapsed_physical_s": 2.45299999999984,
+      "integration_wall_s": 5401.587064027786,
+      "termination_reason": "wall_time_limit",
+      "centroid_mm": 0.776234760094626,
+      "z99_mm": 2.987029367127384,
+      "maximum_absolute_dye_relative_mass_error": 2.220446049250313e-16,
+      "maximum_negative_mass_fraction": 0.0,
+      "snapshot_ages_s": [
+        16.5,
+        16.6,
+        16.7,
+        16.8,
+        16.9,
+        17.0,
+        17.1,
+        17.2,
+        17.3,
+        17.4,
+        17.5,
+        17.599999999999987,
+        17.699999999999978,
+        17.79999999999997,
+        17.899999999999956,
+        17.999999999999943,
+        18.099999999999934,
+        18.199999999999925,
+        18.299999999999912,
+        18.3999999999999,
+        18.49999999999989,
+        18.59999999999988,
+        18.699999999999868,
+        18.799999999999855,
+        18.899999999999846,
+        18.95299999999984
+      ]
+    },
+    {
+      "id": "low_65",
+      "grid": [
+        65,
+        129,
+        64
+      ],
+      "final_wind_age_s": 16.997,
+      "elapsed_physical_s": 0.4970000000000001,
+      "integration_wall_s": 5406.264325141907,
+      "termination_reason": "wall_time_limit",
+      "centroid_mm": 0.3826573645628207,
+      "z99_mm": 1.2665519929580753,
+      "maximum_absolute_dye_relative_mass_error": 1.1102230246251565e-16,
+      "maximum_negative_mass_fraction": 0.0,
+      "snapshot_ages_s": [
+        16.5,
+        16.6,
+        16.7,
+        16.8,
+        16.9,
+        16.997
+      ]
+    }
+  ]
+}

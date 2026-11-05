@@ -1,0 +1,19 @@
+{
+  "buoyancy": false,
+  "candidate_dt_passed": true,
+  "chosen_dt_s": 0.001,
+  "dye_relative_l1_error": 4.087317290631331e-09,
+  "grid": [
+    65,
+    129,
+    64
+  ],
+  "physical_test_window_s": 0.02,
+  "projected_full_window_hours": 6.259758921166665,
+  "spatial_convergence_established": false,
+  "step_seconds": 6.828827914,
+  "thermal_physics": false,
+  "velocity_fluctuation_relative_error": 5.296489752086682e-06,
+  "wall_time_limit_s": 5400.0,
+  "wave_relative_error": 2.9881547421333734e-05
+}

@@ -1,0 +1,130 @@
+"""Render only saved nonthermal r2 results. Execute on Unity, never launches simulations."""
+from pathlib import Path
+import json, tomllib, shutil, hashlib
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.colors import TwoSlopeNorm
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/'gallery/nonthermal-lowres'; MEDIA=OUT/'media'; DATA=OUT/'data'
+MEDIA.mkdir(parents=True,exist_ok=True); DATA.mkdir(exist_ok=True)
+plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False,'figure.facecolor':'#faf9f5','axes.facecolor':'white','savefig.facecolor':'#faf9f5'})
+def toml(p):return tomllib.loads(p.read_text())
+def csv(p):return np.genfromtxt(p,names=True,delimiter=',',encoding='utf-8')
+def save(fig,name):
+    fig.savefig(MEDIA/name,dpi=170,bbox_inches='tight'); plt.close(fig)
+cases=[]
+for name,color in [('low_33','#167a8b'),('low_65','#c75a32')]:
+    p=ROOT/'data/no_thermal/r2'/name; cfg=toml(p/'configuration.toml'); meta=toml(p/'metadata.toml'); grid=toml(p/'grid.toml')
+    assert meta['termination_reason']=='wall_time_limit' and not meta['complete']
+    assert cfg['scalar_semantics']=='Original passive dye; no thermal physics or buoyancy'
+    assert cfg['parent_damping_coefficient']==0
+    assert not any(k in cfg for k in ('heat_flux_W_m2','heat_capacity','bulk_temperature_C'))
+    modes=np.loadtxt(cfg['modes_file'],skiprows=1); mx,my=modes[:,:2].T; omega=modes[:,2]
+    parent=csv(p/'parent.csv'); n=len(modes)
+    A=np.column_stack([parent[f'ReA_{j}']+1j*parent[f'ImA_{j}'] for j in range(1,n+1)])
+    kx=2*np.pi*mx/cfg['Lx']; ky=2*np.pi*my/cfg['Ly']
+    sx=np.sqrt(2*np.sum(kx*kx*abs(A)**2,axis=1)); sy=np.sqrt(2*np.sum(ky*ky*abs(A)**2,axis=1))
+    label=f"{cfg['nx']} × {cfg['ny']} × {cfg['nz']}"
+    snapshots=[(f,toml(f)) for f in sorted((p/'snapshots').glob('frame_*.toml'))]
+    c=dict(name=name,p=p,cfg=cfg,meta=meta,grid=grid,modes=modes,kx=kx,ky=ky,omega=omega,A=A,parent=parent,sx=sx,sy=sy,label=label,color=color,snaps=snapshots,dye=csv(p/'dye_history.csv'),mean=csv(p/'mean_history.csv'))
+    cases.append(c)
+    for fn in ('dye_history.csv','mean_history.csv','wave_source_history.csv','dye_profiles.csv'):
+        shutil.copy2(p/fn,DATA/f'{name}_{fn}')
+    np.savetxt(DATA/f'{name}_wave_slopes.csv',np.column_stack((parent['t']+cfg['initial_age'],sx,sy)),delimiter=',',header='wind_age_s,alongwind_slope_rms,crosswind_slope_rms',comments='')
+    clean={k:v for k,v in cfg.items() if not isinstance(v,str) or ('/' not in v and '\\' not in v)}
+    # The CHO options are configuration placeholders, not completed replay output.
+    clean['cho_replay_performed']=False
+    (DATA/f'{name}_configuration.json').write_text(json.dumps(clean,indent=2)+'\n')
+
+fig,axs=plt.subplots(2,2,figsize=(11,7),constrained_layout=True)
+for c in cases:
+    d=c['dye']; m=c['mean']; age=c['parent']['t']+c['cfg']['initial_age']; kw=dict(color=c['color'],label=c['label'])
+    axs[0,0].plot(d['physical_age_s'],1000*d['dye_centroid_depth_m'],**kw)
+    axs[0,1].plot(d['physical_age_s'],1000*d['dye_z99_depth_m'],**kw)
+    axs[1,0].plot(age,c['sx'],**kw); axs[1,0].plot(age,c['sy'],color=c['color'],ls='--')
+    axs[1,1].plot(m['physical_age_s'],1000*m['upper_5mm_UE_crossflow_rms_m_s'],**kw)
+for ax,title,ylabel in zip(axs.flat,['Dye centroid','Depth containing 99% of dye mass','Parent slope RMS (solid: x; dashed: y)','Eulerian transverse flow in upper 5 mm'],['Depth (mm)','Depth (mm)','Dimensionless slope','RMS of (v, w) (mm/s)']):
+    ax.set(title=title,xlabel='Wind age (s)',ylabel=ylabel,xlim=(16.5,19.8));ax.grid(alpha=.2)
+axs[0,0].legend();fig.suptitle('Nonthermal tests · curves end at the saved final state',fontsize=14)
+save(fig,'evolution.png')
+
+def snapshot(c,target):
+    f,s=min(c['snaps'],key=lambda fs:abs(fs[1]['time']-target)); a={}
+    for key in ('dye','UE_v','UE_w'):
+        spec=s['arrays'][key]; a[key]=np.fromfile(f.parent/spec['file'],dtype='<f4').reshape(spec['shape'],order='F').astype(float)
+        assert np.all(np.isfinite(a[key]))
+    a['v']=.5*(a['UE_v']+np.roll(a['UE_v'],-1,axis=1));a['w']=.5*(a['UE_w'][:,:,:-1]+a['UE_w'][:,:,1:])
+    return s,a
+
+def sections(selections,name,title):
+    fig,axs=plt.subplots(3,len(selections),figsize=(4.3*len(selections),8),squeeze=False,constrained_layout=True)
+    records=[]
+    for c,t in selections:
+        s,a=snapshot(c,t);z=np.array(c['grid']['z_centers']); keep=z>=-.008
+        records.append((c,s,a,keep))
+    vmax=max(np.max(abs(a['v'].mean(axis=0)[:,keep])) for c,s,a,keep in records)*1000
+    wmax=max(np.max(abs(a['w'].mean(axis=0)[:,keep])) for c,s,a,keep in records)*1000
+    for col,(c,s,a,keep) in enumerate(records):
+        z=np.array(c['grid']['z_centers']); y=(np.arange(c['cfg']['ny'])+.5)*c['cfg']['Ly']/c['cfg']['ny']*100
+        vals=[np.log10(np.maximum(a['dye'].mean(axis=0)/c['cfg']['dye_initial_mass_per_area'],1)),1000*a['v'].mean(axis=0),1000*a['w'].mean(axis=0)]
+        for row,(v,lim) in enumerate(zip(vals,[None,vmax,wmax])):
+            im=axs[row,col].pcolormesh(y,1000*z[keep],v[:,keep].T,shading='nearest',cmap='magma' if row==0 else 'RdBu_r',vmin=0 if row==0 else -max(lim,1e-8),vmax=3.2 if row==0 else max(lim,1e-8))
+            axs[row,col].set(xlabel='Cross-wind y (cm)',ylabel='z (mm)',ylim=(-8,0),xlim=(0,24))
+            if col==len(records)-1:fig.colorbar(im,ax=axs[row,:].tolist(),label=['log₁₀(c / initial column mass) [m⁻¹]','Mean v (mm/s)','Mean w (mm/s)'][row],shrink=.8)
+        axs[0,col].set_title(f"{c['label']}\nWind age {s['time']+c['cfg']['initial_age']:.3f} s")
+    fig.suptitle(title+'\nStreamwise means; shared color limits within each row',fontsize=13)
+    save(fig,name)
+sections([(cases[0],0),(cases[0],1.2),(cases[0],cases[0]['meta']['actual_final_time_s'])],'transverse_evolution.png','Dye deepening and transverse circulation')
+sections([(c,.4) for c in cases],'matched_age.png','Matched-age grid comparison · wind age 16.900 s')
+
+fig,axs=plt.subplots(1,2,figsize=(11,4),constrained_layout=True)
+for c in cases:
+    k=c['kx']; unique=np.unique(k); spec=np.array([np.sum(2*k[k==u]**2*abs(c['A'][:,k==u])**2,axis=1) for u in unique]).T
+    for idx,ls in [(0,'--'),(-1,'-')]:
+        axs[0].plot(unique,spec[idx],color=c['color'],ls=ls,label=f"{c['label']}, {c['parent']['t'][idx]+16.5:.3f} s")
+    peak=unique[np.argmax(spec,axis=1)]
+    axs[1].step(c['parent']['t']+16.5,2*np.pi/peak*100,where='mid',color=c['color'],label=c['label'])
+    np.savetxt(DATA/f"{c['name']}_alongwind_slope_spectrum.csv",np.column_stack((unique,spec[0],spec[-1])),delimiter=',',header='kx_rad_m,initial_bin_variance,final_bin_variance',comments='')
+axs[0].set(xlabel='Alongwind wavenumber kₓ (rad/m)',ylabel='Alongwind slope variance per kₓ bin',title='Parent slope spectrum, summed over kᵧ');axs[0].legend(fontsize=8)
+axs[1].set(xlabel='Wind age (s)',ylabel='2π / peak kₓ (cm)',title='Dominant alongwind slope wavelength',xlim=(16.5,19.8));axs[1].legend(fontsize=8)
+for ax in axs:ax.grid(alpha=.2)
+save(fig,'spectrum.png')
+
+# Figure-15-style surface diagnostic: parent slope plus actual subsurface upwelling.
+c=cases[0];t=c['meta']['actual_final_time_s'];s,a=snapshot(c,t); idx=int(np.argmin(abs(c['parent']['t']-s['time'])))
+ng=256; B=c['A'][idx]*np.exp(-1j*c['omega']*s['time']); F=np.zeros((ng,ng),complex)
+for (mx,my),val in zip(c['modes'][:,:2].astype(int),1j*c['kx']*B):
+    F[mx%ng,my%ng]+=val;F[-mx%ng,-my%ng]+=val.conjugate()
+slope=np.fft.ifft2(F).real*ng**2
+z=np.array(c['grid']['z_centers']);iz=int(np.argmin(abs(z+.0005)));w=a['w'][:,:,iz]*1000
+x=(np.arange(c['cfg']['nx'])+.5)*c['cfg']['Lx']/c['cfg']['nx']*100
+y=(np.arange(c['cfg']['ny'])+.5)*c['cfg']['Ly']/c['cfg']['ny']*100
+fig,axs=plt.subplots(1,2,figsize=(11,4.8),constrained_layout=True)
+lim=np.max(abs(slope)); im=axs[0].pcolormesh(np.arange(ng)*24/ng,np.arange(ng)*24/ng,slope.T,shading='auto',cmap='RdBu_r',vmin=-lim,vmax=lim);fig.colorbar(im,ax=axs[0],label='∂ηparent / ∂x')
+positive=np.max(w)
+if positive>0:
+    levels=np.array([.25,.5,.75])*positive;cs=axs[0].contour(x,y,w.T,levels=levels,colors='k',linewidths=.75)
+    axs[0].clabel(cs,fmt='%.2g',fontsize=7)
+wlim=np.max(abs(w));im=axs[1].pcolormesh(x,y,w.T,shading='nearest',cmap='RdBu_r',vmin=-wlim,vmax=wlim);fig.colorbar(im,ax=axs[1],label='Eulerian w (mm/s)')
+for ax in axs:ax.set(xlabel='Alongwind x (cm)',ylabel='Cross-wind y (cm)',xlim=(0,24),ylim=(0,24),aspect='equal')
+axs[0].set_title('Parent slope + positive-w contours (mm/s)');axs[1].set_title(f'Upwelling at z = {z[iz]*1000:.3f} mm')
+fig.suptitle(f"Wind age {s['time']+16.5:.3f} s · {c['label']} · parent-only surface",fontsize=13)
+save(fig,'surface_upwelling.png')
+
+report={'publication_date':'2026-11-04','physics':'wave/current/passive dye; no thermal physics or buoyancy','cho_replay_performed':False,'complete':False,'cases':[]}
+for c in cases:
+    d=c['dye'];cfg=c['cfg']; m=c['meta']
+    item={'id':c['name'],'grid':[cfg[k] for k in ('nx','ny','nz')],'final_wind_age_s':m['final_wind_age'],'elapsed_physical_s':m['actual_final_time_s'],'integration_wall_s':m['wall_seconds'],'termination_reason':m['termination_reason'],'centroid_mm':float(d['dye_centroid_depth_m'][-1]*1000),'z99_mm':float(d['dye_z99_depth_m'][-1]*1000),'maximum_absolute_dye_relative_mass_error':float(np.max(abs(d['dye_relative_mass_error']))),'maximum_negative_mass_fraction':float(np.max(d['dye_negative_mass_fraction'])),'snapshot_ages_s':[s['time']+16.5 for _,s in c['snaps']]}
+    report['cases'].append(item)
+    checks=toml(ROOT/'validation/no_thermal/r2'/c['name']/'checks.toml')
+    # Retain numeric/bool validation evidence without paths or private environment details.
+    def clean(x):
+        if isinstance(x,dict):return {k:clean(v) for k,v in x.items() if not isinstance(v,str)}
+        if isinstance(x,list):return [clean(v) for v in x if not isinstance(v,str)]
+        return x
+    (DATA/f"{c['name']}_checks.json").write_text(json.dumps(clean(checks),indent=2,allow_nan=False)+'\n')
+(DATA/'summary.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+shutil.copy2(__file__,OUT/'build_results.py')
+print(json.dumps(report,indent=2))
