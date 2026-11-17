@@ -33,15 +33,25 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "running",
+    "status": "complete",
     "stage": "prepare",
-    "message": "Validated wide-domain campaign stage.",
-    "updated_at_utc": "2026-11-17T15:20:50.008086+00:00",
+    "message": "Wider 30-second ak=0.2 campaign submitted. Production waits for exact tensor, native solver, restart and resolution checks. Cho damping is 2.4 times molecular.",
+    "updated_at_utc": "2026-11-17T15:41:06.004751+00:00",
     "job_id": "1925323"
   },
-  "benchmark": null,
+  "benchmark": {
+    "passed": true,
+    "native_seconds_per_step": 18.550557713,
+    "estimated_native_hours": 618.3519237666667,
+    "cpu_count": 16,
+    "fft_workers": 4,
+    "native_benchmark_duration_s": 0.002,
+    "scope": "Measured target-grid native timing only. Cho and end-to-end completion time are not yet measured. Queueing excluded."
+  },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-17T15:22:37.559287+00:00",
-  "assets": []
+  "updated_at_utc": "2026-11-17T15:41:56.242344+00:00",
+  "assets": [
+    "assets/wide_benchmark.json"
+  ]
 }

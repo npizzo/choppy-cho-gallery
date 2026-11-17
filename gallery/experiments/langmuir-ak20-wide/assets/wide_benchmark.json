@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "native_seconds_per_step": 18.550557713,
+  "estimated_native_hours": 618.3519237666667,
+  "cpu_count": 16,
+  "fft_workers": 4,
+  "native_benchmark_duration_s": 0.002,
+  "scope": "Measured target-grid native timing only. Cho and end-to-end completion time are not yet measured. Queueing excluded."
+}
