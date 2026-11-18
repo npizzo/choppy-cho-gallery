@@ -34,23 +34,26 @@
   },
   "status": {
     "status": "running",
-    "stage": "cho_validation",
+    "stage": "native_5",
     "message": "Audited optimized continuation; unchanged physical model and time steps.",
-    "updated_at_utc": "2026-11-18T09:26:13.636728+00:00",
+    "updated_at_utc": "2026-11-18T15:55:14.751559+00:00",
     "job_id": "1958024"
   },
   "benchmark": {
     "passed": true,
     "native_seconds_per_step": 0.8700765240999999,
+    "cho_seconds_per_step": 0.3320768594802503,
     "estimated_native_hours": 29.002550803333328,
+    "estimated_cho_hours": 22.138457298683353,
     "cpu_count": 8,
     "fft_workers": 4,
     "native_benchmark_duration_s": 0.002,
-    "scope": "Native optimized compute timing excludes I/O, Cho, rendering and queueing. Thread-scaling results are separate."
+    "cho_benchmark_duration_s": 2.0,
+    "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-18T09:26:33.233313+00:00",
+  "updated_at_utc": "2026-11-18T15:55:29.507506+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
