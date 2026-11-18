@@ -34,23 +34,23 @@
   },
   "status": {
     "status": "running",
-    "stage": "native_validation_fine",
-    "message": "Original-domain current-refinement campaign stage.",
-    "updated_at_utc": "2026-11-17T22:19:12.273982+00:00",
-    "job_id": "1938111"
+    "stage": "continue_fine",
+    "message": "Audited optimized continuation; unchanged physical model and time steps.",
+    "updated_at_utc": "2026-11-18T08:17:30.359177+00:00",
+    "job_id": "1958024"
   },
   "benchmark": {
     "passed": true,
-    "native_seconds_per_step": 7.535964822,
-    "estimated_native_hours": 251.1988274,
-    "cpu_count": 16,
+    "native_seconds_per_step": 0.8700765240999999,
+    "estimated_native_hours": 29.002550803333328,
+    "cpu_count": 8,
     "fft_workers": 4,
     "native_benchmark_duration_s": 0.002,
-    "scope": "Measured target-grid native timing only. Cho and end-to-end completion time are not yet measured. Queueing excluded."
+    "scope": "Native optimized compute timing excludes I/O, Cho, rendering and queueing. Thread-scaling results are separate."
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-17T22:19:27.080117+00:00",
+  "updated_at_utc": "2026-11-18T08:34:53.479946+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
