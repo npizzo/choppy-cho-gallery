@@ -34,9 +34,9 @@
   },
   "status": {
     "status": "running",
-    "stage": "continue_fine",
+    "stage": "cho_validation",
     "message": "Audited optimized continuation; unchanged physical model and time steps.",
-    "updated_at_utc": "2026-11-18T08:17:30.359177+00:00",
+    "updated_at_utc": "2026-11-18T09:26:13.636728+00:00",
     "job_id": "1958024"
   },
   "benchmark": {
@@ -50,7 +50,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-18T08:34:53.479946+00:00",
+  "updated_at_utc": "2026-11-18T09:26:33.233313+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
