@@ -1,0 +1,45 @@
+{
+  "frame": "fixed laboratory",
+  "surface": "parent only",
+  "cho_enabled": false,
+  "vertical_exaggeration": 1,
+  "annotations": [],
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "physical_interval_s": [
+    0.0,
+    10.0
+  ],
+  "frame_count": 1001,
+  "video_frame_count": 1001,
+  "encoded_duration_s": 50.05,
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true,
+  "physical_frame_dt_s": 0.01,
+  "stored_state_dt_s": 0.010000000000001563,
+  "source_grid_shape": [
+    256,
+    512
+  ],
+  "display_grid_shape": [
+    128,
+    256
+  ],
+  "storage": "Sequential full-resolution input; disk-mapped reduced display history",
+  "spatial_reconstruction": "Fourier low-pass projection before grid reduction; Nyquist modes discarded",
+  "max_discarded_parent_variance_fraction": 2.2276778250516327e-08,
+  "temporal_interpolation": "Linear in xi=Ct-X; exact Fourier reflection/translation at each display time",
+  "temporal_limitation": "Interpolation cannot recover parent evolution absent from saved states",
+  "phase_speed_m_s": 0.3614390763757024,
+  "lighting": {
+    "direction": [
+      -0.9600307214746386,
+      -0.24000768036865966,
+      0.1440046082211958
+    ],
+    "ambient": 0.22,
+    "diffuse": 2.8,
+    "fixed": true
+  }
+}
