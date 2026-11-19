@@ -33,24 +33,27 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "running",
+    "status": "complete",
     "stage": "cho_validation",
-    "message": "Audited optimized continuation; unchanged physical model and time steps.",
-    "updated_at_utc": "2026-11-18T13:52:53.499609+00:00",
+    "message": "Optimized continuation; unchanged dt, physical model and Cho damping. Original validation gates retained.",
+    "updated_at_utc": "2026-11-19T19:21:03.458177+00:00",
     "job_id": "1958128"
   },
   "benchmark": {
     "passed": true,
     "native_seconds_per_step": 2.2445439559,
+    "cho_seconds_per_step": 3.200078202887311,
     "estimated_native_hours": 74.81813186333333,
+    "estimated_cho_hours": 213.33854685915406,
     "cpu_count": 16,
     "fft_workers": 4,
     "native_benchmark_duration_s": 0.002,
-    "scope": "Native optimized compute timing excludes I/O, Cho, rendering and queueing. Thread-scaling results are separate."
+    "cho_benchmark_duration_s": 2.0,
+    "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-18T13:57:54.528858+00:00",
+  "updated_at_utc": "2026-11-19T19:22:08.983760+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]

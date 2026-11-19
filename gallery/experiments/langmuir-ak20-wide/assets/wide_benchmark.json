@@ -1,9 +1,12 @@
 {
   "passed": true,
   "native_seconds_per_step": 2.2445439559,
+  "cho_seconds_per_step": 3.200078202887311,
   "estimated_native_hours": 74.81813186333333,
+  "estimated_cho_hours": 213.33854685915406,
   "cpu_count": 16,
   "fft_workers": 4,
   "native_benchmark_duration_s": 0.002,
-  "scope": "Native optimized compute timing excludes I/O, Cho, rendering and queueing. Thread-scaling results are separate."
+  "cho_benchmark_duration_s": 2.0,
+  "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
 }
