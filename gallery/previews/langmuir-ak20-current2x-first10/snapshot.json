@@ -10,7 +10,7 @@
   "cho_included": true,
   "simulation_rerun": false,
   "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
-  "description": "Parent and current preview 0\u201310 s; actual parent-plus-Cho preview 0\u20132 s. Revised current contrast and explicitly enlarged depth.",
+  "description": "Vorticity cutaway and parent-plus-Cho first; parent-only below. Full-resolution vorticity isosurfaces available separately.",
   "videos": {
     "parent_first10": {
       "metadata": {
@@ -192,12 +192,97 @@
         "declared_interval_complete": true,
         "full_saved_interval": true
       }
+    },
+    "vorticity_cutaway_first10": {
+      "metadata": {
+        "render_complete": true,
+        "declared_interval_complete": true,
+        "full_saved_interval": true,
+        "physical_interval_s": [
+          0.0,
+          9.999999999999412
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 1001,
+        "encoded_duration_s": 50.05,
+        "view": "cutaway",
+        "horizontal_stride": 1,
+        "smoothing": false,
+        "vertical_exaggeration": 6.0,
+        "interpolation": "saved states held between snapshots",
+        "current_definition": "wave-averaged quasi-Eulerian current; no instantaneous wave orbital velocity",
+        "color_mapping": "fixed signed arctangent; no values clipped",
+        "color_limit_per_s": 725.9270629882812,
+        "color_linear_width_per_s": 3.8221015904580904,
+        "scientific_data_changed": false,
+        "isovorticity_level_per_s": null
+      },
+      "verification": {
+        "verified": true,
+        "decoded_frames": 1001,
+        "decoded_duration_s": 50.05,
+        "bytes": 6257554,
+        "all_frames_decoded": true,
+        "sha256": "3652b9ec7f853b08eec9dacf52103a8a8b7cb65b820467a9465c09451f6ee37e",
+        "physical_interval_s": [
+          0.0,
+          9.999999999999412
+        ],
+        "declared_interval_complete": true,
+        "full_saved_interval": true
+      }
+    },
+    "vorticity_isosurfaces_first10": {
+      "metadata": {
+        "render_complete": true,
+        "declared_interval_complete": true,
+        "full_saved_interval": true,
+        "physical_interval_s": [
+          0.0,
+          9.999999999999412
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 1001,
+        "encoded_duration_s": 50.05,
+        "view": "iso",
+        "horizontal_stride": 1,
+        "smoothing": false,
+        "vertical_exaggeration": 6.0,
+        "interpolation": "saved states held between snapshots",
+        "current_definition": "wave-averaged quasi-Eulerian current; no instantaneous wave orbital velocity",
+        "color_mapping": "Constant red/blue sign colors on fixed vorticity isosurfaces",
+        "scientific_data_changed": false,
+        "isovorticity_level_per_s": 4.777626988072613
+      },
+      "verification": {
+        "verified": true,
+        "decoded_frames": 1001,
+        "decoded_duration_s": 50.05,
+        "bytes": 14271416,
+        "all_frames_decoded": true,
+        "sha256": "23c7f914b499d5b161e2f46e6010cb0eaefd2a07469dfd780946c6dbd639590d",
+        "physical_interval_s": [
+          0.0,
+          9.999999999999412
+        ],
+        "declared_interval_complete": true,
+        "full_saved_interval": true
+      }
     }
   },
-  "updated_at_utc": "2026-11-19T12:57:54.832464+00:00",
+  "updated_at_utc": "2026-11-19T13:33:09.502663+00:00",
   "cho_physical_interval_s": [
     0.0,
     2.0
   ],
-  "current_visualization_revision": 2
+  "current_visualization_revision": 3,
+  "cho_first10_render_job": "2004665",
+  "cho_first10_status": "waiting_for_production_checkpoint",
+  "video_order": [
+    "vorticity_cutaway_first10",
+    "parent_plus_cho_first2",
+    "parent_first10"
+  ]
 }

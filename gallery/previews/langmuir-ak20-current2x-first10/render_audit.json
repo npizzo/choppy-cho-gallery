@@ -1,0 +1,108 @@
+{
+  "threshold_reference_rms_per_s": 3.8221015904580904,
+  "color_limit_per_s": 725.9270629882812,
+  "color_linear_width_per_s": 3.8221015904580904,
+  "vertical_exaggeration": 6.0,
+  "horizontal_stride": 1,
+  "smoothing": false,
+  "color_mapping": "fixed signed arctangent; no values clipped",
+  "review": [
+    {
+      "factor": 0.75,
+      "threshold_per_s": 2.866576192843568,
+      "stride_1": [
+        {
+          "sign": -1,
+          "components": 1316,
+          "occupied_samples": 80818,
+          "components_at_least_20_samples": 154
+        },
+        {
+          "sign": 1,
+          "components": 1385,
+          "occupied_samples": 82893,
+          "components_at_least_20_samples": 158
+        }
+      ],
+      "stride_2": [
+        {
+          "sign": -1,
+          "components": 966,
+          "occupied_samples": 20641,
+          "components_at_least_20_samples": 75
+        },
+        {
+          "sign": 1,
+          "components": 989,
+          "occupied_samples": 21203,
+          "components_at_least_20_samples": 84
+        }
+      ]
+    },
+    {
+      "factor": 1.25,
+      "threshold_per_s": 4.777626988072613,
+      "stride_1": [
+        {
+          "sign": -1,
+          "components": 1469,
+          "occupied_samples": 46004,
+          "components_at_least_20_samples": 193
+        },
+        {
+          "sign": 1,
+          "components": 1417,
+          "occupied_samples": 46878,
+          "components_at_least_20_samples": 236
+        }
+      ],
+      "stride_2": [
+        {
+          "sign": -1,
+          "components": 944,
+          "occupied_samples": 11730,
+          "components_at_least_20_samples": 91
+        },
+        {
+          "sign": 1,
+          "components": 943,
+          "occupied_samples": 11932,
+          "components_at_least_20_samples": 89
+        }
+      ]
+    },
+    {
+      "factor": 2.5,
+      "threshold_per_s": 9.555253976145226,
+      "stride_1": [
+        {
+          "sign": -1,
+          "components": 946,
+          "occupied_samples": 13461,
+          "components_at_least_20_samples": 155
+        },
+        {
+          "sign": 1,
+          "components": 967,
+          "occupied_samples": 13733,
+          "components_at_least_20_samples": 165
+        }
+      ],
+      "stride_2": [
+        {
+          "sign": -1,
+          "components": 527,
+          "occupied_samples": 3471,
+          "components_at_least_20_samples": 26
+        },
+        {
+          "sign": 1,
+          "components": 517,
+          "occupied_samples": 3530,
+          "components_at_least_20_samples": 26
+        }
+      ]
+    }
+  ],
+  "component_count_convention": "Six-neighbor sample masks; periodic faces are not joined; these counts are not vortex-core counts"
+}

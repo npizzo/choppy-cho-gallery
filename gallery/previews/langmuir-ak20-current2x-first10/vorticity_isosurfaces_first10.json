@@ -1,0 +1,22 @@
+{
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true,
+  "physical_interval_s": [
+    0.0,
+    9.999999999999412
+  ],
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "video_frame_count": 1001,
+  "encoded_duration_s": 50.05,
+  "view": "iso",
+  "horizontal_stride": 1,
+  "smoothing": false,
+  "vertical_exaggeration": 6.0,
+  "interpolation": "saved states held between snapshots",
+  "current_definition": "wave-averaged quasi-Eulerian current; no instantaneous wave orbital velocity",
+  "color_mapping": "Constant red/blue sign colors on fixed vorticity isosurfaces",
+  "scientific_data_changed": false,
+  "isovorticity_level_per_s": 4.777626988072613
+}
