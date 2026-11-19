@@ -1,18 +1,16 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Finer currents: first 10 seconds</title><style>
-body{margin:0;background:#f5f8fa;color:#18323b;font:17px/1.5 system-ui,sans-serif}
-main{max-width:1100px;margin:auto;padding:32px 20px}a{color:#186a84}h1{line-height:1.15}
-section{background:white;border:1px solid #dce6ea;border-radius:14px;margin:26px 0;padding:20px}
-video{display:block;width:100%;background:white;border-radius:8px}p{max-width:850px}
-.note{color:#52666e;font-size:15px}</style></head><body><main>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finer currents: waves, Cho roughness and currents</title><style>
+body{margin:0;background:#f5f8fa;color:#18323b;font:17px/1.5 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:32px 20px}a{color:#186a84}h1{line-height:1.15}
+section{background:white;border:1px solid #dce6ea;border-radius:14px;margin:26px 0;padding:20px}video{display:block;width:100%;background:white;border-radius:8px}p{max-width:900px}.note{color:#52666e;font-size:15px}</style></head><body><main>
 <nav><a href="../../">Gallery</a> · <a href="../../experiments/langmuir-ak20-current2x/">Full experiment status</a></nav>
-<h1>Finer currents: first 10 seconds</h1>
-<p>Saved evolution from 0–10 s, played at <strong>0.2× speed</strong>. Each movie lasts about 50 seconds.</p>
-<p class="note">This preview shows parent waves coupled to the three-dimensional mean current. Cho roughness is not included; the full 30-second experiment is still running.</p>
-<section><h2>Parent surface</h2><video controls playsinline preload="metadata" poster="parent_first10.png" src="parent_first10.mp4"></video>
-<p class="note">Fixed laboratory view, physical aspect ratio, original blue surface style.</p></section>
-<section><h2>Underwater currents</h2><video controls playsinline preload="metadata" poster="currents_first10.png" src="currents_first10.mp4"></video>
-<p class="note">Wave-averaged current vorticity, near-surface streaks, and streamwise-averaged rolls. The saved current states are spaced 0.1 s apart and held between snapshots.</p></section>
-<p class="note">Preliminary: retained parent-mode boundaries contain appreciable wave action, so this preview does not establish spectral convergence.</p>
+<h1>Finer currents: waves, Cho roughness and currents</h1>
+<p>All movies play at <strong>0.2× speed</strong>. Parent waves and currents cover <strong>0–10 s</strong>; the completed parent-plus-Cho preview covers <strong>0–2 s</strong>.</p>
+<section><h2>Parent surface · 0–10 s</h2><video controls playsinline preload="metadata" poster="parent_first10.png" src="parent_first10.mp4"></video>
+<p class="note">Original blue surface style, fixed laboratory view, physical aspect ratio. About 50 seconds of playback.</p></section>
+<section><h2>Parent + Cho · 0–2 s</h2><video controls playsinline preload="metadata" poster="parent_plus_cho_first2.png" src="parent_plus_cho_first2.mp4"></video>
+<p class="note">Actual saved parent-plus-Cho surface with 2.4× damping. Full saved spatial resolution and physical vertical scale; no roughness amplification. About 10 seconds of playback. Cho has not yet been computed over the full 10-second preview interval.</p></section>
+<section><h2>Underwater currents · 0–10 s · revised contrast</h2><video controls playsinline preload="metadata" poster="currents_first10.png" src="currents_first10.mp4"></video>
+<p class="note">The color panels use fixed, signed asinh scales over the full sampled range, preserving weak variations without clipping stronger values. The 3D view enlarges depth by 6× and shows isosurfaces at ±2.5 times the instantaneous RMS vorticity, reported in each frame. Red and blue indicate sign in the 3D view; its shapes show relative structure, while the RMS label and fixed-scale panels retain amplitude information.</p>
+<p class="note">These are wave-averaged currents, excluding instantaneous wave orbital motion. Saved current states are held between snapshots. <a href="color_scale_audit.json">Color-scale audit</a>.</p></section>
+<p class="note">Preliminary: retained parent-mode boundaries contain appreciable wave action. Short Cho resolution checks passed, but very steep localized disturbances and late-time spectral convergence still require physical interpretation.</p>
 <footer><a href="snapshot.json">Preview metadata</a></footer></main></body></html>

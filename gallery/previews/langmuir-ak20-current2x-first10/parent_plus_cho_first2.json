@@ -1,0 +1,60 @@
+{
+  "physical_interval_s": [
+    0.0,
+    2.0
+  ],
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "video_frame_count": 201,
+  "encoded_duration_s": 10.05,
+  "physical_frame_dt_s": 0.01,
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true,
+  "case": "fine",
+  "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+  "quantity": "parent_plus_cho",
+  "surface": "parent + Cho",
+  "cho_enabled": true,
+  "damping_multiplier": 2.4,
+  "frame": "fixed laboratory",
+  "vertical_exaggeration": 1,
+  "forcing_gain": 1,
+  "annotations": [],
+  "source_grid_shape": [
+    512,
+    1024
+  ],
+  "display_grid_shape": [
+    512,
+    1024
+  ],
+  "pixel_dimensions": [
+    1280,
+    896
+  ],
+  "spatial_reconstruction": "All source grid points; spectral surface derivatives; no spatial decimation or smoothing",
+  "camera_zmax_m": 0.008106520399451256,
+  "full_surface_zmax_m": 0.008432329981587827,
+  "camera_bounds": "Same projected parent-only bounds as original parent_evolution movie",
+  "camera": {
+    "elevation_deg": 32,
+    "azimuth_deg": -65,
+    "projection": "orthographic"
+  },
+  "lighting": {
+    "direction": [
+      -0.9600307214746386,
+      -0.24000768036865966,
+      0.1440046082211958
+    ],
+    "ambient": 0.22,
+    "diffuse": 2.8,
+    "fixed": true
+  },
+  "phase_speed_m_s": 0.3614390763757024,
+  "stored_state_dt_s": 0.010000000000000009,
+  "archive_loading": "Two adjacent parent/Cho pairs streamed; complete record scanned once for validation and fixed camera bounds",
+  "temporal_interpolation": "Linear in xi=Ct-X; exact Fourier reflection/translation at every display time",
+  "temporal_limitation": "Saved-state cadence limits remain; playback interpolation does not restore unsaved temporal evolution"
+}
