@@ -1,0 +1,30 @@
+{
+  "source_signature": "fcf82ea5a7f1079523c0d4a66873dc6b1982146d7149be6022718e1385bef5a9",
+  "quantity": "UL_u, wave-averaged Lagrangian-mean along-wind velocity",
+  "anomaly_definition": "UL_u minus instantaneous horizontal mean at fixed z",
+  "near_surface_depth_cm": -0.19139419903150107,
+  "section_x_cm": 16.0,
+  "top_depth_cm": -0.009979307669527416,
+  "vertical_exaggeration": 4,
+  "field_smoothing": false,
+  "spatial_stride": 1,
+  "color_mapping": "fixed linear, covers all displayed values; no clipping",
+  "color_limits_cm_s": {
+    "late": [
+      -10.0,
+      25.0,
+      12.0
+    ],
+    "full": [
+      -25.0,
+      45.0,
+      27.0
+    ]
+  },
+  "physical_interval_s": [
+    0,
+    30
+  ],
+  "reference": "Wagner et al. 2023, JFM 976 A8, figure 7; doi:10.1017/jfm.2023.920",
+  "simulation_rerun": false
+}

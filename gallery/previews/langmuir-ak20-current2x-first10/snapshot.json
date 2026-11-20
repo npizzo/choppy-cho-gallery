@@ -437,8 +437,9 @@
   "cho_first10_render_job": "2004665",
   "cho_first10_status": "published",
   "video_order": [
-    "vorticity_cutaway_first10",
+    "../langmuir-ak20-current2x-velocity/horizontal_velocity_5to30",
     "parent_plus_cho_first10",
     "parent_first10"
-  ]
+  ],
+  "horizontal_velocity_view": "../langmuir-ak20-current2x-velocity/"
 }

@@ -1,0 +1,26 @@
+{
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true,
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "video_frame_count": 3001,
+  "encoded_duration_s": 150.05,
+  "source_snapshot_dt_s": 0.1,
+  "interpolation": "Saved states held between snapshots",
+  "current_definition": "UL_u, wave-averaged Lagrangian-mean along-wind velocity",
+  "spatial_stride": 1,
+  "smoothing": false,
+  "vertical_exaggeration": 4,
+  "color_mapping": "fixed linear, covers all displayed values; no clipping",
+  "color_limits_cm_s": [
+    -25.0,
+    45.0,
+    27.0
+  ],
+  "scientific_data_changed": false
+}

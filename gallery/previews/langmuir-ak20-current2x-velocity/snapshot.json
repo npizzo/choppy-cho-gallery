@@ -1,0 +1,90 @@
+{
+  "videos": {
+    "horizontal_velocity_5to30": {
+      "metadata": {
+        "render_complete": true,
+        "declared_interval_complete": true,
+        "full_saved_interval": false,
+        "physical_interval_s": [
+          5.0,
+          30.0
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 2501,
+        "encoded_duration_s": 125.05,
+        "source_snapshot_dt_s": 0.1,
+        "interpolation": "Saved states held between snapshots",
+        "current_definition": "UL_u, wave-averaged Lagrangian-mean along-wind velocity",
+        "spatial_stride": 1,
+        "smoothing": false,
+        "vertical_exaggeration": 4,
+        "color_mapping": "fixed linear, covers all displayed values; no clipping",
+        "color_limits_cm_s": [
+          -10.0,
+          25.0,
+          12.0
+        ],
+        "scientific_data_changed": false
+      },
+      "verification": {
+        "verified": true,
+        "decoded_frames": 2501,
+        "decoded_duration_s": 125.05,
+        "bytes": 14006108,
+        "all_frames_decoded": true,
+        "sha256": "5c7257b1d31a3112dee6b279d265e366fc7317e536906d62608b4be2ad7d717c",
+        "physical_interval_s": [
+          5.0,
+          30.0
+        ],
+        "declared_interval_complete": true,
+        "full_saved_interval": false
+      }
+    },
+    "horizontal_velocity_0to30": {
+      "metadata": {
+        "render_complete": true,
+        "declared_interval_complete": true,
+        "full_saved_interval": true,
+        "physical_interval_s": [
+          0.0,
+          30.0
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 3001,
+        "encoded_duration_s": 150.05,
+        "source_snapshot_dt_s": 0.1,
+        "interpolation": "Saved states held between snapshots",
+        "current_definition": "UL_u, wave-averaged Lagrangian-mean along-wind velocity",
+        "spatial_stride": 1,
+        "smoothing": false,
+        "vertical_exaggeration": 4,
+        "color_mapping": "fixed linear, covers all displayed values; no clipping",
+        "color_limits_cm_s": [
+          -25.0,
+          45.0,
+          27.0
+        ],
+        "scientific_data_changed": false
+      },
+      "verification": {
+        "verified": true,
+        "decoded_frames": 3001,
+        "decoded_duration_s": 150.05,
+        "bytes": 11456329,
+        "all_frames_decoded": true,
+        "sha256": "2a151af7cb47505cd033b12aa28455e222e861390caa2ed0ad3a65b13a5a2df9",
+        "physical_interval_s": [
+          0.0,
+          30.0
+        ],
+        "declared_interval_complete": true,
+        "full_saved_interval": true
+      }
+    }
+  },
+  "simulation_rerun": false,
+  "updated_at_utc": "2026-11-20T12:42:31.134940+00:00"
+}
