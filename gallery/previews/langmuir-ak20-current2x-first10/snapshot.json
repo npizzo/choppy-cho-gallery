@@ -270,19 +270,97 @@
         "declared_interval_complete": true,
         "full_saved_interval": true
       }
+    },
+    "parent_plus_cho_first6": {
+      "metadata": {
+        "physical_interval_s": [
+          0.0,
+          6.0
+        ],
+        "fps": 20,
+        "physical_playback_speed": 0.2,
+        "video_frame_count": 601,
+        "encoded_duration_s": 30.05,
+        "physical_frame_dt_s": 0.01,
+        "render_complete": true,
+        "declared_interval_complete": true,
+        "full_saved_interval": false,
+        "quantity": "parent_plus_cho",
+        "cho_enabled": true,
+        "damping_multiplier": 2.4,
+        "frame": "fixed laboratory",
+        "vertical_exaggeration": 1,
+        "forcing_gain": 1,
+        "source_grid_shape": [
+          512,
+          1024
+        ],
+        "display_grid_shape": [
+          512,
+          1024
+        ],
+        "spatial_reconstruction": "All saved samples; spectral surface normals; no spatial decimation or smoothing",
+        "temporal_interpolation": "Linear in xi=Ct-X followed by exact spectral reflection and translation",
+        "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+        "phase_speed_m_s": 0.3614390763757024,
+        "source_simulation_duration_s": 30.0,
+        "complete_saved_prefix": true,
+        "prefix_provenance": {
+          "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+          "checkpoint_settings_digest": "16faeb52313f4f5e4b80c142bec9a53431df0b7891a13180d1f6dd5108b5cc5c",
+          "source_checkpoint_sha256": "530bfb90005c8cab5658b889b7b58340698847734f3b70729e40cf37de3e017a",
+          "source_checkpoint_time_s": 6.75,
+          "source_checkpoint_frame": 675,
+          "source_duration_s": 30.0,
+          "interval_s": [
+            0.0,
+            6.0
+          ],
+          "source_grid_shape": [
+            512,
+            1024
+          ],
+          "field_sha256": {
+            "n.npy": "d7a0cebf59d7e15346d62cc7c47f0ecd946e968de982a8442a8f5f104359a2a2",
+            "eta0.npy": "d70f7b80b7561ea4a40305c1a3fd3370a50a2da7faaca028432afddc54ca4c7b"
+          },
+          "native_metadata_sha256": "0868e8199a7a72b78d71a144709a4f28b3b277966f3fc6380e324c2da9821814",
+          "config_sha256": "769bfb16a27c39399bb973e699da2afbf46deb537a8d1731c8cf35c9c45f4dd1",
+          "policy": "Independent byte-checked copies of committed frame prefixes, captured under the existing mirror lock; no solver calls",
+          "mean_volume_correction": "Existing frozen compensate_mean_volume finalization: initial parent mean minus parent mean at each saved time",
+          "maximum_mean_compensation_m": 6.988711350106689e-06,
+          "corrected_n_sha256": "67e2267c07353b53971bdf84a261d3e159d0ae77edc8ffad24d930c998ae4592"
+        },
+        "camera_zmax_m": 0.008106520399451256,
+        "full_surface_zmax_m": 0.008432329981587827
+      },
+      "verification": {
+        "verified": true,
+        "decoded_frames": 601,
+        "decoded_duration_s": 30.05,
+        "bytes": 14882649,
+        "all_frames_decoded": true,
+        "sha256": "dc6e9aba1987c2effea1742ee89b2bd85f8b8c4217750cf930c6f1a0a79e6f83",
+        "physical_interval_s": [
+          0.0,
+          6.0
+        ],
+        "declared_interval_complete": true,
+        "full_saved_interval": false
+      }
     }
   },
-  "updated_at_utc": "2026-11-19T13:33:09.502663+00:00",
+  "updated_at_utc": "2026-11-20T03:15:00.974530+00:00",
   "cho_physical_interval_s": [
     0.0,
-    2.0
+    6.0
   ],
   "current_visualization_revision": 3,
   "cho_first10_render_job": "2004665",
   "cho_first10_status": "waiting_for_production_checkpoint",
   "video_order": [
     "vorticity_cutaway_first10",
-    "parent_plus_cho_first2",
+    "parent_plus_cho_first6",
     "parent_first10"
   ]
 }
