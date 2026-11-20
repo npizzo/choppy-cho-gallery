@@ -1,0 +1,14 @@
+{
+  "verified": true,
+  "decoded_frames": 1001,
+  "decoded_duration_s": 50.05,
+  "bytes": 24925620,
+  "all_frames_decoded": true,
+  "sha256": "855ba217a6f046ba89856d0b3080ae7a0a85f95832d1139bbd79a7da19900391",
+  "physical_interval_s": [
+    0.0,
+    10.0
+  ],
+  "declared_interval_complete": true,
+  "full_saved_interval": false
+}
