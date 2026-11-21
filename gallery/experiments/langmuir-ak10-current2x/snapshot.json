@@ -34,9 +34,9 @@
   },
   "status": {
     "status": "running",
-    "stage": "native_validation_fine",
+    "stage": "cho_validation",
     "message": "Fresh ak=0.1 matched finer-current campaign stage.",
-    "updated_at_utc": "2026-11-21T21:54:25.722645+00:00",
+    "updated_at_utc": "2026-11-21T23:58:43.437994+00:00",
     "job_id": "2087521"
   },
   "benchmark": {
@@ -50,7 +50,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-21T21:54:42.013905+00:00",
+  "updated_at_utc": "2026-11-21T23:58:58.915173+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
