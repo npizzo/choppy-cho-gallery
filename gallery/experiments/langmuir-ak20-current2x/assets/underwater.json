@@ -1,0 +1,12 @@
+{
+  "physical_interval_s": [
+    0.0,
+    29.999999999999588
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 149.99999999999793,
+  "sha256": "b4dc78241d4602d2998e76b1e48b346f4331342dc51bbfd01d2e2eed2255d568",
+  "all_frames_decoded": true,
+  "quantity": "Wave-averaged Eulerian current; instantaneous orbital velocity excluded"
+}

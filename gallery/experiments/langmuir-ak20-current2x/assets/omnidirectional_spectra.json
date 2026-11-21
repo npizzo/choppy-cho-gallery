@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "case": "production",
+  "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+  "source_archive_sha256": "d893d7030e4ba7a4956a0e954807224c860ccbbdf3eec0c1dfe35e35654d0f0a",
+  "source_metadata_sha256": "36addbf79b425922aedb3c8a644651abf0d575499b5a60bf24a6393e8f8f0c10",
+  "source_config_sha256": "769bfb16a27c39399bb973e699da2afbf46deb537a8d1731c8cf35c9c45f4dd1",
+  "parent_history_sha256": "448f7c09c61574a93d2d9b833aefdb480ee76112993a7504a739e85b6fcaf76f",
+  "damping_multiplier": 2.4,
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "requested_times_s": [
+    0.0,
+    6.0,
+    12.0,
+    18.0,
+    24.0,
+    30.0
+  ],
+  "selected_times_s": [
+    0.0,
+    6.0,
+    12.0,
+    18.0,
+    24.0,
+    30.0
+  ],
+  "selected_frame_indices": [
+    0,
+    600,
+    1200,
+    1800,
+    2400,
+    3000
+  ],
+  "source_grid_shape": [
+    512,
+    1024
+  ],
+  "grid_shape": [
+    512,
+    1024
+  ],
+  "domain_size_m": [
+    0.3199999999999932,
+    0.6399999999999864
+  ],
+  "dk_rad_per_m": 9.817477042468314,
+  "nominal_nyquist_rad_per_m": [
+    5026.5482457437765,
+    5026.5482457437765
+  ],
+  "native_axis_max_rad_per_m": [
+    5026.5482457437765,
+    5026.5482457437765
+  ],
+  "complete_circle_cutoff_rad_per_m": 5026.5482457437765,
+  "radial_corner_max_rad_per_m": 7108.612701053537,
+  "plot_bounds": {
+    "k_min_rad_per_m": 7.8539816339746515,
+    "k_max_rad_per_m": 5026.5482457437765,
+    "E_min_m3": 2.010476474586804e-18,
+    "E_max_m3": 6.35011220217329e-07
+  },
+  "zero_mode_removed": true,
+  "snapshots": [
+    {
+      "variance_m2": {
+        "parent": 3.1584534342939554e-06,
+        "cho": 0.0,
+        "total": 3.1584534342939554e-06,
+        "cross": 0.0
+      },
+      "spectral_integral_m2": {
+        "parent": 3.1584534342939545e-06,
+        "cho": 0.0,
+        "total": 3.1584534342939545e-06,
+        "cross": 0.0
+      },
+      "plotted_variance_m2": {
+        "parent": 3.1584534342939554e-06,
+        "cho": 0.0,
+        "total": 3.1584534342939554e-06,
+        "cross": 0.0
+      },
+      "parseval_abs_error_m2": {
+        "parent": 8.470329472543003e-22,
+        "cho": 0.0,
+        "total": 8.470329472543003e-22
+      },
+      "parseval_relative_error": {
+        "parent": 2.6817965338901603e-16,
+        "cho": 0.0,
+        "total": 2.6817965338901603e-16
+      },
+      "cross_parseval_abs_error_m2": 0.0,
+      "cross_parseval_scale_m2": 0.0,
+      "maximum_ring_closure_error_m2": 0.0,
+      "parseval_passed": true,
+      "frame_index": 0,
+      "time_s": 0.0,
+      "requested_time_s": 0.0
+    },
+    {
+      "variance_m2": {
+        "parent": 3.2325713474098827e-06,
+        "cho": 7.519719361074527e-08,
+        "total": 3.1217187225478343e-06,
+        "cross": -1.860498184727937e-07
+      },
+      "spectral_integral_m2": {
+        "parent": 3.2325713474098836e-06,
+        "cho": 7.519719361074527e-08,
+        "total": 3.1217187225478343e-06,
+        "cross": -1.8604981847279373e-07
+      },
+      "plotted_variance_m2": {
+        "parent": 3.232571347409883e-06,
+        "cho": 7.519719361074525e-08,
+        "total": 3.121718722547834e-06,
+        "cross": -1.8604981847279373e-07
+      },
+      "parseval_abs_error_m2": {
+        "parent": 8.470329472543003e-22,
+        "cho": 0.0,
+        "total": 0.0
+      },
+      "parseval_relative_error": {
+        "parent": 2.620307044214169e-16,
+        "cho": 0.0,
+        "total": 0.0
+      },
+      "cross_parseval_abs_error_m2": 2.6469779601696886e-23,
+      "cross_parseval_scale_m2": 4.930317367794173e-07,
+      "maximum_ring_closure_error_m2": 7.676236084492097e-22,
+      "parseval_passed": true,
+      "frame_index": 600,
+      "time_s": 6.0,
+      "requested_time_s": 6.0
+    },
+    {
+      "variance_m2": {
+        "parent": 3.1720936558096073e-06,
+        "cho": 9.74205369256603e-08,
+        "total": 3.0687832665344585e-06,
+        "cross": -2.0073092620080843e-07
+      },
+      "spectral_integral_m2": {
+        "parent": 3.1720936558096077e-06,
+        "cho": 9.742053692566032e-08,
+        "total": 3.0687832665344602e-06,
+        "cross": -2.0073092620080848e-07
+      },
+      "plotted_variance_m2": {
+        "parent": 3.1720936558096073e-06,
+        "cho": 9.742053692566028e-08,
+        "total": 3.068783266534459e-06,
+        "cross": -2.0073092620080848e-07
+      },
+      "parseval_abs_error_m2": {
+        "parent": 4.235164736271502e-22,
+        "cho": 2.6469779601696886e-23,
+        "total": 1.6940658945086007e-21
+      },
+      "parseval_relative_error": {
+        "parent": 1.3351323119085425e-16,
+        "cho": 2.7170636127673425e-16,
+        "total": 5.520317817757426e-16
+      },
+      "cross_parseval_abs_error_m2": 5.293955920339377e-23,
+      "cross_parseval_scale_m2": 5.559020301523035e-07,
+      "maximum_ring_closure_error_m2": 3.044024654195142e-22,
+      "parseval_passed": true,
+      "frame_index": 1200,
+      "time_s": 12.0,
+      "requested_time_s": 12.0
+    },
+    {
+      "variance_m2": {
+        "parent": 3.1095278510053837e-06,
+        "cho": 9.287998738180327e-08,
+        "total": 3.052479244422846e-06,
+        "cross": -1.4992859396434095e-07
+      },
+      "spectral_integral_m2": {
+        "parent": 3.1095278510053845e-06,
+        "cho": 9.287998738180327e-08,
+        "total": 3.052479244422847e-06,
+        "cross": -1.4992859396434097e-07
+      },
+      "plotted_variance_m2": {
+        "parent": 3.1095278510053833e-06,
+        "cho": 9.287998738180324e-08,
+        "total": 3.0524792444228466e-06,
+        "cross": -1.4992859396434095e-07
+      },
+      "parseval_abs_error_m2": {
+        "parent": 8.470329472543003e-22,
+        "cho": 0.0,
+        "total": 8.470329472543003e-22
+      },
+      "parseval_relative_error": {
+        "parent": 2.723992155209141e-16,
+        "cho": 0.0,
+        "total": 2.7749015781250786e-16
+      },
+      "cross_parseval_abs_error_m2": 2.6469779601696886e-23,
+      "cross_parseval_scale_m2": 5.374131628130686e-07,
+      "maximum_ring_closure_error_m2": 8.602678370551488e-23,
+      "parseval_passed": true,
+      "frame_index": 1800,
+      "time_s": 18.0,
+      "requested_time_s": 18.0
+    },
+    {
+      "variance_m2": {
+        "parent": 3.0532221012329072e-06,
+        "cho": 8.508907913406484e-08,
+        "total": 2.9994280648571217e-06,
+        "cross": -1.3888311550985047e-07
+      },
+      "spectral_integral_m2": {
+        "parent": 3.0532221012329072e-06,
+        "cho": 8.508907913406485e-08,
+        "total": 2.9994280648571213e-06,
+        "cross": -1.3888311550985047e-07
+      },
+      "plotted_variance_m2": {
+        "parent": 3.053222101232907e-06,
+        "cho": 8.508907913406483e-08,
+        "total": 2.999428064857121e-06,
+        "cross": -1.388831155098505e-07
+      },
+      "parseval_abs_error_m2": {
+        "parent": 0.0,
+        "cho": 1.3234889800848443e-23,
+        "total": 4.235164736271502e-22
+      },
+      "parseval_relative_error": {
+        "parent": 0.0,
+        "cho": 1.5554157990117377e-16,
+        "total": 1.411990767804343e-16
+      },
+      "cross_parseval_abs_error_m2": 0.0,
+      "cross_parseval_scale_m2": 5.097017333555798e-07,
+      "maximum_ring_closure_error_m2": 1.9852334701272664e-22,
+      "parseval_passed": true,
+      "frame_index": 2400,
+      "time_s": 24.0,
+      "requested_time_s": 24.0
+    },
+    {
+      "variance_m2": {
+        "parent": 3.004184529948539e-06,
+        "cho": 7.646150838201096e-08,
+        "total": 2.9310533353730007e-06,
+        "cross": -1.4959270295754897e-07
+      },
+      "spectral_integral_m2": {
+        "parent": 3.00418452994854e-06,
+        "cho": 7.646150838201097e-08,
+        "total": 2.9310533353730007e-06,
+        "cross": -1.4959270295754903e-07
+      },
+      "plotted_variance_m2": {
+        "parent": 3.0041845299485398e-06,
+        "cho": 7.646150838201096e-08,
+        "total": 2.931053335373001e-06,
+        "cross": -1.49592702957549e-07
+      },
+      "parseval_abs_error_m2": {
+        "parent": 1.2705494208814505e-21,
+        "cho": 1.3234889800848443e-23,
+        "total": 0.0
+      },
+      "parseval_relative_error": {
+        "parent": 4.229265573454021e-16,
+        "cho": 1.7309218822528754e-16,
+        "total": 0.0
+      },
+      "cross_parseval_abs_error_m2": 5.293955920339377e-23,
+      "cross_parseval_scale_m2": 4.79274953046545e-07,
+      "maximum_ring_closure_error_m2": 3.639594695233322e-22,
+      "parseval_passed": true,
+      "frame_index": 3000,
+      "time_s": 30.0,
+      "requested_time_s": 30.0
+    }
+  ],
+  "parseval_passed": true,
+  "parseval_tolerance": 1e-11,
+  "parseval_absolute_tolerance_m2": 1e-24,
+  "max_parseval_relative_error": 5.520317817757426e-16,
+  "max_parseval_abs_error_m2": 1.6940658945086007e-21,
+  "units": {
+    "wavenumber": "rad/m",
+    "elevation_spectral_density": "m^3",
+    "variance": "m^2"
+  },
+  "normalization": "Sum E(k_bin) times its actual bin width equals the demeaned spatial elevation variance.",
+  "radial_bins": "Nearest multiples of min(2*pi/Lx,2*pi/Ly); the zero bin has half width and zero power after demeaning.",
+  "angular_sampling": "Exact native Fourier powers only; no angular interpolation or isotropy assumption. mode_count records the discrete sampling in every bin.",
+  "plotted_shells": "Only nonzero shells whose upper bin edge is at or below the complete-circle cutoff. CSV and Parseval include all Fourier rectangle corner modes.",
+  "cross_definition": "Twice the real parent/Cho Fourier inner product; signed, and total = parent + Cho + cross.",
+  "coordinate": "The laboratory reflection and translation preserve radial power, so saved xi=Ct-x coordinates need no interpolation.",
+  "ordinate_bounds": "Common across panels. Lower bound retains eight decades below each nonzero component peak where populated; bins below the displayed bounds remain in the CSV."
+}

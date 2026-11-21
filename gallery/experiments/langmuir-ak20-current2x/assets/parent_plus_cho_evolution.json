@@ -1,0 +1,16 @@
+{
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 150.0,
+  "sha256": "c50529db95fd3d5ea94b01c29f15309e995780f549e7cef6dd92f92d5b7d5906",
+  "all_frames_decoded": true,
+  "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+  "source_grid_shape": [
+    512,
+    1024
+  ]
+}

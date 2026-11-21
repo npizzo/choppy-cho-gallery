@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "case": "production",
+  "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+  "source_archive_sha256": "d893d7030e4ba7a4956a0e954807224c860ccbbdf3eec0c1dfe35e35654d0f0a",
+  "source_metadata_sha256": "36addbf79b425922aedb3c8a644651abf0d575499b5a60bf24a6393e8f8f0c10",
+  "source_config_sha256": "769bfb16a27c39399bb973e699da2afbf46deb537a8d1731c8cf35c9c45f4dd1",
+  "parent_history_sha256": "448f7c09c61574a93d2d9b833aefdb480ee76112993a7504a739e85b6fcaf76f",
+  "source_grid_shape": [
+    512,
+    1024
+  ],
+  "domain_size_m": [
+    0.3199999999999932,
+    0.6399999999999864
+  ],
+  "damping_multiplier": 2.4,
+  "requested_times_s": [
+    0.0,
+    6.0,
+    12.0,
+    18.0,
+    24.0,
+    30.0
+  ],
+  "selected_times_s": [
+    0.0,
+    6.0,
+    12.0,
+    18.0,
+    24.0,
+    30.0
+  ],
+  "selected_frame_indices": [
+    0,
+    600,
+    1200,
+    1800,
+    2400,
+    3000
+  ],
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "radial_bins": 45,
+  "angular_bins": 19,
+  "plot_bounds": {
+    "log10_density_min": -18.0,
+    "log10_density_max": -7.0,
+    "shared_across_parts_and_times": true
+  },
+  "slope_x_plot": {
+    "quantity": "eta_x in laboratory coordinates",
+    "color_scheme": "RdBu_r",
+    "symmetric_color_limit": 0.8157866810518213,
+    "color_limit_rule": "Maximum of the per-snapshot absolute-slope 99.5th percentiles across parent and total; common to all panels.",
+    "units": "dimensionless",
+    "native_grid_used": true,
+    "display": "Native slope field rasterized to the figure pixels; image antialiasing is display-only, numerical diagnostics use native samples."
+  },
+  "complete_circle_cutoff_rad_per_m": 5026.5482457437765,
+  "orientation_only": true,
+  "fold_modulo_degrees": 180,
+  "zero_mode_removed": true,
+  "parseval_passed": true,
+  "normalization": "Native FFT divided by Nx*Ny; power reflected from xi to lab x, folded modulo pi and summed into polar sectors. Density is sector power divided by sector area. No angular interpolation; full polar integral is elevation variance.",
+  "layout_reference": "Lenain and Melville (2017), Figure 3 logarithmic wavenumber versus relative orientation layout.",
+  "snapshots": [
+    {
+      "time_s": 0.0,
+      "frame_index": 0,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.1584534342939554e-06,
+          "integral_m2": 3.158453434293955e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3408982669450802e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.1584534342939545e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 3.1584534342939554e-06,
+          "integral_m2": 3.158453434293955e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3408982669450802e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.1584534342939545e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 0.0,
+          "integral_m2": 0.0,
+          "parseval_abs_error_m2": 0.0,
+          "parseval_relative_error": 0.0,
+          "variance_in_complete_plotted_sectors_m2": 0.0,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.20576717779975015,
+          "maximum": 0.2057671777997484,
+          "mean_square": 0.02028644269519736,
+          "abs_q995": 0.20576717779975015,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "mean_square": 0.0,
+          "abs_q995": 0.0
+        },
+        "total": {
+          "minimum": -0.20576717779975015,
+          "maximum": 0.2057671777997484,
+          "mean_square": 0.02028644269519736,
+          "abs_q995": 0.20576717779975015,
+          "fraction_outside_color_limits": 0.0
+        }
+      }
+    },
+    {
+      "time_s": 6.0,
+      "frame_index": 600,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.2325713474098827e-06,
+          "integral_m2": 3.2325713474098836e-06,
+          "parseval_abs_error_m2": 8.470329472543003e-22,
+          "parseval_relative_error": 2.620307044214169e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.2325713474098823e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 3.1217187225478343e-06,
+          "integral_m2": 3.1217187225478347e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3566772386254302e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.121718722547834e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 7.519719361074527e-08,
+          "integral_m2": 7.519719361074527e-08,
+          "parseval_abs_error_m2": 0.0,
+          "parseval_relative_error": 0.0,
+          "variance_in_complete_plotted_sectors_m2": 7.519719361074524e-08,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.6709908224273993,
+          "maximum": 0.6098852399081651,
+          "mean_square": 0.01972086624363482,
+          "abs_q995": 0.40442812171351217,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": -3.3823072350553085,
+          "maximum": 3.7731036509099156,
+          "mean_square": 0.013629839763383587,
+          "abs_q995": 0.5983068761156615
+        },
+        "total": {
+          "minimum": -3.913188276229511,
+          "maximum": 3.300038310001141,
+          "mean_square": 0.031550055001497615,
+          "abs_q995": 0.7479239202216295,
+          "fraction_outside_color_limits": 0.0037994384765625
+        }
+      }
+    },
+    {
+      "time_s": 12.0,
+      "frame_index": 1200,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.1720936558096073e-06,
+          "integral_m2": 3.1720936558096077e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3351323119085425e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.172093655809607e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 3.0687832665344585e-06,
+          "integral_m2": 3.0687832665344594e-06,
+          "parseval_abs_error_m2": 8.470329472543003e-22,
+          "parseval_relative_error": 2.760158908878713e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.0687832665344585e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 9.74205369256603e-08,
+          "integral_m2": 9.742053692566031e-08,
+          "parseval_abs_error_m2": 1.3234889800848443e-23,
+          "parseval_relative_error": 1.3585318063836712e-16,
+          "variance_in_complete_plotted_sectors_m2": 9.742053692566028e-08,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.48211664354938466,
+          "maximum": 0.5966771864550977,
+          "mean_square": 0.018285544514239114,
+          "abs_q995": 0.40172141082081425,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": -2.2211913754515056,
+          "maximum": 2.2404636930532953,
+          "mean_square": 0.016654775730784856,
+          "abs_q995": 0.6857359389391067
+        },
+        "total": {
+          "minimum": -2.648441153661552,
+          "maximum": 1.962516499393204,
+          "mean_square": 0.03333789343607928,
+          "abs_q995": 0.8157866810518213,
+          "fraction_outside_color_limits": 0.005001068115234375
+        }
+      }
+    },
+    {
+      "time_s": 18.0,
+      "frame_index": 1800,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.1095278510053837e-06,
+          "integral_m2": 3.109527851005384e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3619960776045704e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.1095278510053837e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 3.052479244422846e-06,
+          "integral_m2": 3.0524792444228466e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.3874507890625393e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.0524792444228457e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 9.287998738180327e-08,
+          "integral_m2": 9.287998738180328e-08,
+          "parseval_abs_error_m2": 1.3234889800848443e-23,
+          "parseval_relative_error": 1.424945262583162e-16,
+          "variance_in_complete_plotted_sectors_m2": 9.287998738180324e-08,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.42571623444562723,
+          "maximum": 0.4303075535983134,
+          "mean_square": 0.017695647782368935,
+          "abs_q995": 0.3658503855582715,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": -1.9777961687226906,
+          "maximum": 2.118619210752233,
+          "mean_square": 0.017268306395540993,
+          "abs_q995": 0.6776060453776404
+        },
+        "total": {
+          "minimum": -2.2278141508096216,
+          "maximum": 1.8335926718787934,
+          "mean_square": 0.033547887173657004,
+          "abs_q995": 0.8138070479059986,
+          "fraction_outside_color_limits": 0.004978179931640625
+        }
+      }
+    },
+    {
+      "time_s": 24.0,
+      "frame_index": 2400,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.0532221012329072e-06,
+          "integral_m2": 3.0532221012329077e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.387113218707974e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.0532221012329072e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 2.9994280648571217e-06,
+          "integral_m2": 2.9994280648571217e-06,
+          "parseval_abs_error_m2": 0.0,
+          "parseval_relative_error": 0.0,
+          "variance_in_complete_plotted_sectors_m2": 2.9994280648571183e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 8.508907913406484e-08,
+          "integral_m2": 8.508907913406485e-08,
+          "parseval_abs_error_m2": 1.3234889800848443e-23,
+          "parseval_relative_error": 1.5554157990117377e-16,
+          "variance_in_complete_plotted_sectors_m2": 8.508907913406182e-08,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.4889893511229833,
+          "maximum": 0.5455903692897563,
+          "mean_square": 0.01611554912131573,
+          "abs_q995": 0.3729060901906264,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": -2.492260461980816,
+          "maximum": 2.5297279565973336,
+          "mean_square": 0.015656917770843295,
+          "abs_q995": 0.655073556980212
+        },
+        "total": {
+          "minimum": -2.81039031970151,
+          "maximum": 2.214127180557382,
+          "mean_square": 0.030472866509161096,
+          "abs_q995": 0.7450369951122352,
+          "fraction_outside_color_limits": 0.0037841796875
+        }
+      }
+    },
+    {
+      "time_s": 30.0,
+      "frame_index": 3000,
+      "parts": {
+        "parent": {
+          "variance_m2": 3.004184529948539e-06,
+          "integral_m2": 3.0041845299485393e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.4097551911513403e-16,
+          "variance_in_complete_plotted_sectors_m2": 3.004184529948539e-06,
+          "parseval_passed": true
+        },
+        "total": {
+          "variance_m2": 2.9310533353730007e-06,
+          "integral_m2": 2.931053335373001e-06,
+          "parseval_abs_error_m2": 4.235164736271502e-22,
+          "parseval_relative_error": 1.4449292631969598e-16,
+          "variance_in_complete_plotted_sectors_m2": 2.931053335373e-06,
+          "parseval_passed": true
+        },
+        "cho": {
+          "variance_m2": 7.646150838201096e-08,
+          "integral_m2": 7.646150838201096e-08,
+          "parseval_abs_error_m2": 0.0,
+          "parseval_relative_error": 0.0,
+          "variance_in_complete_plotted_sectors_m2": 7.646150838201025e-08,
+          "parseval_passed": true
+        }
+      },
+      "slope_x": {
+        "parent": {
+          "minimum": -0.49757372253775134,
+          "maximum": 0.48930788886535037,
+          "mean_square": 0.015366699668082729,
+          "abs_q995": 0.3760608063419261,
+          "fraction_outside_color_limits": 0.0
+        },
+        "cho": {
+          "minimum": -3.282438207862642,
+          "maximum": 3.170825920800567,
+          "mean_square": 0.014748833599618816,
+          "abs_q995": 0.6306044471408154
+        },
+        "total": {
+          "minimum": -3.706866900840674,
+          "maximum": 2.7635111457909973,
+          "mean_square": 0.028918238166653336,
+          "abs_q995": 0.7534947751045947,
+          "fraction_outside_color_limits": 0.004199981689453125
+        }
+      }
+    }
+  ]
+}

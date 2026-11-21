@@ -33,10 +33,10 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "running",
-    "stage": "postprocess",
-    "message": "Audited optimized continuation; unchanged physical model and time steps.",
-    "updated_at_utc": "2026-11-20T20:41:06.345718+00:00",
+    "status": "complete",
+    "stage": "complete",
+    "message": "Simulation, saved-data analysis, and videos are complete.",
+    "updated_at_utc": "2026-11-20T22:13:20.625335+00:00",
     "job_id": "1958024"
   },
   "benchmark": {
@@ -51,10 +51,173 @@
     "cho_benchmark_duration_s": 2.0,
     "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
   },
-  "numerical_complete": false,
+  "numerical_complete": true,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-20T20:41:26.576112+00:00",
+  "updated_at_utc": "2026-11-21T02:01:19.302852+00:00",
   "assets": [
-    "assets/wide_benchmark.json"
-  ]
+    "assets/wide_benchmark.json",
+    "assets/summary.json",
+    "assets/mean_square_slope.csv",
+    "assets/diagnostics.csv",
+    "assets/capillary_mss.csv",
+    "assets/current_diagnostics.csv",
+    "assets/omnidirectional_spectra.png",
+    "assets/omnidirectional_spectra.csv",
+    "assets/omnidirectional_spectra.json",
+    "assets/directional_spectra.csv",
+    "assets/directional_spectra.json",
+    "assets/directional_spectra_parent.png",
+    "assets/directional_spectra_total.png",
+    "assets/directional_spectra_cho.png",
+    "assets/slope_x_parent.png",
+    "assets/slope_x_total.png",
+    "assets/parent_evolution.json",
+    "assets/parent_evolution.mp4",
+    "assets/parent_evolution.png",
+    "assets/parent_plus_cho_evolution.json",
+    "assets/parent_plus_cho_evolution.mp4",
+    "assets/parent_plus_cho_evolution.png",
+    "assets/parent_plus_cho.json",
+    "assets/parent_plus_cho.mp4",
+    "assets/parent_plus_cho.png",
+    "assets/underwater.json",
+    "assets/underwater.mp4",
+    "assets/underwater.png",
+    "assets/transverse_response.png"
+  ],
+  "metrics": {
+    "parent": {
+      "duration_s": 29.999999999999588,
+      "free_modes": 231,
+      "max_transverse_action_fraction": 0.8866645908872802,
+      "max_slope_ratio": 0.7303264106444829,
+      "peak_slope_ratio_time_s": 29.690000000001916,
+      "max_transverse_boundary_action": 0.008393262037537768,
+      "max_streamwise_boundary_action": 0.11200537875660925,
+      "max_action_error": 4.779401969823294e-05,
+      "bound_geometry_full_second_order": true,
+      "band_edge_warning": true,
+      "bound_geometry_validated": true,
+      "minimum_map_jacobian": 0.49408170836668175,
+      "maximum_physical_slope": 0.6589928821502642,
+      "maximum_quadratic_to_linear_map_rms": 0.2457352104994625,
+      "maximum_quadratic_to_linear_map_gradient_rms": 0.20348463883051554,
+      "geometry_samples": 31,
+      "max_parent_transverse_mss": 0.00839380587018022,
+      "max_parent_surface_slope_ratio": 0.7287895757016294,
+      "max_cho_transverse_mss": 0.006103636544850096,
+      "max_cho_surface_slope_ratio": 0.6985654800348626,
+      "max_total_transverse_mss": 0.013310409807574964,
+      "max_total_surface_slope_ratio": 0.6790010119472148
+    },
+    "cho": {
+      "cho_enabled": true,
+      "damping_multiplier": 2.4,
+      "dt_s": 0.000125,
+      "duration_s": 30.0,
+      "grid_nx": 512,
+      "grid_ny": 1024,
+      "max_abs_cho_m": 0.007956021465361118,
+      "max_cho_mss": 0.0328339494725903,
+      "max_curvature_displacement": 1.3164351263027685,
+      "max_disturbance_slope": 8.543081563707954,
+      "max_edge_slope_fraction": 0.014867949246563641,
+      "max_edge_variance_fraction": 0.0005097050087510243,
+      "max_parent_mss": 0.029092030296524247,
+      "max_parent_slope": 0.7639789338509918,
+      "max_slope_area_above_1": 0.0055255889892578125,
+      "max_slope_area_above_2": 0.000732421875,
+      "max_slope_q99": 0.7722657124102044,
+      "max_slope_q999": 1.8020749222301218,
+      "max_total_mss": 0.056005806317813045,
+      "min_parent_J": 0.4357116080190281
+    },
+    "checks": {
+      "tank_complete": true,
+      "duration_s": 30.0,
+      "mean_divergence_max_per_s": 2.8199664825478976e-14,
+      "mean_cfl": 0.04250389071611177,
+      "parent_sideband_elevation_variance_fraction_initial": 0.0,
+      "parent_sideband_elevation_variance_fraction_final": 0.9729025072316227,
+      "initial_carrier_mode_index": 115,
+      "final_parent_mss": 0.02317519702305027,
+      "final_cho_disturbance_mss": 0.019381644460455323,
+      "final_total_mss": 0.040470073576684785,
+      "final_cross_slope_term": -0.002086767906820809,
+      "maximum_disturbance_m": 0.007956021465361118,
+      "surface_frames_checked": 3001
+    }
+  },
+  "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+  "movies": {
+    "parent_evolution": {
+      "physical_interval_s": [
+        0.0,
+        30.0
+      ],
+      "physical_playback_speed": 0.2,
+      "fps": 20,
+      "playback_duration_s": 150.0,
+      "sha256": "f1b229ebee1b34b1c174bafd11377e9c3a2610fab375e2e68682b458322ab772",
+      "all_frames_decoded": true
+    },
+    "parent_plus_cho_evolution": {
+      "physical_interval_s": [
+        0.0,
+        30.0
+      ],
+      "physical_playback_speed": 0.2,
+      "fps": 20,
+      "playback_duration_s": 150.0,
+      "sha256": "c50529db95fd3d5ea94b01c29f15309e995780f549e7cef6dd92f92d5b7d5906",
+      "all_frames_decoded": true,
+      "source_fingerprint": "cf477f22484b485106b5971775b8618b4b2928150aa25c83f5058383c91dada7",
+      "source_grid_shape": [
+        512,
+        1024
+      ]
+    },
+    "parent_plus_cho": {
+      "physical_interval_s": [
+        29.5,
+        30.0
+      ],
+      "physical_playback_speed": 0.1,
+      "fps": 60,
+      "playback_duration_s": 5.0,
+      "sha256": "4e1d4ad322ae74070166ec92d08592681997610a9cda42a02eaaf947f73b81d2",
+      "all_frames_decoded": true,
+      "crop_extent_m": [
+        0.3199999999999932,
+        0.3199999999999932
+      ],
+      "crop_bounds_m": [
+        [
+          -0.16,
+          0.15999999999999318
+        ],
+        [
+          -0.16,
+          0.15999999999999318
+        ]
+      ],
+      "display_grid_shape": [
+        512,
+        512
+      ],
+      "cropped": true
+    },
+    "underwater": {
+      "physical_interval_s": [
+        0.0,
+        29.999999999999588
+      ],
+      "physical_playback_speed": 0.2,
+      "fps": 20,
+      "playback_duration_s": 149.99999999999793,
+      "sha256": "b4dc78241d4602d2998e76b1e48b346f4331342dc51bbfd01d2e2eed2255d568",
+      "all_frames_decoded": true,
+      "quantity": "Wave-averaged Eulerian current; instantaneous orbital velocity excluded"
+    }
+  }
 }

@@ -1,0 +1,11 @@
+{
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "playback_duration_s": 150.0,
+  "sha256": "f1b229ebee1b34b1c174bafd11377e9c3a2610fab375e2e68682b458322ab772",
+  "all_frames_decoded": true
+}
