@@ -1,8 +1,22 @@
 {
   "schema_version": 1,
-  "status": "processing",
-  "updated_at_utc": "2026-11-22T17:23:20.899820+00:00",
+  "status": "complete",
+  "updated_at_utc": "2026-11-22T21:01:23.714839+00:00",
   "clips": {
+    "ak10": {
+      "assets": {
+        "mp4": "ak10_parent_plus_cho_first10.mp4",
+        "png": "ak10_parent_plus_cho_first10.png",
+        "json": "ak10_parent_plus_cho_first10.json",
+        "verified.json": "ak10_parent_plus_cho_first10.verified.json"
+      },
+      "sha256": {
+        "mp4": "1f735d0ad21730e28fe12e5e5f191a356c9cc7b4eac72b3453a82e1db323ff4d",
+        "png": "77ba8f33a0c36e6d6e6daaddc4dc3a45e88fe130b3651f6767310c60f3a220a2",
+        "json": "0975ac1a9842e5d3ca9abbd89e7889d304ad6e9cb0cb68c118c949cf69aab9ea",
+        "verified.json": "0566547a60fefb74f87ad9e6898387f35028990d13198b8e36ebc31899d762a9"
+      }
+    },
     "ak20": {
       "assets": {
         "mp4": "ak20_parent_plus_cho_first10.mp4",

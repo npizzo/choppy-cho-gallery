@@ -1,0 +1,54 @@
+{
+  "physical_interval_s": [
+    0.0,
+    10.0
+  ],
+  "fps": 20,
+  "physical_playback_speed": 0.2,
+  "video_frame_count": 1001,
+  "encoded_duration_s": 50.05,
+  "physical_frame_dt_s": 0.01,
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true,
+  "quantity": "parent_plus_cho",
+  "initial_steepness": 0.1,
+  "cho_enabled": true,
+  "damping_multiplier": 2.4,
+  "source_fingerprint": "cd2e9306be84d2da921d2938c6d5338eb50af90e22ebcfa0fe038e3b6c9a8c05",
+  "source_archive_sha256": "1bde0db50cbcc7f959e25595e7221f356de461881b32eb788bcd5b3a3b855d7e",
+  "vertical_exaggeration": 1,
+  "forcing_gain": 1,
+  "frame": "fixed laboratory",
+  "source_grid_shape": [
+    512,
+    1024
+  ],
+  "display_grid_shape": [
+    512,
+    1024
+  ],
+  "camera_zmax_m": 0.00912427343428135,
+  "full_surface_zmax_m": 0.004536586464382708,
+  "camera": {
+    "elevation_deg": 32,
+    "azimuth_deg": -65,
+    "projection": "orthographic"
+  },
+  "temporal_interpolation": "Linear in xi=Ct-X followed by Fourier reflection/translation; saved cadence 0.01 s",
+  "source_receipt": {
+    "source_fingerprint": "cd2e9306be84d2da921d2938c6d5338eb50af90e22ebcfa0fe038e3b6c9a8c05",
+    "physical_interval_s": [
+      0.0,
+      10.0
+    ],
+    "initial_steepness": 0.1,
+    "cho_damping_multiplier": 2.4,
+    "time_utc": "2026-11-22T17:22:31.211525+00:00",
+    "parent_history_sha256": "5a7b3c18a03a40263749138706cf6f2dbe5cdec73c77d992aff38f008469b076",
+    "mean_history_sha256": "3be4e98d0a5ab52cc78498b2656cffa2847b6e5e557aba2a3826a1fe81d4070e",
+    "merge_receipt_sha256": "645b7726e5a5b82204dbb8c0df9c9d93c683ceb8bc05702fcf92f572f383b33e",
+    "config_sha256": "1ffe5179f1ef5b6d358bffc5b2dc4fafcc2dca9684710ffc15e94152b7a93831",
+    "scope": "Independent 0\u201310 second Cho replay from existing completed parent/current segments. No native rerun. No production history or checkpoint is modified."
+  }
+}
