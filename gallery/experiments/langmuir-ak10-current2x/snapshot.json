@@ -34,23 +34,26 @@
   },
   "status": {
     "status": "running",
-    "stage": "cho_validation",
+    "stage": "native_5",
     "message": "Fresh ak=0.1 matched finer-current campaign stage.",
-    "updated_at_utc": "2026-11-21T23:58:43.437994+00:00",
+    "updated_at_utc": "2026-11-22T06:27:54.412725+00:00",
     "job_id": "2087521"
   },
   "benchmark": {
     "passed": true,
     "native_seconds_per_step": 0.311021035,
+    "cho_seconds_per_step": 0.32944787246674967,
     "estimated_native_hours": 10.367367833333333,
+    "estimated_cho_hours": 21.963191497783313,
     "cpu_count": 8,
     "fft_workers": 4,
     "native_benchmark_duration_s": 0.002,
-    "scope": "Measured target-grid native timing only. Cho and end-to-end completion time are not yet measured. Queueing excluded."
+    "cho_benchmark_duration_s": 2.0,
+    "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-22T00:18:41.651636+00:00",
+  "updated_at_utc": "2026-11-22T06:28:19.454689+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]

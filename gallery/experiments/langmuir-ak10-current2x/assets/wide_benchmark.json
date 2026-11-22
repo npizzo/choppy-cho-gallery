@@ -1,9 +1,12 @@
 {
   "passed": true,
   "native_seconds_per_step": 0.311021035,
+  "cho_seconds_per_step": 0.32944787246674967,
   "estimated_native_hours": 10.367367833333333,
+  "estimated_cho_hours": 21.963191497783313,
   "cpu_count": 8,
   "fft_workers": 4,
   "native_benchmark_duration_s": 0.002,
-  "scope": "Measured target-grid native timing only. Cho and end-to-end completion time are not yet measured. Queueing excluded."
+  "cho_benchmark_duration_s": 2.0,
+  "scope": "Native warmed timing and full-grid two-second Cho integration. Extrapolated solve times exclude queueing, rendering, and changing late-time geometry cost."
 }
