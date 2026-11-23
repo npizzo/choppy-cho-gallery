@@ -27,8 +27,9 @@
     <ul>
       <li><strong>The jet's path is already converged at 0.064 m.</strong> At touchdown the tip position agrees to 2 mm (x = 10.569–10.571 m) and the overhang to 2.5 % (0.92–0.94 m) across the three runs that reach touchdown.</li>
       <li><strong>What changes is how many nodes describe the jet.</strong> Without regridding, the Lagrangian nodes stretch along the jet as it lengthens: median spacing reaches 0.049 m at 0.064 m resolution, and still 0.025 m at 0.032 m. With regridding at 0.032 m, the jet carries 207 nodes from crest to tip at a median spacing of 5 mm, about 10× finer than the unregridded 0.064 m run.</li>
+      <li><strong>Regridding moves nodes; it does not add them.</strong> In the 0.032 m regridded run, the surface away from the breaker is back to about 0.064 m spacing, so the gain in the jet comes from coarsening elsewhere.</li>
       <li><strong>The tip itself remains marginal in every run.</strong> The tip radius of curvature (≈ 1 cm) spans only about 2.5–4 panel lengths, so features at the tip scale are not converged.</li>
-      <li><strong>Regridding at 0.064 m is not robust.</strong> It regrids almost every step late in the overturn and fails at t = 5.128 s, before touchdown. At 0.032 m it needed only 17 regrids.</li>
+      <li><strong>Regridding at 0.064 m is not robust.</strong> It regrids almost every step late in the overturn, and the time step and energy become noisy. At t = 5.128 s, before touchdown, it fails with a kink at the foot of the front face (x ≈ 9.7 m) and a spurious 30 m/s speed. At 0.032 m it needed only 17 regrids.</li>
       <li><strong>Doubling resolution improves energy conservation 4–6×</strong>, from about 1.6–1.9 × 10<sup>−3</sup> to 3–4 × 10<sup>−4</sup> relative drift. It costs roughly 20× more wall time.</li>
     </ul>
   </section>
@@ -47,14 +48,14 @@
         </tbody>
       </table>
     </div>
-    <p class="small">* Stopped 0.04 s before touchdown, when a regrid produced a degenerate panel; the tip was still 0.12 m above the surface, so its jet metrics are not directly comparable. All four runs first overturn at t ≈ 4.769 s. Relative volume change is below 1.5 × 10<sup>−4</sup> in every run. Runs were on different Unity node types, so wall times are indicative only.</p>
+    <p class="small">* Stopped 0.04 s before touchdown, when a regrid produced a degenerate panel at the foot of the front face; the tip was still 0.12 m above the surface, so its jet metrics are not directly comparable. All four runs first overturn at t ≈ 4.769 s. Relative volume change is below 1.5 × 10<sup>−4</sup> in every run. Runs were on different Unity node types, so wall times are indicative only.</p>
   </section>
 
   <section aria-labelledby="jet-title">
     <h2 id="jet-title">The jet at matching times</h2>
     <figure>
       <img src="plots/03_jet_common_times.png" alt="Four panels of the overturning jet near touchdown, with the four runs overlaid at the nearest saved frame to each time." loading="lazy">
-      <figcaption>Solid lines: regridding on; dashed: off. The jet outlines overlap closely; the 0.064 m regridded run stops before the last panel.</figcaption>
+      <figcaption>Solid lines: regridding on; dashed: off. At plotting scale all four outlines coincide. The last panel is the final frame of the 0.064 m regridded run.</figcaption>
     </figure>
     <figure>
       <img src="plots/02_final_jet_nodes.png" alt="Last frame of each run, zoomed on the jet, with every surface node drawn as a dot." loading="lazy">
@@ -62,7 +63,7 @@
     </figure>
     <figure>
       <img src="plots/06_node_spacing.png" alt="Node spacing along the free surface at the last frame of each run, on a log scale." loading="lazy">
-      <figcaption>Node spacing at the last frame. Regridding concentrates nodes where |∇φ| is large: in the jet and the breaking front.</figcaption>
+      <figcaption>Node spacing at the last frame. Regridding concentrates nodes where |∇φ| is large, in the jet and the breaking front, and coarsens the rest of the surface to keep the node count fixed.</figcaption>
     </figure>
   </section>
 
