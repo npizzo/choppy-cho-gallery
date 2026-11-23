@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Plunging-jet resolution in the surftank BEM · Choppy–Cho gallery</title>
+  <meta name="description" content="Aidan's solitary wave breaking on a 1:10 slope: free-surface resolution 0.064 versus 0.032 m, with and without free-surface regridding, up to jet touchdown.">
+  <link rel="stylesheet" href="../cho-steepness-controls/style.css">
+  <style>
+    figure img { width: 100%; height: auto; }
+    td, th { white-space: nowrap; }
+    .note-row td { color: #8a5a00; }
+  </style>
+</head>
+<body>
+<main>
+  <nav aria-label="Gallery navigation"><a href="../../">Choppy–Cho gallery</a></nav>
+  <header>
+    <p class="eyebrow">Surftank BEM · Aidan_shallow case · 23 November 2026</p>
+    <h1>Does doubling resolution, with regridding, describe the plunging jet better?</h1>
+    <p class="lede">A solitary wave (a/H = 0.6, H = 1 m) shoals on a 1:10 slope onto a 0.05 m shelf and plunges. Aidan found the jets poorly described. Four runs separate two changes: free-surface resolution 0.064 → 0.032 m, and upstream surftank's free-surface node regridding (<code>shift_by_curve2d_normu</code>, a = 16, thresholds 10 / 1.5, buffer 10).</p>
+    <p class="scope"><strong>Two-dimensional potential-flow BEM; runs end when the jet touches down.</strong> A single connected free surface cannot continue through reconnection, so every run stops near t ≈ 5.17 s. All runs ran on Unity (16 OpenMP threads) with the standalone Fortran port of surftank. In all four runs the two vertical walls are respaced every step (upstream <code>linearize_uniform</code>). Without it, the 0.032 m run collapses a left-wall panel at t ≈ 1.88 s.</p>
+  </header>
+
+  <section aria-labelledby="answer-title">
+    <h2 id="answer-title">Short answer</h2>
+    <ul>
+      <li><strong>The jet's path is already converged at 0.064 m.</strong> At touchdown the tip position agrees to 2 mm (x = 10.569–10.571 m) and the overhang to 2.5 % (0.92–0.94 m) across the three runs that reach touchdown.</li>
+      <li><strong>What changes is how many nodes describe the jet.</strong> Without regridding, the Lagrangian nodes stretch along the jet as it lengthens: median spacing reaches 0.049 m at 0.064 m resolution, and still 0.025 m at 0.032 m. With regridding at 0.032 m, the jet carries 207 nodes from crest to tip at a median spacing of 5 mm, about 10× finer than the unregridded 0.064 m run.</li>
+      <li><strong>The tip itself remains marginal in every run.</strong> The tip radius of curvature (≈ 1 cm) spans only about 2.5–4 panel lengths, so features at the tip scale are not converged.</li>
+      <li><strong>Regridding at 0.064 m is not robust.</strong> It regrids almost every step late in the overturn and fails at t = 5.128 s, before touchdown. At 0.032 m it needed only 17 regrids.</li>
+      <li><strong>Doubling resolution improves energy conservation 4–6×</strong>, from about 1.6–1.9 × 10<sup>−3</sup> to 3–4 × 10<sup>−4</sup> relative drift. It costs roughly 20× more wall time.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="table-title">
+    <h2 id="table-title">Runs</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Run summary, scroll horizontally if needed">
+      <table>
+        <caption>Jet metrics at each run's last saved frame. Jet spacing is measured along the surface from the crest to the jet tip. R is the circumradius through the tip node and its two neighbours.</caption>
+        <thead><tr><th scope="col">Run</th><th scope="col">Surface nodes</th><th scope="col">Final t (s)</th><th scope="col">Regrids</th><th scope="col">Tip x (m)</th><th scope="col">Overhang (m)</th><th scope="col">Nodes crest→tip</th><th scope="col">Jet spacing median / max (m)</th><th scope="col">Tip R (m)</th><th scope="col">R / local spacing</th><th scope="col">Rel. energy drift</th><th scope="col">Wall time</th></tr></thead>
+        <tbody>
+          <tr><td>0.064 m, regrid off</td><td>595</td><td>5.1682</td><td>0</td><td>10.5708</td><td>0.923</td><td>24</td><td>0.049 / 0.066</td><td>0.0128</td><td>2.4</td><td>1.9e-3</td><td>2 min</td></tr>
+          <tr class="note-row"><td>0.064 m, regrid on</td><td>595</td><td>5.1281*</td><td>69</td><td>10.3612*</td><td>0.816*</td><td>51</td><td>0.017 / 0.024</td><td>0.0177</td><td>1.2</td><td>1.6e-3</td><td>2 min</td></tr>
+          <tr><td>0.032 m, regrid off</td><td>1190</td><td>5.1681</td><td>0</td><td>10.5710</td><td>0.944</td><td>49</td><td>0.025 / 0.033</td><td>0.0125</td><td>3.9</td><td>3.4e-4</td><td>45 min</td></tr>
+          <tr><td>0.032 m, regrid on</td><td>1190</td><td>5.1675</td><td>17</td><td>10.5693</td><td>0.937</td><td>207</td><td>0.005 / 0.007</td><td>0.0099</td><td>2.5</td><td>4.0e-4</td><td>33 min</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">* Stopped 0.04 s before touchdown, when a regrid produced a degenerate panel; the tip was still 0.12 m above the surface, so its jet metrics are not directly comparable. All four runs first overturn at t ≈ 4.769 s. Relative volume change is below 1.5 × 10<sup>−4</sup> in every run. Runs were on different Unity node types, so wall times are indicative only.</p>
+  </section>
+
+  <section aria-labelledby="jet-title">
+    <h2 id="jet-title">The jet at matching times</h2>
+    <figure>
+      <img src="plots/03_jet_common_times.png" alt="Four panels of the overturning jet near touchdown, with the four runs overlaid at the nearest saved frame to each time." loading="lazy">
+      <figcaption>Solid lines: regridding on; dashed: off. The jet outlines overlap closely; the 0.064 m regridded run stops before the last panel.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/02_final_jet_nodes.png" alt="Last frame of each run, zoomed on the jet, with every surface node drawn as a dot." loading="lazy">
+      <figcaption>Each dot is a surface node. Without regridding, nodes pile up at the tip and thin out along the jet. With regridding, spacing along the jet is nearly uniform.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/06_node_spacing.png" alt="Node spacing along the free surface at the last frame of each run, on a log scale." loading="lazy">
+      <figcaption>Node spacing at the last frame. Regridding concentrates nodes where |∇φ| is large: in the jet and the breaking front.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="evolution-title">
+    <h2 id="evolution-title">Overturning and run diagnostics</h2>
+    <figure>
+      <img src="plots/04_overturning_sequence.png" alt="Sequence of free-surface profiles for the 0.032 m regridded run during overturning." loading="lazy">
+      <figcaption>0.032 m with regridding: profiles over the final half second.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/05_diagnostics.png" alt="Time step, maximum fluid speed, relative energy drift, and cumulative regrid count versus time for the four runs." loading="lazy">
+      <figcaption>Time step (CFL 0.1), maximum surface speed, relative energy drift, and cumulative regrids.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/01_final_full_domain.png" alt="Whole tank: the last free surface of each run over the sloping bottom." loading="lazy">
+      <figcaption>Whole tank at each run's last frame.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="method-title">
+    <h2 id="method-title">Method and caveats</h2>
+    <p>The Fortran port reproduces the active solver of <code>Aidan_shallow.m</code>: piecewise-linear BEM, five-point quartic surface derivatives, and second-order Lagrangian Taylor stepping at CFL 0.1. Free-surface regridding is a direct port of upstream <code>bdry_handle_regrid.m</code> (<code>nodeshift</code>, <code>shift_by_curve2d_normu</code>, nodes 5 to N−4, buffer reweighting). After each step the BEM is re-solved and the weighted segment lengths are tested; if either threshold fails, nodes and φ are redistributed along cubic splines and the BEM is solved again. Against an independent scipy port of the MATLAB routines, the port agrees to ≤ 10<sup>−9</sup>.</p>
+    <p class="caution">Splines assume MATLAB <code>csape</code>'s default end slopes (the cubic through the four nearest points); this has not been checked against MATLAB itself. As upstream, the threshold test includes the buffer segments. After a regrid the saved nodes no longer follow fluid particles. Jet-tip metrics come from single nodes and are sensitive at the few-millimetre level.</p>
+    <p class="small">Plots: <a href="plots/analyze_jets.py.txt">analyze_jets.py</a> · numbers: <a href="plots/summary.json">summary.json</a>. Raw surface histories stay on Unity.</p>
+  </section>
+</main>
+</body>
+</html>
