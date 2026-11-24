@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+"""Compare Aidan shallow-water surftank runs: resolution x free-surface regridding.
+
+Usage: analyze_jets.py OUTDIR LABEL=RUNDIR [LABEL=RUNDIR ...]
+Writes PNG figures, summary.json and summary.md into OUTDIR.
+"""
+import json
+import os
+import sys
+
+import numpy as np
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
+
+
+def read_run(d):
+    b = open(os.path.join(d, "surface.bin"), "rb").read()
+    h = np.frombuffer(b[:16], np.int32)
+    nf = int(h[2])
+    counts = np.frombuffer(b[16:40], np.int32).astype(int)
+    n = int(counts.sum())
+    off = 40
+    x0 = np.frombuffer(b[off:off + 8 * n]).copy(); off += 8 * n
+    z0 = np.frombuffer(b[off:off + 8 * n]).copy(); off += 8 * n
+    fr = 16 + 24 * nf
+    nfr = (len(b) - off) // fr
+    a = np.frombuffer(b[off:off + nfr * fr]).reshape(nfr, 2 + 3 * nf)
+    status = {}
+    for line in open(os.path.join(d, "status.txt")):
+        k, _, v = line.strip().partition("=")
+        status[k] = v.strip()
+    diag = np.genfromtxt(os.path.join(d, "diagnostics.csv"), delimiter=",", names=True)
+    return dict(nf=nf, counts=counts, x0=x0, z0=z0, t=a[:, 0], dt=a[:, 1],
+                x=a[:, 2:2 + nf], z=a[:, 2 + nf:2 + 2 * nf], phi=a[:, 2 + 2 * nf:],
+                status=status, diag=diag)
+
+
+def jet_metrics(x, z):
+    """Crest and plunging-jet tip on one frame. Nodes run from the right wall
+    (shore side, index 0) to the left wall, so the wave front is at lower index."""
+    ic = int(np.argmax(z))
+    # Walk from the crest toward the front: x first increases along an
+    # overturned front face; its first local maximum is the jet tip.
+    i = ic
+    while i - 1 >= 0 and x[i - 1] >= x[i]:
+        i -= 1
+    # Overturned only if x keeps increasing past the crest and then turns back
+    # while still above the undisturbed level.
+    tip = i
+    overturned = tip > 0 and x[tip] > x[ic] + 1e-9 and (x[tip - 1] < x[tip])
+    # Vertical tangent on the front face: the point where the face turns past vertical.
+    ds = np.hypot(np.diff(x), np.diff(z))
+    res = dict(i_crest=ic, x_crest=float(x[ic]), z_crest=float(z[ic]),
+               overturned=bool(overturned and tip < ic))
+    if res["overturned"]:
+        res.update(i_tip=tip, x_tip=float(x[tip]), z_tip=float(z[tip]),
+                   nodes_crest_to_tip=int(ic - tip),
+                   ds_at_tip=float(0.5 * (ds[tip - 1] + ds[tip])) if tip >= 1 else float(ds[0]),
+                   tip_radius=float(circumradius(x[tip - 1:tip + 2], z[tip - 1:tip + 2])),
+                   overhang=float(x[tip] - np.min(x[tip:ic + 1])))
+        res["tip_radius_over_ds"] = res["tip_radius"] / res["ds_at_tip"]
+    return res
+
+
+def circumradius(xs, zs):
+    a = np.hypot(xs[1] - xs[0], zs[1] - zs[0])
+    b = np.hypot(xs[2] - xs[1], zs[2] - zs[1])
+    c = np.hypot(xs[2] - xs[0], zs[2] - zs[0])
+    area2 = abs((xs[1] - xs[0]) * (zs[2] - zs[0]) - (zs[1] - zs[0]) * (xs[2] - xs[0]))
+    return np.inf if area2 == 0 else a * b * c / (2 * area2)
+
+
+def fmt2(v):
+    return "—" if v is None else f"{v:.2f}"
+
+
+def nearest(run, t):
+    return int(np.argmin(np.abs(run["t"] - t)))
+
+
+def main():
+    out = sys.argv[1]
+    os.makedirs(out, exist_ok=True)
+    runs = {}
+    for arg in sys.argv[2:]:
+        label, _, d = arg.partition("=")
+        if os.path.isfile(os.path.join(d, "surface.bin")) and os.path.isfile(os.path.join(d, "status.txt")):
+            runs[label] = read_run(d)
+            runs[label]["dir"] = d
+        else:
+            print("skipping (incomplete):", label, d)
+    labels = list(runs)
+    colors = dict(zip(labels, plt.rcParams["axes.prop_cycle"].by_key()["color"]))
+    styles = {l: ("-" if "regrid on" in l else "--") for l in labels}
+
+    summary = {}
+    for l, r in runs.items():
+        k = len(r["t"]) - 1
+        m = jet_metrics(r["x"][k], r["z"][k])
+        # first frame with an overturned front
+        t_over = next((float(r["t"][i]) for i in range(len(r["t"]))
+                       if jet_metrics(r["x"][i], r["z"][i])["overturned"]), None)
+        summary[l] = dict(dir=r["dir"], nf=r["nf"], final_t=float(r["t"][-1]),
+                          reason=r["status"].get("reason"), steps=int(r["status"].get("steps", 0)),
+                          regrids=int(r["status"].get("regrids", 0)),
+                          wall_seconds=float(r["status"].get("wall_seconds", "nan")),
+                          rel_volume_change=float(r["status"].get("relative_volume_change", "nan")),
+                          rel_energy_change_final=float(r["diag"]["relative_energy_change"][-1]),
+                          t_first_overturn=t_over, final_jet=m)
+
+    # Bottom geometry from any run
+    r0 = runs[labels[0]]
+    nf0 = r0["nf"]
+    bx, bz = r0["x0"][nf0:], r0["z0"][nf0:]
+
+    # 1. full domain, final frames
+    fig, ax = plt.subplots(figsize=(13, 3.6))
+    ax.fill_between(bx, bz, -1.1, color="0.85", lw=0)
+    ax.plot(bx, bz, "k", lw=1)
+    for l, r in runs.items():
+        ax.plot(r["x"][-1], r["z"][-1], styles[l], color=colors[l], lw=1.2, label=f"{l}  (t={r['t'][-1]:.3f})")
+    ax.set(xlabel="x (m)", ylabel="z (m)", title="Final free surface of each run", ylim=(-1.05, 0.8))
+    ax.legend(fontsize=8, loc="upper left")
+    fig.tight_layout(); fig.savefig(os.path.join(out, "01_final_full_domain.png"), dpi=160); plt.close(fig)
+
+    # zoom window around the final crest of the finest run
+    ref = max(labels, key=lambda l: (runs[l]["nf"], "regrid on" in l))
+    jm = summary[ref]["final_jet"]
+    xc = jm.get("x_tip", jm["x_crest"])
+    win = (xc - 1.6, xc + 0.6)
+
+    # 2. final frames zoomed on the jet, with nodes
+    fig, axs = plt.subplots(1, len(labels), figsize=(4.2 * len(labels), 3.8), sharey=True, squeeze=False)
+    for ax, l in zip(axs[0], labels):
+        r = runs[l]
+        ax.plot(r["x"][-1], r["z"][-1], "-", color=colors[l], lw=1)
+        ax.plot(r["x"][-1], r["z"][-1], ".", color="k", ms=2.5)
+        ax.fill_between(bx, bz, -1.1, color="0.85", lw=0)
+        mm = summary[l]["final_jet"]
+        txt = f"t = {r['t'][-1]:.4f}\nregrids = {summary[l]['regrids']}"
+        if mm.get("overturned"):
+            txt += f"\nnodes crest→tip = {mm['nodes_crest_to_tip']}\ntip R/ds = {mm['tip_radius_over_ds']:.2f}"
+        ax.text(0.03, 0.97, txt, transform=ax.transAxes, va="top", fontsize=8)
+        ax.set(xlim=win, ylim=(-0.2, 0.75), title=l, xlabel="x (m)")
+        ax.set_aspect("equal")
+    axs[0][0].set_ylabel("z (m)")
+    fig.suptitle("Jet at the last saved frame (dots = surface nodes)")
+    fig.tight_layout(); fig.savefig(os.path.join(out, "02_final_jet_nodes.png"), dpi=170); plt.close(fig)
+
+    # 3. common-time comparison of the jet (frames nearest to shared times)
+    t_end = min(s["final_t"] for s in summary.values())
+    times = [t_end - 0.12, t_end - 0.06, t_end - 0.02, t_end]
+    fig, axs = plt.subplots(1, len(times), figsize=(4.2 * len(times), 3.8), sharey=True)
+    for ax, tt in zip(axs, times):
+        ax.fill_between(bx, bz, -1.1, color="0.85", lw=0)
+        for l, r in runs.items():
+            k = nearest(r, tt)
+            ax.plot(r["x"][k], r["z"][k], styles[l], color=colors[l], lw=1.1,
+                    label=f"{l} (t={r['t'][k]:.4f})")
+        ax.set(xlim=win, ylim=(-0.2, 0.75), title=f"t ≈ {tt:.3f}", xlabel="x (m)")
+        ax.set_aspect("equal")
+        ax.legend(fontsize=6, loc="lower left")
+    axs[0].set_ylabel("z (m)")
+    fig.suptitle("Jet comparison at common times (nearest saved frame)")
+    fig.tight_layout(); fig.savefig(os.path.join(out, "03_jet_common_times.png"), dpi=170); plt.close(fig)
+
+    # 4. jet evolution for the reference run
+    r = runs[ref]
+    fig, ax = plt.subplots(figsize=(8, 4.2))
+    ks = np.unique(np.concatenate([np.searchsorted(r["t"], np.linspace(t_end - 0.5, r["t"][-1], 12)),
+                                   [len(r["t"]) - 1]]))
+    ks = ks[ks < len(r["t"])]
+    cm = plt.get_cmap("viridis")
+    for j, k in enumerate(ks):
+        ax.plot(r["x"][k], r["z"][k], color=cm(j / max(1, len(ks) - 1)), lw=1)
+    ax.fill_between(bx, bz, -1.1, color="0.85", lw=0)
+    ax.set(xlim=(win[0] - 1.0, win[1] + 0.4), ylim=(-0.2, 0.75), xlabel="x (m)", ylabel="z (m)",
+           title=f"{ref}: overturning, t = {r['t'][ks[0]]:.2f} → {r['t'][ks[-1]]:.3f}")
+    ax.set_aspect("equal")
+    fig.tight_layout(); fig.savefig(os.path.join(out, "04_overturning_sequence.png"), dpi=170); plt.close(fig)
+
+    # 5. diagnostics vs time
+    fig, axs = plt.subplots(2, 2, figsize=(11, 6.5), sharex=True)
+    for l, r in runs.items():
+        d = r["diag"]
+        kw = dict(color=colors[l], ls=styles[l], lw=1, label=l)
+        axs[0, 0].semilogy(d["t"][1:], d["dt"][1:], **kw)
+        axs[0, 1].plot(d["t"], d["umax"], **kw)
+        axs[1, 0].semilogy(d["t"][1:], np.abs(d["relative_energy_change"][1:]) + 1e-16, **kw)
+        axs[1, 1].plot(d["t"], d["regrids"], **kw)
+    axs[0, 0].set_ylabel("dt (s)"); axs[0, 1].set_ylabel("max |∇φ| (m/s)")
+    axs[1, 0].set_ylabel("|relative energy change|"); axs[1, 1].set_ylabel("cumulative regrids")
+    for a in axs[1]:
+        a.set_xlabel("t (s)")
+    axs[0, 0].legend(fontsize=7)
+    fig.tight_layout(); fig.savefig(os.path.join(out, "05_diagnostics.png"), dpi=150); plt.close(fig)
+
+    # 6. node spacing along the surface at the final frame (shows regrid concentration)
+    fig, ax = plt.subplots(figsize=(9, 3.6))
+    for l, r in runs.items():
+        x, z = r["x"][-1], r["z"][-1]
+        ds = np.hypot(np.diff(x), np.diff(z))
+        ax.semilogy(0.5 * (x[1:] + x[:-1]), ds, styles[l], color=colors[l], lw=0.9, label=l)
+    ax.set(xlabel="x (m)", ylabel="node spacing ds (m)", title="Surface node spacing at the last frame")
+    ax.legend(fontsize=7)
+    fig.tight_layout(); fig.savefig(os.path.join(out, "06_node_spacing.png"), dpi=150); plt.close(fig)
+
+    json.dump(summary, open(os.path.join(out, "summary.json"), "w"), indent=2)
+    with open(os.path.join(out, "summary.md"), "w") as f:
+        f.write("| run | N_FS | final t | stop reason | steps | regrids | first overturn t | nodes crest→tip | tip R/ds | rel. volume | rel. energy | wall s |\n")
+        f.write("|---|---|---|---|---|---|---|---|---|---|---|---|\n")
+        for l, s in summary.items():
+            j = s["final_jet"]
+            to = s["t_first_overturn"]
+            f.write(f"| {l} | {s['nf']} | {s['final_t']:.4f} | {s['reason']} | {s['steps']} | {s['regrids']} | "
+                    f"{'—' if to is None else f'{to:.3f}'} | {j.get('nodes_crest_to_tip', '—')} | "
+                    f"{fmt2(j.get('tip_radius_over_ds'))} | "
+                    f"{s['rel_volume_change']:.2e} | {s['rel_energy_change_final']:.2e} | {s['wall_seconds']:.0f} |\n")
+    print(open(os.path.join(out, "summary.md")).read())
+
+
+if __name__ == "__main__":
+    main()
