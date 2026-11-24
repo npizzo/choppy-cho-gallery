@@ -1,0 +1,30 @@
+{
+  "physical_interval_s": [
+    29.5,
+    30.0
+  ],
+  "physical_playback_speed": 0.1,
+  "fps": 60,
+  "playback_duration_s": 5.0,
+  "sha256": "6a14f31726512c1a7305cbe1f26fb5ed54f11cc756dbf75e0646a9b165551dc7",
+  "all_frames_decoded": true,
+  "crop_extent_m": [
+    0.3199999999999932,
+    0.3199999999999932
+  ],
+  "crop_bounds_m": [
+    [
+      -0.16,
+      0.15999999999999318
+    ],
+    [
+      -0.16,
+      0.15999999999999318
+    ]
+  ],
+  "display_grid_shape": [
+    512,
+    512
+  ],
+  "cropped": true
+}
