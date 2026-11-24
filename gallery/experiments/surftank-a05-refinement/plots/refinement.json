@@ -1,0 +1,86 @@
+{
+  "0.032 m, regrid off": {
+    "nf": 1962,
+    "unknowns": 3343,
+    "t_first": 0.0,
+    "t_last": 7.697416284274561,
+    "reason": "boundary_contact_or_degeneracy",
+    "regrids": 0,
+    "wall_seconds": 3112.504348336952,
+    "final_overhang": 0.19700327249616834,
+    "final_tip_radius": 0.00667095794008738,
+    "final_jet_ds_median": 0.012991662608476826
+  },
+  "0.032 m, regrid on": {
+    "nf": 1962,
+    "unknowns": 3343,
+    "t_first": 0.0,
+    "t_last": 7.750865974483316,
+    "reason": "regrid_boundary_contact_or_degeneracy",
+    "regrids": 18,
+    "wall_seconds": 2651.8098637459334,
+    "final_overhang": 0.24158119206492046,
+    "final_tip_radius": 0.013247684232929668,
+    "final_jet_ds_median": 0.008855802886829862,
+    "at_7.70": {
+      "t": 7.699956334711717,
+      "overhang": 0.1903095778677688,
+      "x_tip": 18.379215980186586,
+      "z_tip": 0.5613234931287868
+    },
+    "at_7.73": {
+      "t": 7.73019850607036,
+      "overhang": 0.22397571934681437,
+      "x_tip": 18.525258471895395,
+      "z_tip": 0.5192371539426822
+    }
+  },
+  "0.016 m full run, regrid on": {
+    "nf": 3924,
+    "unknowns": 6678,
+    "t_first": 0.0,
+    "t_last": 7.736033081300396,
+    "reason": "regrid_boundary_contact_or_degeneracy",
+    "regrids": 17,
+    "wall_seconds": 23488.06438375404,
+    "final_overhang": 0.23136663052201456,
+    "final_tip_radius": 0.003351112367949692,
+    "final_jet_ds_median": 0.001595842860849153,
+    "at_7.70": {
+      "t": 7.699896589808166,
+      "overhang": 0.19161404885991828,
+      "x_tip": 18.378897359228986,
+      "z_tip": 0.559781469258917
+    },
+    "at_7.73": {
+      "t": 7.730205708541449,
+      "overhang": 0.22565835362757625,
+      "x_tip": 18.52574467012182,
+      "z_tip": 0.5160053926729916
+    }
+  },
+  "0.016 m restart from 7.513 s, regrid on": {
+    "nf": 3923,
+    "unknowns": 5304,
+    "t_first": 7.512607172798045,
+    "t_last": 7.768566836326535,
+    "reason": "boundary_contact_or_degeneracy",
+    "regrids": 47,
+    "wall_seconds": 13186.535585216945,
+    "final_overhang": 0.27052173271658475,
+    "final_tip_radius": 0.0014234751336384924,
+    "final_jet_ds_median": 0.0015888938375405524,
+    "at_7.70": {
+      "t": 7.699965464950996,
+      "overhang": 0.192996672796518,
+      "x_tip": 18.38084880666382,
+      "z_tip": 0.5577584858709204
+    },
+    "at_7.73": {
+      "t": 7.730153242122142,
+      "overhang": 0.22724220139180318,
+      "x_tip": 18.527235421941022,
+      "z_tip": 0.5137627666985346
+    }
+  }
+}

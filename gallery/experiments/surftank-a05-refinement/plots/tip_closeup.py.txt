@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+"""Close-up of the jet tip at the last saved frames of each run.
+
+Usage: tip_closeup.py OUT.png HALFWIDTH LABEL=RUNDIR [...]
+"""
+import os
+import sys
+
+import numpy as np
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import analyze_jets as A  # noqa: E402
+
+
+def main():
+    out, hw = sys.argv[1], float(sys.argv[2])
+    runs = [a.partition("=")[::2] for a in sys.argv[3:]]
+    fig, axs = plt.subplots(1, len(runs), figsize=(3.6 * len(runs), 3.8), squeeze=False)
+    for ax, (label, d) in zip(axs[0], runs):
+        r = A.read_run(d)
+        k = len(r["t"]) - 1
+        ks = [max(0, k - 6), max(0, k - 3), k]
+        m = A.jet_metrics(r["x"][k], r["z"][k])
+        xc, zc = m.get("x_tip", m["x_crest"]), m.get("z_tip", m["z_crest"])
+        for j, kk in enumerate(ks):
+            col = "0.75" if kk != k else "C3"
+            ax.plot(r["x"][kk], r["z"][kk], "-", color=col, lw=0.8 if kk != k else 1.2,
+                    label=f"t = {r['t'][kk]:.4f}")
+        ax.plot(r["x"][k], r["z"][k], ".", color="k", ms=3)
+        ax.set(xlim=(xc - hw, xc + hw), ylim=(zc - hw, zc + hw), title=label, xlabel="x (m)")
+        ax.set_aspect("equal")
+        txt = f"last t = {r['t'][k]:.4f}\nstop: {r['status'].get('reason', '?').replace('_', ' ')}"
+        ax.text(0.03, 0.03, txt, transform=ax.transAxes, fontsize=7, va="bottom")
+        ax.legend(fontsize=6, loc="upper left")
+    axs[0][0].set_ylabel("z (m)")
+    fig.suptitle(f"Jet tip at the last saved frames (window ±{100 * hw:.0f} cm; dots = nodes of the final frame)")
+    fig.tight_layout()
+    fig.savefig(out, dpi=170)
+
+
+if __name__ == "__main__":
+    main()

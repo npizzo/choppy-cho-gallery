@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Build a surftank initial_file from a saved frame, optionally refining the free surface.
+
+Usage:
+  make_restart.py RUNDIR OUT.bin [--refine R] [--frame K | --vertical]
+
+--vertical picks the first saved frame in which the breaking front face reaches
+vertical (some front-face segment has x non-decreasing toward the crest).
+--refine R inserts R-1 nodes in every free-surface segment, interpolating x, z
+and phi with the same index-parameterised cubic spline (MATLAB csape default
+end conditions) used by the regridder. Bottom nodes are unchanged; the two
+vertical walls are respaced uniformly between the bottom corner and the moving
+free-surface endpoint, as wall_regrid_on does every step.
+Prints the restart time for the namelist (t_start).
+"""
+import argparse
+import os
+import sys
+
+import numpy as np
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import analyze_jets as A  # noqa: E402
+
+
+def spline_coefs(y):
+    """Cubic spline through (k, y_k), unit spacing, csape default end slopes.
+    Returns c[k] = (a3, a2, a1, a0) on segment k, local u in [0, 1]."""
+    n = len(y)
+    m = np.empty(n)
+    m[0] = (-11 * y[0] + 18 * y[1] - 9 * y[2] + 2 * y[3]) / 6
+    m[-1] = (11 * y[-1] - 18 * y[-2] + 9 * y[-3] - 2 * y[-4]) / 6
+    rhs = 3 * (y[2:] - y[:-2])
+    rhs[0] -= m[0]
+    rhs[-1] -= m[-1]
+    k = n - 2
+    cp = np.empty(k); dp = np.empty(k)
+    cp[0] = 0.25; dp[0] = rhs[0] / 4
+    for i in range(1, k):
+        den = 4 - cp[i - 1]
+        cp[i] = 1 / den
+        dp[i] = (rhs[i] - dp[i - 1]) / den
+    mi = np.empty(k)
+    mi[-1] = dp[-1]
+    for i in range(k - 2, -1, -1):
+        mi[i] = dp[i] - cp[i] * mi[i + 1]
+    m[1:-1] = mi
+    a0 = y[:-1]; a1 = m[:-1]
+    a2 = 3 * (y[1:] - y[:-1]) - 2 * m[:-1] - m[1:]
+    a3 = 2 * (y[:-1] - y[1:]) + m[:-1] + m[1:]
+    return np.stack([a3, a2, a1, a0], axis=1)
+
+
+def refine(y, r):
+    if r == 1:
+        return y.copy()
+    c = spline_coefs(y)
+    u = np.arange(r) / r
+    seg = ((c[:, 0:1] * u + c[:, 1:2]) * u + c[:, 2:3]) * u + c[:, 3:4]  # (n-1, r)
+    out = np.concatenate([seg.ravel(), y[-1:]])
+    out[::r] = y  # keep original nodes exactly
+    return out
+
+
+def front_vertical(x, z):
+    ic = int(np.argmax(z))
+    j = ic
+    while j > 0 and z[j - 1] > 0.1 * z[ic]:
+        j -= 1
+    dx = np.diff(x[j:ic + 1])           # normally negative toward the crest
+    dz = np.diff(z[j:ic + 1])
+    ang = np.degrees(np.arctan2(dz, -dx))  # 90 deg = vertical, >90 overhanging
+    return bool(np.any(dx >= 0)), float(ang.max()) if len(ang) else 0.0
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("rundir"); ap.add_argument("out")
+    ap.add_argument("--refine", type=int, default=1)
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--frame", type=int); g.add_argument("--vertical", action="store_true")
+    a = ap.parse_args()
+    r = A.read_run(a.rundir)
+    nf, counts = r["nf"], r["counts"].copy()
+    if a.vertical:
+        k = next(i for i in range(len(r["t"])) if front_vertical(r["x"][i], r["z"][i])[0])
+        for kk in (k - 1, k):
+            v, ang = front_vertical(r["x"][kk], r["z"][kk])
+            print(f"frame {kk}: t={r['t'][kk]:.6f} steepest front-face angle={ang:.2f} deg vertical={v}")
+    else:
+        k = a.frame
+    t0 = float(r["t"][k])
+    x = refine(r["x"][k], a.refine); z = refine(r["z"][k], a.refine); p = refine(r["phi"][k], a.refine)
+    nfn = len(x)
+    # solid boundaries from the initial geometry; walls respaced to the FS endpoints
+    X0, Z0 = r["x0"], r["z0"]
+    starts = np.concatenate([[0], np.cumsum(counts)])
+    solids_x, solids_z = [], []
+    for b in range(1, 6):
+        bx = X0[starts[b]:starts[b + 1]].copy(); bz = Z0[starts[b]:starts[b + 1]].copy()
+        if b == 1:   # left wall: FS last node -> bottom corner
+            bx = np.linspace(x[-1], bx[-1], len(bx)); bz = np.linspace(z[-1], bz[-1], len(bz))
+        if b == 5:   # right wall: bottom corner -> FS first node
+            bx = np.linspace(bx[0], x[0], len(bx)); bz = np.linspace(bz[0], z[0], len(bz))
+        solids_x.append(bx); solids_z.append(bz)
+    counts[0] = nfn
+    X = np.concatenate([x] + solids_x); Z = np.concatenate([z] + solids_z)
+    P = np.concatenate([p, np.zeros(len(X) - nfn)])
+    with open(a.out, "wb") as f:
+        np.array([20260925, 1, 6], np.int32).tofile(f)
+        counts.astype(np.int32).tofile(f)
+        X.astype("<f8").tofile(f); Z.astype("<f8").tofile(f); P.astype("<f8").tofile(f)
+    ds = np.hypot(np.diff(x), np.diff(z))
+    print(f"source frame {k} t_start={t0:.17g}")
+    print(f"free-surface nodes {nf} -> {nfn}; total unknowns {int(counts.sum())}; FS ds min/median/max "
+          f"{ds.min():.5f}/{np.median(ds):.5f}/{ds.max():.5f}")
+    print(f"T_START {t0:.17g}")
+
+
+if __name__ == "__main__":
+    main()

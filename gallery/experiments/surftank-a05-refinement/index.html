@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Doubling resolution at the jet tip, a0 = 0.5 on 1:35 · Choppy–Cho gallery</title>
+  <meta name="description" content="Surftank BEM, a0 = 0.5 on a 1:35 slope at CFL 0.2: full 0.016 m run and a 0.016 m restart from the vertical-front state, compared with 0.032 m.">
+  <link rel="stylesheet" href="../cho-steepness-controls/style.css">
+  <style>
+    figure img { width: 100%; height: auto; }
+    td, th { white-space: nowrap; }
+  </style>
+</head>
+<body>
+<main>
+  <nav aria-label="Gallery navigation"><a href="../../">Choppy–Cho gallery</a><span aria-hidden="true"> / </span><a href="../surftank-a05-slope35-cfl02/">a0 = 0.5 on 1:35, CFL 0.2</a></nav>
+  <header>
+    <p class="eyebrow">Surftank BEM · a0 = 0.5, 1:35 slope, CFL 0.2 · 24 November 2026</p>
+    <h1>Doubling resolution converges the jet, but not its tip</h1>
+    <p class="lede">The <a href="../surftank-a05-slope35-cfl02/">0.064 / 0.032 m runs</a> all failed at the jet tip before touchdown. This page adds two runs at a free-surface resolution of 0.016 m, both with regridding. The first is a full run from t = 0. The second is a restart of the 0.032 m regridded run at the moment its front face first becomes vertical (t = 7.5126 s). The restart doubles the free-surface nodes by spline interpolation and keeps the bottom at 0.032 m spacing.</p>
+    <p class="scope"><strong>Two-dimensional potential-flow BEM.</strong> All runs ran on Unity with 32 OpenMP threads. Regridding (<code>shift_by_curve2d_normu</code>, a = 16, thresholds 10 / 1.5) and wall respacing are as before. A restart without refinement reproduces the original run to about 10<sup>−13</sup>. A full 0.016 m run without regridding is still running and is not shown.</p>
+  </header>
+
+  <section aria-labelledby="answer-title">
+    <h2 id="answer-title">Short answer</h2>
+    <ul>
+      <li><strong>The jet itself is converged through t ≈ 7.73 s.</strong> At 7.70 and 7.73 s, the 0.032 m, full 0.016 m and restarted runs agree on the tip position to about 2 mm horizontally and 5 mm vertically, and on the overhang to 3 mm.</li>
+      <li><strong>The restart works and is cheaper.</strong> It has 5,304 unknowns against 6,678 for the full 0.016 m run, and it skips 7.5 s of shoaling. It tracks the full run to within millimetres, ran in 3.7 h against 6.5 h, and reached a later time.</li>
+      <li><strong>The tip is converged only down to a radius of about 4 mm.</strong> Until t ≈ 7.62 s the tip radius of curvature shrinks identically at every resolution. After that it fluctuates between about 1 and 5 mm, which is one to two node spacings in each run. In other words, it is set by the grid, not resolved.</li>
+      <li><strong>Doubling resolution does not move the failure.</strong> The runs stop at t = 7.751 s (0.032 m), 7.736 s (full 0.016 m) and 7.769 s (restart). In every case adjacent panels within a few nodes of the tip fold by 170–180°.</li>
+      <li><strong>The regridder does not target the tip.</strong> Weighting by |∇φ| spaces the whole jet almost uniformly, at about 1.4 mm in the 0.016 m runs. The tip gets no extra nodes, and within a few nodes of it the spacing oscillates. Resolving the tip needs variable gridding there: spacing set by the local radius of curvature rather than by flow speed.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="table-title">
+    <h2 id="table-title">Runs</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Run summary, scroll horizontally if needed">
+      <table>
+        <caption>Tip radius and jet spacing are taken at each run's last saved frame. Jet spacing is the median from the crest to the tip.</caption>
+        <thead><tr><th scope="col">Run</th><th scope="col">Unknowns</th><th scope="col">Last t (s)</th><th scope="col">Regrids</th><th scope="col">Overhang (m)</th><th scope="col">Tip R (mm)</th><th scope="col">Jet spacing (mm)</th><th scope="col">Wall time</th></tr></thead>
+        <tbody>
+          <tr><td>0.032 m, regrid off</td><td>3343</td><td>7.697</td><td>0</td><td>0.197</td><td>6.7</td><td>13.0</td><td>52 min</td></tr>
+          <tr><td>0.032 m, regrid on</td><td>3343</td><td>7.751</td><td>18</td><td>0.242</td><td>13.2</td><td>8.9</td><td>44 min</td></tr>
+          <tr><td>0.016 m full run, regrid on</td><td>6678</td><td>7.736</td><td>17</td><td>0.231</td><td>3.4</td><td>1.6</td><td>6.5 h</td></tr>
+          <tr><td>0.016 m restart from 7.513 s, regrid on</td><td>5304</td><td>7.769</td><td>47</td><td>0.271</td><td>1.4</td><td>1.6</td><td>3.7 h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">All four runs use CFL 0.2. The 0.032 m runs used 16 threads and the 0.016 m runs 32, on different Unity node types, so wall times are indicative only. Last-frame tip radii come from a crumpled tip and are noisy; the time series below is more informative.</p>
+  </section>
+
+  <section aria-labelledby="jet-title">
+    <h2 id="jet-title">The jet at matching times</h2>
+    <figure>
+      <img src="plots/r1_jet_common_times.png" alt="Six panels from t = 7.60 to 7.765 s showing the overturning jet; the outlines of all runs coincide until each stops." loading="lazy">
+      <figcaption>Each panel shows the nearest saved frame of every run still going at that time. At this scale the outlines coincide throughout.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/r2_tip_vs_time.png" alt="Overhang, tip radius of curvature and median jet node spacing versus time for the four runs." loading="lazy">
+      <figcaption>Left: overhang. Middle: tip radius of curvature, identical across runs down to about 4 mm, then noisy at grid scale. Right: median node spacing from crest to tip. Each drop marks a regrid.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="tip-title">
+    <h2 id="tip-title">At the tip</h2>
+    <figure>
+      <img src="plots/r4_tip_closeup.png" alt="Four-centimetre windows on the jet tip at the last saved frames of the 0.032 m, full 0.016 m and restarted runs, showing a kinked tip in each." loading="lazy">
+      <figcaption>A 4 cm window on the tip; dots are nodes of the last frame and grey lines are two earlier frames. At 0.016 m the jet is smooth to within a few nodes of the tip, where it kinks and folds.</figcaption>
+    </figure>
+    <figure>
+      <img src="plots/r3_jet_spacing.png" alt="Node spacing versus arclength around the jet tip at t = 7.73 s, nearly uniform along the jet with oscillations within a few nodes of the tip." loading="lazy">
+      <figcaption>Node spacing around the jet at t ≈ 7.73 s: underside on the left, upper surface toward the crest on the right. Regridding keeps the jet evenly spaced but adds no extra resolution at the tip.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="next-title">
+    <h2 id="next-title">Next: variable gridding at the tip</h2>
+    <p>The tip needs a node spacing that follows its radius of curvature, for example ds ≲ R / 10, so roughly 0.3–0.5 mm when R ≈ 4 mm. Elsewhere the jet is already converged at its present spacing. Uniform refinement to that spacing would be prohibitively expensive with a dense BEM. The plan is curvature-dependent node spacing near the tip, with nodes added there rather than drawn from the rest of the surface. It will be tested as a restart from the converged state at t ≈ 7.62–7.70 s.</p>
+  </section>
+
+  <section aria-labelledby="method-title">
+    <h2 id="method-title">Method</h2>
+    <p>The restart reads the 0.032 m regridded run's saved state at the first frame where a front-face segment reaches vertical (steepest angle 90.01°; that run had not yet regridded). It inserts one node per free-surface segment using the regridder's index-parameterised cubic splines for x, z and φ, keeping the original nodes exactly. The walls are respaced to the new free-surface endpoints, and the simulation clock continues from t = 7.5126 s. See <a href="../surftank-aidan-jets/">the a0 = 0.6 page</a> for the solver and regridding details.</p>
+    <p class="small">Scripts: <a href="plots/make_restart.py.txt">make_restart.py</a>, <a href="plots/compare_refinement.py.txt">compare_refinement.py</a>, <a href="plots/tip_closeup.py.txt">tip_closeup.py</a> · numbers: <a href="plots/refinement.json">refinement.json</a>. Raw surface histories stay on Unity.</p>
+  </section>
+</main>
+</body>
+</html>

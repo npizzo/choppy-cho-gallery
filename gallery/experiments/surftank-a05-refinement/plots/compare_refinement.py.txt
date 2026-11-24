@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Compare the jet and tip across resolutions / restarts.
+
+Usage: compare_refinement.py OUTDIR LABEL=RUNDIR [...]
+Writes r1_jet_common_times.png, r2_tip_vs_time.png, r3_jet_spacing.png, refinement.json
+"""
+import json
+import os
+import sys
+
+import numpy as np
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt  # noqa: E402
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import analyze_jets as A  # noqa: E402
+
+
+def tip_series(r):
+    out = []
+    for k in range(len(r["t"])):
+        x, z = r["x"][k], r["z"][k]
+        m = A.jet_metrics(x, z)
+        if not m["overturned"] or m["i_tip"] < 1:
+            continue
+        it, ic = m["i_tip"], m["i_crest"]
+        ds = np.hypot(np.diff(x[it:ic + 1]), np.diff(z[it:ic + 1]))
+        out.append((r["t"][k], m["overhang"], m["x_tip"], m["z_tip"], m["tip_radius"], m["ds_at_tip"],
+                    float(np.median(ds)), ic - it))
+    return np.array(out)
+
+
+def main():
+    out = sys.argv[1]
+    os.makedirs(out, exist_ok=True)
+    runs = {}
+    for a in sys.argv[2:]:
+        l, _, d = a.partition("=")
+        runs[l] = A.read_run(d)
+    labels = list(runs)
+    cols = dict(zip(labels, ["C0", "C1", "C2", "C3", "C4", "C5"]))
+    sty = {l: ("--" if "off" in l else "-") for l in labels}
+    r0 = runs[labels[0]]
+    nf0 = r0["nf"]
+    bx, bz = r0["x0"][nf0:], r0["z0"][nf0:]
+
+    # 1. jet outlines at common times
+    times = [7.60, 7.65, 7.70, 7.73, 7.75, 7.765]
+    fig, axs = plt.subplots(2, 3, figsize=(14, 5.0), sharex=True, sharey=True)
+    for ax, tt in zip(axs.ravel(), times):
+        for l, r in runs.items():
+            if r["t"][-1] < tt - 2e-3:
+                continue
+            k = int(np.argmin(np.abs(r["t"] - tt)))
+            ax.plot(r["x"][k], r["z"][k], sty[l], color=cols[l], lw=1.1, label=f"{l} ({r['t'][k]:.4f})")
+        ax.set(xlim=(17.55, 18.95), ylim=(0.33, 0.72), title=f"t ≈ {tt:.3f} s")
+        ax.set_aspect("equal")
+        ax.legend(fontsize=6, loc="lower left")
+    for ax in axs[1]:
+        ax.set_xlabel("x (m)")
+    for ax in axs[:, 0]:
+        ax.set_ylabel("z (m)")
+    fig.suptitle("Overturning jet at common times (nearest saved frame; a run is omitted once it has stopped)")
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "r1_jet_common_times.png"), dpi=160)
+    plt.close(fig)
+
+    # 2. tip metrics vs time
+    ser = {l: tip_series(r) for l, r in runs.items()}
+    fig, axs = plt.subplots(1, 3, figsize=(14, 4))
+    for l, s in ser.items():
+        if len(s) == 0:
+            continue
+        axs[0].plot(s[:, 0], s[:, 1], sty[l], color=cols[l], label=l)
+        axs[1].semilogy(s[:, 0], s[:, 4], sty[l], color=cols[l], label=l)
+        axs[2].semilogy(s[:, 0], s[:, 6], sty[l], color=cols[l], label=l)
+    axs[0].set(xlabel="t (s)", ylabel="overhang (m)", title="Jet overhang")
+    axs[1].set(xlabel="t (s)", ylabel="tip radius R (m)", title="Tip radius of curvature")
+    axs[2].set(xlabel="t (s)", ylabel="median node spacing (m)", title="Node spacing, crest → tip")
+    axs[0].legend(fontsize=7)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "r2_tip_vs_time.png"), dpi=150)
+    plt.close(fig)
+
+    # 3. spacing along the jet vs arclength from the tip at t ~ 7.73
+    fig, ax = plt.subplots(figsize=(8, 3.8))
+    for l, r in runs.items():
+        if r["t"][-1] < 7.73 - 2e-3:
+            continue
+        k = int(np.argmin(np.abs(r["t"] - 7.73)))
+        x, z = r["x"][k], r["z"][k]
+        m = A.jet_metrics(x, z)
+        if not m["overturned"]:
+            continue
+        it, ic = m["i_tip"], m["i_crest"]
+        lo = max(0, it - (ic - it))
+        seg = np.hypot(np.diff(x[lo:ic + 1]), np.diff(z[lo:ic + 1]))
+        s = np.concatenate([[0], np.cumsum(seg)]) - np.sum(seg[:it - lo])
+        ax.semilogy(0.5 * (s[1:] + s[:-1]), seg, sty[l], color=cols[l], marker=".", ms=2, lw=0.8, label=l)
+    ax.axvline(0, color="0.5", lw=0.6)
+    ax.set(xlabel="arclength from jet tip (m): underside < 0 < upper surface to crest",
+           ylabel="node spacing (m)", title="Node spacing around the jet at t ≈ 7.73 s")
+    ax.legend(fontsize=7)
+    fig.tight_layout()
+    fig.savefig(os.path.join(out, "r3_jet_spacing.png"), dpi=150)
+    plt.close(fig)
+
+    summ = {}
+    for l, r in runs.items():
+        s = ser[l]
+        summ[l] = dict(nf=r["nf"], unknowns=int(r["counts"].sum()), t_first=float(r["t"][0]),
+                       t_last=float(r["t"][-1]), reason=r["status"].get("reason"),
+                       regrids=int(r["status"].get("regrids", 0) or 0),
+                       wall_seconds=float(r["status"].get("wall_seconds", "nan") or "nan"),
+                       final_overhang=float(s[-1, 1]) if len(s) else None,
+                       final_tip_radius=float(s[-1, 4]) if len(s) else None,
+                       final_jet_ds_median=float(s[-1, 6]) if len(s) else None)
+        for tt in (7.70, 7.73):
+            if len(s) and s[-1, 0] >= tt - 2e-3:
+                j = int(np.argmin(np.abs(s[:, 0] - tt)))
+                summ[l][f"at_{tt:.2f}"] = dict(t=float(s[j, 0]), overhang=float(s[j, 1]),
+                                               x_tip=float(s[j, 2]), z_tip=float(s[j, 3]))
+    json.dump(summ, open(os.path.join(out, "refinement.json"), "w"), indent=2)
+    print(json.dumps(summ, indent=1))
+
+
+if __name__ == "__main__":
+    main()
