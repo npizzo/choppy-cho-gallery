@@ -33,10 +33,10 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "complete",
-    "stage": "cho_22.5",
-    "message": "Original-domain current-refined 30-second ak=0.1 campaign submitted. Production waits for exact tensor, native solver, restart and resolution checks. Cho damping is 2.4 times molecular.",
-    "updated_at_utc": "2026-11-24T02:39:57.917653+00:00",
+    "status": "running",
+    "stage": "cho_27.5",
+    "message": "Fresh ak=0.1 matched finer-current campaign stage.",
+    "updated_at_utc": "2026-11-24T04:14:29.164987+00:00",
     "job_id": "2087521"
   },
   "benchmark": {
@@ -53,7 +53,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-24T02:41:03.553272+00:00",
+  "updated_at_utc": "2026-11-24T04:14:42.163362+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
