@@ -1,0 +1,61 @@
+{
+  "quantity": "paired_parent_plus_cho_and_passive_tracer",
+  "physical_interval_s": [
+    0.0,
+    30.0
+  ],
+  "physical_playback_speed": 0.2,
+  "fps": 20,
+  "video_frame_count": 3001,
+  "encoded_duration_s": 150.05,
+  "layout": "2 by 2; ak=.1 left, ak=.2 right; parent+Cho above, tracer below",
+  "cho_damping_multiplier": 2.4,
+  "tracer": {
+    "diffusivity_m2_s": 1e-07,
+    "initial_condition": "c/c0=1 in the top finite-volume cell and zero elsewhere; identical surface inventory",
+    "velocity": "saved Lagrangian-mean UL, linearly interpolated between 0.1 s snapshots",
+    "concentration_normalization": "c/c0, same initial top-cell concentration in both cases",
+    "color_scale": "fixed c/(c + c_equilibrium), normalized over c/c0 from 0 to 1; shared across cases and times",
+    "scale_knee_c_over_c0": 0.001663217944921236,
+    "colors_clipped": false,
+    "color_scale_audit": {
+      "ak10": {
+        "minimum_displayed": 0.0,
+        "maximum_displayed": 1.0,
+        "fraction_above_scale": 0.0,
+        "fraction_below_zero": 0.0
+      },
+      "ak20": {
+        "minimum_displayed": 0.0,
+        "maximum_displayed": 1.0,
+        "fraction_above_scale": 0.0,
+        "fraction_below_zero": 0.0
+      }
+    },
+    "depth_exaggeration": 2,
+    "display_depth_m": 0.12,
+    "temporal_display": "Saved 0.1 s tracer states held between output frames; currents interpolated linearly during tracer integration",
+    "transport_scheme": "Conservative finite-volume MUSCL minmod, SSP RK2, centered molecular diffusion; periodic x/y, no flux top/bottom",
+    "mass_relative_errors": {
+      "ak10": 9.992007221626409e-16,
+      "ak20": 9.992007221626409e-16
+    },
+    "scope": "Offline diagnostic, not a tracer evolved within the original native simulation. Saved-current cadence and numerical diffusion limit small-scale tracer interpretation."
+  },
+  "reference_url": "https://doi.org/10.1017/jfm.2023.920",
+  "source_hashes": {
+    "ak10": {
+      "native_signature": "35e5396a23eb892217282ad3d51f297d63225e2da5762ff950f924f9cdc6cf2e",
+      "surface_movie_sha256": "42cb51652d9c55e9b87b3d8802188e94b66a658c847d1db29437e1563c7b9eba",
+      "tracer_planes_sha256": "0631d0335fb383f69ec61935bb88c47e50bdab712a4ff616dd291406919c43e0"
+    },
+    "ak20": {
+      "native_signature": "2101606d4174b94f68a610a3add8a923f9a70ee1eb293ca84e20af702cae8067",
+      "surface_movie_sha256": "c50529db95fd3d5ea94b01c29f15309e995780f549e7cef6dd92f92d5b7d5906",
+      "tracer_planes_sha256": "b5a31471f21901ccf85b12781839ae447fbb7980e126f95c774f574a16948464"
+    }
+  },
+  "render_complete": true,
+  "declared_interval_complete": true,
+  "full_saved_interval": true
+}
