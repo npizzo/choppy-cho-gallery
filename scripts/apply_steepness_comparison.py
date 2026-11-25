@@ -50,7 +50,8 @@ def apply(root):
         if not p.exists():continue
         content=p.read_text();require(content.count(START)==content.count(END)<=1,'Broken comparison markers')
         content=re.sub(re.escape(START)+'.*?'+re.escape(END)+'\n?','',content,flags=re.S)
-        index=content.find('<section')
+        index=content.find('<!-- surface-tracer:start -->')
+        if index<0:index=content.find('<section')
         if index<0:index=content.find('<footer')
         require(index>=0,'Missing comparison insertion anchor')
         p.write_text(content[:index]+block+'\n'+content[index:]);count+=1
