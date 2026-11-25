@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "complete": true,
-  "updated_at_utc": "2026-11-25T02:55:35.798633+00:00",
+  "updated_at_utc": "2026-11-25T02:59:17.383279+00:00",
   "sha256": {
-    "surfaces_and_tracers.mp4": "ed96f170b12877646510f833cf2e43821aa145b9f718e0c177ba6c198d1599b7",
-    "surfaces_and_tracers.png": "31945d8ceb0cd53a85cc090a96caf26f7ababeb665e65db92b614a9c974c3359",
+    "surfaces_and_tracers.mp4": "aafc7421825d4f91d6a352565783b23d7b0c6728af25b45a18a3fd75c0440e2f",
+    "surfaces_and_tracers.png": "25ae0a4f08eac9cbb5626d8f8cc43cb87a6bb7eca314d8205361ffe6d634a48c",
     "surfaces_and_tracers.json": "921d4b6153a7f6e9c416634a25c942be515097ce4d489f9138524335fa4470ad",
-    "surfaces_and_tracers.verified.json": "8f809de19c78e04c2b0e88f06be66f547e23e034c83770ff7361b889652eb6bf",
+    "surfaces_and_tracers.verified.json": "4e99c21dc55c8997c8025a127d605512411041e31be3904f5011c992476c1ffc",
     "tracer_validation.json": "ad5cc075ed42c456e92631b4bb62e209813ed4c3cf7067b6b03febe5ed274497"
   }
 }

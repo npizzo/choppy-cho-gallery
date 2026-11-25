@@ -2,9 +2,9 @@
   "verified": true,
   "decoded_frames": 3001,
   "decoded_duration_s": 150.05,
-  "bytes": 36526750,
+  "bytes": 47658308,
   "all_frames_decoded": true,
-  "sha256": "ed96f170b12877646510f833cf2e43821aa145b9f718e0c177ba6c198d1599b7",
+  "sha256": "aafc7421825d4f91d6a352565783b23d7b0c6728af25b45a18a3fd75c0440e2f",
   "physical_interval_s": [
     0.0,
     30.0
