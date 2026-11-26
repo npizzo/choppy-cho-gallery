@@ -33,10 +33,10 @@
     "current_diffusion_order": 4
   },
   "status": {
-    "status": "complete",
-    "stage": "cho_12.5",
-    "message": "Optimized continuation; unchanged dt, physical model and Cho damping. Original validation gates retained.",
-    "updated_at_utc": "2026-11-26T20:32:29.579809+00:00",
+    "status": "running",
+    "stage": "cho_15.0",
+    "message": "Audited optimized continuation; unchanged physical model and time steps.",
+    "updated_at_utc": "2026-11-26T20:41:42.725318+00:00",
     "job_id": "1958128"
   },
   "benchmark": {
@@ -53,7 +53,7 @@
   },
   "numerical_complete": false,
   "scientific_status": "preliminary",
-  "updated_at_utc": "2026-11-26T20:34:35.710411+00:00",
+  "updated_at_utc": "2026-11-26T20:42:49.291131+00:00",
   "assets": [
     "assets/wide_benchmark.json"
   ]
